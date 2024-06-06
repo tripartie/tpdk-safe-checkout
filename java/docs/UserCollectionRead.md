@@ -22,6 +22,7 @@
 |**createdAt** | **OffsetDateTime** |  |  [optional] [readonly] |
 |**updatedAt** | **OffsetDateTime** |  |  [optional] [readonly] |
 |**organization** | [**UserOrganizationCollectionRead**](UserOrganizationCollectionRead.md) |  |  [optional] |
+|**wallet** | [**UserWalletCollectionRead**](UserWalletCollectionRead.md) |  |  [optional] |
 |**iri** | **String** |  |  [optional] [readonly] |
 |**secondAuthFactor** | **Boolean** |  |  [optional] [readonly] |
 

@@ -29,6 +29,8 @@
 |**organization** | [**UserOrganizationAuthenticatedRead**](UserOrganizationAuthenticatedRead.md) |  |  [optional] |
 |**bankAccount** | [**UserBankAccountAuthenticatedRead**](UserBankAccountAuthenticatedRead.md) |  |  [optional] |
 |**identityVerifiedAt** | **OffsetDateTime** |  |  [optional] |
+|**profiles** | [**List&lt;UserPersonaAuthenticatedRead&gt;**](UserPersonaAuthenticatedRead.md) |  |  |
+|**wallet** | [**UserWalletAuthenticatedRead**](UserWalletAuthenticatedRead.md) |  |  [optional] |
 |**iri** | **String** |  |  [optional] [readonly] |
 |**impersonatingOrganization** | **Boolean** |  |  [optional] [readonly] |
 |**secondAuthFactor** | **Boolean** |  |  [optional] [readonly] |

@@ -59,6 +59,7 @@ docs/PersonaMetadataUpdate.md
 docs/PersonaMetadataWrite.md
 docs/PersonaRead.md
 docs/PersonaUpdate.md
+docs/PersonaUserRead.md
 docs/PersonaWrite.md
 docs/RateLimitError.md
 docs/SafeCheckoutApi.md
@@ -80,6 +81,7 @@ docs/UserOrganizationAuthenticatedRead.md
 docs/UserOrganizationCollectionRead.md
 docs/UserOrganizationRead.md
 docs/UserOrganizationSupportRead.md
+docs/UserPersonaAuthenticatedRead.md
 docs/UserPostRegisterRead.md
 docs/UserSupportRead.md
 docs/UserTotpSetupRead.md
@@ -89,8 +91,12 @@ docs/UserUserEmailUpdate.md
 docs/UserUserPasswordUpdate.md
 docs/UserUserRead.md
 docs/UserUserSubscribed.md
+docs/UserWalletAuthenticatedRead.md
+docs/UserWalletCollectionRead.md
+docs/UserWalletSupportRead.md
 docs/UserWrite.md
 docs/View.md
+docs/WalletUserRead.md
 docs/Webhook.md
 docs/WebhookApi.md
 docs/WebhookHistoryCollectionRead.md
@@ -185,6 +191,7 @@ src/main/java/com/tripartie/safecheckout/model/PersonaMetadataUpdate.java
 src/main/java/com/tripartie/safecheckout/model/PersonaMetadataWrite.java
 src/main/java/com/tripartie/safecheckout/model/PersonaRead.java
 src/main/java/com/tripartie/safecheckout/model/PersonaUpdate.java
+src/main/java/com/tripartie/safecheckout/model/PersonaUserRead.java
 src/main/java/com/tripartie/safecheckout/model/PersonaWrite.java
 src/main/java/com/tripartie/safecheckout/model/RateLimitError.java
 src/main/java/com/tripartie/safecheckout/model/UnprocessableEntity.java
@@ -204,6 +211,7 @@ src/main/java/com/tripartie/safecheckout/model/UserOrganizationAuthenticatedRead
 src/main/java/com/tripartie/safecheckout/model/UserOrganizationCollectionRead.java
 src/main/java/com/tripartie/safecheckout/model/UserOrganizationRead.java
 src/main/java/com/tripartie/safecheckout/model/UserOrganizationSupportRead.java
+src/main/java/com/tripartie/safecheckout/model/UserPersonaAuthenticatedRead.java
 src/main/java/com/tripartie/safecheckout/model/UserPostRegisterRead.java
 src/main/java/com/tripartie/safecheckout/model/UserSupportRead.java
 src/main/java/com/tripartie/safecheckout/model/UserTotpSetupRead.java
@@ -213,8 +221,12 @@ src/main/java/com/tripartie/safecheckout/model/UserUserEmailUpdate.java
 src/main/java/com/tripartie/safecheckout/model/UserUserPasswordUpdate.java
 src/main/java/com/tripartie/safecheckout/model/UserUserRead.java
 src/main/java/com/tripartie/safecheckout/model/UserUserSubscribed.java
+src/main/java/com/tripartie/safecheckout/model/UserWalletAuthenticatedRead.java
+src/main/java/com/tripartie/safecheckout/model/UserWalletCollectionRead.java
+src/main/java/com/tripartie/safecheckout/model/UserWalletSupportRead.java
 src/main/java/com/tripartie/safecheckout/model/UserWrite.java
 src/main/java/com/tripartie/safecheckout/model/View.java
+src/main/java/com/tripartie/safecheckout/model/WalletUserRead.java
 src/main/java/com/tripartie/safecheckout/model/Webhook.java
 src/main/java/com/tripartie/safecheckout/model/WebhookHistoryCollectionRead.java
 src/main/java/com/tripartie/safecheckout/model/WebhookHistoryRead.java
@@ -277,6 +289,7 @@ src/test/java/com/tripartie/safecheckout/model/PersonaMetadataWriteTest.java
 src/test/java/com/tripartie/safecheckout/model/PersonaReadTest.java
 src/test/java/com/tripartie/safecheckout/model/PersonaTest.java
 src/test/java/com/tripartie/safecheckout/model/PersonaUpdateTest.java
+src/test/java/com/tripartie/safecheckout/model/PersonaUserReadTest.java
 src/test/java/com/tripartie/safecheckout/model/PersonaWriteTest.java
 src/test/java/com/tripartie/safecheckout/model/RateLimitErrorTest.java
 src/test/java/com/tripartie/safecheckout/model/UnprocessableEntityTest.java
@@ -296,6 +309,7 @@ src/test/java/com/tripartie/safecheckout/model/UserOrganizationAuthenticatedRead
 src/test/java/com/tripartie/safecheckout/model/UserOrganizationCollectionReadTest.java
 src/test/java/com/tripartie/safecheckout/model/UserOrganizationReadTest.java
 src/test/java/com/tripartie/safecheckout/model/UserOrganizationSupportReadTest.java
+src/test/java/com/tripartie/safecheckout/model/UserPersonaAuthenticatedReadTest.java
 src/test/java/com/tripartie/safecheckout/model/UserPostRegisterReadTest.java
 src/test/java/com/tripartie/safecheckout/model/UserSupportReadTest.java
 src/test/java/com/tripartie/safecheckout/model/UserTotpSetupReadTest.java
@@ -305,8 +319,12 @@ src/test/java/com/tripartie/safecheckout/model/UserUserEmailUpdateTest.java
 src/test/java/com/tripartie/safecheckout/model/UserUserPasswordUpdateTest.java
 src/test/java/com/tripartie/safecheckout/model/UserUserReadTest.java
 src/test/java/com/tripartie/safecheckout/model/UserUserSubscribedTest.java
+src/test/java/com/tripartie/safecheckout/model/UserWalletAuthenticatedReadTest.java
+src/test/java/com/tripartie/safecheckout/model/UserWalletCollectionReadTest.java
+src/test/java/com/tripartie/safecheckout/model/UserWalletSupportReadTest.java
 src/test/java/com/tripartie/safecheckout/model/UserWriteTest.java
 src/test/java/com/tripartie/safecheckout/model/ViewTest.java
+src/test/java/com/tripartie/safecheckout/model/WalletUserReadTest.java
 src/test/java/com/tripartie/safecheckout/model/WebhookHistoryCollectionReadTest.java
 src/test/java/com/tripartie/safecheckout/model/WebhookHistoryReadTest.java
 src/test/java/com/tripartie/safecheckout/model/WebhookObjectTest.java

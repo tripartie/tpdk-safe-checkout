@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **created_at** | **datetime** |  | [optional] [readonly] 
 **updated_at** | **datetime** |  | [optional] [readonly] 
 **organization** | [**UserOrganizationSupportRead**](UserOrganizationSupportRead.md) |  | [optional] 
+**wallet** | [**UserWalletSupportRead**](UserWalletSupportRead.md) |  | [optional] 
 **iri** | **str** |  | [optional] [readonly] 
 **second_auth_factor** | **bool** |  | [optional] [readonly] 
 
