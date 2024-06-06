@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.10
+  version: 2.0.11
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -6852,6 +6852,21 @@ components:
       - firstName
       - gender
       - lastName
+    Persona-UserRead:
+      deprecated: false
+      description: ""
+      example:
+        organization:
+          domainVerified: true
+          name: name
+          icon:
+            publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          logo:
+            publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
+      properties:
+        organization:
+          $ref: '#/components/schemas/Organization-UserRead'
     Persona-Write:
       deprecated: false
       description: ""
@@ -6915,27 +6930,54 @@ components:
       description: ""
       example:
         birthday: 2000-01-23T04:56:07.000+00:00
+        lastName: TAHRI
+        preferredLanguage: fr
+        roles:
+        - ROLE_ORGANIZATION_OWNER
+        identityVerifiedAt: 2000-01-23T04:56:07.000+00:00
+        totpEnabled: true
+        intlPhoneNumber: "+33700000000"
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        impersonatingOrganization: true
+        publicName: Nickname
+        lockdown: true
+        lastSuccessfulLogIn: 2000-01-23T04:56:07.000+00:00
+        id: 0
+        email: john.doe@company.tld
+        updatedAt: 2000-01-23T04:56:07.000+00:00
         bankAccount:
           createdAt: 2000-01-23T04:56:07.000+00:00
           iban: iban
           bic: bic
           updatedAt: 2000-01-23T04:56:07.000+00:00
-        lastName: TAHRI
         iri: https://example.com/
-        preferredLanguage: fr
+        wallet:
+          ledger: 1.4658129
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          available: 5.962134
+          updatedAt: 2000-01-23T04:56:07.000+00:00
         secondAuthFactor: true
-        roles:
-        - ROLE_ORGANIZATION_OWNER
-        identityVerifiedAt: 2000-01-23T04:56:07.000+00:00
+        profiles:
+        - organization:
+            domainVerified: true
+            name: name
+            icon:
+              publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            logo:
+              publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
+        - organization:
+            domainVerified: true
+            name: name
+            icon:
+              publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            logo:
+              publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
         avatar:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
-        totpEnabled: true
-        intlPhoneNumber: "+33700000000"
         consentMailAds: true
         firstName: Jacob
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        impersonatingOrganization: true
-        publicName: Nickname
         organization:
           domainVerified: true
           name: name
@@ -6945,12 +6987,7 @@ components:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
         originCountry: FRA
-        lockdown: true
-        lastSuccessfulLogIn: 2000-01-23T04:56:07.000+00:00
-        id: 0
         roleInCompany: Accounting Dpt
-        email: john.doe@company.tld
-        updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           readOnly: true
@@ -7035,6 +7072,12 @@ components:
           format: date-time
           nullable: true
           type: string
+        profiles:
+          items:
+            $ref: '#/components/schemas/User-Persona-AuthenticatedRead'
+          type: array
+        wallet:
+          $ref: '#/components/schemas/User-Wallet-AuthenticatedRead'
         iri:
           example: https://example.com/
           format: iri-reference
@@ -7049,6 +7092,7 @@ components:
       required:
       - consentMailAds
       - lockdown
+      - profiles
       - roles
     User-BankAccount-AuthenticatedRead:
       deprecated: false
@@ -7080,6 +7124,13 @@ components:
       example:
         lastName: TAHRI
         iri: https://example.com/
+        wallet:
+          ledger: 1.4658129
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          available: 5.962134
+          externalId: externalId
+          providerName: providerName
+          updatedAt: 2000-01-23T04:56:07.000+00:00
         secondAuthFactor: true
         roles:
         - ROLE_ORGANIZATION_OWNER
@@ -7157,6 +7208,8 @@ components:
           type: string
         organization:
           $ref: '#/components/schemas/User-Organization-CollectionRead'
+        wallet:
+          $ref: '#/components/schemas/User-Wallet-CollectionRead'
         iri:
           example: https://example.com/
           format: iri-reference
@@ -7361,6 +7414,21 @@ components:
           type: integer
         name:
           type: string
+    User-Persona-AuthenticatedRead:
+      deprecated: false
+      description: ""
+      example:
+        organization:
+          domainVerified: true
+          name: name
+          icon:
+            publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          logo:
+            publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
+      properties:
+        organization:
+          $ref: '#/components/schemas/User-Organization-AuthenticatedRead'
     User-PostRegisterRead:
       deprecated: false
       description: ""
@@ -7382,6 +7450,13 @@ components:
       example:
         lastName: TAHRI
         iri: https://example.com/
+        wallet:
+          ledger: 1.4658129
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          available: 5.962134
+          externalId: externalId
+          providerName: providerName
+          updatedAt: 2000-01-23T04:56:07.000+00:00
         secondAuthFactor: true
         roles:
         - ROLE_ORGANIZATION_OWNER
@@ -7459,6 +7534,8 @@ components:
           type: string
         organization:
           $ref: '#/components/schemas/User-Organization-SupportRead'
+        wallet:
+          $ref: '#/components/schemas/User-Wallet-SupportRead'
         iri:
           example: https://example.com/
           format: iri-reference
@@ -7576,27 +7653,54 @@ components:
       description: ""
       example:
         birthday: 2000-01-23T04:56:07.000+00:00
+        lastName: TAHRI
+        preferredLanguage: fr
+        roles:
+        - ROLE_ORGANIZATION_OWNER
+        identityVerifiedAt: 2000-01-23T04:56:07.000+00:00
+        totpEnabled: true
+        intlPhoneNumber: "+33700000000"
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        impersonatingOrganization: true
+        publicName: Nickname
+        lockdown: true
+        lastSuccessfulLogIn: 2000-01-23T04:56:07.000+00:00
+        id: 0
+        email: john.doe@company.tld
+        updatedAt: 2000-01-23T04:56:07.000+00:00
         bankAccount:
           createdAt: 2000-01-23T04:56:07.000+00:00
           iban: iban
           bic: bic
           updatedAt: 2000-01-23T04:56:07.000+00:00
-        lastName: TAHRI
         iri: https://example.com/
-        preferredLanguage: fr
+        wallet:
+          ledger: 1.4658129
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          available: 5.962134
+          updatedAt: 2000-01-23T04:56:07.000+00:00
         secondAuthFactor: true
-        roles:
-        - ROLE_ORGANIZATION_OWNER
-        identityVerifiedAt: 2000-01-23T04:56:07.000+00:00
+        profiles:
+        - organization:
+            domainVerified: true
+            name: name
+            icon:
+              publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            logo:
+              publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
+        - organization:
+            domainVerified: true
+            name: name
+            icon:
+              publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            logo:
+              publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
         avatar:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
-        totpEnabled: true
-        intlPhoneNumber: "+33700000000"
         consentMailAds: true
         firstName: Jacob
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        impersonatingOrganization: true
-        publicName: Nickname
         organization:
           domainVerified: true
           name: name
@@ -7606,12 +7710,7 @@ components:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
         originCountry: FRA
-        lockdown: true
-        lastSuccessfulLogIn: 2000-01-23T04:56:07.000+00:00
-        id: 0
         roleInCompany: Accounting Dpt
-        email: john.doe@company.tld
-        updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           readOnly: true
@@ -7698,6 +7797,12 @@ components:
           format: date-time
           nullable: true
           type: string
+        profiles:
+          items:
+            $ref: '#/components/schemas/Persona-UserRead'
+          type: array
+        wallet:
+          $ref: '#/components/schemas/Wallet-UserRead'
         iri:
           example: https://example.com/
           format: iri-reference
@@ -7711,6 +7816,94 @@ components:
           type: boolean
       required:
       - email
+    User-Wallet-AuthenticatedRead:
+      deprecated: false
+      description: ""
+      example:
+        ledger: 1.4658129
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        available: 5.962134
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        ledger:
+          format: float
+          type: number
+        available:
+          format: float
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - createdAt
+      - updatedAt
+    User-Wallet-CollectionRead:
+      deprecated: false
+      description: ""
+      example:
+        ledger: 1.4658129
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        available: 5.962134
+        externalId: externalId
+        providerName: providerName
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        ledger:
+          format: float
+          type: number
+        available:
+          format: float
+          type: number
+        externalId:
+          type: string
+        providerName:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - createdAt
+      - externalId
+      - providerName
+      - updatedAt
+    User-Wallet-SupportRead:
+      deprecated: false
+      description: ""
+      example:
+        ledger: 1.4658129
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        available: 5.962134
+        externalId: externalId
+        providerName: providerName
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        ledger:
+          format: float
+          type: number
+        available:
+          format: float
+          type: number
+        externalId:
+          type: string
+        providerName:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - createdAt
+      - externalId
+      - providerName
+      - updatedAt
     User-Write:
       deprecated: false
       description: ""
@@ -7839,6 +8032,30 @@ components:
       required:
       - hitCount
       - ipAddress
+    Wallet-UserRead:
+      deprecated: false
+      description: ""
+      example:
+        ledger: 1.4658129
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        available: 5.962134
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        ledger:
+          format: float
+          type: number
+        available:
+          format: float
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - createdAt
+      - updatedAt
     WebhookHistory:
       deprecated: false
       description: ""

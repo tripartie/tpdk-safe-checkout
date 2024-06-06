@@ -27,6 +27,8 @@ Name | Type | Description | Notes
 **organization** | [**UserOrganizationAuthenticatedRead**](UserOrganizationAuthenticatedRead.md) |  | [optional] 
 **bank_account** | [**UserBankAccountAuthenticatedRead**](UserBankAccountAuthenticatedRead.md) |  | [optional] 
 **identity_verified_at** | **datetime** |  | [optional] 
+**profiles** | [**List[UserPersonaAuthenticatedRead]**](UserPersonaAuthenticatedRead.md) |  | 
+**wallet** | [**UserWalletAuthenticatedRead**](UserWalletAuthenticatedRead.md) |  | [optional] 
 **iri** | **str** |  | [optional] [readonly] 
 **impersonating_organization** | **bool** |  | [optional] [readonly] 
 **second_auth_factor** | **bool** |  | [optional] [readonly] 

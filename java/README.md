@@ -1,8 +1,8 @@
 # safecheckout
 
 Safe Checkout
-- API version: 2.0.10
-  - Build date: 2024-06-05T11:47:14.680054Z[Etc/UTC]
+- API version: 2.0.11
+  - Build date: 2024-06-06T05:46:36.705994Z[Etc/UTC]
   - Generator version: 7.6.0
 
 Simple, yet elegant web interfaces for your convenience. One request away from your first secured C2C transaction.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.tripartie</groupId>
   <artifactId>safecheckout</artifactId>
-  <version>2.0.10</version>
+  <version>2.0.11</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.tripartie:safecheckout:2.0.10"
+     implementation "com.tripartie:safecheckout:2.0.11"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/safecheckout-2.0.10.jar`
+* `target/safecheckout-2.0.11.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -230,6 +230,7 @@ Class | Method | HTTP request | Description
  - [PersonaMetadataWrite](docs/PersonaMetadataWrite.md)
  - [PersonaRead](docs/PersonaRead.md)
  - [PersonaUpdate](docs/PersonaUpdate.md)
+ - [PersonaUserRead](docs/PersonaUserRead.md)
  - [PersonaWrite](docs/PersonaWrite.md)
  - [RateLimitError](docs/RateLimitError.md)
  - [UnprocessableEntity](docs/UnprocessableEntity.md)
@@ -249,6 +250,7 @@ Class | Method | HTTP request | Description
  - [UserOrganizationCollectionRead](docs/UserOrganizationCollectionRead.md)
  - [UserOrganizationRead](docs/UserOrganizationRead.md)
  - [UserOrganizationSupportRead](docs/UserOrganizationSupportRead.md)
+ - [UserPersonaAuthenticatedRead](docs/UserPersonaAuthenticatedRead.md)
  - [UserPostRegisterRead](docs/UserPostRegisterRead.md)
  - [UserSupportRead](docs/UserSupportRead.md)
  - [UserTotpSetupRead](docs/UserTotpSetupRead.md)
@@ -258,8 +260,12 @@ Class | Method | HTTP request | Description
  - [UserUserPasswordUpdate](docs/UserUserPasswordUpdate.md)
  - [UserUserRead](docs/UserUserRead.md)
  - [UserUserSubscribed](docs/UserUserSubscribed.md)
+ - [UserWalletAuthenticatedRead](docs/UserWalletAuthenticatedRead.md)
+ - [UserWalletCollectionRead](docs/UserWalletCollectionRead.md)
+ - [UserWalletSupportRead](docs/UserWalletSupportRead.md)
  - [UserWrite](docs/UserWrite.md)
  - [View](docs/View.md)
+ - [WalletUserRead](docs/WalletUserRead.md)
  - [Webhook](docs/Webhook.md)
  - [WebhookHistoryCollectionRead](docs/WebhookHistoryCollectionRead.md)
  - [WebhookHistoryRead](docs/WebhookHistoryRead.md)
