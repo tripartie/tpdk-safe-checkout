@@ -7,7 +7,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ulid** | **str** |  | 
-**status** | **str** |  | [default to 'issued']
+**status** | **str** |  | 
 **public_url** | **str** | The public URL for your Ad/Offer on your marketplace. | [optional] 
 **redirect_url** | **str** | Fill-in that field IF you intend to redirect your customer instead of using a WebView. | [optional] 
 **organization** | [**OfferOrganizationRead**](OfferOrganizationRead.md) |  | [optional] 

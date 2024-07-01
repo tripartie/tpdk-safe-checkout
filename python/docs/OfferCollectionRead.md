@@ -7,7 +7,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ulid** | **str** |  | 
-**status** | **str** |  | [default to 'issued']
+**status** | **str** |  | 
 **public_url** | **str** | The public URL for your Ad/Offer on your marketplace. | [optional] 
 **seller** | **str** |  | 
 **preset_buyer** | **str** | Limit the offer to a particular buyer. Useful if the offer was issued from an auction for instance. | [optional] 
