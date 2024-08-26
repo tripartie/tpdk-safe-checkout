@@ -34,7 +34,7 @@
 |**firstName** | **String** |  |  [optional] |
 |**lastName** | **String** |  |  [optional] |
 |**gender** | [**GenderEnum**](#GenderEnum) |  |  [optional] |
-|**dateOfBirth** | **LocalDate** |  |  [optional] |
+|**dateOfBirth** | **Object** |  |  [optional] |
 |**language** | **String** | That data is used for rendering the frontend application with given language. If not set, will be inferred. Custom codes can be issued for specific requirements. |  [optional] |
 |**email** | **String** |  |  [optional] |
 |**mobilePhoneNumber** | **String** |  |  [optional] |
@@ -83,9 +83,9 @@
 
 | Name | Value |
 |---- | -----|
-| SWISSPOST | &quot;SwissPost&quot; |
+| SWISS_POST | &quot;SwissPost&quot; |
 | COLISSIMO | &quot;Colissimo&quot; |
-| MONDIALRELAY | &quot;MondialRelay&quot; |
+| MONDIAL_RELAY | &quot;MondialRelay&quot; |
 
 
 

@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ulid** | **str** |  | 
-**status** | **str** |  | [default to 'issued']
+**status** | **str** |  | 
 **public_url** | **str** | The public URL for your Ad/Offer on your marketplace. | [optional] 
 **redirect_url** | **str** | Fill-in that field IF you intend to redirect your customer instead of using a WebView. | [optional] 
 **organization** | [**OfferOrganizationRead**](OfferOrganizationRead.md) |  | [optional] 
@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 **first_name** | **str** |  | [optional] 
 **last_name** | **str** |  | [optional] 
 **gender** | **str** |  | [optional] [default to 'RATHER_NOT_SAY']
-**date_of_birth** | **date** |  | [optional] 
+**date_of_birth** | **object** |  | [optional] 
 **language** | **str** | That data is used for rendering the frontend application with given language. If not set, will be inferred. Custom codes can be issued for specific requirements. | [optional] 
 **email** | **str** |  | [optional] 
 **mobile_phone_number** | **str** |  | [optional] 

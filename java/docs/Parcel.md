@@ -25,16 +25,16 @@
 
 | Name | Value |
 |---- | -----|
-| SWISSPOST | &quot;SwissPost&quot; |
-| MONDIALRELAY | &quot;MondialRelay&quot; |
+| SWISS_POST | &quot;SwissPost&quot; |
+| MONDIAL_RELAY | &quot;MondialRelay&quot; |
 | COLISSIMO | &quot;Colissimo&quot; |
 | DHL | &quot;Dhl&quot; |
 | CHRONOPOST | &quot;Chronopost&quot; |
-| COLISPRIVE | &quot;ColisPrive&quot; |
+| COLIS_PRIVE | &quot;ColisPrive&quot; |
 | DPD | &quot;Dpd&quot; |
 | UPS | &quot;Ups&quot; |
-| FEDEX | &quot;FedEx&quot; |
-| RELAISCOLIS | &quot;RelaisColis&quot; |
+| FED_EX | &quot;FedEx&quot; |
+| RELAIS_COLIS | &quot;RelaisColis&quot; |
 
 
 

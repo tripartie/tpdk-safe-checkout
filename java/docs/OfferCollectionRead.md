@@ -66,9 +66,9 @@
 
 | Name | Value |
 |---- | -----|
-| SWISSPOST | &quot;SwissPost&quot; |
+| SWISS_POST | &quot;SwissPost&quot; |
 | COLISSIMO | &quot;Colissimo&quot; |
-| MONDIALRELAY | &quot;MondialRelay&quot; |
+| MONDIAL_RELAY | &quot;MondialRelay&quot; |
 
 
 
