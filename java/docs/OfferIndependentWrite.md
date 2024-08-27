@@ -16,10 +16,12 @@
 |**title** | **String** |  |  [optional] |
 |**description** | **String** |  |  [optional] |
 |**unitPrice** | **Float** |  |  [optional] |
+|**minNegotiableUnitPrice** | **Float** |  |  [optional] |
+|**allowToNegotiateUnitPrice** | **Boolean** |  |  [optional] |
 |**currencyCode** | **String** |  |  [optional] |
 |**itemCount** | **Integer** |  |  [optional] |
 |**condition** | [**ConditionEnum**](#ConditionEnum) |  |  [optional] |
-|**weightInGram** | **Integer** |  |  [optional] |
+|**weightInGram** | **Integer** | Accepted values between 500g (0.5kg) and 10,000g (10kg). |  [optional] |
 |**shippingAllowed** | **Boolean** | That toggle allows the seller to propose shipping for its item. If set in conjunction of shippingCarrier, the label will be automatically generated. Also, it will restrict the carrier to the limited subset defined. |  [optional] |
 |**handDeliveryAllowed** | **Boolean** | Enable both parties to finalize the transaction in person rather than using delivery. A QR Code must be scanned by the seller once the buyer claims the product. |  [optional] |
 |**shippingCarriers** | [**Set&lt;ShippingCarriersEnum&gt;**](#Set&lt;ShippingCarriersEnum&gt;) | If you wish to enable automated shipping label generation through a specific provider, specify it there. |  [optional] |
@@ -56,9 +58,9 @@
 
 | Name | Value |
 |---- | -----|
-| SWISSPOST | &quot;SwissPost&quot; |
+| SWISS_POST | &quot;SwissPost&quot; |
 | COLISSIMO | &quot;Colissimo&quot; |
-| MONDIALRELAY | &quot;MondialRelay&quot; |
+| MONDIAL_RELAY | &quot;MondialRelay&quot; |
 
 
 

@@ -7,7 +7,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **identifier** | **str** |  | [optional] 
-**secret** | **str** |  | [optional] 
+**secret** | **object** |  | [optional] 
 **name** | **str** |  | [optional] 
 
 ## Example

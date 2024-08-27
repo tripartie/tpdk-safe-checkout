@@ -7,13 +7,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ulid** | **str** |  | 
-**status** | **str** |  | [default to 'issued']
+**status** | **str** |  | 
 **public_url** | **str** | The public URL for your Ad/Offer on your marketplace. | [optional] 
 **seller** | **str** |  | 
 **preset_buyer** | **str** | Limit the offer to a particular buyer. Useful if the offer was issued from an auction for instance. | [optional] 
 **nature** | **str** | This WILL affect the assigned workflow. Choosing service will disable delivery for example. Refer to our technical hub for more information. | [default to 'physical_item']
 **title** | **str** |  | [optional] 
 **unit_price** | **float** |  | [optional] 
+**min_negotiable_unit_price** | **float** |  | [optional] 
+**allow_to_negotiate_unit_price** | **bool** |  | 
 **currency_code** | **str** |  | [default to 'EUR']
 **item_count** | **int** |  | [optional] [default to 1]
 **condition** | **str** |  | [optional] [default to 'USED']

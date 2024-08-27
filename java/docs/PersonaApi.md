@@ -170,12 +170,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //jwtPersonalKey.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: personaAuthKey
-    ApiKeyAuth personaAuthKey = (ApiKeyAuth) defaultClient.getAuthentication("personaAuthKey");
-    personaAuthKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //personaAuthKey.setApiKeyPrefix("Token");
-
     // Configure OAuth2 access token for authorization: oauth
     OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
     oauth.setAccessToken("YOUR ACCESS TOKEN");
@@ -208,7 +202,7 @@ null (empty response body)
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -254,12 +248,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //jwtPersonalKey.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: personaAuthKey
-    ApiKeyAuth personaAuthKey = (ApiKeyAuth) defaultClient.getAuthentication("personaAuthKey");
-    personaAuthKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //personaAuthKey.setApiKeyPrefix("Token");
-
     // Configure OAuth2 access token for authorization: oauth
     OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
     oauth.setAccessToken("YOUR ACCESS TOKEN");
@@ -293,7 +281,7 @@ public class Example {
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -339,12 +327,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //jwtPersonalKey.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: personaAuthKey
-    ApiKeyAuth personaAuthKey = (ApiKeyAuth) defaultClient.getAuthentication("personaAuthKey");
-    personaAuthKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //personaAuthKey.setApiKeyPrefix("Token");
-
     // Configure OAuth2 access token for authorization: oauth
     OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
     oauth.setAccessToken("YOUR ACCESS TOKEN");
@@ -380,7 +362,7 @@ public class Example {
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 

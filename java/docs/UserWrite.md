@@ -17,8 +17,9 @@
 |**email** | **String** |  |  |
 |**plainPassword** | **String** |  |  |
 |**intlPhoneNumber** | **String** |  |  [optional] |
-|**originCountry** | **String** | The originating country |  |
-|**preferredLanguage** | **String** |  |  |
+|**originCountry** | **String** | The nationality of the current user. |  [optional] |
+|**homeCountry** | **String** | The originating country |  [optional] |
+|**preferredLanguage** | **String** |  |  [optional] |
 |**consentMailAds** | **Boolean** |  |  [optional] |
 
 

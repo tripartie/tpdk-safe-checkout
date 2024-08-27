@@ -7,6 +7,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
+**main_address** | **object** |  | [optional] 
 **first_name** | **str** |  | [optional] 
 **last_name** | **str** |  | [optional] 
 **public_name** | **str** |  | [optional] 
@@ -16,7 +17,8 @@ Name | Type | Description | Notes
 **roles** | **List[str]** |  | [optional] 
 **totp_enabled** | **bool** |  | [optional] 
 **intl_phone_number** | **str** |  | [optional] 
-**origin_country** | **str** | The originating country | [optional] 
+**origin_country** | **str** | The nationality of the current user. | [optional] 
+**home_country** | **str** | The originating country | [optional] 
 **preferred_language** | **str** |  | [optional] 
 **last_successful_log_in** | **datetime** |  | [optional] 
 **avatar** | [**MediaUserRead**](MediaUserRead.md) |  | [optional] 
@@ -28,10 +30,15 @@ Name | Type | Description | Notes
 **bank_account** | [**BankAccountUserRead**](BankAccountUserRead.md) |  | [optional] 
 **identity_verified_at** | **datetime** |  | [optional] 
 **profiles** | [**List[PersonaUserRead]**](PersonaUserRead.md) |  | [optional] 
+**cards** | [**List[CardUserRead]**](CardUserRead.md) |  | [optional] 
 **wallet** | [**WalletUserRead**](WalletUserRead.md) |  | [optional] 
+**provider_name** | **str** |  | [optional] 
+**provider_created_at** | **datetime** |  | [optional] [readonly] 
+**provider_updated_at** | **datetime** |  | [optional] [readonly] 
 **iri** | **str** |  | [optional] [readonly] 
 **impersonating_organization** | **bool** |  | [optional] [readonly] 
 **second_auth_factor** | **bool** |  | [optional] [readonly] 
+**processor_status** | **str** | Automagically infer on what state the entity is at the Payment Processor. | [optional] [readonly] 
 
 ## Example
 

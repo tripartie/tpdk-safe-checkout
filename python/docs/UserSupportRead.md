@@ -7,6 +7,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
+**main_address** | **object** |  | [optional] 
 **first_name** | **str** |  | [optional] 
 **last_name** | **str** |  | [optional] 
 **public_name** | **str** |  | [optional] 
@@ -21,8 +22,13 @@ Name | Type | Description | Notes
 **updated_at** | **datetime** |  | [optional] [readonly] 
 **organization** | [**UserOrganizationSupportRead**](UserOrganizationSupportRead.md) |  | [optional] 
 **wallet** | [**UserWalletSupportRead**](UserWalletSupportRead.md) |  | [optional] 
+**external_id** | **str** |  | [optional] 
+**provider_name** | **str** |  | [optional] 
+**provider_created_at** | **datetime** |  | [optional] [readonly] 
+**provider_updated_at** | **datetime** |  | [optional] [readonly] 
 **iri** | **str** |  | [optional] [readonly] 
 **second_auth_factor** | **bool** |  | [optional] [readonly] 
+**processor_status** | **str** | Automagically infer on what state the entity is at the Payment Processor. | [optional] [readonly] 
 
 ## Example
 

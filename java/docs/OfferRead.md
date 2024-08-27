@@ -13,15 +13,15 @@
 |**publicUrl** | **String** | The public URL for your Ad/Offer on your marketplace. |  [optional] |
 |**redirectUrl** | **String** | Fill-in that field IF you intend to redirect your customer instead of using a WebView. |  [optional] |
 |**organization** | [**OfferOrganizationRead**](OfferOrganizationRead.md) |  |  [optional] |
-|**seller** | **String** |  |  |
-|**presetBuyer** | **String** | Limit the offer to a particular buyer. Useful if the offer was issued from an auction for instance. |  [optional] |
+|**seller** | [**OfferPersonaRead**](OfferPersonaRead.md) |  |  |
+|**presetBuyer** | [**OfferPersonaRead**](OfferPersonaRead.md) |  |  [optional] |
 |**nature** | [**NatureEnum**](#NatureEnum) | This WILL affect the assigned workflow. Choosing service will disable delivery for example. Refer to our technical hub for more information. |  |
 |**title** | **String** |  |  [optional] |
 |**unitPrice** | **Float** |  |  [optional] |
 |**currencyCode** | **String** |  |  |
 |**itemCount** | **Integer** |  |  [optional] |
 |**condition** | [**ConditionEnum**](#ConditionEnum) |  |  [optional] |
-|**weightInGram** | **Integer** |  |  |
+|**weightInGram** | **Integer** | Accepted values between 500g (0.5kg) and 10,000g (10kg). |  |
 |**shippingAllowed** | **Boolean** | That toggle allows the seller to propose shipping for its item. If set in conjunction of shippingCarrier, the label will be automatically generated. Also, it will restrict the carrier to the limited subset defined. |  |
 |**handDeliveryAllowed** | **Boolean** | Enable both parties to finalize the transaction in person rather than using delivery. A QR Code must be scanned by the seller once the buyer claims the product. |  |
 |**shippingCarriers** | [**List&lt;ShippingCarriersEnum&gt;**](#List&lt;ShippingCarriersEnum&gt;) | If you wish to enable automated shipping label generation through a specific provider, specify it there. |  [optional] |
@@ -72,9 +72,9 @@
 
 | Name | Value |
 |---- | -----|
-| SWISSPOST | &quot;SwissPost&quot; |
+| SWISS_POST | &quot;SwissPost&quot; |
 | COLISSIMO | &quot;Colissimo&quot; |
-| MONDIALRELAY | &quot;MondialRelay&quot; |
+| MONDIAL_RELAY | &quot;MondialRelay&quot; |
 
 
 

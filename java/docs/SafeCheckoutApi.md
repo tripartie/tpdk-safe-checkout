@@ -10,15 +10,11 @@ All URIs are relative to *https://staging-api.tripartie.app*
 | [**apiOffersUlidPatch**](SafeCheckoutApi.md#apiOffersUlidPatch) | **PATCH** /offers/{ulid} | Update existing Offer |
 | [**apiOffersUlidmediasIdDelete**](SafeCheckoutApi.md#apiOffersUlidmediasIdDelete) | **DELETE** /offers/{ulid}/medias/{id} | Removes the Media resource. |
 | [**apiOffersUlidmediasPost**](SafeCheckoutApi.md#apiOffersUlidmediasPost) | **POST** /offers/{ulid}/medias | Upload a picture for a given Offer |
-| [**apiTransactionsUlidevaluationsPost**](SafeCheckoutApi.md#apiTransactionsUlidevaluationsPost) | **POST** /transactions/{ulid}/evaluations | Submit an Evaluation for the Transaction |
-| [**apiTransactionsUlidparcelsGetCollection**](SafeCheckoutApi.md#apiTransactionsUlidparcelsGetCollection) | **GET** /transactions/{ulid}/parcels | Retrieves the collection of Parcel resources. |
-| [**apiTransactionsUlidparcelsIdDelete**](SafeCheckoutApi.md#apiTransactionsUlidparcelsIdDelete) | **DELETE** /transactions/{ulid}/parcels/{id} | Removes the Parcel resource. |
-| [**apiTransactionsUlidparcelsPost**](SafeCheckoutApi.md#apiTransactionsUlidparcelsPost) | **POST** /transactions/{ulid}/parcels | Creates a Parcel resource. |
 
 
 <a id="apiOffersGetCollection"></a>
 # **apiOffersGetCollection**
-> List&lt;OfferCollectionRead&gt; apiOffersGetCollection().page(page).title(title).publicUrl(publicUrl).publicUrl2(publicUrl2).unitPrice(unitPrice).unitPrice2(unitPrice2).itemCount(itemCount).itemCount2(itemCount2).createdAtBefore(createdAtBefore).createdAtStrictlyBefore(createdAtStrictlyBefore).createdAtAfter(createdAtAfter).createdAtStrictlyAfter(createdAtStrictlyAfter).metadata(metadata).offerMetadata(offerMetadata).sellerMetadata(sellerMetadata).nature(nature).condition(condition).shippingAllowed(shippingAllowed).execute();
+> List&lt;OfferCollectionRead&gt; apiOffersGetCollection().page(page).title(title).publicUrl(publicUrl).publicUrl2(publicUrl2).unitPrice(unitPrice).unitPrice2(unitPrice2).itemCount(itemCount).itemCount2(itemCount2).createdAtBefore(createdAtBefore).createdAtStrictlyBefore(createdAtStrictlyBefore).createdAtAfter(createdAtAfter).createdAtStrictlyAfter(createdAtStrictlyAfter).metadata(metadata).offerMetadata(offerMetadata).sellerMetadata(sellerMetadata).nature(nature).condition(condition).status(status).shippingAllowed(shippingAllowed).execute();
 
 Search amongst Offers
 
@@ -61,6 +57,7 @@ public class Example {
     List<String> sellerMetadata = Arrays.asList(new ArrayList<>()); // List<String> | Flattened OrderedMap for seller.metadata. Must be a multiple of two items count. Explicitly set \"null\" for desired value.
     String nature = "service"; // String | Filter on a limited subset of nature
     String condition = "NEW"; // String | Filter on a limited subset of condition
+    String status = "issued"; // String | Filter on a limited subset of status
     Boolean shippingAllowed = true; // Boolean | 
     try {
       List<OfferCollectionRead> result = apiInstance.apiOffersGetCollection()
@@ -81,6 +78,7 @@ public class Example {
             .sellerMetadata(sellerMetadata)
             .nature(nature)
             .condition(condition)
+            .status(status)
             .shippingAllowed(shippingAllowed)
             .execute();
       System.out.println(result);
@@ -116,6 +114,7 @@ public class Example {
 | **sellerMetadata** | [**List&lt;String&gt;**](String.md)| Flattened OrderedMap for seller.metadata. Must be a multiple of two items count. Explicitly set \&quot;null\&quot; for desired value. | [optional] |
 | **nature** | **String**| Filter on a limited subset of nature | [optional] [enum: service, physical_item, dematerialized_item, rent_item] |
 | **condition** | **String**| Filter on a limited subset of condition | [optional] [enum: NEW, USED, DAMAGED, DETERIORATED, UNRECOVERABLE] |
+| **status** | **String**| Filter on a limited subset of status | [optional] [enum: issued, active, fulfilled, expired] |
 | **shippingAllowed** | **Boolean**|  | [optional] |
 
 ### Return type
@@ -243,12 +242,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //jwtPersonalKey.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: personaAuthKey
-    ApiKeyAuth personaAuthKey = (ApiKeyAuth) defaultClient.getAuthentication("personaAuthKey");
-    personaAuthKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //personaAuthKey.setApiKeyPrefix("Token");
-
     // Configure OAuth2 access token for authorization: oauth
     OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
     oauth.setAccessToken("YOUR ACCESS TOKEN");
@@ -282,7 +275,7 @@ public class Example {
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -403,12 +396,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //jwtPersonalKey.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: personaAuthKey
-    ApiKeyAuth personaAuthKey = (ApiKeyAuth) defaultClient.getAuthentication("personaAuthKey");
-    personaAuthKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //personaAuthKey.setApiKeyPrefix("Token");
-
     // Configure OAuth2 access token for authorization: oauth
     OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
     oauth.setAccessToken("YOUR ACCESS TOKEN");
@@ -443,7 +430,7 @@ null (empty response body)
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -483,12 +470,6 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://staging-api.tripartie.app");
     
-    // Configure API key authorization: personaAuthKey
-    ApiKeyAuth personaAuthKey = (ApiKeyAuth) defaultClient.getAuthentication("personaAuthKey");
-    personaAuthKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //personaAuthKey.setApiKeyPrefix("Token");
-
     // Configure OAuth2 access token for authorization: oauth
     OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
     oauth.setAccessToken("YOUR ACCESS TOKEN");
@@ -525,7 +506,7 @@ public class Example {
 
 ### Authorization
 
-[personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -536,335 +517,6 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Media resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-| **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-| **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-| **401** | Authentication required |  -  |
-| **403** | Unauthorized access |  -  |
-| **429** | Rate limit exhausted |  -  |
-| **500** | Unexpected server error |  -  |
-
-<a id="apiTransactionsUlidevaluationsPost"></a>
-# **apiTransactionsUlidevaluationsPost**
-> EvaluationRead apiTransactionsUlidevaluationsPost(ulid, evaluationWrite).execute();
-
-Submit an Evaluation for the Transaction
-
-**Only authenticated** complainant and seller **CAN** issue an evaluation **WHEN** the transaction reached a final state.
-
-### Example
-```java
-// Import classes:
-import com.tripartie.safecheckout.ApiClient;
-import com.tripartie.safecheckout.ApiException;
-import com.tripartie.safecheckout.Configuration;
-import com.tripartie.safecheckout.auth.*;
-import com.tripartie.safecheckout.models.*;
-import com.tripartie.safecheckout.api.SafeCheckoutApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://staging-api.tripartie.app");
-    
-    // Configure API key authorization: personaAuthKey
-    ApiKeyAuth personaAuthKey = (ApiKeyAuth) defaultClient.getAuthentication("personaAuthKey");
-    personaAuthKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //personaAuthKey.setApiKeyPrefix("Token");
-
-    SafeCheckoutApi apiInstance = new SafeCheckoutApi(defaultClient);
-    String ulid = "ulid_example"; // String | Evaluation identifier
-    EvaluationWrite evaluationWrite = new EvaluationWrite(); // EvaluationWrite | The new Evaluation resource
-    try {
-      EvaluationRead result = apiInstance.apiTransactionsUlidevaluationsPost(ulid, evaluationWrite)
-            .execute();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling SafeCheckoutApi#apiTransactionsUlidevaluationsPost");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **ulid** | **String**| Evaluation identifier | |
-| **evaluationWrite** | [**EvaluationWrite**](EvaluationWrite.md)| The new Evaluation resource | |
-
-### Return type
-
-[**EvaluationRead**](EvaluationRead.md)
-
-### Authorization
-
-[personaAuthKey](../README.md#personaAuthKey)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **201** | Evaluation resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-| **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-| **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-| **401** | Authentication required |  -  |
-| **403** | Unauthorized access |  -  |
-| **429** | Rate limit exhausted |  -  |
-| **500** | Unexpected server error |  -  |
-
-<a id="apiTransactionsUlidparcelsGetCollection"></a>
-# **apiTransactionsUlidparcelsGetCollection**
-> List&lt;Object&gt; apiTransactionsUlidparcelsGetCollection(ulid).page(page).execute();
-
-Retrieves the collection of Parcel resources.
-
-Retrieves the collection of Parcel resources.
-
-### Example
-```java
-// Import classes:
-import com.tripartie.safecheckout.ApiClient;
-import com.tripartie.safecheckout.ApiException;
-import com.tripartie.safecheckout.Configuration;
-import com.tripartie.safecheckout.auth.*;
-import com.tripartie.safecheckout.models.*;
-import com.tripartie.safecheckout.api.SafeCheckoutApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://staging-api.tripartie.app");
-    
-    // Configure API key authorization: jwtPersonalKey
-    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
-    jwtPersonalKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //jwtPersonalKey.setApiKeyPrefix("Token");
-
-    // Configure API key authorization: personaAuthKey
-    ApiKeyAuth personaAuthKey = (ApiKeyAuth) defaultClient.getAuthentication("personaAuthKey");
-    personaAuthKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //personaAuthKey.setApiKeyPrefix("Token");
-
-    // Configure OAuth2 access token for authorization: oauth
-    OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
-    oauth.setAccessToken("YOUR ACCESS TOKEN");
-
-    SafeCheckoutApi apiInstance = new SafeCheckoutApi(defaultClient);
-    String ulid = "ulid_example"; // String | 
-    Integer page = 1; // Integer | The collection page number
-    try {
-      List<Object> result = apiInstance.apiTransactionsUlidparcelsGetCollection(ulid)
-            .page(page)
-            .execute();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling SafeCheckoutApi#apiTransactionsUlidparcelsGetCollection");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **ulid** | **String**|  | |
-| **page** | **Integer**| The collection page number | [optional] [default to 1] |
-
-### Return type
-
-**List&lt;Object&gt;**
-
-### Authorization
-
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Parcel collection |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  * Content-Range - HTTP standardized header for partial content, used for the pagination <br>  |
-| **401** | Authentication required |  -  |
-| **403** | Unauthorized access |  -  |
-| **429** | Rate limit exhausted |  -  |
-| **500** | Unexpected server error |  -  |
-
-<a id="apiTransactionsUlidparcelsIdDelete"></a>
-# **apiTransactionsUlidparcelsIdDelete**
-> apiTransactionsUlidparcelsIdDelete(ulid, id).execute();
-
-Removes the Parcel resource.
-
-Removes the Parcel resource.
-
-### Example
-```java
-// Import classes:
-import com.tripartie.safecheckout.ApiClient;
-import com.tripartie.safecheckout.ApiException;
-import com.tripartie.safecheckout.Configuration;
-import com.tripartie.safecheckout.auth.*;
-import com.tripartie.safecheckout.models.*;
-import com.tripartie.safecheckout.api.SafeCheckoutApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://staging-api.tripartie.app");
-    
-    // Configure API key authorization: jwtPersonalKey
-    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
-    jwtPersonalKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //jwtPersonalKey.setApiKeyPrefix("Token");
-
-    SafeCheckoutApi apiInstance = new SafeCheckoutApi(defaultClient);
-    String ulid = "ulid_example"; // String | 
-    Integer id = 56; // Integer | 
-    try {
-      apiInstance.apiTransactionsUlidparcelsIdDelete(ulid, id)
-            .execute();
-    } catch (ApiException e) {
-      System.err.println("Exception when calling SafeCheckoutApi#apiTransactionsUlidparcelsIdDelete");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **ulid** | **String**|  | |
-| **id** | **Integer**|  | |
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-[jwtPersonalKey](../README.md#jwtPersonalKey)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | Parcel resource deleted |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-| **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-| **401** | Authentication required |  -  |
-| **403** | Unauthorized access |  -  |
-| **429** | Rate limit exhausted |  -  |
-| **500** | Unexpected server error |  -  |
-
-<a id="apiTransactionsUlidparcelsPost"></a>
-# **apiTransactionsUlidparcelsPost**
-> Object apiTransactionsUlidparcelsPost(ulid, parcelWrite).execute();
-
-Creates a Parcel resource.
-
-Creates a Parcel resource.
-
-### Example
-```java
-// Import classes:
-import com.tripartie.safecheckout.ApiClient;
-import com.tripartie.safecheckout.ApiException;
-import com.tripartie.safecheckout.Configuration;
-import com.tripartie.safecheckout.auth.*;
-import com.tripartie.safecheckout.models.*;
-import com.tripartie.safecheckout.api.SafeCheckoutApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://staging-api.tripartie.app");
-    
-    // Configure API key authorization: jwtPersonalKey
-    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
-    jwtPersonalKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //jwtPersonalKey.setApiKeyPrefix("Token");
-
-    // Configure API key authorization: personaAuthKey
-    ApiKeyAuth personaAuthKey = (ApiKeyAuth) defaultClient.getAuthentication("personaAuthKey");
-    personaAuthKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //personaAuthKey.setApiKeyPrefix("Token");
-
-    // Configure OAuth2 access token for authorization: oauth
-    OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
-    oauth.setAccessToken("YOUR ACCESS TOKEN");
-
-    SafeCheckoutApi apiInstance = new SafeCheckoutApi(defaultClient);
-    String ulid = "ulid_example"; // String | 
-    ParcelWrite parcelWrite = new ParcelWrite(); // ParcelWrite | The new Parcel resource
-    try {
-      Object result = apiInstance.apiTransactionsUlidparcelsPost(ulid, parcelWrite)
-            .execute();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling SafeCheckoutApi#apiTransactionsUlidparcelsPost");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **ulid** | **String**|  | |
-| **parcelWrite** | [**ParcelWrite**](ParcelWrite.md)| The new Parcel resource | |
-
-### Return type
-
-**Object**
-
-### Authorization
-
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **201** | Parcel resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 | **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 | **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 | **401** | Authentication required |  -  |
