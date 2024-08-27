@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **id** | **int** |  | [optional] [readonly] 
 **persona** | **str** |  | [optional] 
 **offer** | **str** |  | [optional] 
+**card** | **str** |  | [optional] 
 **key** | **str** |  | [optional] 
 **value** | **str** |  | [optional] 
 

@@ -15,8 +15,9 @@ Name | Type | Description | Notes
 **email** | **str** |  | 
 **plain_password** | **str** |  | 
 **intl_phone_number** | **str** |  | [optional] 
-**origin_country** | **str** | The originating country | 
-**preferred_language** | **str** |  | 
+**origin_country** | **str** | The nationality of the current user. | [optional] 
+**home_country** | **str** | The originating country | [optional] 
+**preferred_language** | **str** |  | [optional] 
 **consent_mail_ads** | **bool** |  | [optional] 
 
 ## Example

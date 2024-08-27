@@ -13,7 +13,7 @@
 |**firstName** | **String** |  |  [optional] |
 |**lastName** | **String** |  |  [optional] |
 |**gender** | [**GenderEnum**](#GenderEnum) |  |  [optional] |
-|**dateOfBirth** | **LocalDate** |  |  [optional] |
+|**dateOfBirth** | **Object** |  |  [optional] |
 |**language** | **String** | That data is used for rendering the frontend application with given language. If not set, will be inferred. Custom codes can be issued for specific requirements. |  [optional] |
 |**email** | **String** |  |  [optional] |
 |**mobilePhoneNumber** | **String** |  |  [optional] |
@@ -21,12 +21,12 @@
 |**metadata** | [**List&lt;Metadata&gt;**](Metadata.md) | You can assign different meta to your Persona object for different purposes. eg. Ease searching. |  [optional] |
 |**offers** | **List&lt;String&gt;** |  |  |
 |**purchases** | **List&lt;String&gt;** |  |  |
-|**views** | [**List&lt;View&gt;**](View.md) |  |  |
 |**createdAt** | **OffsetDateTime** |  |  [optional] [readonly] |
 |**updatedAt** | **OffsetDateTime** |  |  [optional] [readonly] |
 |**ownedBy** | **String** |  |  [optional] |
 |**offerCount** | **Integer** | Issued Offers count owned by a given Persona |  [optional] [readonly] |
 |**purchaseCount** | **Integer** |  |  [optional] [readonly] |
+|**registered** | **Boolean** | Determine if the Persona have a Tripartie account |  [optional] [readonly] |
 
 
 

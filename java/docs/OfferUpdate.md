@@ -13,6 +13,8 @@
 |**title** | **String** |  |  [optional] |
 |**description** | **String** |  |  [optional] |
 |**unitPrice** | **Float** |  |  [optional] |
+|**minNegotiableUnitPrice** | **Float** |  |  [optional] |
+|**allowToNegotiateUnitPrice** | **Boolean** |  |  [optional] |
 |**currencyCode** | **String** |  |  [optional] |
 |**shippingAllowed** | **Boolean** | That toggle allows the seller to propose shipping for its item. If set in conjunction of shippingCarrier, the label will be automatically generated. Also, it will restrict the carrier to the limited subset defined. |  [optional] |
 |**handDeliveryAllowed** | **Boolean** | Enable both parties to finalize the transaction in person rather than using delivery. A QR Code must be scanned by the seller once the buyer claims the product. |  [optional] |
@@ -27,9 +29,9 @@
 
 | Name | Value |
 |---- | -----|
-| SWISSPOST | &quot;SwissPost&quot; |
+| SWISS_POST | &quot;SwissPost&quot; |
 | COLISSIMO | &quot;Colissimo&quot; |
-| MONDIALRELAY | &quot;MondialRelay&quot; |
+| MONDIAL_RELAY | &quot;MondialRelay&quot; |
 
 
 

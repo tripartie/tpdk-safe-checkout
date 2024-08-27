@@ -8,6 +8,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**mainAddress** | **Object** |  |  [optional] |
 |**firstName** | **String** |  |  [optional] |
 |**lastName** | **String** |  |  [optional] |
 |**publicName** | **String** |  |  [optional] |

@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.11
+  version: 2.0.22
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -18,19 +18,20 @@ servers:
 security:
 - oauth: []
 - jwtPersonalKey: []
-- personaAuthKey: []
 tags:
-- description: Secure your C2C transactions with the utmost ease
+- description: Secure your C2C transactions with utmost ease
   name: Safe-Checkout
-- description: Common shared knowledge of your base users
+- description: Common shared knowledge of your users
   name: Persona
 - description: Be kept up-to-date if anything happens
   name: Webhook
 - description: Customize the appearance of the front application so that your customer
     would recognize it as your own
   name: Branding
-- description: You should not care about this section as it serve internal purposes
+- description: Internal access for our users
   name: User
+- description: Internal access for administration purposes
+  name: Admin
 paths:
   /api-clients:
     get:
@@ -399,6 +400,897 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /bank-accounts:
+    post:
+      deprecated: false
+      description: Creates a BankAccount resource.
+      operationId: api_bank-accounts_post
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BankAccount-Write'
+        description: The new BankAccount resource
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankAccount-Read'
+          description: BankAccount resource created
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidQueryError'
+          description: Invalid input
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableEntity'
+          description: Unprocessable entity
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+          description: Authentication required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessError'
+          description: Unauthorized access
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+          description: Rate limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+          description: Unexpected server error
+      security:
+      - jwtPersonalKey: []
+      summary: Creates a BankAccount resource.
+      tags:
+      - User
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /bank-accounts/{id}:
+    delete:
+      deprecated: false
+      description: Removes the BankAccount resource.
+      operationId: api_bank-accounts_id_delete
+      parameters:
+      - allowReserved: false
+        deprecated: false
+        description: BankAccount identifier
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: BankAccount resource deleted
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: Resource not found
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+          description: Authentication required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessError'
+          description: Unauthorized access
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+          description: Rate limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+          description: Unexpected server error
+      security:
+      - jwtPersonalKey: []
+      summary: Removes the BankAccount resource.
+      tags:
+      - User
+      x-accepts:
+      - application/json
+    get:
+      deprecated: false
+      description: Retrieves a BankAccount resource.
+      operationId: api_bank-accounts_id_get
+      parameters:
+      - allowReserved: false
+        deprecated: false
+        description: BankAccount identifier
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankAccount-Read'
+          description: BankAccount resource
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: Resource not found
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+          description: Authentication required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessError'
+          description: Unauthorized access
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+          description: Rate limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+          description: Unexpected server error
+      security:
+      - jwtPersonalKey: []
+      summary: Retrieves a BankAccount resource.
+      tags:
+      - User
+      x-accepts:
+      - application/json
+  /cards:
+    get:
+      deprecated: false
+      description: Retrieves the collection of Card resources.
+      operationId: api_cards_get_collection
+      parameters:
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: The collection page number
+        explode: false
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Card-CollectionRead'
+                type: array
+          description: Card collection
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+            Content-Range:
+              description: "HTTP standardized header for partial content, used for\
+                \ the pagination"
+              explode: false
+              schema:
+                example: 0-50/28441
+                type: string
+              style: simple
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+          description: Authentication required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessError'
+          description: Unauthorized access
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+          description: Rate limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+          description: Unexpected server error
+      security:
+      - jwtPersonalKey: []
+      summary: Retrieves the collection of Card resources.
+      tags:
+      - User
+      x-accepts:
+      - application/json
+    post:
+      deprecated: false
+      description: Creates a Card resource.
+      operationId: api_cards_post
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Card-Write'
+        description: The new Card resource
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card-Read'
+          description: Card resource created
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidQueryError'
+          description: Invalid input
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableEntity'
+          description: Unprocessable entity
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+          description: Authentication required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessError'
+          description: Unauthorized access
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+          description: Rate limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+          description: Unexpected server error
+      security:
+      - jwtPersonalKey: []
+      summary: Creates a Card resource.
+      tags:
+      - User
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /cards/{id}:
+    delete:
+      deprecated: false
+      description: Removes the Card resource.
+      operationId: api_cards_id_delete
+      parameters:
+      - allowReserved: false
+        deprecated: false
+        description: Card identifier
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Card resource deleted
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: Resource not found
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+          description: Authentication required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessError'
+          description: Unauthorized access
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+          description: Rate limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+          description: Unexpected server error
+      security:
+      - jwtPersonalKey: []
+      summary: Removes the Card resource.
+      tags:
+      - User
+      x-accepts:
+      - application/json
+    get:
+      deprecated: false
+      description: Retrieves a Card resource.
+      operationId: api_cards_id_get
+      parameters:
+      - allowReserved: false
+        deprecated: false
+        description: Card identifier
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card-Read'
+          description: Card resource
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: Resource not found
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+          description: Authentication required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessError'
+          description: Unauthorized access
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+          description: Rate limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+          description: Unexpected server error
+      security:
+      - jwtPersonalKey: []
+      summary: Retrieves a Card resource.
+      tags:
+      - User
+      x-accepts:
+      - application/json
+    patch:
+      deprecated: false
+      description: Updates the Card resource.
+      operationId: api_cards_id_patch
+      parameters:
+      - allowReserved: false
+        deprecated: false
+        description: Card identifier
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Card-Update'
+        description: The updated Card resource
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card-Read'
+          description: Card resource updated
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidQueryError'
+          description: Invalid input
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableEntity'
+          description: Unprocessable entity
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: Resource not found
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+          description: Authentication required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessError'
+          description: Unauthorized access
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+          description: Rate limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+          description: Unexpected server error
+      security:
+      - jwtPersonalKey: []
+      summary: Updates the Card resource.
+      tags:
+      - User
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /cash-outs:
+    get:
+      deprecated: false
+      description: Retrieves the collection of CashOut resources.
+      operationId: api_cash-outs_get_collection
+      parameters:
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: The collection page number
+        explode: false
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Cashout-CashOut-CollectionRead'
+                type: array
+          description: CashOut collection
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+            Content-Range:
+              description: "HTTP standardized header for partial content, used for\
+                \ the pagination"
+              explode: false
+              schema:
+                example: 0-50/28441
+                type: string
+              style: simple
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+          description: Authentication required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessError'
+          description: Unauthorized access
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+          description: Rate limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+          description: Unexpected server error
+      security:
+      - jwtPersonalKey: []
+      summary: Retrieves the collection of CashOut resources.
+      tags:
+      - User
+      x-accepts:
+      - application/json
+    post:
+      deprecated: false
+      description: Creates a CashOut resource.
+      operationId: api_cash-outs_post
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cashout-CashOut-Write'
+        description: The new CashOut resource
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cashout-CashOut-Read'
+          description: CashOut resource created
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidQueryError'
+          description: Invalid input
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableEntity'
+          description: Unprocessable entity
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+          description: Authentication required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessError'
+          description: Unauthorized access
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+          description: Rate limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+          description: Unexpected server error
+      security:
+      - jwtPersonalKey: []
+      summary: Creates a CashOut resource.
+      tags:
+      - User
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /cash-outs/{id}:
+    get:
+      deprecated: false
+      description: Retrieves a CashOut resource.
+      operationId: api_cash-outs_id_get
+      parameters:
+      - allowReserved: false
+        deprecated: false
+        description: CashOut identifier
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cashout-CashOut-Read'
+          description: CashOut resource
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: Resource not found
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+          description: Authentication required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessError'
+          description: Unauthorized access
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+          description: Rate limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+          description: Unexpected server error
+      security:
+      - jwtPersonalKey: []
+      summary: Retrieves a CashOut resource.
+      tags:
+      - User
+      x-accepts:
+      - application/json
   /invite:
     post:
       deprecated: false
@@ -469,7 +1361,7 @@ paths:
           description: Unexpected server error
       summary: Organization invite
       tags:
-      - User
+      - Admin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -754,6 +1646,23 @@ paths:
           - DAMAGED
           - DETERIORATED
           - UNRECOVERABLE
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: Filter on a limited subset of status
+        example: issued
+        explode: false
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - issued
+          - active
+          - fulfilled
+          - expired
           type: string
         style: form
       - allowEmptyValue: true
@@ -1353,7 +2262,7 @@ paths:
           description: Unexpected server error
       summary: Retrieves the collection of Organization resources.
       tags:
-      - Organization
+      - Admin
       x-accepts:
       - application/json
   /organizations/{id}:
@@ -1415,7 +2324,7 @@ paths:
           description: Unexpected server error
       summary: Retrieves a Organization resource.
       tags:
-      - Organization
+      - Admin
       x-accepts:
       - application/json
     patch:
@@ -2515,22 +3424,12 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
-  /personas/{id}/notifications:
+  /proof-of-identities:
     get:
       deprecated: false
-      description: Retrieves the collection of Notification resources.
-      operationId: api_personas_idnotifications_get_collection
+      description: Retrieves the collection of ProofOfIdentity resources.
+      operationId: api_proof-of-identities_get_collection
       parameters:
-      - allowReserved: false
-        deprecated: false
-        description: Notification identifier
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
       - allowEmptyValue: true
         allowReserved: false
         deprecated: false
@@ -2549,9 +3448,9 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/Notification-Read'
+                  $ref: '#/components/schemas/ProofOfIdentity-CollectionRead'
                 type: array
-          description: Notification collection
+          description: ProofOfIdentity collection
           headers:
             X-Rate-Limit:
               description: HTTP standardized header for rate limit consumption status
@@ -2593,31 +3492,108 @@ paths:
                 $ref: '#/components/schemas/GenericError'
           description: Unexpected server error
       security:
-      - personaAuthKey: []
-      summary: Retrieve pending notifications for Persona
+      - jwtPersonalKey: []
+      summary: List all submitted PoI
       tags:
-      - Notification
+      - User
       x-accepts:
       - application/json
-  /personas/{personaId}/notifications/{id}:
-    patch:
+    post:
       deprecated: false
-      description: Updates the Notification resource.
-      operationId: api_personas_personaIdnotifications_id_patch
+      description: Creates a ProofOfIdentity resource.
+      operationId: api_proof-of-identities_post
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProofOfIdentity-Write'
+        description: The new ProofOfIdentity resource
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProofOfIdentity-Read'
+          description: ProofOfIdentity resource created
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidQueryError'
+          description: Invalid input
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableEntity'
+          description: Unprocessable entity
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+          description: Authentication required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessError'
+          description: Unauthorized access
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+          description: Rate limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+          description: Unexpected server error
+      security:
+      - jwtPersonalKey: []
+      summary: Submit a slot for a PoI
+      tags:
+      - User
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /proof-of-identities/{id}:
+    get:
+      deprecated: false
+      description: Retrieves a ProofOfIdentity resource.
+      operationId: api_proof-of-identities_id_get
       parameters:
       - allowReserved: false
         deprecated: false
-        description: Notification identifier
-        explode: false
-        in: path
-        name: personaId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - allowReserved: false
-        deprecated: false
-        description: Notification identifier
+        description: ProofOfIdentity identifier
         explode: false
         in: path
         name: id
@@ -2625,20 +3601,95 @@ paths:
         schema:
           type: string
         style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProofOfIdentity-Read'
+          description: ProofOfIdentity resource
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: Resource not found
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+          description: Authentication required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessError'
+          description: Unauthorized access
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+          description: Rate limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+          description: Unexpected server error
+      security:
+      - jwtPersonalKey: []
+      summary: Retrieve a specific PoI
+      tags:
+      - User
+      x-accepts:
+      - application/json
+    patch:
+      deprecated: false
+      description: Updates the ProofOfIdentity resource.
+      operationId: api_proof-of-identities_id_patch
+      parameters:
+      - allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: number
+        style: simple
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
-              $ref: '#/components/schemas/Notification-Update'
-        description: The updated Notification resource
+              $ref: '#/components/schemas/api_offers_ulidmedias_post_request'
+        description: The binary media file as-is
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Notification-Read'
-          description: Notification resource updated
+                $ref: '#/components/schemas/ProofOfIdentity-Read'
+          description: ProofOfIdentity resource updated
           headers:
             X-Rate-Limit:
               description: HTTP standardized header for rate limit consumption status
@@ -2714,10 +3765,243 @@ paths:
                 $ref: '#/components/schemas/GenericError'
           description: Unexpected server error
       security:
-      - personaAuthKey: []
-      summary: Mark as read/unread a notification for Persona
+      - jwtPersonalKey: []
+      summary: Upload the document for your PoI slot
       tags:
-      - Notification
+      - User
+      x-content-type: multipart/form-data
+      x-accepts:
+      - application/json
+  /quotes:
+    post:
+      deprecated: false
+      description: Creates a Quote resource.
+      operationId: api_quotes_post
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Quote-Write'
+        description: The new Quote resource
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote-Read'
+          description: Quote resource created
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidQueryError'
+          description: Invalid input
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableEntity'
+          description: Unprocessable entity
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+          description: Rate limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+          description: Unexpected server error
+      summary: Create a Quote prior to issuing a Transaction
+      tags:
+      - Transaction
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /quotes/{id}:
+    get:
+      deprecated: false
+      description: Retrieves a Quote resource.
+      operationId: api_quotes_id_get
+      parameters:
+      - allowReserved: false
+        deprecated: false
+        description: Quote identifier
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote-Read'
+          description: Quote resource
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: Resource not found
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+          description: Rate limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+          description: Unexpected server error
+      summary: Retrieve a Quote
+      tags:
+      - Transaction
+      x-accepts:
+      - application/json
+    patch:
+      deprecated: false
+      description: Updates the Quote resource.
+      operationId: api_quotes_id_patch
+      parameters:
+      - allowReserved: false
+        deprecated: false
+        description: Quote identifier
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Quote-Update'
+        description: The updated Quote resource
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote-Read'
+          description: Quote resource updated
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidQueryError'
+          description: Invalid input
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableEntity'
+          description: Unprocessable entity
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: Resource not found
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+          description: Rate limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+          description: Unexpected server error
+      summary: Update a Quote prior to issuing a Transaction
+      tags:
+      - Transaction
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -2795,121 +4079,12 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
-  /transactions/{ulid}/evaluations:
-    post:
-      deprecated: false
-      description: '**Only authenticated** complainant and seller **CAN** issue an
-        evaluation **WHEN** the transaction reached a final state.'
-      operationId: api_transactions_ulidevaluations_post
-      parameters:
-      - allowReserved: false
-        deprecated: false
-        description: Evaluation identifier
-        explode: false
-        in: path
-        name: ulid
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Evaluation-Write'
-        description: The new Evaluation resource
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Evaluation-Read'
-          description: Evaluation resource created
-          headers:
-            X-Rate-Limit:
-              description: HTTP standardized header for rate limit consumption status
-              explode: false
-              schema:
-                example: 554; reset="2025-01-12T12:11:02"
-                type: string
-              style: simple
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InvalidQueryError'
-          description: Invalid input
-          headers:
-            X-Rate-Limit:
-              description: HTTP standardized header for rate limit consumption status
-              explode: false
-              schema:
-                example: 554; reset="2025-01-12T12:11:02"
-                type: string
-              style: simple
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UnprocessableEntity'
-          description: Unprocessable entity
-          headers:
-            X-Rate-Limit:
-              description: HTTP standardized header for rate limit consumption status
-              explode: false
-              schema:
-                example: 554; reset="2025-01-12T12:11:02"
-                type: string
-              style: simple
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AuthError'
-          description: Authentication required
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccessError'
-          description: Unauthorized access
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RateLimitError'
-          description: Rate limit exhausted
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericError'
-          description: Unexpected server error
-      security:
-      - personaAuthKey: []
-      summary: Submit an Evaluation for the Transaction
-      tags:
-      - Safe-Checkout
-      x-content-type: application/json
-      x-accepts:
-      - application/json
-  /transactions/{ulid}/parcels:
+  /transactions:
     get:
       deprecated: false
-      description: Retrieves the collection of Parcel resources.
-      operationId: api_transactions_ulidparcels_get_collection
+      description: Retrieve a list of Transaction paginated
+      operationId: api_transactions_get_collection
       parameters:
-      - allowReserved: false
-        deprecated: false
-        description: ""
-        explode: false
-        in: path
-        name: ulid
-        required: true
-        schema:
-          type: string
-        style: simple
       - allowEmptyValue: true
         allowReserved: false
         deprecated: false
@@ -2922,15 +4097,111 @@ paths:
           default: 1
           type: integer
         style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "order[createdAt]"
+        required: false
+        schema:
+          enum:
+          - asc
+          - desc
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "order[status]"
+        required: false
+        schema:
+          enum:
+          - asc
+          - desc
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "createdAt[before]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "createdAt[strictly_before]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "createdAt[after]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "createdAt[strictly_after]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: Filter on a limited subset of status
+        example: CREATED
+        explode: false
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - CREATED
+          - AUTHORIZED
+          - REFUSED
+          - ACCEPTED
+          - SHIPPED
+          - IN_TRANSIT
+          - BLOCKED
+          - DELIVERED
+          - COMPLETED
+          - DISPUTED
+          - CANCELLED
+          type: string
+        style: form
       responses:
         "200":
           content:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/Parcel-CollectionRead'
+                  $ref: '#/components/schemas/Transaction-CollectionRead'
                 type: array
-          description: Parcel collection
+          description: Transaction collection
           headers:
             X-Rate-Limit:
               description: HTTP standardized header for rate limit consumption status
@@ -2972,44 +4243,31 @@ paths:
                 $ref: '#/components/schemas/GenericError'
           description: Unexpected server error
       security:
-      - oauth:
-        - OFFER_READ
-        jwtPersonalKey: []
-        personaAuthKey: []
-      summary: Retrieves the collection of Parcel resources.
+      - jwtPersonalKey: []
+      summary: List all Transaction
       tags:
-      - Safe-Checkout
+      - Transaction
       x-accepts:
       - application/json
     post:
       deprecated: false
-      description: Creates a Parcel resource.
-      operationId: api_transactions_ulidparcels_post
-      parameters:
-      - allowReserved: false
-        deprecated: false
-        description: ""
-        explode: false
-        in: path
-        name: ulid
-        required: true
-        schema:
-          type: string
-        style: simple
+      description: Create a new Transaction for Preauthorization
+      operationId: api_transactions_post
+      parameters: []
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Parcel-Write'
-        description: The new Parcel resource
+              $ref: '#/components/schemas/Transaction-Write'
+        description: The new Transaction resource
         required: true
       responses:
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Parcel-Read'
-          description: Parcel resource created
+                $ref: '#/components/schemas/Transaction-Read'
+          description: Transaction resource created
           headers:
             X-Rate-Limit:
               description: HTTP standardized header for rate limit consumption status
@@ -3071,25 +4329,22 @@ paths:
                 $ref: '#/components/schemas/GenericError'
           description: Unexpected server error
       security:
-      - oauth:
-        - OFFER_WRITE
-        jwtPersonalKey: []
-        personaAuthKey: []
-      summary: Creates a Parcel resource.
+      - jwtPersonalKey: []
+      summary: Initialize a new Transaction
       tags:
-      - Safe-Checkout
+      - Transaction
       x-content-type: application/json
       x-accepts:
       - application/json
-  /transactions/{ulid}/parcels/{id}:
-    delete:
+  /transactions/{ulid}:
+    get:
       deprecated: false
-      description: Removes the Parcel resource.
-      operationId: api_transactions_ulidparcels_id_delete
+      description: Retrieve a single Transaction by ID
+      operationId: api_transactions_ulid_get
       parameters:
       - allowReserved: false
         deprecated: false
-        description: ""
+        description: Transaction identifier
         explode: false
         in: path
         name: ulid
@@ -3097,19 +4352,13 @@ paths:
         schema:
           type: string
         style: simple
-      - allowReserved: false
-        deprecated: false
-        description: ""
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: integer
-        style: simple
       responses:
-        "204":
-          description: Parcel resource deleted
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction-Read'
+          description: Transaction resource
           headers:
             X-Rate-Limit:
               description: HTTP standardized header for rate limit consumption status
@@ -3158,9 +4407,120 @@ paths:
           description: Unexpected server error
       security:
       - jwtPersonalKey: []
-      summary: Removes the Parcel resource.
+      summary: Get a Transaction
       tags:
-      - Safe-Checkout
+      - Transaction
+      x-accepts:
+      - application/json
+    patch:
+      deprecated: false
+      description: Make decision upon a Transaction in order to make it evolve
+      operationId: api_transactions_ulid_patch
+      parameters:
+      - allowReserved: false
+        deprecated: false
+        description: Transaction identifier
+        explode: false
+        in: path
+        name: ulid
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction-Update'
+        description: The updated Transaction resource
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction-Read'
+          description: Transaction resource updated
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidQueryError'
+          description: Invalid input
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableEntity'
+          description: Unprocessable entity
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: Resource not found
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+          description: Authentication required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessError'
+          description: Unauthorized access
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+          description: Rate limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+          description: Unexpected server error
+      security:
+      - jwtPersonalKey: []
+      summary: Interact with a Transaction
+      tags:
+      - Transaction
+      x-content-type: application/json
       x-accepts:
       - application/json
   /users:
@@ -3234,7 +4594,7 @@ paths:
       - jwtPersonalKey: []
       summary: Retrieves the collection of User resources.
       tags:
-      - User
+      - Admin
       x-accepts:
       - application/json
   /users/{id}:
@@ -3278,18 +4638,6 @@ paths:
                 example: 554; reset="2025-01-12T12:11:02"
                 type: string
               style: simple
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AuthError'
-          description: Authentication required
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccessError'
-          description: Unauthorized access
         "429":
           content:
             application/json:
@@ -3302,11 +4650,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/GenericError'
           description: Unexpected server error
-      security:
-      - jwtPersonalKey: []
       summary: Removes the User resource.
       tags:
       - User
+      - Admin
       x-accepts:
       - application/json
     get:
@@ -3381,7 +4728,7 @@ paths:
       - jwtPersonalKey: []
       summary: Retrieves a User resource.
       tags:
-      - User
+      - Admin
       x-accepts:
       - application/json
     patch:
@@ -3475,9 +4822,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/GenericError'
           description: Unexpected server error
-      summary: Updates the User resource.
+      summary: Update your profile
       tags:
       - User
+      - Admin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -3650,6 +4998,118 @@ paths:
       x-content-type: multipart/form-data
       x-accepts:
       - application/json
+  /users/{id}/disable:
+    patch:
+      deprecated: false
+      description: Updates the User resource.
+      operationId: api_users_iddisable_patch
+      parameters:
+      - allowReserved: false
+        deprecated: false
+        description: User identifier
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: The updated User resource
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User-user.subscribed'
+          description: User resource updated
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidQueryError'
+          description: Invalid input
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableEntity'
+          description: Unprocessable entity
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: Resource not found
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+          description: Authentication required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessError'
+          description: Unauthorized access
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+          description: Rate limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+          description: Unexpected server error
+      security:
+      - jwtPersonalKey: []
+      summary: Updates the User resource.
+      tags:
+      - Admin
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /users/{id}/email:
     patch:
       deprecated: false
@@ -3745,6 +5205,7 @@ paths:
       summary: Update user email
       tags:
       - User
+      - Admin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -3843,6 +5304,7 @@ paths:
       summary: Validate email ownership
       tags:
       - User
+      - Admin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -3954,47 +5416,50 @@ paths:
       - jwtPersonalKey: []
       summary: Updates the User resource.
       tags:
-      - User
+      - Admin
       x-content-type: application/json
       x-accepts:
       - application/json
-  /users/{id}/notifications:
-    get:
+  /users/{id}/offers:
+    post:
       deprecated: false
-      description: Retrieves the collection of Notification resources.
-      operationId: api_users_idnotifications_get_collection
+      description: Create a public listening Offer linked to a specific Seller
+      operationId: api_users_idoffers_post
       parameters:
       - allowReserved: false
         deprecated: false
-        description: Notification identifier
+        description: User identifier
         explode: false
         in: path
         name: id
         required: true
         schema:
+          type: integer
+        style: simple
+      - allowReserved: false
+        deprecated: false
+        description: Offer identifier
+        explode: false
+        in: path
+        name: ulid
+        required: true
+        schema:
           type: string
         style: simple
-      - allowEmptyValue: true
-        allowReserved: false
-        deprecated: false
-        description: The collection page number
-        explode: false
-        in: query
-        name: page
-        required: false
-        schema:
-          default: 1
-          type: integer
-        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Offer-Write'
+        description: The new Offer resource
+        required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/Notification-Read'
-                type: array
-          description: Notification collection
+                $ref: '#/components/schemas/Offer-PostCreationRead'
+          description: Offer resource created
           headers:
             X-Rate-Limit:
               description: HTTP standardized header for rate limit consumption status
@@ -4003,14 +5468,46 @@ paths:
                 example: 554; reset="2025-01-12T12:11:02"
                 type: string
               style: simple
-            Content-Range:
-              description: "HTTP standardized header for partial content, used for\
-                \ the pagination"
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidQueryError'
+          description: Invalid input
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
               explode: false
               schema:
-                example: 0-50/28441
+                example: 554; reset="2025-01-12T12:11:02"
                 type: string
               style: simple
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableEntity'
+          description: Unprocessable entity
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+          description: Authentication required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessError'
+          description: Unauthorized access
         "429":
           content:
             application/json:
@@ -4023,9 +5520,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/GenericError'
           description: Unexpected server error
-      summary: Retrieves the collection of Notification resources.
+      security:
+      - jwtPersonalToken: []
+      summary: Create a public link for Offer
       tags:
-      - Notification
+      - User
+      x-content-type: application/json
       x-accepts:
       - application/json
   /users/{id}/password:
@@ -4120,9 +5620,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/GenericError'
           description: Unexpected server error
-      summary: Updates the User resource.
+      summary: Change your password
       tags:
       - User
+      - Admin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -4218,9 +5719,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/GenericError'
           description: Unexpected server error
-      summary: Updates the User resource.
+      summary: Setup an additional authentication factor
       tags:
       - User
+      - Admin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -4316,131 +5818,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/GenericError'
           description: Unexpected server error
-      summary: Updates the User resource.
+      summary: Disable the second authentication factor
       tags:
       - User
-      x-content-type: application/json
-      x-accepts:
-      - application/json
-  /users/{userId}/notifications/{id}:
-    patch:
-      deprecated: false
-      description: Updates the Notification resource.
-      operationId: api_users_userIdnotifications_id_patch
-      parameters:
-      - allowReserved: false
-        deprecated: false
-        description: Notification identifier
-        explode: false
-        in: path
-        name: userId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - allowReserved: false
-        deprecated: false
-        description: Notification identifier
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Notification-Update'
-        description: The updated Notification resource
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Notification-Read'
-          description: Notification resource updated
-          headers:
-            X-Rate-Limit:
-              description: HTTP standardized header for rate limit consumption status
-              explode: false
-              schema:
-                example: 554; reset="2025-01-12T12:11:02"
-                type: string
-              style: simple
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InvalidQueryError'
-          description: Invalid input
-          headers:
-            X-Rate-Limit:
-              description: HTTP standardized header for rate limit consumption status
-              explode: false
-              schema:
-                example: 554; reset="2025-01-12T12:11:02"
-                type: string
-              style: simple
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UnprocessableEntity'
-          description: Unprocessable entity
-          headers:
-            X-Rate-Limit:
-              description: HTTP standardized header for rate limit consumption status
-              explode: false
-              schema:
-                example: 554; reset="2025-01-12T12:11:02"
-                type: string
-              style: simple
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-          description: Resource not found
-          headers:
-            X-Rate-Limit:
-              description: HTTP standardized header for rate limit consumption status
-              explode: false
-              schema:
-                example: 554; reset="2025-01-12T12:11:02"
-                type: string
-              style: simple
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AuthError'
-          description: Authentication required
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AccessError'
-          description: Unauthorized access
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RateLimitError'
-          description: Rate limit exhausted
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GenericError'
-          description: Unexpected server error
-      security:
-      - jwtPersonalKey: []
-      summary: Mark as read/unread a notification for User
-      tags:
-      - Notification
+      - Admin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -4863,7 +6244,7 @@ paths:
               description: |-
                 The received payload MUST be verified using hmac-sha256.
                                             The actual checksum/sha256 to match is located in X-Tripartie-Signature header.
-              operationId: onData_Post
+              operationId: onDataPost
               requestBody:
                 content:
                   application/json:
@@ -5088,20 +6469,21 @@ components:
           nullable: true
           readOnly: true
           type: string
+    Address-UserRead:
+      deprecated: false
+      description: ""
+      type: object
     ApiClient-PostCreationRead:
       deprecated: false
       description: ""
       example:
         identifier: identifier
         name: name
-        secret: secret
+        secret: ""
       properties:
         identifier:
           type: string
-        secret:
-          nullable: true
-          type: string
-          nullable: false
+        secret: {}
         name:
           type: string
     ApiClient-Read:
@@ -5163,13 +6545,21 @@ components:
             type: string
           minItems: 1
           type: array
+    BankAccount-Read:
+      deprecated: false
+      description: ""
+      type: object
     BankAccount-UserRead:
       deprecated: false
       description: ""
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
+        processorStatus: unallocated
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         iban: iban
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         bic: bic
+        providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         iban:
@@ -5183,53 +6573,287 @@ components:
           format: date-time
           nullable: true
           type: string
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
+          readOnly: true
+          type: string
       required:
       - bic
       - createdAt
-      - iban
-    Evaluation-Read:
+    BankAccount-Write:
+      deprecated: false
+      description: ""
+      properties:
+        iban:
+          type: string
+        bic:
+          type: string
+      required:
+      - bic
+    Card-CollectionRead:
       deprecated: false
       description: ""
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
-        rating: 7
-        comment: "quickly handled and despite a minor issue, everything did go well\
-          \ enough!"
+        metadata:
+        - value: "54412"
+          key: External-ID
+        - value: "54412"
+          key: External-ID
+        countryCode: countryCode
+        primaryAccountNumber: primaryAccountNumber
+        currency: currency
+        expireAt: 2000-01-23T04:56:07.000+00:00
+        updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
-        rating:
-          example: 7
-          maximum: 10
-          minimum: 0
-          type: integer
-        comment:
-          example: "quickly handled and despite a minor issue, everything did go well\
-            \ enough!"
-          maxLength: 500
+        primaryAccountNumber:
+          nullable: true
+          type: string
+        expireAt:
+          format: date-time
+          type: string
+        currency:
+          nullable: true
+          type: string
+        countryCode:
           nullable: true
           type: string
         createdAt:
           format: date-time
-          readOnly: true
           type: string
+        updatedAt:
+          format: date-time
+          type: string
+        metadata:
+          items:
+            $ref: '#/components/schemas/Card-Metadata-CollectionRead'
+          type: array
       required:
-      - rating
-    Evaluation-Write:
+      - createdAt
+      - expireAt
+      - updatedAt
+    Card-Metadata-CollectionRead:
+      deprecated: false
+      description: ""
+      example:
+        value: "54412"
+        key: External-ID
+      properties:
+        key:
+          example: External-ID
+          type: string
+        value:
+          example: "54412"
+          nullable: true
+          type: string
+    Card-Metadata-Read:
+      deprecated: false
+      description: ""
+      example:
+        value: "54412"
+        key: External-ID
+      properties:
+        key:
+          example: External-ID
+          type: string
+        value:
+          example: "54412"
+          nullable: true
+          type: string
+    Card-Metadata-Update:
+      deprecated: false
+      description: ""
+      example:
+        value: "54412"
+        key: External-ID
+      properties:
+        key:
+          example: External-ID
+          type: string
+        value:
+          example: "54412"
+          nullable: true
+          type: string
+    Card-Read:
+      deprecated: false
+      description: ""
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        metadata:
+        - value: "54412"
+          key: External-ID
+        - value: "54412"
+          key: External-ID
+        countryCode: countryCode
+        primaryAccountNumber: primaryAccountNumber
+        currency: currency
+        expireAt: 2000-01-23T04:56:07.000+00:00
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        primaryAccountNumber:
+          nullable: true
+          type: string
+        expireAt:
+          format: date-time
+          type: string
+        currency:
+          nullable: true
+          type: string
+        countryCode:
+          nullable: true
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        metadata:
+          items:
+            $ref: '#/components/schemas/Card-Metadata-Read'
+          type: array
+      required:
+      - createdAt
+      - expireAt
+      - updatedAt
+    Card-Update:
       deprecated: false
       description: ""
       properties:
-        rating:
-          example: 7
-          maximum: 10
-          minimum: 0
-          type: integer
-        comment:
-          example: "quickly handled and despite a minor issue, everything did go well\
-            \ enough!"
-          maxLength: 500
+        metadata:
+          items:
+            $ref: '#/components/schemas/Card-Metadata-Update'
+          type: array
+    Card-UserRead:
+      deprecated: false
+      description: ""
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        processorStatus: unallocated
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        countryCode: countryCode
+        ephemeral: true
+        primaryAccountNumber: primaryAccountNumber
+        currency: currency
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+        expireAt: 2000-01-23T04:56:07.000+00:00
+        providerName: providerName
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        primaryAccountNumber:
           nullable: true
           type: string
+        expireAt:
+          format: date-time
+          type: string
+        currency:
+          nullable: true
+          type: string
+        countryCode:
+          nullable: true
+          type: string
+        ephemeral:
+          type: boolean
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
+          readOnly: true
+          type: string
       required:
-      - rating
+      - createdAt
+      - ephemeral
+      - expireAt
+      - updatedAt
+    Card-Write:
+      deprecated: false
+      description: ""
+      type: object
+    Cashout-CashOut-CollectionRead:
+      deprecated: false
+      description: ""
+      type: object
+    Cashout-CashOut-Read:
+      deprecated: false
+      description: ""
+      example:
+        processorStatus: unallocated
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+        providerName: providerName
+      properties:
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
+          readOnly: true
+          type: string
+    Cashout-CashOut-Write:
+      deprecated: false
+      description: ""
+      type: object
     Media:
       deprecated: false
       description: ""
@@ -5337,6 +6961,11 @@ components:
           format: iri-reference
           nullable: true
           type: string
+        card:
+          example: https://example.com/
+          format: iri-reference
+          nullable: true
+          type: string
         key:
           example: External-ID
           type: string
@@ -5344,39 +6973,6 @@ components:
           example: "54412"
           nullable: true
           type: string
-    Notification-Read:
-      deprecated: false
-      description: ""
-      example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        type: DISPUTE_STATE_UPDATE
-        seen: true
-      properties:
-        type:
-          enum:
-          - DISPUTE_STATE_UPDATE
-          - DISPUTE_REMINDER
-          - MESSAGE_SENT
-          - DISPUTE_SETTLEMENT
-          - DISPUTE_ARBITRATION_REQUIRED
-          - DISPUTE_RESOLVED
-          type: string
-        seen:
-          type: boolean
-        createdAt:
-          format: date-time
-          readOnly: true
-          type: string
-      required:
-      - seen
-    Notification-Update:
-      deprecated: false
-      description: ""
-      properties:
-        seen:
-          type: boolean
-      required:
-      - seen
     Offer-Address-IndependentWrite:
       deprecated: false
       description: ""
@@ -5432,7 +7028,9 @@ components:
         shippingCarriers:
         - SwissPost
         - SwissPost
+        allowToNegotiateUnitPrice: true
         publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
+        minNegotiableUnitPrice: 6.0274563
         currencyCode: EUR
         presetBuyer: https://example.com/
         status: issued
@@ -5441,13 +7039,11 @@ components:
         ulid:
           type: string
         status:
-          default: issued
           enum:
           - issued
           - active
           - fulfilled
           - expired
-          example: issued
           type: string
         publicUrl:
           description: The public URL for your Ad/Offer on your marketplace.
@@ -5482,6 +7078,11 @@ components:
         unitPrice:
           format: float
           type: number
+        minNegotiableUnitPrice:
+          format: float
+          type: number
+        allowToNegotiateUnitPrice:
+          type: boolean
         currencyCode:
           default: EUR
           example: EUR
@@ -5538,6 +7139,7 @@ components:
           readOnly: true
           type: string
       required:
+      - allowToNegotiateUnitPrice
       - currencyCode
       - handDeliveryAllowed
       - nature
@@ -5601,6 +7203,11 @@ components:
         unitPrice:
           format: float
           type: number
+        minNegotiableUnitPrice:
+          format: float
+          type: number
+        allowToNegotiateUnitPrice:
+          type: boolean
         currencyCode:
           default: EUR
           example: EUR
@@ -5623,6 +7230,9 @@ components:
           example: USED
           type: string
         weightInGram:
+          description: "Accepted values between 500g (0.5kg) and 10,000g (10kg)."
+          maximum: 10000
+          minimum: 500
           type: integer
         shippingAllowed:
           description: "That toggle allows the seller to propose shipping for its\
@@ -5757,10 +7367,7 @@ components:
           - RATHER_NOT_SAY
           example: RATHER_NOT_SAY
           type: string
-        dateOfBirth:
-          format: date
-          nullable: true
-          type: string
+        dateOfBirth: {}
         language:
           description: "That data is used for rendering the frontend application with\
             \ given language. If not set, will be inferred. Custom codes can be issued\
@@ -5792,6 +7399,16 @@ components:
       - firstName
       - gender
       - lastName
+    Offer-Persona-Read:
+      deprecated: false
+      description: ""
+      example:
+        registered: true
+      properties:
+        registered:
+          description: Determine if the Persona have a Tripartie account
+          readOnly: true
+          type: boolean
     Offer-PostCreationRead:
       deprecated: false
       description: ""
@@ -5822,7 +7439,8 @@ components:
       deprecated: false
       description: ""
       example:
-        seller: https://example.com/
+        seller:
+          registered: true
         unitPrice: 0.8008282
         iri: https://example.com/
         redirectUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold?checkout=true
@@ -5854,20 +7472,19 @@ components:
           customBaseUrl: customBaseUrl
         publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
         currencyCode: EUR
-        presetBuyer: https://example.com/
+        presetBuyer:
+          registered: true
         status: issued
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         ulid:
           type: string
         status:
-          default: issued
           enum:
           - issued
           - active
           - fulfilled
           - expired
-          example: issued
           type: string
         publicUrl:
           description: The public URL for your Ad/Offer on your marketplace.
@@ -5883,16 +7500,9 @@ components:
         organization:
           $ref: '#/components/schemas/Offer-Organization-Read'
         seller:
-          example: https://example.com/
-          format: iri-reference
-          type: string
+          $ref: '#/components/schemas/Offer-Persona-Read'
         presetBuyer:
-          description: Limit the offer to a particular buyer. Useful if the offer
-            was issued from an auction for instance.
-          example: https://example.com/
-          format: iri-reference
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/Offer-Persona-Read'
         nature:
           default: physical_item
           description: This WILL affect the assigned workflow. Choosing service will
@@ -5929,6 +7539,7 @@ components:
           example: USED
           type: string
         weightInGram:
+          description: "Accepted values between 500g (0.5kg) and 10,000g (10kg)."
           type: integer
         shippingAllowed:
           description: "That toggle allows the seller to propose shipping for its\
@@ -6033,6 +7644,11 @@ components:
         unitPrice:
           format: float
           type: number
+        minNegotiableUnitPrice:
+          format: float
+          type: number
+        allowToNegotiateUnitPrice:
+          type: boolean
         currencyCode:
           default: EUR
           example: EUR
@@ -6078,6 +7694,102 @@ components:
           items:
             $ref: '#/components/schemas/Offer-Metadata-Update'
           type: array
+    Offer-Write:
+      deprecated: false
+      description: ""
+      properties:
+        nature:
+          default: physical_item
+          description: This WILL affect the assigned workflow. Choosing service will
+            disable delivery for example. Refer to our technical hub for more information.
+          enum:
+          - service
+          - physical_item
+          - dematerialized_item
+          - rent_item
+          example: physical_item
+          type: string
+        title:
+          example: ASUS TUF X570-PLUS GAMING Motherboard
+          maxLength: 250
+          type: string
+          nullable: true
+        description:
+          example: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\
+            \ eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim\
+            \ ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip\
+            \ ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate\
+            \ velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat\
+            \ cupidatat non proident, sunt in culpa qui officia deserunt mollit anim\
+            \ id est laborum."
+          maxLength: 100000
+          nullable: true
+          type: string
+          nullable: true
+        unitPrice:
+          format: float
+          type: number
+        minNegotiableUnitPrice:
+          format: float
+          type: number
+        allowToNegotiateUnitPrice:
+          type: boolean
+        currencyCode:
+          default: EUR
+          example: EUR
+          externalDocs:
+            url: https://schema.org/priceCurrency
+          type: string
+          nullable: true
+        itemCount:
+          default: 1
+          example: 1
+          type: integer
+        condition:
+          default: USED
+          enum:
+          - NEW
+          - USED
+          - DAMAGED
+          - DETERIORATED
+          - UNRECOVERABLE
+          example: USED
+          type: string
+        weightInGram:
+          description: "Accepted values between 500g (0.5kg) and 10,000g (10kg)."
+          maximum: 10000
+          minimum: 500
+          type: integer
+        shippingAllowed:
+          description: "That toggle allows the seller to propose shipping for its\
+            \ item. If set in conjunction of shippingCarrier, the label will be automatically\
+            \ generated. Also, it will restrict the carrier to the limited subset\
+            \ defined."
+          type: boolean
+        handDeliveryAllowed:
+          default: true
+          description: Enable both parties to finalize the transaction in person rather
+            than using delivery. A QR Code must be scanned by the seller once the
+            buyer claims the product.
+          example: true
+          type: boolean
+        shippingCarriers:
+          description: "If you wish to enable automated shipping label generation\
+            \ through a specific provider, specify it there."
+          items:
+            enum:
+            - SwissPost
+            - Colissimo
+            - MondialRelay
+            type: string
+          type: array
+          uniqueItems: true
+        canBeSoldSeparately:
+          default: true
+          description: Set this flag to false to forbid a potential buyer to acquire
+            less than "itemCount" item(s)
+          example: true
+          type: boolean
     Organization-Address-Update:
       deprecated: false
       description: ""
@@ -6273,115 +7985,6 @@ components:
           $ref: '#/components/schemas/Media-UserRead'
       required:
       - domainVerified
-    Parcel:
-      deprecated: false
-      description: ""
-      properties:
-        id:
-          readOnly: true
-          type: integer
-        carrier:
-          enum:
-          - SwissPost
-          - MondialRelay
-          - Colissimo
-          - Dhl
-          - Chronopost
-          - ColisPrive
-          - Dpd
-          - Ups
-          - FedEx
-          - RelaisColis
-          type: string
-        identifier:
-          example: 8J001271466474
-          maxLength: 128
-          minLength: 4
-          type: string
-        price:
-          example: 4.88
-          minimum: 0
-          nullable: true
-          type: number
-        refundable:
-          type: boolean
-        currency:
-          default: EUR
-          example: EUR
-          externalDocs:
-            url: https://schema.org/priceCurrency
-          nullable: true
-          type: string
-        status:
-          enum:
-          - CREATED
-          - SHIPPED
-          - IN_TRANSIT
-          - DELIVERED
-          - ERROR
-          - ACCEPTED
-          - REFUSED
-          - null
-          nullable: true
-          type: string
-        transaction:
-          example: https://example.com/
-          format: iri-reference
-          nullable: true
-          type: string
-        createdAt:
-          format: date-time
-          readOnly: true
-          type: string
-        updatedAt:
-          format: date-time
-          nullable: true
-          readOnly: true
-          type: string
-      required:
-      - carrier
-      - identifier
-    Parcel-CollectionRead:
-      deprecated: false
-      description: ""
-      type: object
-    Parcel-Read:
-      deprecated: false
-      description: ""
-      type: object
-    Parcel-Write:
-      deprecated: false
-      description: ""
-      properties:
-        carrier:
-          enum:
-          - SwissPost
-          - MondialRelay
-          - Colissimo
-          - Dhl
-          - Chronopost
-          - ColisPrive
-          - Dpd
-          - Ups
-          - FedEx
-          - RelaisColis
-          type: string
-        identifier:
-          example: 8J001271466474
-          type: string
-        price:
-          example: 4.88
-          nullable: true
-          type: number
-        refundable:
-          type: boolean
-        currency:
-          default: EUR
-          example: EUR
-          nullable: true
-          type: string
-      required:
-      - refundable
     Persona:
       deprecated: false
       description: ""
@@ -6409,10 +8012,7 @@ components:
           - RATHER_NOT_SAY
           example: RATHER_NOT_SAY
           type: string
-        dateOfBirth:
-          format: date
-          nullable: true
-          type: string
+        dateOfBirth: {}
         language:
           description: "That data is used for rendering the frontend application with\
             \ given language. If not set, will be inferred. Custom codes can be issued\
@@ -6448,10 +8048,6 @@ components:
             format: iri-reference
             type: string
           type: array
-        views:
-          items:
-            $ref: '#/components/schemas/View'
-          type: array
         createdAt:
           format: date-time
           readOnly: true
@@ -6475,10 +8071,13 @@ components:
           example: 42
           readOnly: true
           type: integer
+        registered:
+          description: Determine if the Persona have a Tripartie account
+          readOnly: true
+          type: boolean
       required:
       - offers
       - purchases
-      - views
     Persona-Address-Read:
       deprecated: false
       description: ""
@@ -6723,7 +8322,8 @@ components:
         gender: RATHER_NOT_SAY
         offerCount: 4
         purchaseCount: 42
-        dateOfBirth: 2000-01-23
+        registered: true
+        dateOfBirth: ""
         language: fr
         firstName: John
         createdAt: 2000-01-23T04:56:07.000+00:00
@@ -6749,10 +8349,7 @@ components:
           - RATHER_NOT_SAY
           example: RATHER_NOT_SAY
           type: string
-        dateOfBirth:
-          format: date
-          nullable: true
-          type: string
+        dateOfBirth: {}
         language:
           description: "That data is used for rendering the frontend application with\
             \ given language. If not set, will be inferred. Custom codes can be issued\
@@ -6794,6 +8391,10 @@ components:
           example: 42
           readOnly: true
           type: integer
+        registered:
+          description: Determine if the Persona have a Tripartie account
+          readOnly: true
+          type: boolean
     Persona-Update:
       deprecated: false
       description: ""
@@ -6817,10 +8418,7 @@ components:
           - RATHER_NOT_SAY
           example: RATHER_NOT_SAY
           type: string
-        dateOfBirth:
-          format: date
-          nullable: true
-          type: string
+        dateOfBirth: {}
         language:
           description: "That data is used for rendering the frontend application with\
             \ given language. If not set, will be inferred. Custom codes can be issued\
@@ -6890,10 +8488,7 @@ components:
           - RATHER_NOT_SAY
           example: RATHER_NOT_SAY
           type: string
-        dateOfBirth:
-          format: date
-          nullable: true
-          type: string
+        dateOfBirth: {}
         language:
           description: "That data is used for rendering the frontend application with\
             \ given language. If not set, will be inferred. Custom codes can be issued\
@@ -6925,6 +8520,1203 @@ components:
       - firstName
       - gender
       - lastName
+    ProofOfIdentity-CollectionRead:
+      deprecated: false
+      description: ""
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        extension: extension
+        processorStatus: unallocated
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+        originalFilename: originalFilename
+        providerName: providerName
+        status: drafted
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        status:
+          enum:
+          - drafted
+          - uploaded
+          - submitted
+          - accepted
+          - refused
+          type: string
+        originalFilename:
+          nullable: true
+          type: string
+        extension:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
+          readOnly: true
+          type: string
+      required:
+      - createdAt
+      - extension
+      - status
+      - updatedAt
+    ProofOfIdentity-Read:
+      deprecated: false
+      description: ""
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        extension: extension
+        processorStatus: unallocated
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+        originalFilename: originalFilename
+        providerName: providerName
+        status: drafted
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        status:
+          enum:
+          - drafted
+          - uploaded
+          - submitted
+          - accepted
+          - refused
+          type: string
+        originalFilename:
+          nullable: true
+          type: string
+        extension:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
+          readOnly: true
+          type: string
+      required:
+      - createdAt
+      - extension
+      - status
+      - updatedAt
+    ProofOfIdentity-Write:
+      deprecated: false
+      description: ""
+      type: object
+    Quote-Read:
+      deprecated: false
+      description: |-
+        Someone has to ask for a Quote prior to create
+        a transaction and (therefor) charging a known amount
+        of money.
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        shippingFees: 1.4658129
+        quantityToBeAcquired: 1
+        ulid: ulid
+        shippingCarrier: SwissPost
+        attemptUnitPrice: 0.8008282
+        transactionFees: 6.0274563
+        expireAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        ulid:
+          type: string
+        shippingCarrier:
+          enum:
+          - SwissPost
+          - Colissimo
+          - MondialRelay
+          type: string
+        quantityToBeAcquired:
+          default: 1
+          example: 1
+          type: integer
+        attemptUnitPrice:
+          format: float
+          type: number
+        transactionFees:
+          format: float
+          type: number
+        shippingFees:
+          format: float
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+        expireAt:
+          format: date-time
+          type: string
+      required:
+      - createdAt
+      - expireAt
+      - quantityToBeAcquired
+      - shippingCarrier
+      - ulid
+    Quote-Update:
+      deprecated: false
+      description: |-
+        Someone has to ask for a Quote prior to create
+        a transaction and (therefor) charging a known amount
+        of money.
+      properties:
+        shippingCarrier:
+          enum:
+          - SwissPost
+          - Colissimo
+          - MondialRelay
+          type: string
+        quantityToBeAcquired:
+          default: 1
+          example: 1
+          type: integer
+        attemptUnitPrice:
+          format: float
+          type: number
+      required:
+      - quantityToBeAcquired
+      - shippingCarrier
+    Quote-Write:
+      deprecated: false
+      description: |-
+        Someone has to ask for a Quote prior to create
+        a transaction and (therefor) charging a known amount
+        of money.
+      properties:
+        captcha:
+          nullable: true
+          type: string
+        offer:
+          example: https://example.com/
+          format: iri-reference
+          nullable: true
+          type: string
+        shippingCarrier:
+          enum:
+          - SwissPost
+          - Colissimo
+          - MondialRelay
+          type: string
+        quantityToBeAcquired:
+          default: 1
+          example: 1
+          type: integer
+        attemptUnitPrice:
+          format: float
+          type: number
+      required:
+      - quantityToBeAcquired
+      - shippingCarrier
+    Transaction-Address-Read:
+      deprecated: false
+      description: ""
+      type: object
+    Transaction-CollectionRead:
+      deprecated: false
+      description: ""
+      example:
+        offer:
+          seller:
+            firstName: John
+            lastName: Doe
+            id: 0
+          unitPrice: 6.0274563
+          ulid: ulid
+          nature: physical_item
+          title: ASUS TUF X570-PLUS GAMING Motherboard
+          itemCount: 1
+          medias:
+          - https://example.com/
+          - https://example.com/
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          condition: USED
+          allowToNegotiateUnitPrice: true
+          publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
+          minNegotiableUnitPrice: 1.4658129
+          currencyCode: EUR
+          presetBuyer:
+            firstName: John
+            lastName: Doe
+            id: 0
+          status: issued
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        totalFees: 4.145608029883936
+        fees: 7.061401241503109
+        total: 3.616076749251911
+        quote:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          shippingFees: 2.302136
+          quantityToBeAcquired: 1
+          ulid: ulid
+          shippingCarrier: SwissPost
+          attemptUnitPrice: 5.962134
+          transactionFees: 5.637377
+          expireAt: 2000-01-23T04:56:07.000+00:00
+        ulid: ulid
+        supplementalFees: 9.301444243932576
+        awaitedParty: BUYER
+        totalCharged: 2.027123023002322
+        statusExpiration: 2000-01-23T04:56:07.000+00:00
+        buyer:
+          firstName: John
+          lastName: Doe
+          id: 0
+        status: CREATED
+      properties:
+        ulid:
+          type: string
+        offer:
+          $ref: '#/components/schemas/Transaction-Offer-CollectionRead'
+        quote:
+          $ref: '#/components/schemas/Transaction-Quote-CollectionRead'
+        buyer:
+          $ref: '#/components/schemas/Transaction-Persona-CollectionRead'
+        status:
+          enum:
+          - CREATED
+          - AUTHORIZED
+          - REFUSED
+          - ACCEPTED
+          - SHIPPED
+          - IN_TRANSIT
+          - BLOCKED
+          - DELIVERED
+          - COMPLETED
+          - DISPUTED
+          - CANCELLED
+          - null
+          nullable: true
+          type: string
+        fees:
+          nullable: true
+          type: number
+        supplementalFees:
+          nullable: true
+          type: number
+        total:
+          readOnly: true
+          type: number
+        totalCharged:
+          readOnly: true
+          type: number
+        totalFees:
+          readOnly: true
+          type: number
+        awaitedParty:
+          description: Determine who is awaited (actor) for the next transition
+          enum:
+          - BUYER
+          - PLATFORM
+          - SELLER
+          readOnly: true
+          type: string
+          nullable: true
+        statusExpiration:
+          description: Yield if eligible the date-time at which the transaction state
+            expire.
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+      required:
+      - buyer
+      - offer
+      - quote
+      - ulid
+    Transaction-Metadata-Read:
+      deprecated: false
+      description: ""
+      example:
+        value: "54412"
+        key: External-ID
+      properties:
+        key:
+          example: External-ID
+          type: string
+        value:
+          example: "54412"
+          nullable: true
+          type: string
+    Transaction-Offer-CollectionRead:
+      deprecated: false
+      description: ""
+      example:
+        seller:
+          firstName: John
+          lastName: Doe
+          id: 0
+        unitPrice: 6.0274563
+        ulid: ulid
+        nature: physical_item
+        title: ASUS TUF X570-PLUS GAMING Motherboard
+        itemCount: 1
+        medias:
+        - https://example.com/
+        - https://example.com/
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        condition: USED
+        allowToNegotiateUnitPrice: true
+        publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
+        minNegotiableUnitPrice: 1.4658129
+        currencyCode: EUR
+        presetBuyer:
+          firstName: John
+          lastName: Doe
+          id: 0
+        status: issued
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        ulid:
+          type: string
+        status:
+          enum:
+          - issued
+          - active
+          - fulfilled
+          - expired
+          type: string
+        publicUrl:
+          description: The public URL for your Ad/Offer on your marketplace.
+          example: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
+          nullable: true
+          type: string
+        seller:
+          $ref: '#/components/schemas/Transaction-Persona-CollectionRead'
+        presetBuyer:
+          $ref: '#/components/schemas/Transaction-Persona-CollectionRead'
+        nature:
+          default: physical_item
+          description: This WILL affect the assigned workflow. Choosing service will
+            disable delivery for example. Refer to our technical hub for more information.
+          enum:
+          - service
+          - physical_item
+          - dematerialized_item
+          - rent_item
+          example: physical_item
+          type: string
+        title:
+          example: ASUS TUF X570-PLUS GAMING Motherboard
+          type: string
+        unitPrice:
+          format: float
+          type: number
+        minNegotiableUnitPrice:
+          format: float
+          type: number
+        allowToNegotiateUnitPrice:
+          type: boolean
+        currencyCode:
+          default: EUR
+          example: EUR
+          type: string
+        itemCount:
+          default: 1
+          example: 1
+          type: integer
+        condition:
+          default: USED
+          enum:
+          - NEW
+          - USED
+          - DAMAGED
+          - DETERIORATED
+          - UNRECOVERABLE
+          example: USED
+          type: string
+        medias:
+          items:
+            example: https://example.com/
+            format: iri-reference
+            type: string
+          type: array
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+      required:
+      - allowToNegotiateUnitPrice
+      - currencyCode
+      - medias
+      - nature
+      - seller
+      - status
+      - ulid
+    Transaction-Offer-Read:
+      deprecated: false
+      description: ""
+      example:
+        seller:
+          firstName: John
+          lastName: Doe
+          mobilePhoneNumber: "+33745214529"
+          address: "{}"
+          registered: true
+          language: fr
+          id: 0
+          email: john.doe@gmail.com
+        unitPrice: 6.0274563
+        metadata:
+        - value: "54412"
+          key: External-ID
+        - value: "54412"
+          key: External-ID
+        redirectUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold?checkout=true
+        ulid: ulid
+        nature: physical_item
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed\
+          \ do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim\
+          \ ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip\
+          \ ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate\
+          \ velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat\
+          \ cupidatat non proident, sunt in culpa qui officia deserunt mollit anim\
+          \ id est laborum."
+        title: ASUS TUF X570-PLUS GAMING Motherboard
+        itemCount: 1
+        shippingAllowed: true
+        canBeSoldSeparately: true
+        handDeliveryAllowed: true
+        weightInGram: 1
+        medias:
+        - https://example.com/
+        - https://example.com/
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        condition: USED
+        shippingCarriers:
+        - SwissPost
+        - SwissPost
+        eanCode: "4718017388450"
+        publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
+        currencyCode: EUR
+        presetBuyer:
+          firstName: John
+          lastName: Doe
+          mobilePhoneNumber: "+33745214529"
+          address: "{}"
+          registered: true
+          language: fr
+          id: 0
+          email: john.doe@gmail.com
+        status: issued
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        ulid:
+          type: string
+        status:
+          enum:
+          - issued
+          - active
+          - fulfilled
+          - expired
+          type: string
+        publicUrl:
+          description: The public URL for your Ad/Offer on your marketplace.
+          example: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
+          nullable: true
+          type: string
+        redirectUrl:
+          description: Fill-in that field IF you intend to redirect your customer
+            instead of using a WebView.
+          example: https://marketplace.tld/offers/that-special-item-i-wish-to-sold?checkout=true
+          nullable: true
+          type: string
+        seller:
+          $ref: '#/components/schemas/Transaction-Persona-Read'
+        presetBuyer:
+          $ref: '#/components/schemas/Transaction-Persona-Read'
+        nature:
+          default: physical_item
+          description: This WILL affect the assigned workflow. Choosing service will
+            disable delivery for example. Refer to our technical hub for more information.
+          enum:
+          - service
+          - physical_item
+          - dematerialized_item
+          - rent_item
+          example: physical_item
+          type: string
+        title:
+          example: ASUS TUF X570-PLUS GAMING Motherboard
+          type: string
+        description:
+          example: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\
+            \ eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim\
+            \ ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip\
+            \ ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate\
+            \ velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat\
+            \ cupidatat non proident, sunt in culpa qui officia deserunt mollit anim\
+            \ id est laborum."
+          nullable: true
+          type: string
+        unitPrice:
+          format: float
+          type: number
+        currencyCode:
+          default: EUR
+          example: EUR
+          type: string
+        itemCount:
+          default: 1
+          example: 1
+          type: integer
+        condition:
+          default: USED
+          enum:
+          - NEW
+          - USED
+          - DAMAGED
+          - DETERIORATED
+          - UNRECOVERABLE
+          example: USED
+          type: string
+        weightInGram:
+          description: "Accepted values between 500g (0.5kg) and 10,000g (10kg)."
+          type: integer
+        shippingAllowed:
+          description: "That toggle allows the seller to propose shipping for its\
+            \ item. If set in conjunction of shippingCarrier, the label will be automatically\
+            \ generated. Also, it will restrict the carrier to the limited subset\
+            \ defined."
+          type: boolean
+        handDeliveryAllowed:
+          default: true
+          description: Enable both parties to finalize the transaction in person rather
+            than using delivery. A QR Code must be scanned by the seller once the
+            buyer claims the product.
+          example: true
+          type: boolean
+        shippingCarriers:
+          description: "If you wish to enable automated shipping label generation\
+            \ through a specific provider, specify it there."
+          items:
+            enum:
+            - SwissPost
+            - Colissimo
+            - MondialRelay
+            type: string
+          type: array
+        eanCode:
+          example: "4718017388450"
+          nullable: true
+          type: string
+        canBeSoldSeparately:
+          default: true
+          description: Set this flag to false to forbid a potential buyer to acquire
+            less than "itemCount" item(s)
+          example: true
+          type: boolean
+        metadata:
+          items:
+            $ref: '#/components/schemas/Transaction-Metadata-Read'
+          type: array
+        medias:
+          items:
+            example: https://example.com/
+            format: iri-reference
+            type: string
+          type: array
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+      required:
+      - canBeSoldSeparately
+      - currencyCode
+      - handDeliveryAllowed
+      - medias
+      - nature
+      - seller
+      - shippingAllowed
+      - status
+      - ulid
+      - weightInGram
+    Transaction-Parcel-Read:
+      deprecated: false
+      description: ""
+      example:
+        identifier: 8J001271466474
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        carrier: SwissPost
+        price: 4.88
+        currency: EUR
+        labelPublicUrl: labelPublicUrl
+        status: CREATED
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        carrier:
+          enum:
+          - SwissPost
+          - MondialRelay
+          - Colissimo
+          type: string
+        identifier:
+          example: 8J001271466474
+          maxLength: 128
+          minLength: 4
+          type: string
+        price:
+          example: 4.88
+          minimum: 0
+          nullable: true
+          type: number
+        currency:
+          default: EUR
+          example: EUR
+          externalDocs:
+            url: https://schema.org/priceCurrency
+          nullable: true
+          type: string
+        status:
+          enum:
+          - CREATED
+          - SHIPPED
+          - IN_TRANSIT
+          - DELIVERED
+          - ERROR
+          - ACCEPTED
+          - REFUSED
+          - null
+          nullable: true
+          type: string
+        labelPublicUrl:
+          nullable: true
+          type: string
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+      required:
+      - carrier
+      - identifier
+    Transaction-Persona-CollectionRead:
+      deprecated: false
+      description: ""
+      example:
+        firstName: John
+        lastName: Doe
+        id: 0
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        firstName:
+          example: John
+          type: string
+        lastName:
+          example: Doe
+          type: string
+    Transaction-Persona-Read:
+      deprecated: false
+      description: ""
+      example:
+        firstName: John
+        lastName: Doe
+        mobilePhoneNumber: "+33745214529"
+        address: "{}"
+        registered: true
+        language: fr
+        id: 0
+        email: john.doe@gmail.com
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        firstName:
+          example: John
+          type: string
+        lastName:
+          example: Doe
+          type: string
+        language:
+          description: "That data is used for rendering the frontend application with\
+            \ given language. If not set, will be inferred. Custom codes can be issued\
+            \ for specific requirements."
+          example: fr
+          nullable: true
+          type: string
+        email:
+          example: john.doe@gmail.com
+          nullable: true
+          type: string
+        mobilePhoneNumber:
+          example: "+33745214529"
+          nullable: true
+          type: string
+        address:
+          deprecated: false
+          description: ""
+          type: object
+        registered:
+          description: Determine if the Persona have a Tripartie account
+          readOnly: true
+          type: boolean
+    Transaction-Quote-CollectionRead:
+      deprecated: false
+      description: ""
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        shippingFees: 2.302136
+        quantityToBeAcquired: 1
+        ulid: ulid
+        shippingCarrier: SwissPost
+        attemptUnitPrice: 5.962134
+        transactionFees: 5.637377
+        expireAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        ulid:
+          type: string
+        shippingCarrier:
+          enum:
+          - SwissPost
+          - Colissimo
+          - MondialRelay
+          type: string
+        quantityToBeAcquired:
+          default: 1
+          example: 1
+          type: integer
+        attemptUnitPrice:
+          format: float
+          type: number
+        transactionFees:
+          format: float
+          type: number
+        shippingFees:
+          format: float
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+        expireAt:
+          format: date-time
+          type: string
+      required:
+      - createdAt
+      - expireAt
+      - quantityToBeAcquired
+      - shippingCarrier
+      - ulid
+    Transaction-Quote-Read:
+      deprecated: false
+      description: ""
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        shippingFees: 2.302136
+        quantityToBeAcquired: 1
+        ulid: ulid
+        shippingCarrier: SwissPost
+        attemptUnitPrice: 5.962134
+        transactionFees: 5.637377
+        expireAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        ulid:
+          type: string
+        shippingCarrier:
+          enum:
+          - SwissPost
+          - Colissimo
+          - MondialRelay
+          type: string
+        quantityToBeAcquired:
+          default: 1
+          example: 1
+          type: integer
+        attemptUnitPrice:
+          format: float
+          type: number
+        transactionFees:
+          format: float
+          type: number
+        shippingFees:
+          format: float
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+        expireAt:
+          format: date-time
+          type: string
+      required:
+      - createdAt
+      - expireAt
+      - quantityToBeAcquired
+      - shippingCarrier
+      - ulid
+    Transaction-Read:
+      deprecated: false
+      description: ""
+      example:
+        totalFees: 4.145608029883936
+        fees: 5.962133916683182
+        ulid: ulid
+        remotePayInId: remotePayInId
+        rating: 9
+        handOverCode: handOverCode
+        offer:
+          seller:
+            firstName: John
+            lastName: Doe
+            mobilePhoneNumber: "+33745214529"
+            address: "{}"
+            registered: true
+            language: fr
+            id: 0
+            email: john.doe@gmail.com
+          unitPrice: 6.0274563
+          metadata:
+          - value: "54412"
+            key: External-ID
+          - value: "54412"
+            key: External-ID
+          redirectUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold?checkout=true
+          ulid: ulid
+          nature: physical_item
+          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed\
+            \ do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim\
+            \ ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip\
+            \ ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate\
+            \ velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat\
+            \ cupidatat non proident, sunt in culpa qui officia deserunt mollit anim\
+            \ id est laborum."
+          title: ASUS TUF X570-PLUS GAMING Motherboard
+          itemCount: 1
+          shippingAllowed: true
+          canBeSoldSeparately: true
+          handDeliveryAllowed: true
+          weightInGram: 1
+          medias:
+          - https://example.com/
+          - https://example.com/
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          condition: USED
+          shippingCarriers:
+          - SwissPost
+          - SwissPost
+          eanCode: "4718017388450"
+          publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
+          currencyCode: EUR
+          presetBuyer:
+            firstName: John
+            lastName: Doe
+            mobilePhoneNumber: "+33745214529"
+            address: "{}"
+            registered: true
+            language: fr
+            id: 0
+            email: john.doe@gmail.com
+          status: issued
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        total: 3.616076749251911
+        quote:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          shippingFees: 2.302136
+          quantityToBeAcquired: 1
+          ulid: ulid
+          shippingCarrier: SwissPost
+          attemptUnitPrice: 5.962134
+          transactionFees: 5.637377
+          expireAt: 2000-01-23T04:56:07.000+00:00
+        remotePreAuthorizationId: remotePreAuthorizationId
+        review: review
+        escrow: "{}"
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+        balanceToRefund: 2.3021358869347655
+        awaitedParty: BUYER
+        totalCharged: 2.027123023002322
+        statusExpiration: 2000-01-23T04:56:07.000+00:00
+        buyer:
+          firstName: John
+          lastName: Doe
+          mobilePhoneNumber: "+33745214529"
+          address: "{}"
+          registered: true
+          language: fr
+          id: 0
+          email: john.doe@gmail.com
+        supplementalFees: 5.637376656633329
+        forceRefundShipping: true
+        feesToRefund: 7.061401241503109
+        card: https://example.com/
+        status: CREATED
+        parcels:
+        - identifier: 8J001271466474
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          carrier: SwissPost
+          price: 4.88
+          currency: EUR
+          labelPublicUrl: labelPublicUrl
+          status: CREATED
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - identifier: 8J001271466474
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          carrier: SwissPost
+          price: 4.88
+          currency: EUR
+          labelPublicUrl: labelPublicUrl
+          status: CREATED
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        ulid:
+          type: string
+        offer:
+          $ref: '#/components/schemas/Transaction-Offer-Read'
+        quote:
+          $ref: '#/components/schemas/Transaction-Quote-Read'
+        buyer:
+          $ref: '#/components/schemas/Transaction-Persona-Read'
+        status:
+          enum:
+          - CREATED
+          - AUTHORIZED
+          - REFUSED
+          - ACCEPTED
+          - SHIPPED
+          - IN_TRANSIT
+          - BLOCKED
+          - DELIVERED
+          - COMPLETED
+          - DISPUTED
+          - CANCELLED
+          - null
+          nullable: true
+          type: string
+        fees:
+          nullable: true
+          type: number
+        supplementalFees:
+          nullable: true
+          type: number
+        card:
+          example: https://example.com/
+          format: iri-reference
+          nullable: true
+          type: string
+        escrow:
+          deprecated: false
+          description: ""
+          type: object
+        remotePreAuthorizationId:
+          nullable: true
+          type: string
+        remotePayInId:
+          nullable: true
+          type: string
+        balanceToRefund:
+          nullable: true
+          type: number
+        feesToRefund:
+          nullable: true
+          type: number
+        forceRefundShipping:
+          description: "Shipping is never refunded on purpose. Once deposited (parcel),\
+            \ we are billed for it."
+          nullable: true
+          type: boolean
+        review:
+          nullable: true
+          type: string
+        rating:
+          nullable: true
+          type: integer
+        handOverCode:
+          nullable: true
+          type: string
+        parcels:
+          items:
+            $ref: '#/components/schemas/Transaction-Parcel-Read'
+          type: array
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          nullable: true
+          type: string
+        total:
+          readOnly: true
+          type: number
+        totalCharged:
+          readOnly: true
+          type: number
+        totalFees:
+          readOnly: true
+          type: number
+        awaitedParty:
+          description: Determine who is awaited (actor) for the next transition
+          enum:
+          - BUYER
+          - PLATFORM
+          - SELLER
+          readOnly: true
+          type: string
+          nullable: true
+        statusExpiration:
+          description: Yield if eligible the date-time at which the transaction state
+            expire.
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+      required:
+      - buyer
+      - createdAt
+      - offer
+      - quote
+      - ulid
+    Transaction-Update:
+      deprecated: false
+      description: ""
+      properties:
+        status:
+          enum:
+          - CREATED
+          - AUTHORIZED
+          - REFUSED
+          - ACCEPTED
+          - SHIPPED
+          - IN_TRANSIT
+          - BLOCKED
+          - DELIVERED
+          - COMPLETED
+          - DISPUTED
+          - CANCELLED
+          - null
+          nullable: true
+          type: string
+        supplementalFees:
+          nullable: true
+          type: number
+        balanceToRefund:
+          nullable: true
+          type: number
+        feesToRefund:
+          nullable: true
+          type: number
+        forceRefundShipping:
+          description: "Shipping is never refunded on purpose. Once deposited (parcel),\
+            \ we are billed for it."
+          nullable: true
+          type: boolean
+        review:
+          nullable: true
+          type: string
+        rating:
+          nullable: true
+          type: integer
+        handOverCodeConfirmation:
+          nullable: true
+          type: string
+        updatedAt:
+          format: date-time
+          nullable: true
+          type: string
+    Transaction-Wallet-Read:
+      deprecated: false
+      description: ""
+      type: object
+    Transaction-Write:
+      deprecated: false
+      description: ""
+      properties:
+        captcha:
+          nullable: true
+          type: string
+        offer:
+          example: https://example.com/
+          format: iri-reference
+          type: string
+        quote:
+          example: https://example.com/
+          format: iri-reference
+          type: string
+        card:
+          example: https://example.com/
+          format: iri-reference
+          nullable: true
+          type: string
+      required:
+      - offer
+      - quote
+    User:
+      deprecated: false
+      description: Disable a user account
+      type: object
+    User-Address-AuthenticatedRead:
+      deprecated: false
+      description: ""
+      type: object
+    User-Address-CollectionRead:
+      deprecated: false
+      description: ""
+      type: object
+    User-Address-SupportRead:
+      deprecated: false
+      description: ""
+      type: object
+    User-Address-Update:
+      deprecated: false
+      description: ""
+      type: object
     User-AuthenticatedRead:
       deprecated: false
       description: ""
@@ -6932,6 +9724,29 @@ components:
         birthday: 2000-01-23T04:56:07.000+00:00
         lastName: TAHRI
         preferredLanguage: fr
+        cards:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          processorStatus: unallocated
+          providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+          countryCode: countryCode
+          ephemeral: true
+          primaryAccountNumber: primaryAccountNumber
+          currency: currency
+          providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+          expireAt: 2000-01-23T04:56:07.000+00:00
+          providerName: providerName
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          processorStatus: unallocated
+          providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+          countryCode: countryCode
+          ephemeral: true
+          primaryAccountNumber: primaryAccountNumber
+          currency: currency
+          providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+          expireAt: 2000-01-23T04:56:07.000+00:00
+          providerName: providerName
+          updatedAt: 2000-01-23T04:56:07.000+00:00
         roles:
         - ROLE_ORGANIZATION_OWNER
         identityVerifiedAt: 2000-01-23T04:56:07.000+00:00
@@ -6943,19 +9758,29 @@ components:
         lockdown: true
         lastSuccessfulLogIn: 2000-01-23T04:56:07.000+00:00
         id: 0
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         email: john.doe@company.tld
+        providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
         bankAccount:
           createdAt: 2000-01-23T04:56:07.000+00:00
+          processorStatus: unallocated
+          providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
           iban: iban
+          providerCreatedAt: 2000-01-23T04:56:07.000+00:00
           bic: bic
+          providerName: providerName
           updatedAt: 2000-01-23T04:56:07.000+00:00
         iri: https://example.com/
         wallet:
-          ledger: 1.4658129
           createdAt: 2000-01-23T04:56:07.000+00:00
-          available: 5.962134
+          processorStatus: unallocated
+          balance: 1.4658129
+          providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+          providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+          providerName: providerName
           updatedAt: 2000-01-23T04:56:07.000+00:00
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         secondAuthFactor: true
         profiles:
         - organization:
@@ -6976,8 +9801,10 @@ components:
             id: 6
         avatar:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+        mainAddress: "{}"
         consentMailAds: true
         firstName: Jacob
+        processorStatus: unallocated
         organization:
           domainVerified: true
           name: name
@@ -6988,10 +9815,15 @@ components:
           id: 6
         originCountry: FRA
         roleInCompany: Accounting Dpt
+        homeCountry: FRA
       properties:
         id:
           readOnly: true
           type: integer
+        mainAddress:
+          deprecated: false
+          description: ""
+          type: object
         firstName:
           example: Jacob
           type: string
@@ -7036,6 +9868,12 @@ components:
           nullable: true
           type: string
         originCountry:
+          description: The nationality of the current user.
+          example: FRA
+          maxLength: 3
+          nullable: true
+          type: string
+        homeCountry:
           description: The originating country
           example: FRA
           maxLength: 3
@@ -7076,8 +9914,25 @@ components:
           items:
             $ref: '#/components/schemas/User-Persona-AuthenticatedRead'
           type: array
+        cards:
+          items:
+            $ref: '#/components/schemas/User-Card-AuthenticatedRead'
+          type: array
         wallet:
           $ref: '#/components/schemas/User-Wallet-AuthenticatedRead'
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
         iri:
           example: https://example.com/
           format: iri-reference
@@ -7089,6 +9944,17 @@ components:
         secondAuthFactor:
           readOnly: true
           type: boolean
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
+          readOnly: true
+          type: string
       required:
       - consentMailAds
       - lockdown
@@ -7099,8 +9965,12 @@ components:
       description: ""
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
+        processorStatus: unallocated
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         iban: iban
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         bic: bic
+        providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         iban:
@@ -7114,10 +9984,98 @@ components:
           format: date-time
           nullable: true
           type: string
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
+          readOnly: true
+          type: string
       required:
       - bic
       - createdAt
-      - iban
+    User-Card-AuthenticatedRead:
+      deprecated: false
+      description: ""
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        processorStatus: unallocated
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        countryCode: countryCode
+        ephemeral: true
+        primaryAccountNumber: primaryAccountNumber
+        currency: currency
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+        expireAt: 2000-01-23T04:56:07.000+00:00
+        providerName: providerName
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        primaryAccountNumber:
+          nullable: true
+          type: string
+        expireAt:
+          format: date-time
+          type: string
+        currency:
+          nullable: true
+          type: string
+        countryCode:
+          nullable: true
+          type: string
+        ephemeral:
+          type: boolean
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
+          readOnly: true
+          type: string
+      required:
+      - createdAt
+      - ephemeral
+      - expireAt
+      - updatedAt
     User-CollectionRead:
       deprecated: false
       description: ""
@@ -7125,21 +10083,27 @@ components:
         lastName: TAHRI
         iri: https://example.com/
         wallet:
-          ledger: 1.4658129
           createdAt: 2000-01-23T04:56:07.000+00:00
-          available: 5.962134
+          processorStatus: unallocated
+          balance: 1.4658129
+          providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
           externalId: externalId
+          providerCreatedAt: 2000-01-23T04:56:07.000+00:00
           providerName: providerName
           updatedAt: 2000-01-23T04:56:07.000+00:00
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         secondAuthFactor: true
         roles:
         - ROLE_ORGANIZATION_OWNER
+        externalId: externalId
         avatar:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+        mainAddress: "{}"
         totpEnabled: true
         intlPhoneNumber: "+33700000000"
         firstName: Jacob
         createdAt: 2000-01-23T04:56:07.000+00:00
+        processorStatus: unallocated
         publicName: Nickname
         organization:
           name: name
@@ -7147,12 +10111,18 @@ components:
         lastSuccessfulLogIn: 2000-01-23T04:56:07.000+00:00
         id: 0
         roleInCompany: Accounting Dpt
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         email: john.doe@company.tld
+        providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           readOnly: true
           type: integer
+        mainAddress:
+          deprecated: false
+          description: ""
+          type: object
         firstName:
           example: Jacob
           type: string
@@ -7210,6 +10180,22 @@ components:
           $ref: '#/components/schemas/User-Organization-CollectionRead'
         wallet:
           $ref: '#/components/schemas/User-Wallet-CollectionRead'
+        externalId:
+          nullable: true
+          type: string
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
         iri:
           example: https://example.com/
           format: iri-reference
@@ -7218,6 +10204,17 @@ components:
         secondAuthFactor:
           readOnly: true
           type: boolean
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
+          readOnly: true
+          type: string
       required:
       - roles
     User-EmailValidationWrite:
@@ -7272,10 +10269,10 @@ components:
             - ROLE_ACCOUNTING_MANAGER
             - ROLE_BILLING_MANAGER
             - ROLE_CUSTOMER_SERVICE
-            - ROLE_CUSTOMER_SERVICE
             - ROLE_PLATFORM_ADMIN
             - ROLE_PLATFORM_SUPPORT
             - ROLE_ORGANIZATION_OWNER
+            - ROLE_USER
             type: string
           type: array
       required:
@@ -7451,21 +10448,27 @@ components:
         lastName: TAHRI
         iri: https://example.com/
         wallet:
-          ledger: 1.4658129
           createdAt: 2000-01-23T04:56:07.000+00:00
-          available: 5.962134
+          processorStatus: unallocated
+          balance: 1.4658129
+          providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
           externalId: externalId
+          providerCreatedAt: 2000-01-23T04:56:07.000+00:00
           providerName: providerName
           updatedAt: 2000-01-23T04:56:07.000+00:00
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         secondAuthFactor: true
         roles:
         - ROLE_ORGANIZATION_OWNER
+        externalId: externalId
         avatar:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+        mainAddress: "{}"
         totpEnabled: true
         intlPhoneNumber: "+33700000000"
         firstName: Jacob
         createdAt: 2000-01-23T04:56:07.000+00:00
+        processorStatus: unallocated
         publicName: Nickname
         organization:
           name: name
@@ -7473,12 +10476,18 @@ components:
         lastSuccessfulLogIn: 2000-01-23T04:56:07.000+00:00
         id: 0
         roleInCompany: Accounting Dpt
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         email: john.doe@company.tld
+        providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           readOnly: true
           type: integer
+        mainAddress:
+          deprecated: false
+          description: ""
+          type: object
         firstName:
           example: Jacob
           type: string
@@ -7536,6 +10545,22 @@ components:
           $ref: '#/components/schemas/User-Organization-SupportRead'
         wallet:
           $ref: '#/components/schemas/User-Wallet-SupportRead'
+        externalId:
+          nullable: true
+          type: string
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
         iri:
           example: https://example.com/
           format: iri-reference
@@ -7544,6 +10569,17 @@ components:
         secondAuthFactor:
           readOnly: true
           type: boolean
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
+          readOnly: true
+          type: string
       required:
       - roles
     User-TotpSetupRead:
@@ -7579,6 +10615,10 @@ components:
       deprecated: false
       description: ""
       properties:
+        mainAddress:
+          deprecated: false
+          description: ""
+          type: object
         firstName:
           example: Jacob
           type: string
@@ -7655,6 +10695,29 @@ components:
         birthday: 2000-01-23T04:56:07.000+00:00
         lastName: TAHRI
         preferredLanguage: fr
+        cards:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          processorStatus: unallocated
+          providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+          countryCode: countryCode
+          ephemeral: true
+          primaryAccountNumber: primaryAccountNumber
+          currency: currency
+          providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+          expireAt: 2000-01-23T04:56:07.000+00:00
+          providerName: providerName
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          processorStatus: unallocated
+          providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+          countryCode: countryCode
+          ephemeral: true
+          primaryAccountNumber: primaryAccountNumber
+          currency: currency
+          providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+          expireAt: 2000-01-23T04:56:07.000+00:00
+          providerName: providerName
+          updatedAt: 2000-01-23T04:56:07.000+00:00
         roles:
         - ROLE_ORGANIZATION_OWNER
         identityVerifiedAt: 2000-01-23T04:56:07.000+00:00
@@ -7666,19 +10729,29 @@ components:
         lockdown: true
         lastSuccessfulLogIn: 2000-01-23T04:56:07.000+00:00
         id: 0
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         email: john.doe@company.tld
+        providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
         bankAccount:
           createdAt: 2000-01-23T04:56:07.000+00:00
+          processorStatus: unallocated
+          providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
           iban: iban
+          providerCreatedAt: 2000-01-23T04:56:07.000+00:00
           bic: bic
+          providerName: providerName
           updatedAt: 2000-01-23T04:56:07.000+00:00
         iri: https://example.com/
         wallet:
-          ledger: 1.4658129
           createdAt: 2000-01-23T04:56:07.000+00:00
-          available: 5.962134
+          processorStatus: unallocated
+          balance: 1.4658129
+          providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+          providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+          providerName: providerName
           updatedAt: 2000-01-23T04:56:07.000+00:00
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         secondAuthFactor: true
         profiles:
         - organization:
@@ -7699,8 +10772,10 @@ components:
             id: 6
         avatar:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+        mainAddress: "{}"
         consentMailAds: true
         firstName: Jacob
+        processorStatus: unallocated
         organization:
           domainVerified: true
           name: name
@@ -7711,10 +10786,15 @@ components:
           id: 6
         originCountry: FRA
         roleInCompany: Accounting Dpt
+        homeCountry: FRA
       properties:
         id:
           readOnly: true
           type: integer
+        mainAddress:
+          deprecated: false
+          description: ""
+          type: object
         firstName:
           example: Jacob
           type: string
@@ -7763,6 +10843,11 @@ components:
           nullable: true
           type: string
         originCountry:
+          description: The nationality of the current user.
+          example: FRA
+          nullable: true
+          type: string
+        homeCountry:
           description: The originating country
           example: FRA
           nullable: true
@@ -7801,8 +10886,25 @@ components:
           items:
             $ref: '#/components/schemas/Persona-UserRead'
           type: array
+        cards:
+          items:
+            $ref: '#/components/schemas/Card-UserRead'
+          type: array
         wallet:
           $ref: '#/components/schemas/Wallet-UserRead'
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
         iri:
           example: https://example.com/
           format: iri-reference
@@ -7814,21 +10916,32 @@ components:
         secondAuthFactor:
           readOnly: true
           type: boolean
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
+          readOnly: true
+          type: string
       required:
       - email
     User-Wallet-AuthenticatedRead:
       deprecated: false
       description: ""
       example:
-        ledger: 1.4658129
         createdAt: 2000-01-23T04:56:07.000+00:00
-        available: 5.962134
+        processorStatus: unallocated
+        balance: 1.4658129
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+        providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
-        ledger:
-          format: float
-          type: number
-        available:
+        balance:
           format: float
           type: number
         createdAt:
@@ -7836,6 +10949,30 @@ components:
           type: string
         updatedAt:
           format: date-time
+          type: string
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
+          readOnly: true
           type: string
       required:
       - createdAt
@@ -7844,65 +10981,105 @@ components:
       deprecated: false
       description: ""
       example:
-        ledger: 1.4658129
         createdAt: 2000-01-23T04:56:07.000+00:00
-        available: 5.962134
+        processorStatus: unallocated
+        balance: 1.4658129
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         externalId: externalId
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
-        ledger:
+        balance:
           format: float
           type: number
-        available:
-          format: float
-          type: number
-        externalId:
-          type: string
-        providerName:
-          type: string
         createdAt:
           format: date-time
           type: string
         updatedAt:
           format: date-time
           type: string
+        externalId:
+          nullable: true
+          type: string
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
+          readOnly: true
+          type: string
       required:
       - createdAt
-      - externalId
-      - providerName
       - updatedAt
     User-Wallet-SupportRead:
       deprecated: false
       description: ""
       example:
-        ledger: 1.4658129
         createdAt: 2000-01-23T04:56:07.000+00:00
-        available: 5.962134
+        processorStatus: unallocated
+        balance: 1.4658129
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         externalId: externalId
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
-        ledger:
+        balance:
           format: float
           type: number
-        available:
-          format: float
-          type: number
-        externalId:
-          type: string
-        providerName:
-          type: string
         createdAt:
           format: date-time
           type: string
         updatedAt:
           format: date-time
           type: string
+        externalId:
+          nullable: true
+          type: string
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
+          readOnly: true
+          type: string
       required:
       - createdAt
-      - externalId
-      - providerName
       - updatedAt
     User-Write:
       deprecated: false
@@ -7955,6 +11132,11 @@ components:
           nullable: true
           type: string
         originCountry:
+          description: The nationality of the current user.
+          example: FRA
+          nullable: true
+          type: string
+        homeCountry:
           description: The originating country
           example: FRA
           nullable: true
@@ -7970,9 +11152,7 @@ components:
       - email
       - firstName
       - lastName
-      - originCountry
       - plainPassword
-      - preferredLanguage
     User-user.subscribed:
       deprecated: false
       description: Disable a user account
@@ -7988,63 +11168,19 @@ components:
           format: iri-reference
           readOnly: true
           type: string
-    View:
-      deprecated: false
-      description: ""
-      properties:
-        id:
-          readOnly: true
-          type: integer
-        ipAddress:
-          type: string
-        offer:
-          example: https://example.com/
-          format: iri-reference
-          nullable: true
-          type: string
-        persona:
-          example: https://example.com/
-          format: iri-reference
-          nullable: true
-          type: string
-        user:
-          example: https://example.com/
-          format: iri-reference
-          nullable: true
-          type: string
-        hitCount:
-          default: 1
-          example: 1
-          type: integer
-        createdAt:
-          format: date-time
-          readOnly: true
-          type: string
-        namedSource:
-          enum:
-          - BUYER
-          - PLATFORM
-          - SELLER
-          - OTHER
-          readOnly: true
-          type: string
-          nullable: true
-      required:
-      - hitCount
-      - ipAddress
     Wallet-UserRead:
       deprecated: false
       description: ""
       example:
-        ledger: 1.4658129
         createdAt: 2000-01-23T04:56:07.000+00:00
-        available: 5.962134
+        processorStatus: unallocated
+        balance: 1.4658129
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+        providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
-        ledger:
-          format: float
-          type: number
-        available:
+        balance:
           format: float
           type: number
         createdAt:
@@ -8052,6 +11188,30 @@ components:
           type: string
         updatedAt:
           format: date-time
+          type: string
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
+          readOnly: true
           type: string
       required:
       - createdAt
@@ -8261,7 +11421,8 @@ components:
         event: offer.closed
         objectId: 01ARZ3NDEKTSV4RRFFQ69G5FAV
         object:
-          seller: https://example.com/
+          seller:
+            registered: true
           unitPrice: 0.8008282
           iri: https://example.com/
           redirectUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold?checkout=true
@@ -8293,7 +11454,8 @@ components:
             customBaseUrl: customBaseUrl
           publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
           currencyCode: EUR
-          presetBuyer: https://example.com/
+          presetBuyer:
+            registered: true
           status: issued
           updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -8532,10 +11694,5 @@ components:
       description: Value for the Authorization header parameter.
       in: header
       name: Authorization
-      type: apiKey
-    personaAuthKey:
-      description: Value for the X-Persona-Authorization header parameter.
-      in: header
-      name: X-Persona-Authorization
       type: apiKey
 

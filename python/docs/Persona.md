@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **first_name** | **str** |  | [optional] 
 **last_name** | **str** |  | [optional] 
 **gender** | **str** |  | [optional] [default to 'RATHER_NOT_SAY']
-**date_of_birth** | **date** |  | [optional] 
+**date_of_birth** | **object** |  | [optional] 
 **language** | **str** | That data is used for rendering the frontend application with given language. If not set, will be inferred. Custom codes can be issued for specific requirements. | [optional] 
 **email** | **str** |  | [optional] 
 **mobile_phone_number** | **str** |  | [optional] 
@@ -19,12 +19,12 @@ Name | Type | Description | Notes
 **metadata** | [**List[Metadata]**](Metadata.md) | You can assign different meta to your Persona object for different purposes. eg. Ease searching. | [optional] 
 **offers** | **List[str]** |  | 
 **purchases** | **List[str]** |  | 
-**views** | [**List[View]**](View.md) |  | 
 **created_at** | **datetime** |  | [optional] [readonly] 
 **updated_at** | **datetime** |  | [optional] [readonly] 
 **owned_by** | **str** |  | [optional] 
 **offer_count** | **int** | Issued Offers count owned by a given Persona | [optional] [readonly] 
 **purchase_count** | **int** |  | [optional] [readonly] 
+**registered** | **bool** | Determine if the Persona have a Tripartie account | [optional] [readonly] 
 
 ## Example
 

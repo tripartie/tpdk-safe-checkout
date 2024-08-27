@@ -6,12 +6,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ledger** | **float** |  | [optional] 
-**available** | **float** |  | [optional] 
-**external_id** | **str** |  | 
-**provider_name** | **str** |  | 
+**balance** | **float** |  | [optional] 
 **created_at** | **datetime** |  | 
 **updated_at** | **datetime** |  | 
+**external_id** | **str** |  | [optional] 
+**provider_name** | **str** |  | [optional] 
+**provider_created_at** | **datetime** |  | [optional] [readonly] 
+**provider_updated_at** | **datetime** |  | [optional] [readonly] 
+**processor_status** | **str** | Automagically infer on what state the entity is at the Payment Processor. | [optional] [readonly] 
 
 ## Example
 

@@ -8,21 +8,33 @@ All URIs are relative to *https://staging-api.tripartie.app*
 | [**apiApiClientsIdentifierDelete**](UserApi.md#apiApiClientsIdentifierDelete) | **DELETE** /api-clients/{identifier} | Removes the ApiClient resource. |
 | [**apiApiClientsIdentifierGet**](UserApi.md#apiApiClientsIdentifierGet) | **GET** /api-clients/{identifier} | Retrieves a ApiClient resource. |
 | [**apiApiClientsPost**](UserApi.md#apiApiClientsPost) | **POST** /api-clients | Creates a ApiClient resource. |
-| [**apiInvitePost**](UserApi.md#apiInvitePost) | **POST** /invite | Organization invite |
+| [**apiBankAccountsIdDelete**](UserApi.md#apiBankAccountsIdDelete) | **DELETE** /bank-accounts/{id} | Removes the BankAccount resource. |
+| [**apiBankAccountsIdGet**](UserApi.md#apiBankAccountsIdGet) | **GET** /bank-accounts/{id} | Retrieves a BankAccount resource. |
+| [**apiBankAccountsPost**](UserApi.md#apiBankAccountsPost) | **POST** /bank-accounts | Creates a BankAccount resource. |
+| [**apiCardsGetCollection**](UserApi.md#apiCardsGetCollection) | **GET** /cards | Retrieves the collection of Card resources. |
+| [**apiCardsIdDelete**](UserApi.md#apiCardsIdDelete) | **DELETE** /cards/{id} | Removes the Card resource. |
+| [**apiCardsIdGet**](UserApi.md#apiCardsIdGet) | **GET** /cards/{id} | Retrieves a Card resource. |
+| [**apiCardsIdPatch**](UserApi.md#apiCardsIdPatch) | **PATCH** /cards/{id} | Updates the Card resource. |
+| [**apiCardsPost**](UserApi.md#apiCardsPost) | **POST** /cards | Creates a Card resource. |
+| [**apiCashOutsGetCollection**](UserApi.md#apiCashOutsGetCollection) | **GET** /cash-outs | Retrieves the collection of CashOut resources. |
+| [**apiCashOutsIdGet**](UserApi.md#apiCashOutsIdGet) | **GET** /cash-outs/{id} | Retrieves a CashOut resource. |
+| [**apiCashOutsPost**](UserApi.md#apiCashOutsPost) | **POST** /cash-outs | Creates a CashOut resource. |
 | [**apiMeGet**](UserApi.md#apiMeGet) | **GET** /me | Retrieves a User resource. |
+| [**apiProofOfIdentitiesGetCollection**](UserApi.md#apiProofOfIdentitiesGetCollection) | **GET** /proof-of-identities | List all submitted PoI |
+| [**apiProofOfIdentitiesIdGet**](UserApi.md#apiProofOfIdentitiesIdGet) | **GET** /proof-of-identities/{id} | Retrieve a specific PoI |
+| [**apiProofOfIdentitiesIdPatch**](UserApi.md#apiProofOfIdentitiesIdPatch) | **PATCH** /proof-of-identities/{id} | Upload the document for your PoI slot |
+| [**apiProofOfIdentitiesPost**](UserApi.md#apiProofOfIdentitiesPost) | **POST** /proof-of-identities | Submit a slot for a PoI |
 | [**apiRegisterPost**](UserApi.md#apiRegisterPost) | **POST** /register | Customer onboarding |
-| [**apiUsersGetCollection**](UserApi.md#apiUsersGetCollection) | **GET** /users | Retrieves the collection of User resources. |
 | [**apiUsersIdDelete**](UserApi.md#apiUsersIdDelete) | **DELETE** /users/{id} | Removes the User resource. |
-| [**apiUsersIdGet**](UserApi.md#apiUsersIdGet) | **GET** /users/{id} | Retrieves a User resource. |
-| [**apiUsersIdPatch**](UserApi.md#apiUsersIdPatch) | **PATCH** /users/{id} | Updates the User resource. |
+| [**apiUsersIdPatch**](UserApi.md#apiUsersIdPatch) | **PATCH** /users/{id} | Update your profile |
 | [**apiUsersIdavatarDelete**](UserApi.md#apiUsersIdavatarDelete) | **DELETE** /users/{id}/avatar | Unset your personal avatar |
 | [**apiUsersIdavatarPost**](UserApi.md#apiUsersIdavatarPost) | **POST** /users/{id}/avatar | Upload your personal avatar |
 | [**apiUsersIdemailPatch**](UserApi.md#apiUsersIdemailPatch) | **PATCH** /users/{id}/email | Update user email |
 | [**apiUsersIdemailValidationPatch**](UserApi.md#apiUsersIdemailValidationPatch) | **PATCH** /users/{id}/email-validation | Validate email ownership |
-| [**apiUsersIdenablePatch**](UserApi.md#apiUsersIdenablePatch) | **PATCH** /users/{id}/enable | Updates the User resource. |
-| [**apiUsersIdpasswordPatch**](UserApi.md#apiUsersIdpasswordPatch) | **PATCH** /users/{id}/password | Updates the User resource. |
-| [**apiUsersIdtotpSetupPatch**](UserApi.md#apiUsersIdtotpSetupPatch) | **PATCH** /users/{id}/totp-setup | Updates the User resource. |
-| [**apiUsersIdtotpTogglePatch**](UserApi.md#apiUsersIdtotpTogglePatch) | **PATCH** /users/{id}/totp-toggle | Updates the User resource. |
+| [**apiUsersIdoffersPost**](UserApi.md#apiUsersIdoffersPost) | **POST** /users/{id}/offers | Create a public link for Offer |
+| [**apiUsersIdpasswordPatch**](UserApi.md#apiUsersIdpasswordPatch) | **PATCH** /users/{id}/password | Change your password |
+| [**apiUsersIdtotpSetupPatch**](UserApi.md#apiUsersIdtotpSetupPatch) | **PATCH** /users/{id}/totp-setup | Setup an additional authentication factor |
+| [**apiUsersIdtotpTogglePatch**](UserApi.md#apiUsersIdtotpTogglePatch) | **PATCH** /users/{id}/totp-toggle | Disable the second authentication factor |
 | [**authenticationPost**](UserApi.md#authenticationPost) | **POST** /authentication | User authentication |
 
 
@@ -326,13 +338,13 @@ public class Example {
 | **429** | Rate limit exhausted |  -  |
 | **500** | Unexpected server error |  -  |
 
-<a id="apiInvitePost"></a>
-# **apiInvitePost**
-> UserPostRegisterRead apiInvitePost(userInvite).execute();
+<a id="apiBankAccountsIdDelete"></a>
+# **apiBankAccountsIdDelete**
+> apiBankAccountsIdDelete(id).execute();
 
-Organization invite
+Removes the BankAccount resource.
 
-Invite a user to your organization workspace
+Removes the BankAccount resource.
 
 ### Example
 ```java
@@ -355,24 +367,13 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //jwtPersonalKey.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: personaAuthKey
-    ApiKeyAuth personaAuthKey = (ApiKeyAuth) defaultClient.getAuthentication("personaAuthKey");
-    personaAuthKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //personaAuthKey.setApiKeyPrefix("Token");
-
-    // Configure OAuth2 access token for authorization: oauth
-    OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
-    oauth.setAccessToken("YOUR ACCESS TOKEN");
-
     UserApi apiInstance = new UserApi(defaultClient);
-    UserInvite userInvite = new UserInvite(); // UserInvite | The new User resource
+    String id = "id_example"; // String | BankAccount identifier
     try {
-      UserPostRegisterRead result = apiInstance.apiInvitePost(userInvite)
+      apiInstance.apiBankAccountsIdDelete(id)
             .execute();
-      System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling UserApi#apiInvitePost");
+      System.err.println("Exception when calling UserApi#apiBankAccountsIdDelete");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -386,15 +387,165 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **userInvite** | [**UserInvite**](UserInvite.md)| The new User resource | |
+| **id** | **String**| BankAccount identifier | |
 
 ### Return type
 
-[**UserPostRegisterRead**](UserPostRegisterRead.md)
+null (empty response body)
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | BankAccount resource deleted |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="apiBankAccountsIdGet"></a>
+# **apiBankAccountsIdGet**
+> Object apiBankAccountsIdGet(id).execute();
+
+Retrieves a BankAccount resource.
+
+Retrieves a BankAccount resource.
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    String id = "id_example"; // String | BankAccount identifier
+    try {
+      Object result = apiInstance.apiBankAccountsIdGet(id)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#apiBankAccountsIdGet");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| BankAccount identifier | |
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | BankAccount resource |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="apiBankAccountsPost"></a>
+# **apiBankAccountsPost**
+> Object apiBankAccountsPost(bankAccountWrite).execute();
+
+Creates a BankAccount resource.
+
+Creates a BankAccount resource.
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    BankAccountWrite bankAccountWrite = new BankAccountWrite(); // BankAccountWrite | The new BankAccount resource
+    try {
+      Object result = apiInstance.apiBankAccountsPost(bankAccountWrite)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#apiBankAccountsPost");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **bankAccountWrite** | [**BankAccountWrite**](BankAccountWrite.md)| The new BankAccount resource | |
+
+### Return type
+
+**Object**
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey)
 
 ### HTTP request headers
 
@@ -404,9 +555,616 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | User resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **201** | BankAccount resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 | **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 | **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="apiCardsGetCollection"></a>
+# **apiCardsGetCollection**
+> List&lt;CardCollectionRead&gt; apiCardsGetCollection().page(page).execute();
+
+Retrieves the collection of Card resources.
+
+Retrieves the collection of Card resources.
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    Integer page = 1; // Integer | The collection page number
+    try {
+      List<CardCollectionRead> result = apiInstance.apiCardsGetCollection()
+            .page(page)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#apiCardsGetCollection");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **page** | **Integer**| The collection page number | [optional] [default to 1] |
+
+### Return type
+
+[**List&lt;CardCollectionRead&gt;**](CardCollectionRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Card collection |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  * Content-Range - HTTP standardized header for partial content, used for the pagination <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="apiCardsIdDelete"></a>
+# **apiCardsIdDelete**
+> apiCardsIdDelete(id).execute();
+
+Removes the Card resource.
+
+Removes the Card resource.
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    String id = "id_example"; // String | Card identifier
+    try {
+      apiInstance.apiCardsIdDelete(id)
+            .execute();
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#apiCardsIdDelete");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Card identifier | |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Card resource deleted |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="apiCardsIdGet"></a>
+# **apiCardsIdGet**
+> CardRead apiCardsIdGet(id).execute();
+
+Retrieves a Card resource.
+
+Retrieves a Card resource.
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    String id = "id_example"; // String | Card identifier
+    try {
+      CardRead result = apiInstance.apiCardsIdGet(id)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#apiCardsIdGet");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Card identifier | |
+
+### Return type
+
+[**CardRead**](CardRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Card resource |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="apiCardsIdPatch"></a>
+# **apiCardsIdPatch**
+> CardRead apiCardsIdPatch(id, cardUpdate).execute();
+
+Updates the Card resource.
+
+Updates the Card resource.
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    String id = "id_example"; // String | Card identifier
+    CardUpdate cardUpdate = new CardUpdate(); // CardUpdate | The updated Card resource
+    try {
+      CardRead result = apiInstance.apiCardsIdPatch(id, cardUpdate)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#apiCardsIdPatch");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Card identifier | |
+| **cardUpdate** | [**CardUpdate**](CardUpdate.md)| The updated Card resource | |
+
+### Return type
+
+[**CardRead**](CardRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Card resource updated |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="apiCardsPost"></a>
+# **apiCardsPost**
+> CardRead apiCardsPost(body).execute();
+
+Creates a Card resource.
+
+Creates a Card resource.
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    Object body = null; // Object | The new Card resource
+    try {
+      CardRead result = apiInstance.apiCardsPost(body)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#apiCardsPost");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | **Object**| The new Card resource | |
+
+### Return type
+
+[**CardRead**](CardRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Card resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="apiCashOutsGetCollection"></a>
+# **apiCashOutsGetCollection**
+> List&lt;Object&gt; apiCashOutsGetCollection().page(page).execute();
+
+Retrieves the collection of CashOut resources.
+
+Retrieves the collection of CashOut resources.
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    Integer page = 1; // Integer | The collection page number
+    try {
+      List<Object> result = apiInstance.apiCashOutsGetCollection()
+            .page(page)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#apiCashOutsGetCollection");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **page** | **Integer**| The collection page number | [optional] [default to 1] |
+
+### Return type
+
+**List&lt;Object&gt;**
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | CashOut collection |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  * Content-Range - HTTP standardized header for partial content, used for the pagination <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="apiCashOutsIdGet"></a>
+# **apiCashOutsIdGet**
+> CashoutCashOutRead apiCashOutsIdGet(id).execute();
+
+Retrieves a CashOut resource.
+
+Retrieves a CashOut resource.
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    String id = "id_example"; // String | CashOut identifier
+    try {
+      CashoutCashOutRead result = apiInstance.apiCashOutsIdGet(id)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#apiCashOutsIdGet");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| CashOut identifier | |
+
+### Return type
+
+[**CashoutCashOutRead**](CashoutCashOutRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | CashOut resource |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="apiCashOutsPost"></a>
+# **apiCashOutsPost**
+> CashoutCashOutRead apiCashOutsPost(body).execute();
+
+Creates a CashOut resource.
+
+Creates a CashOut resource.
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    Object body = null; // Object | The new CashOut resource
+    try {
+      CashoutCashOutRead result = apiInstance.apiCashOutsPost(body)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#apiCashOutsPost");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | **Object**| The new CashOut resource | |
+
+### Return type
+
+[**CashoutCashOutRead**](CashoutCashOutRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | CashOut resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
 | **429** | Rate limit exhausted |  -  |
 | **500** | Unexpected server error |  -  |
 
@@ -439,12 +1197,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //jwtPersonalKey.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: personaAuthKey
-    ApiKeyAuth personaAuthKey = (ApiKeyAuth) defaultClient.getAuthentication("personaAuthKey");
-    personaAuthKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //personaAuthKey.setApiKeyPrefix("Token");
-
     // Configure OAuth2 access token for authorization: oauth
     OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
     oauth.setAccessToken("YOUR ACCESS TOKEN");
@@ -474,7 +1226,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -486,6 +1238,312 @@ This endpoint does not need any parameter.
 |-------------|-------------|------------------|
 | **200** | User resource |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 | **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="apiProofOfIdentitiesGetCollection"></a>
+# **apiProofOfIdentitiesGetCollection**
+> List&lt;ProofOfIdentityCollectionRead&gt; apiProofOfIdentitiesGetCollection().page(page).execute();
+
+List all submitted PoI
+
+Retrieves the collection of ProofOfIdentity resources.
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    Integer page = 1; // Integer | The collection page number
+    try {
+      List<ProofOfIdentityCollectionRead> result = apiInstance.apiProofOfIdentitiesGetCollection()
+            .page(page)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#apiProofOfIdentitiesGetCollection");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **page** | **Integer**| The collection page number | [optional] [default to 1] |
+
+### Return type
+
+[**List&lt;ProofOfIdentityCollectionRead&gt;**](ProofOfIdentityCollectionRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | ProofOfIdentity collection |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  * Content-Range - HTTP standardized header for partial content, used for the pagination <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="apiProofOfIdentitiesIdGet"></a>
+# **apiProofOfIdentitiesIdGet**
+> ProofOfIdentityRead apiProofOfIdentitiesIdGet(id).execute();
+
+Retrieve a specific PoI
+
+Retrieves a ProofOfIdentity resource.
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    String id = "id_example"; // String | ProofOfIdentity identifier
+    try {
+      ProofOfIdentityRead result = apiInstance.apiProofOfIdentitiesIdGet(id)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#apiProofOfIdentitiesIdGet");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| ProofOfIdentity identifier | |
+
+### Return type
+
+[**ProofOfIdentityRead**](ProofOfIdentityRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | ProofOfIdentity resource |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="apiProofOfIdentitiesIdPatch"></a>
+# **apiProofOfIdentitiesIdPatch**
+> ProofOfIdentityRead apiProofOfIdentitiesIdPatch(id)._file(_file).execute();
+
+Upload the document for your PoI slot
+
+Updates the ProofOfIdentity resource.
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    BigDecimal id = new BigDecimal(78); // BigDecimal | 
+    File _file = new File("/path/to/file"); // File | 
+    try {
+      ProofOfIdentityRead result = apiInstance.apiProofOfIdentitiesIdPatch(id)
+            ._file(_file)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#apiProofOfIdentitiesIdPatch");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **BigDecimal**|  | |
+| **_file** | **File**|  | [optional] |
+
+### Return type
+
+[**ProofOfIdentityRead**](ProofOfIdentityRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | ProofOfIdentity resource updated |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="apiProofOfIdentitiesPost"></a>
+# **apiProofOfIdentitiesPost**
+> ProofOfIdentityRead apiProofOfIdentitiesPost(body).execute();
+
+Submit a slot for a PoI
+
+Creates a ProofOfIdentity resource.
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    Object body = null; // Object | The new ProofOfIdentity resource
+    try {
+      ProofOfIdentityRead result = apiInstance.apiProofOfIdentitiesPost(body)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#apiProofOfIdentitiesPost");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **body** | **Object**| The new ProofOfIdentity resource | |
+
+### Return type
+
+[**ProofOfIdentityRead**](ProofOfIdentityRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | ProofOfIdentity resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
 | **429** | Rate limit exhausted |  -  |
 | **500** | Unexpected server error |  -  |
 
@@ -517,12 +1575,6 @@ public class Example {
     jwtPersonalKey.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //jwtPersonalKey.setApiKeyPrefix("Token");
-
-    // Configure API key authorization: personaAuthKey
-    ApiKeyAuth personaAuthKey = (ApiKeyAuth) defaultClient.getAuthentication("personaAuthKey");
-    personaAuthKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //personaAuthKey.setApiKeyPrefix("Token");
 
     // Configure OAuth2 access token for authorization: oauth
     OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
@@ -557,7 +1609,7 @@ public class Example {
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -570,81 +1622,6 @@ public class Example {
 | **201** | User resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 | **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 | **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-| **429** | Rate limit exhausted |  -  |
-| **500** | Unexpected server error |  -  |
-
-<a id="apiUsersGetCollection"></a>
-# **apiUsersGetCollection**
-> List&lt;UserCollectionRead&gt; apiUsersGetCollection().page(page).execute();
-
-Retrieves the collection of User resources.
-
-Retrieves the collection of User resources.
-
-### Example
-```java
-// Import classes:
-import com.tripartie.safecheckout.ApiClient;
-import com.tripartie.safecheckout.ApiException;
-import com.tripartie.safecheckout.Configuration;
-import com.tripartie.safecheckout.auth.*;
-import com.tripartie.safecheckout.models.*;
-import com.tripartie.safecheckout.api.UserApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://staging-api.tripartie.app");
-    
-    // Configure API key authorization: jwtPersonalKey
-    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
-    jwtPersonalKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //jwtPersonalKey.setApiKeyPrefix("Token");
-
-    UserApi apiInstance = new UserApi(defaultClient);
-    Integer page = 1; // Integer | The collection page number
-    try {
-      List<UserCollectionRead> result = apiInstance.apiUsersGetCollection()
-            .page(page)
-            .execute();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling UserApi#apiUsersGetCollection");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **page** | **Integer**| The collection page number | [optional] [default to 1] |
-
-### Return type
-
-[**List&lt;UserCollectionRead&gt;**](UserCollectionRead.md)
-
-### Authorization
-
-[jwtPersonalKey](../README.md#jwtPersonalKey)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | User collection |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  * Content-Range - HTTP standardized header for partial content, used for the pagination <br>  |
-| **401** | Authentication required |  -  |
-| **403** | Unauthorized access |  -  |
 | **429** | Rate limit exhausted |  -  |
 | **500** | Unexpected server error |  -  |
 
@@ -677,6 +1654,10 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //jwtPersonalKey.setApiKeyPrefix("Token");
 
+    // Configure OAuth2 access token for authorization: oauth
+    OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
+    oauth.setAccessToken("YOUR ACCESS TOKEN");
+
     UserApi apiInstance = new UserApi(defaultClient);
     String id = "id_example"; // String | User identifier
     try {
@@ -705,7 +1686,7 @@ null (empty response body)
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -717,83 +1698,6 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **204** | User resource deleted |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 | **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-| **401** | Authentication required |  -  |
-| **403** | Unauthorized access |  -  |
-| **429** | Rate limit exhausted |  -  |
-| **500** | Unexpected server error |  -  |
-
-<a id="apiUsersIdGet"></a>
-# **apiUsersIdGet**
-> UserSupportRead apiUsersIdGet(id).execute();
-
-Retrieves a User resource.
-
-Retrieves a User resource.
-
-### Example
-```java
-// Import classes:
-import com.tripartie.safecheckout.ApiClient;
-import com.tripartie.safecheckout.ApiException;
-import com.tripartie.safecheckout.Configuration;
-import com.tripartie.safecheckout.auth.*;
-import com.tripartie.safecheckout.models.*;
-import com.tripartie.safecheckout.api.UserApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://staging-api.tripartie.app");
-    
-    // Configure API key authorization: jwtPersonalKey
-    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
-    jwtPersonalKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //jwtPersonalKey.setApiKeyPrefix("Token");
-
-    UserApi apiInstance = new UserApi(defaultClient);
-    String id = "id_example"; // String | User identifier
-    try {
-      UserSupportRead result = apiInstance.apiUsersIdGet(id)
-            .execute();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling UserApi#apiUsersIdGet");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **id** | **String**| User identifier | |
-
-### Return type
-
-[**UserSupportRead**](UserSupportRead.md)
-
-### Authorization
-
-[jwtPersonalKey](../README.md#jwtPersonalKey)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | User resource |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-| **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-| **401** | Authentication required |  -  |
-| **403** | Unauthorized access |  -  |
 | **429** | Rate limit exhausted |  -  |
 | **500** | Unexpected server error |  -  |
 
@@ -801,7 +1705,7 @@ public class Example {
 # **apiUsersIdPatch**
 > UserPostRegisterRead apiUsersIdPatch(id, userUpdate).execute();
 
-Updates the User resource.
+Update your profile
 
 Updates the User resource.
 
@@ -825,12 +1729,6 @@ public class Example {
     jwtPersonalKey.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //jwtPersonalKey.setApiKeyPrefix("Token");
-
-    // Configure API key authorization: personaAuthKey
-    ApiKeyAuth personaAuthKey = (ApiKeyAuth) defaultClient.getAuthentication("personaAuthKey");
-    personaAuthKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //personaAuthKey.setApiKeyPrefix("Token");
 
     // Configure OAuth2 access token for authorization: oauth
     OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
@@ -867,7 +1765,7 @@ public class Example {
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -1066,12 +1964,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //jwtPersonalKey.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: personaAuthKey
-    ApiKeyAuth personaAuthKey = (ApiKeyAuth) defaultClient.getAuthentication("personaAuthKey");
-    personaAuthKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //personaAuthKey.setApiKeyPrefix("Token");
-
     // Configure OAuth2 access token for authorization: oauth
     OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
     oauth.setAccessToken("YOUR ACCESS TOKEN");
@@ -1107,7 +1999,7 @@ public class Example {
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -1153,12 +2045,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //jwtPersonalKey.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: personaAuthKey
-    ApiKeyAuth personaAuthKey = (ApiKeyAuth) defaultClient.getAuthentication("personaAuthKey");
-    personaAuthKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //personaAuthKey.setApiKeyPrefix("Token");
-
     // Configure OAuth2 access token for authorization: oauth
     OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
     oauth.setAccessToken("YOUR ACCESS TOKEN");
@@ -1194,7 +2080,7 @@ public class Example {
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -1211,13 +2097,13 @@ public class Example {
 | **429** | Rate limit exhausted |  -  |
 | **500** | Unexpected server error |  -  |
 
-<a id="apiUsersIdenablePatch"></a>
-# **apiUsersIdenablePatch**
-> UserUserSubscribed apiUsersIdenablePatch(id, body).execute();
+<a id="apiUsersIdoffersPost"></a>
+# **apiUsersIdoffersPost**
+> OfferPostCreationRead apiUsersIdoffersPost(id, ulid, offerWrite).execute();
 
-Updates the User resource.
+Create a public link for Offer
 
-Updates the User resource.
+Create a public listening Offer linked to a specific Seller
 
 ### Example
 ```java
@@ -1240,15 +2126,20 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //jwtPersonalKey.setApiKeyPrefix("Token");
 
+    // Configure OAuth2 access token for authorization: oauth
+    OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
+    oauth.setAccessToken("YOUR ACCESS TOKEN");
+
     UserApi apiInstance = new UserApi(defaultClient);
-    String id = "id_example"; // String | User identifier
-    Object body = null; // Object | The updated User resource
+    Integer id = 56; // Integer | User identifier
+    String ulid = "ulid_example"; // String | Offer identifier
+    OfferWrite offerWrite = new OfferWrite(); // OfferWrite | The new Offer resource
     try {
-      UserUserSubscribed result = apiInstance.apiUsersIdenablePatch(id, body)
+      OfferPostCreationRead result = apiInstance.apiUsersIdoffersPost(id, ulid, offerWrite)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling UserApi#apiUsersIdenablePatch");
+      System.err.println("Exception when calling UserApi#apiUsersIdoffersPost");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1262,16 +2153,17 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **id** | **String**| User identifier | |
-| **body** | **Object**| The updated User resource | |
+| **id** | **Integer**| User identifier | |
+| **ulid** | **String**| Offer identifier | |
+| **offerWrite** | [**OfferWrite**](OfferWrite.md)| The new Offer resource | |
 
 ### Return type
 
-[**UserUserSubscribed**](UserUserSubscribed.md)
+[**OfferPostCreationRead**](OfferPostCreationRead.md)
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -1281,10 +2173,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | User resource updated |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **201** | Offer resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 | **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 | **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-| **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 | **401** | Authentication required |  -  |
 | **403** | Unauthorized access |  -  |
 | **429** | Rate limit exhausted |  -  |
@@ -1294,7 +2185,7 @@ public class Example {
 # **apiUsersIdpasswordPatch**
 > UserUserRead apiUsersIdpasswordPatch(id, userUserPasswordUpdate).execute();
 
-Updates the User resource.
+Change your password
 
 Updates the User resource.
 
@@ -1318,12 +2209,6 @@ public class Example {
     jwtPersonalKey.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //jwtPersonalKey.setApiKeyPrefix("Token");
-
-    // Configure API key authorization: personaAuthKey
-    ApiKeyAuth personaAuthKey = (ApiKeyAuth) defaultClient.getAuthentication("personaAuthKey");
-    personaAuthKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //personaAuthKey.setApiKeyPrefix("Token");
 
     // Configure OAuth2 access token for authorization: oauth
     OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
@@ -1360,7 +2245,7 @@ public class Example {
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -1381,7 +2266,7 @@ public class Example {
 # **apiUsersIdtotpSetupPatch**
 > UserTotpSetupRead apiUsersIdtotpSetupPatch(id, body).execute();
 
-Updates the User resource.
+Setup an additional authentication factor
 
 Updates the User resource.
 
@@ -1405,12 +2290,6 @@ public class Example {
     jwtPersonalKey.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //jwtPersonalKey.setApiKeyPrefix("Token");
-
-    // Configure API key authorization: personaAuthKey
-    ApiKeyAuth personaAuthKey = (ApiKeyAuth) defaultClient.getAuthentication("personaAuthKey");
-    personaAuthKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //personaAuthKey.setApiKeyPrefix("Token");
 
     // Configure OAuth2 access token for authorization: oauth
     OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
@@ -1447,7 +2326,7 @@ public class Example {
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -1468,7 +2347,7 @@ public class Example {
 # **apiUsersIdtotpTogglePatch**
 > Object apiUsersIdtotpTogglePatch(id, userTotpToggleWrite).execute();
 
-Updates the User resource.
+Disable the second authentication factor
 
 Updates the User resource.
 
@@ -1492,12 +2371,6 @@ public class Example {
     jwtPersonalKey.setApiKey("YOUR API KEY");
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //jwtPersonalKey.setApiKeyPrefix("Token");
-
-    // Configure API key authorization: personaAuthKey
-    ApiKeyAuth personaAuthKey = (ApiKeyAuth) defaultClient.getAuthentication("personaAuthKey");
-    personaAuthKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //personaAuthKey.setApiKeyPrefix("Token");
 
     // Configure OAuth2 access token for authorization: oauth
     OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
@@ -1534,7 +2407,7 @@ public class Example {
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -1580,12 +2453,6 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //jwtPersonalKey.setApiKeyPrefix("Token");
 
-    // Configure API key authorization: personaAuthKey
-    ApiKeyAuth personaAuthKey = (ApiKeyAuth) defaultClient.getAuthentication("personaAuthKey");
-    personaAuthKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //personaAuthKey.setApiKeyPrefix("Token");
-
     // Configure OAuth2 access token for authorization: oauth
     OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
     oauth.setAccessToken("YOUR ACCESS TOKEN");
@@ -1620,7 +2487,7 @@ public class Example {
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 

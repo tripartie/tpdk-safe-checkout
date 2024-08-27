@@ -10,14 +10,10 @@ Method | HTTP request | Description
 [**api_offers_ulid_patch**](SafeCheckoutApi.md#api_offers_ulid_patch) | **PATCH** /offers/{ulid} | Update existing Offer
 [**api_offers_ulidmedias_id_delete**](SafeCheckoutApi.md#api_offers_ulidmedias_id_delete) | **DELETE** /offers/{ulid}/medias/{id} | Removes the Media resource.
 [**api_offers_ulidmedias_post**](SafeCheckoutApi.md#api_offers_ulidmedias_post) | **POST** /offers/{ulid}/medias | Upload a picture for a given Offer
-[**api_transactions_ulidevaluations_post**](SafeCheckoutApi.md#api_transactions_ulidevaluations_post) | **POST** /transactions/{ulid}/evaluations | Submit an Evaluation for the Transaction
-[**api_transactions_ulidparcels_get_collection**](SafeCheckoutApi.md#api_transactions_ulidparcels_get_collection) | **GET** /transactions/{ulid}/parcels | Retrieves the collection of Parcel resources.
-[**api_transactions_ulidparcels_id_delete**](SafeCheckoutApi.md#api_transactions_ulidparcels_id_delete) | **DELETE** /transactions/{ulid}/parcels/{id} | Removes the Parcel resource.
-[**api_transactions_ulidparcels_post**](SafeCheckoutApi.md#api_transactions_ulidparcels_post) | **POST** /transactions/{ulid}/parcels | Creates a Parcel resource.
 
 
 # **api_offers_get_collection**
-> List[OfferCollectionRead] api_offers_get_collection(page=page, title=title, public_url=public_url, public_url2=public_url2, unit_price=unit_price, unit_price2=unit_price2, item_count=item_count, item_count2=item_count2, created_at_before=created_at_before, created_at_strictly_before=created_at_strictly_before, created_at_after=created_at_after, created_at_strictly_after=created_at_strictly_after, metadata=metadata, offer_metadata=offer_metadata, seller_metadata=seller_metadata, nature=nature, condition=condition, shipping_allowed=shipping_allowed)
+> List[OfferCollectionRead] api_offers_get_collection(page=page, title=title, public_url=public_url, public_url2=public_url2, unit_price=unit_price, unit_price2=unit_price2, item_count=item_count, item_count2=item_count2, created_at_before=created_at_before, created_at_strictly_before=created_at_strictly_before, created_at_after=created_at_after, created_at_strictly_after=created_at_strictly_after, metadata=metadata, offer_metadata=offer_metadata, seller_metadata=seller_metadata, nature=nature, condition=condition, status=status, shipping_allowed=shipping_allowed)
 
 Search amongst Offers
 
@@ -67,11 +63,12 @@ with tpdk_safe_checkout.ApiClient(configuration) as api_client:
     seller_metadata = ['[\"External-ID\",\"1254A\"]'] # List[str] | Flattened OrderedMap for seller.metadata. Must be a multiple of two items count. Explicitly set \"null\" for desired value. (optional)
     nature = 'service' # str | Filter on a limited subset of nature (optional)
     condition = 'NEW' # str | Filter on a limited subset of condition (optional)
+    status = 'issued' # str | Filter on a limited subset of status (optional)
     shipping_allowed = True # bool |  (optional)
 
     try:
         # Search amongst Offers
-        api_response = api_instance.api_offers_get_collection(page=page, title=title, public_url=public_url, public_url2=public_url2, unit_price=unit_price, unit_price2=unit_price2, item_count=item_count, item_count2=item_count2, created_at_before=created_at_before, created_at_strictly_before=created_at_strictly_before, created_at_after=created_at_after, created_at_strictly_after=created_at_strictly_after, metadata=metadata, offer_metadata=offer_metadata, seller_metadata=seller_metadata, nature=nature, condition=condition, shipping_allowed=shipping_allowed)
+        api_response = api_instance.api_offers_get_collection(page=page, title=title, public_url=public_url, public_url2=public_url2, unit_price=unit_price, unit_price2=unit_price2, item_count=item_count, item_count2=item_count2, created_at_before=created_at_before, created_at_strictly_before=created_at_strictly_before, created_at_after=created_at_after, created_at_strictly_after=created_at_strictly_after, metadata=metadata, offer_metadata=offer_metadata, seller_metadata=seller_metadata, nature=nature, condition=condition, status=status, shipping_allowed=shipping_allowed)
         print("The response of SafeCheckoutApi->api_offers_get_collection:\n")
         pprint(api_response)
     except Exception as e:
@@ -102,6 +99,7 @@ Name | Type | Description  | Notes
  **seller_metadata** | [**List[str]**](str.md)| Flattened OrderedMap for seller.metadata. Must be a multiple of two items count. Explicitly set \&quot;null\&quot; for desired value. | [optional] 
  **nature** | **str**| Filter on a limited subset of nature | [optional] 
  **condition** | **str**| Filter on a limited subset of condition | [optional] 
+ **status** | **str**| Filter on a limited subset of status | [optional] 
  **shipping_allowed** | **bool**|  | [optional] 
 
 ### Return type
@@ -221,7 +219,6 @@ Retrieves a Offer resource.
 ### Example
 
 * Api Key Authentication (jwtPersonalKey):
-* Api Key Authentication (personaAuthKey):
 * OAuth Authentication (oauth):
 
 ```python
@@ -246,12 +243,6 @@ configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
-
-# Configure API key authorization: personaAuthKey
-configuration.api_key['personaAuthKey'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['personaAuthKey'] = 'Bearer'
 
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
@@ -285,7 +276,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -398,7 +389,6 @@ Removes the Media resource.
 ### Example
 
 * Api Key Authentication (jwtPersonalKey):
-* Api Key Authentication (personaAuthKey):
 * OAuth Authentication (oauth):
 
 ```python
@@ -422,12 +412,6 @@ configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
-
-# Configure API key authorization: personaAuthKey
-configuration.api_key['personaAuthKey'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['personaAuthKey'] = 'Bearer'
 
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
@@ -461,7 +445,7 @@ void (empty response body)
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -490,7 +474,6 @@ Creates a Media resource.
 
 ### Example
 
-* Api Key Authentication (personaAuthKey):
 * OAuth Authentication (oauth):
 
 ```python
@@ -509,12 +492,6 @@ configuration = tpdk_safe_checkout.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
-
-# Configure API key authorization: personaAuthKey
-configuration.api_key['personaAuthKey'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['personaAuthKey'] = 'Bearer'
 
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
@@ -550,7 +527,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -562,368 +539,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Media resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**401** | Authentication required |  -  |
-**403** | Unauthorized access |  -  |
-**429** | Rate limit exhausted |  -  |
-**500** | Unexpected server error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_transactions_ulidevaluations_post**
-> EvaluationRead api_transactions_ulidevaluations_post(ulid, evaluation_write)
-
-Submit an Evaluation for the Transaction
-
-**Only authenticated** complainant and seller **CAN** issue an evaluation **WHEN** the transaction reached a final state.
-
-### Example
-
-* Api Key Authentication (personaAuthKey):
-
-```python
-import tpdk_safe_checkout
-from tpdk_safe_checkout.models.evaluation_read import EvaluationRead
-from tpdk_safe_checkout.models.evaluation_write import EvaluationWrite
-from tpdk_safe_checkout.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.tripartie.app
-# See configuration.py for a list of all supported configuration parameters.
-configuration = tpdk_safe_checkout.Configuration(
-    host = "https://staging-api.tripartie.app"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: personaAuthKey
-configuration.api_key['personaAuthKey'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['personaAuthKey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with tpdk_safe_checkout.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = tpdk_safe_checkout.SafeCheckoutApi(api_client)
-    ulid = 'ulid_example' # str | Evaluation identifier
-    evaluation_write = tpdk_safe_checkout.EvaluationWrite() # EvaluationWrite | The new Evaluation resource
-
-    try:
-        # Submit an Evaluation for the Transaction
-        api_response = api_instance.api_transactions_ulidevaluations_post(ulid, evaluation_write)
-        print("The response of SafeCheckoutApi->api_transactions_ulidevaluations_post:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling SafeCheckoutApi->api_transactions_ulidevaluations_post: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ulid** | **str**| Evaluation identifier | 
- **evaluation_write** | [**EvaluationWrite**](EvaluationWrite.md)| The new Evaluation resource | 
-
-### Return type
-
-[**EvaluationRead**](EvaluationRead.md)
-
-### Authorization
-
-[personaAuthKey](../README.md#personaAuthKey)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | Evaluation resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**401** | Authentication required |  -  |
-**403** | Unauthorized access |  -  |
-**429** | Rate limit exhausted |  -  |
-**500** | Unexpected server error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_transactions_ulidparcels_get_collection**
-> List[object] api_transactions_ulidparcels_get_collection(ulid, page=page)
-
-Retrieves the collection of Parcel resources.
-
-Retrieves the collection of Parcel resources.
-
-### Example
-
-* Api Key Authentication (jwtPersonalKey):
-* Api Key Authentication (personaAuthKey):
-* OAuth Authentication (oauth):
-
-```python
-import tpdk_safe_checkout
-from tpdk_safe_checkout.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.tripartie.app
-# See configuration.py for a list of all supported configuration parameters.
-configuration = tpdk_safe_checkout.Configuration(
-    host = "https://staging-api.tripartie.app"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: jwtPersonalKey
-configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
-
-# Configure API key authorization: personaAuthKey
-configuration.api_key['personaAuthKey'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['personaAuthKey'] = 'Bearer'
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with tpdk_safe_checkout.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = tpdk_safe_checkout.SafeCheckoutApi(api_client)
-    ulid = 'ulid_example' # str | 
-    page = 1 # int | The collection page number (optional) (default to 1)
-
-    try:
-        # Retrieves the collection of Parcel resources.
-        api_response = api_instance.api_transactions_ulidparcels_get_collection(ulid, page=page)
-        print("The response of SafeCheckoutApi->api_transactions_ulidparcels_get_collection:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling SafeCheckoutApi->api_transactions_ulidparcels_get_collection: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ulid** | **str**|  | 
- **page** | **int**| The collection page number | [optional] [default to 1]
-
-### Return type
-
-**List[object]**
-
-### Authorization
-
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Parcel collection |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  * Content-Range - HTTP standardized header for partial content, used for the pagination <br>  |
-**401** | Authentication required |  -  |
-**403** | Unauthorized access |  -  |
-**429** | Rate limit exhausted |  -  |
-**500** | Unexpected server error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_transactions_ulidparcels_id_delete**
-> api_transactions_ulidparcels_id_delete(ulid, id)
-
-Removes the Parcel resource.
-
-Removes the Parcel resource.
-
-### Example
-
-* Api Key Authentication (jwtPersonalKey):
-
-```python
-import tpdk_safe_checkout
-from tpdk_safe_checkout.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.tripartie.app
-# See configuration.py for a list of all supported configuration parameters.
-configuration = tpdk_safe_checkout.Configuration(
-    host = "https://staging-api.tripartie.app"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: jwtPersonalKey
-configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with tpdk_safe_checkout.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = tpdk_safe_checkout.SafeCheckoutApi(api_client)
-    ulid = 'ulid_example' # str | 
-    id = 56 # int | 
-
-    try:
-        # Removes the Parcel resource.
-        api_instance.api_transactions_ulidparcels_id_delete(ulid, id)
-    except Exception as e:
-        print("Exception when calling SafeCheckoutApi->api_transactions_ulidparcels_id_delete: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ulid** | **str**|  | 
- **id** | **int**|  | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[jwtPersonalKey](../README.md#jwtPersonalKey)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | Parcel resource deleted |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**401** | Authentication required |  -  |
-**403** | Unauthorized access |  -  |
-**429** | Rate limit exhausted |  -  |
-**500** | Unexpected server error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_transactions_ulidparcels_post**
-> object api_transactions_ulidparcels_post(ulid, parcel_write)
-
-Creates a Parcel resource.
-
-Creates a Parcel resource.
-
-### Example
-
-* Api Key Authentication (jwtPersonalKey):
-* Api Key Authentication (personaAuthKey):
-* OAuth Authentication (oauth):
-
-```python
-import tpdk_safe_checkout
-from tpdk_safe_checkout.models.parcel_write import ParcelWrite
-from tpdk_safe_checkout.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.tripartie.app
-# See configuration.py for a list of all supported configuration parameters.
-configuration = tpdk_safe_checkout.Configuration(
-    host = "https://staging-api.tripartie.app"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: jwtPersonalKey
-configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
-
-# Configure API key authorization: personaAuthKey
-configuration.api_key['personaAuthKey'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['personaAuthKey'] = 'Bearer'
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with tpdk_safe_checkout.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = tpdk_safe_checkout.SafeCheckoutApi(api_client)
-    ulid = 'ulid_example' # str | 
-    parcel_write = tpdk_safe_checkout.ParcelWrite() # ParcelWrite | The new Parcel resource
-
-    try:
-        # Creates a Parcel resource.
-        api_response = api_instance.api_transactions_ulidparcels_post(ulid, parcel_write)
-        print("The response of SafeCheckoutApi->api_transactions_ulidparcels_post:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling SafeCheckoutApi->api_transactions_ulidparcels_post: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ulid** | **str**|  | 
- **parcel_write** | [**ParcelWrite**](ParcelWrite.md)| The new Parcel resource | 
-
-### Return type
-
-**object**
-
-### Authorization
-
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | Parcel resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 **401** | Authentication required |  -  |

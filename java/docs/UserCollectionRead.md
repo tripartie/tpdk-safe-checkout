@@ -9,6 +9,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**id** | **Integer** |  |  [optional] [readonly] |
+|**mainAddress** | **Object** |  |  [optional] |
 |**firstName** | **String** |  |  [optional] |
 |**lastName** | **String** |  |  [optional] |
 |**publicName** | **String** |  |  [optional] |
@@ -23,8 +24,13 @@
 |**updatedAt** | **OffsetDateTime** |  |  [optional] [readonly] |
 |**organization** | [**UserOrganizationCollectionRead**](UserOrganizationCollectionRead.md) |  |  [optional] |
 |**wallet** | [**UserWalletCollectionRead**](UserWalletCollectionRead.md) |  |  [optional] |
+|**externalId** | **String** |  |  [optional] |
+|**providerName** | **String** |  |  [optional] |
+|**providerCreatedAt** | **OffsetDateTime** |  |  [optional] [readonly] |
+|**providerUpdatedAt** | **OffsetDateTime** |  |  [optional] [readonly] |
 |**iri** | **String** |  |  [optional] [readonly] |
 |**secondAuthFactor** | **Boolean** |  |  [optional] [readonly] |
+|**processorStatus** | [**ProcessorStatusEnum**](#ProcessorStatusEnum) | Automagically infer on what state the entity is at the Payment Processor. |  [optional] [readonly] |
 
 
 
@@ -41,6 +47,18 @@
 | PLATFORM_SUPPORT | &quot;ROLE_PLATFORM_SUPPORT&quot; |
 | PLATFORM_ADMIN | &quot;ROLE_PLATFORM_ADMIN&quot; |
 | USER | &quot;ROLE_USER&quot; |
+
+
+
+## Enum: ProcessorStatusEnum
+
+| Name | Value |
+|---- | -----|
+| UNALLOCATED | &quot;unallocated&quot; |
+| ALLOCATING | &quot;allocating&quot; |
+| ALLOCATED | &quot;allocated&quot; |
+| FREED | &quot;freed&quot; |
+| OUTDATED | &quot;outdated&quot; |
 
 
 

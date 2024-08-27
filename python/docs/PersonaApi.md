@@ -141,7 +141,6 @@ You **MAY** unregister (or free the email/phone number) your Persona entry using
 ### Example
 
 * Api Key Authentication (jwtPersonalKey):
-* Api Key Authentication (personaAuthKey):
 * OAuth Authentication (oauth):
 
 ```python
@@ -165,12 +164,6 @@ configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
-
-# Configure API key authorization: personaAuthKey
-configuration.api_key['personaAuthKey'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['personaAuthKey'] = 'Bearer'
 
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
@@ -202,7 +195,7 @@ void (empty response body)
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -232,7 +225,6 @@ Retrieves a Persona resource.
 ### Example
 
 * Api Key Authentication (jwtPersonalKey):
-* Api Key Authentication (personaAuthKey):
 * OAuth Authentication (oauth):
 
 ```python
@@ -257,12 +249,6 @@ configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
-
-# Configure API key authorization: personaAuthKey
-configuration.api_key['personaAuthKey'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['personaAuthKey'] = 'Bearer'
 
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
@@ -296,7 +282,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -326,7 +312,6 @@ Update your Persona (eg. your customer/user entry) through that API call. _Bewar
 ### Example
 
 * Api Key Authentication (jwtPersonalKey):
-* Api Key Authentication (personaAuthKey):
 * OAuth Authentication (oauth):
 
 ```python
@@ -352,12 +337,6 @@ configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
-
-# Configure API key authorization: personaAuthKey
-configuration.api_key['personaAuthKey'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['personaAuthKey'] = 'Bearer'
 
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
@@ -393,7 +372,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[jwtPersonalKey](../README.md#jwtPersonalKey), [personaAuthKey](../README.md#personaAuthKey), [oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 

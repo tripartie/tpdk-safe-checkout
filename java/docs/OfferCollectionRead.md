@@ -16,6 +16,8 @@
 |**nature** | [**NatureEnum**](#NatureEnum) | This WILL affect the assigned workflow. Choosing service will disable delivery for example. Refer to our technical hub for more information. |  |
 |**title** | **String** |  |  [optional] |
 |**unitPrice** | **Float** |  |  [optional] |
+|**minNegotiableUnitPrice** | **Float** |  |  [optional] |
+|**allowToNegotiateUnitPrice** | **Boolean** |  |  |
 |**currencyCode** | **String** |  |  |
 |**itemCount** | **Integer** |  |  [optional] |
 |**condition** | [**ConditionEnum**](#ConditionEnum) |  |  [optional] |
@@ -66,9 +68,9 @@
 
 | Name | Value |
 |---- | -----|
-| SWISSPOST | &quot;SwissPost&quot; |
+| SWISS_POST | &quot;SwissPost&quot; |
 | COLISSIMO | &quot;Colissimo&quot; |
-| MONDIALRELAY | &quot;MondialRelay&quot; |
+| MONDIAL_RELAY | &quot;MondialRelay&quot; |
 
 
 
