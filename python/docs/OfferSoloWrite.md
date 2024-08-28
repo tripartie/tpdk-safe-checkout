@@ -1,4 +1,4 @@
-# OfferWrite
+# OfferSoloWrite
 
 
 
@@ -24,19 +24,19 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from tpdk_safe_checkout.models.offer_write import OfferWrite
+from tpdk_safe_checkout.models.offer_solo_write import OfferSoloWrite
 
 # TODO update the JSON string below
 json = "{}"
-# create an instance of OfferWrite from a JSON string
-offer_write_instance = OfferWrite.from_json(json)
+# create an instance of OfferSoloWrite from a JSON string
+offer_solo_write_instance = OfferSoloWrite.from_json(json)
 # print the JSON string representation of the object
-print(OfferWrite.to_json())
+print(OfferSoloWrite.to_json())
 
 # convert the object into a dict
-offer_write_dict = offer_write_instance.to_dict()
-# create an instance of OfferWrite from a dict
-offer_write_from_dict = OfferWrite.from_dict(offer_write_dict)
+offer_solo_write_dict = offer_solo_write_instance.to_dict()
+# create an instance of OfferSoloWrite from a dict
+offer_solo_write_from_dict = OfferSoloWrite.from_dict(offer_solo_write_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
