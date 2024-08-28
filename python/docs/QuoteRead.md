@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **shipping_fees** | **float** |  | [optional] 
 **created_at** | **datetime** |  | 
 **expire_at** | **datetime** |  | 
+**iri** | **str** |  | [optional] [readonly] 
 
 ## Example
 

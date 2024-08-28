@@ -7,6 +7,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **status** | **str** |  | 
+**type** | **str** |  | 
 **original_filename** | **str** |  | [optional] 
 **extension** | **str** |  | 
 **created_at** | **datetime** |  | 

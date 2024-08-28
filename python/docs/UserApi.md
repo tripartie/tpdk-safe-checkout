@@ -4,22 +4,24 @@ All URIs are relative to *https://staging-api.tripartie.app*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_api_clients_get_collection**](UserApi.md#api_api_clients_get_collection) | **GET** /api-clients | Retrieves the collection of ApiClient resources.
-[**api_api_clients_identifier_delete**](UserApi.md#api_api_clients_identifier_delete) | **DELETE** /api-clients/{identifier} | Removes the ApiClient resource.
-[**api_api_clients_identifier_get**](UserApi.md#api_api_clients_identifier_get) | **GET** /api-clients/{identifier} | Retrieves a ApiClient resource.
-[**api_api_clients_post**](UserApi.md#api_api_clients_post) | **POST** /api-clients | Creates a ApiClient resource.
 [**api_bank_accounts_id_delete**](UserApi.md#api_bank_accounts_id_delete) | **DELETE** /bank-accounts/{id} | Removes the BankAccount resource.
 [**api_bank_accounts_id_get**](UserApi.md#api_bank_accounts_id_get) | **GET** /bank-accounts/{id} | Retrieves a BankAccount resource.
 [**api_bank_accounts_post**](UserApi.md#api_bank_accounts_post) | **POST** /bank-accounts | Creates a BankAccount resource.
 [**api_cards_get_collection**](UserApi.md#api_cards_get_collection) | **GET** /cards | Retrieves the collection of Card resources.
 [**api_cards_id_delete**](UserApi.md#api_cards_id_delete) | **DELETE** /cards/{id} | Removes the Card resource.
 [**api_cards_id_get**](UserApi.md#api_cards_id_get) | **GET** /cards/{id} | Retrieves a Card resource.
-[**api_cards_id_patch**](UserApi.md#api_cards_id_patch) | **PATCH** /cards/{id} | Updates the Card resource.
+[**api_cards_id_patch**](UserApi.md#api_cards_id_patch) | **PATCH** /cards/{id} | Push back the tokenization output from the external provider
 [**api_cards_post**](UserApi.md#api_cards_post) | **POST** /cards | Creates a Card resource.
 [**api_cash_outs_get_collection**](UserApi.md#api_cash_outs_get_collection) | **GET** /cash-outs | Retrieves the collection of CashOut resources.
 [**api_cash_outs_id_get**](UserApi.md#api_cash_outs_id_get) | **GET** /cash-outs/{id} | Retrieves a CashOut resource.
-[**api_cash_outs_post**](UserApi.md#api_cash_outs_post) | **POST** /cash-outs | Creates a CashOut resource.
+[**api_cash_outs_post**](UserApi.md#api_cash_outs_post) | **POST** /cash-outs | Withdraw the full amount available in the user wallet to set bank account
 [**api_me_get**](UserApi.md#api_me_get) | **GET** /me | Retrieves a User resource.
+[**api_offers_get_collection**](UserApi.md#api_offers_get_collection) | **GET** /offers | Search amongst Offers
+[**api_offers_ulid_delete**](UserApi.md#api_offers_ulid_delete) | **DELETE** /offers/{ulid} | Disable existing Offer
+[**api_offers_ulid_get**](UserApi.md#api_offers_ulid_get) | **GET** /offers/{ulid} | Fetch a Offer details
+[**api_offers_ulid_patch**](UserApi.md#api_offers_ulid_patch) | **PATCH** /offers/{ulid} | Update existing Offer
+[**api_offers_ulidmedias_id_delete**](UserApi.md#api_offers_ulidmedias_id_delete) | **DELETE** /offers/{ulid}/medias/{id} | Removes the Media resource.
+[**api_offers_ulidmedias_post**](UserApi.md#api_offers_ulidmedias_post) | **POST** /offers/{ulid}/medias | Upload a picture for a given Offer
 [**api_proof_of_identities_get_collection**](UserApi.md#api_proof_of_identities_get_collection) | **GET** /proof-of-identities | List all submitted PoI
 [**api_proof_of_identities_id_get**](UserApi.md#api_proof_of_identities_id_get) | **GET** /proof-of-identities/{id} | Retrieve a specific PoI
 [**api_proof_of_identities_id_patch**](UserApi.md#api_proof_of_identities_id_patch) | **PATCH** /proof-of-identities/{id} | Upload the document for your PoI slot
@@ -37,340 +39,6 @@ Method | HTTP request | Description
 [**api_users_idtotp_toggle_patch**](UserApi.md#api_users_idtotp_toggle_patch) | **PATCH** /users/{id}/totp-toggle | Disable the second authentication factor
 [**authentication_post**](UserApi.md#authentication_post) | **POST** /authentication | User authentication
 
-
-# **api_api_clients_get_collection**
-> List[ApiClientRead] api_api_clients_get_collection(page=page)
-
-Retrieves the collection of ApiClient resources.
-
-Retrieves the collection of ApiClient resources.
-
-### Example
-
-* Api Key Authentication (jwtPersonalKey):
-
-```python
-import tpdk_safe_checkout
-from tpdk_safe_checkout.models.api_client_read import ApiClientRead
-from tpdk_safe_checkout.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.tripartie.app
-# See configuration.py for a list of all supported configuration parameters.
-configuration = tpdk_safe_checkout.Configuration(
-    host = "https://staging-api.tripartie.app"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: jwtPersonalKey
-configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with tpdk_safe_checkout.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = tpdk_safe_checkout.UserApi(api_client)
-    page = 1 # int | The collection page number (optional) (default to 1)
-
-    try:
-        # Retrieves the collection of ApiClient resources.
-        api_response = api_instance.api_api_clients_get_collection(page=page)
-        print("The response of UserApi->api_api_clients_get_collection:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling UserApi->api_api_clients_get_collection: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page** | **int**| The collection page number | [optional] [default to 1]
-
-### Return type
-
-[**List[ApiClientRead]**](ApiClientRead.md)
-
-### Authorization
-
-[jwtPersonalKey](../README.md#jwtPersonalKey)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | ApiClient collection |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  * Content-Range - HTTP standardized header for partial content, used for the pagination <br>  |
-**401** | Authentication required |  -  |
-**403** | Unauthorized access |  -  |
-**429** | Rate limit exhausted |  -  |
-**500** | Unexpected server error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_api_clients_identifier_delete**
-> api_api_clients_identifier_delete(identifier)
-
-Removes the ApiClient resource.
-
-Removes the ApiClient resource.
-
-### Example
-
-* Api Key Authentication (jwtPersonalKey):
-
-```python
-import tpdk_safe_checkout
-from tpdk_safe_checkout.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.tripartie.app
-# See configuration.py for a list of all supported configuration parameters.
-configuration = tpdk_safe_checkout.Configuration(
-    host = "https://staging-api.tripartie.app"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: jwtPersonalKey
-configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with tpdk_safe_checkout.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = tpdk_safe_checkout.UserApi(api_client)
-    identifier = 'identifier_example' # str | ApiClient identifier
-
-    try:
-        # Removes the ApiClient resource.
-        api_instance.api_api_clients_identifier_delete(identifier)
-    except Exception as e:
-        print("Exception when calling UserApi->api_api_clients_identifier_delete: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **identifier** | **str**| ApiClient identifier | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[jwtPersonalKey](../README.md#jwtPersonalKey)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | ApiClient resource deleted |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**401** | Authentication required |  -  |
-**403** | Unauthorized access |  -  |
-**429** | Rate limit exhausted |  -  |
-**500** | Unexpected server error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_api_clients_identifier_get**
-> ApiClientRead api_api_clients_identifier_get(identifier)
-
-Retrieves a ApiClient resource.
-
-Retrieves a ApiClient resource.
-
-### Example
-
-* Api Key Authentication (jwtPersonalKey):
-
-```python
-import tpdk_safe_checkout
-from tpdk_safe_checkout.models.api_client_read import ApiClientRead
-from tpdk_safe_checkout.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.tripartie.app
-# See configuration.py for a list of all supported configuration parameters.
-configuration = tpdk_safe_checkout.Configuration(
-    host = "https://staging-api.tripartie.app"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: jwtPersonalKey
-configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with tpdk_safe_checkout.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = tpdk_safe_checkout.UserApi(api_client)
-    identifier = 'identifier_example' # str | ApiClient identifier
-
-    try:
-        # Retrieves a ApiClient resource.
-        api_response = api_instance.api_api_clients_identifier_get(identifier)
-        print("The response of UserApi->api_api_clients_identifier_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling UserApi->api_api_clients_identifier_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **identifier** | **str**| ApiClient identifier | 
-
-### Return type
-
-[**ApiClientRead**](ApiClientRead.md)
-
-### Authorization
-
-[jwtPersonalKey](../README.md#jwtPersonalKey)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | ApiClient resource |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**401** | Authentication required |  -  |
-**403** | Unauthorized access |  -  |
-**429** | Rate limit exhausted |  -  |
-**500** | Unexpected server error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_api_clients_post**
-> ApiClientPostCreationRead api_api_clients_post(api_client_write)
-
-Creates a ApiClient resource.
-
-Creates a ApiClient resource.
-
-### Example
-
-* Api Key Authentication (jwtPersonalKey):
-
-```python
-import tpdk_safe_checkout
-from tpdk_safe_checkout.models.api_client_post_creation_read import ApiClientPostCreationRead
-from tpdk_safe_checkout.models.api_client_write import ApiClientWrite
-from tpdk_safe_checkout.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.tripartie.app
-# See configuration.py for a list of all supported configuration parameters.
-configuration = tpdk_safe_checkout.Configuration(
-    host = "https://staging-api.tripartie.app"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: jwtPersonalKey
-configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with tpdk_safe_checkout.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = tpdk_safe_checkout.UserApi(api_client)
-    api_client_write = tpdk_safe_checkout.ApiClientWrite() # ApiClientWrite | The new ApiClient resource
-
-    try:
-        # Creates a ApiClient resource.
-        api_response = api_instance.api_api_clients_post(api_client_write)
-        print("The response of UserApi->api_api_clients_post:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling UserApi->api_api_clients_post: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **api_client_write** | [**ApiClientWrite**](ApiClientWrite.md)| The new ApiClient resource | 
-
-### Return type
-
-[**ApiClientPostCreationRead**](ApiClientPostCreationRead.md)
-
-### Authorization
-
-[jwtPersonalKey](../README.md#jwtPersonalKey)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**201** | ApiClient resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**401** | Authentication required |  -  |
-**403** | Unauthorized access |  -  |
-**429** | Rate limit exhausted |  -  |
-**500** | Unexpected server error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **api_bank_accounts_id_delete**
 > api_bank_accounts_id_delete(id)
@@ -454,7 +122,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **api_bank_accounts_id_get**
-> object api_bank_accounts_id_get(id)
+> BankAccountRead api_bank_accounts_id_get(id)
 
 Retrieves a BankAccount resource.
 
@@ -466,6 +134,7 @@ Retrieves a BankAccount resource.
 
 ```python
 import tpdk_safe_checkout
+from tpdk_safe_checkout.models.bank_account_read import BankAccountRead
 from tpdk_safe_checkout.rest import ApiException
 from pprint import pprint
 
@@ -512,7 +181,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**BankAccountRead**](BankAccountRead.md)
 
 ### Authorization
 
@@ -537,7 +206,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **api_bank_accounts_post**
-> object api_bank_accounts_post(bank_account_write)
+> BankAccountRead api_bank_accounts_post(bank_account_write)
 
 Creates a BankAccount resource.
 
@@ -549,6 +218,7 @@ Creates a BankAccount resource.
 
 ```python
 import tpdk_safe_checkout
+from tpdk_safe_checkout.models.bank_account_read import BankAccountRead
 from tpdk_safe_checkout.models.bank_account_write import BankAccountWrite
 from tpdk_safe_checkout.rest import ApiException
 from pprint import pprint
@@ -596,7 +266,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**object**
+[**BankAccountRead**](BankAccountRead.md)
 
 ### Authorization
 
@@ -872,7 +542,7 @@ Name | Type | Description  | Notes
 # **api_cards_id_patch**
 > CardRead api_cards_id_patch(id, card_update)
 
-Updates the Card resource.
+Push back the tokenization output from the external provider
 
 Updates the Card resource.
 
@@ -912,7 +582,7 @@ with tpdk_safe_checkout.ApiClient(configuration) as api_client:
     card_update = tpdk_safe_checkout.CardUpdate() # CardUpdate | The updated Card resource
 
     try:
-        # Updates the Card resource.
+        # Push back the tokenization output from the external provider
         api_response = api_instance.api_cards_id_patch(id, card_update)
         print("The response of UserApi->api_cards_id_patch:\n")
         pprint(api_response)
@@ -959,7 +629,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **api_cards_post**
-> CardRead api_cards_post(body)
+> CardRead api_cards_post(card_write)
 
 Creates a Card resource.
 
@@ -972,6 +642,7 @@ Creates a Card resource.
 ```python
 import tpdk_safe_checkout
 from tpdk_safe_checkout.models.card_read import CardRead
+from tpdk_safe_checkout.models.card_write import CardWrite
 from tpdk_safe_checkout.rest import ApiException
 from pprint import pprint
 
@@ -996,11 +667,11 @@ configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
 with tpdk_safe_checkout.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = tpdk_safe_checkout.UserApi(api_client)
-    body = None # object | The new Card resource
+    card_write = tpdk_safe_checkout.CardWrite() # CardWrite | The new Card resource
 
     try:
         # Creates a Card resource.
-        api_response = api_instance.api_cards_post(body)
+        api_response = api_instance.api_cards_post(card_write)
         print("The response of UserApi->api_cards_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -1014,7 +685,7 @@ with tpdk_safe_checkout.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **object**| The new Card resource | 
+ **card_write** | [**CardWrite**](CardWrite.md)| The new Card resource | 
 
 ### Return type
 
@@ -1044,7 +715,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **api_cash_outs_get_collection**
-> List[object] api_cash_outs_get_collection(page=page)
+> List[CashoutCashOutCollectionRead] api_cash_outs_get_collection(page=page)
 
 Retrieves the collection of CashOut resources.
 
@@ -1056,6 +727,7 @@ Retrieves the collection of CashOut resources.
 
 ```python
 import tpdk_safe_checkout
+from tpdk_safe_checkout.models.cashout_cash_out_collection_read import CashoutCashOutCollectionRead
 from tpdk_safe_checkout.rest import ApiException
 from pprint import pprint
 
@@ -1102,7 +774,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**List[object]**
+[**List[CashoutCashOutCollectionRead]**](CashoutCashOutCollectionRead.md)
 
 ### Authorization
 
@@ -1210,9 +882,9 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **api_cash_outs_post**
-> CashoutCashOutRead api_cash_outs_post(body)
+> CashoutCashOutRead api_cash_outs_post(cashout_cash_out_write)
 
-Creates a CashOut resource.
+Withdraw the full amount available in the user wallet to set bank account
 
 Creates a CashOut resource.
 
@@ -1223,6 +895,7 @@ Creates a CashOut resource.
 ```python
 import tpdk_safe_checkout
 from tpdk_safe_checkout.models.cashout_cash_out_read import CashoutCashOutRead
+from tpdk_safe_checkout.models.cashout_cash_out_write import CashoutCashOutWrite
 from tpdk_safe_checkout.rest import ApiException
 from pprint import pprint
 
@@ -1247,11 +920,11 @@ configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
 with tpdk_safe_checkout.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = tpdk_safe_checkout.UserApi(api_client)
-    body = None # object | The new CashOut resource
+    cashout_cash_out_write = tpdk_safe_checkout.CashoutCashOutWrite() # CashoutCashOutWrite | The new CashOut resource
 
     try:
-        # Creates a CashOut resource.
-        api_response = api_instance.api_cash_outs_post(body)
+        # Withdraw the full amount available in the user wallet to set bank account
+        api_response = api_instance.api_cash_outs_post(cashout_cash_out_write)
         print("The response of UserApi->api_cash_outs_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -1265,7 +938,7 @@ with tpdk_safe_checkout.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **object**| The new CashOut resource | 
+ **cashout_cash_out_write** | [**CashoutCashOutWrite**](CashoutCashOutWrite.md)| The new CashOut resource | 
 
 ### Return type
 
@@ -1370,6 +1043,558 @@ This endpoint does not need any parameter.
 |-------------|-------------|------------------|
 **200** | User resource |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**429** | Rate limit exhausted |  -  |
+**500** | Unexpected server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **api_offers_get_collection**
+> List[OfferCollectionRead] api_offers_get_collection(page=page, title=title, public_url=public_url, public_url2=public_url2, unit_price=unit_price, unit_price2=unit_price2, item_count=item_count, item_count2=item_count2, created_at_before=created_at_before, created_at_strictly_before=created_at_strictly_before, created_at_after=created_at_after, created_at_strictly_after=created_at_strictly_after, metadata=metadata, offer_metadata=offer_metadata, seller_metadata=seller_metadata, nature=nature, condition=condition, status=status, shipping_allowed=shipping_allowed)
+
+Search amongst Offers
+
+Retrieves the collection of Offer resources.
+
+### Example
+
+* Api Key Authentication (jwtPersonalKey):
+* OAuth Authentication (oauth):
+
+```python
+import tpdk_safe_checkout
+from tpdk_safe_checkout.models.offer_collection_read import OfferCollectionRead
+from tpdk_safe_checkout.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.tripartie.app
+# See configuration.py for a list of all supported configuration parameters.
+configuration = tpdk_safe_checkout.Configuration(
+    host = "https://staging-api.tripartie.app"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: jwtPersonalKey
+configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with tpdk_safe_checkout.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = tpdk_safe_checkout.UserApi(api_client)
+    page = 1 # int | The collection page number (optional) (default to 1)
+    title = 'title_example' # str |  (optional)
+    public_url = 'public_url_example' # str |  (optional)
+    public_url2 = ['public_url_example'] # List[str] |  (optional)
+    unit_price = 'unit_price_example' # str |  (optional)
+    unit_price2 = ['unit_price_example'] # List[str] |  (optional)
+    item_count = 56 # int |  (optional)
+    item_count2 = [56] # List[int] |  (optional)
+    created_at_before = 'created_at_before_example' # str |  (optional)
+    created_at_strictly_before = 'created_at_strictly_before_example' # str |  (optional)
+    created_at_after = 'created_at_after_example' # str |  (optional)
+    created_at_strictly_after = 'created_at_strictly_after_example' # str |  (optional)
+    metadata = ['[\"External-ID\",\"1254A\"]'] # List[str] | Flattened OrderedMap for metadata. Must be a multiple of two items count. Explicitly set \"null\" for desired value. (optional)
+    offer_metadata = ['[\"External-ID\",\"1254A\"]'] # List[str] | Flattened OrderedMap for offer.metadata. Must be a multiple of two items count. Explicitly set \"null\" for desired value. (optional)
+    seller_metadata = ['[\"External-ID\",\"1254A\"]'] # List[str] | Flattened OrderedMap for seller.metadata. Must be a multiple of two items count. Explicitly set \"null\" for desired value. (optional)
+    nature = 'service' # str | Filter on a limited subset of nature (optional)
+    condition = 'NEW' # str | Filter on a limited subset of condition (optional)
+    status = 'issued' # str | Filter on a limited subset of status (optional)
+    shipping_allowed = True # bool |  (optional)
+
+    try:
+        # Search amongst Offers
+        api_response = api_instance.api_offers_get_collection(page=page, title=title, public_url=public_url, public_url2=public_url2, unit_price=unit_price, unit_price2=unit_price2, item_count=item_count, item_count2=item_count2, created_at_before=created_at_before, created_at_strictly_before=created_at_strictly_before, created_at_after=created_at_after, created_at_strictly_after=created_at_strictly_after, metadata=metadata, offer_metadata=offer_metadata, seller_metadata=seller_metadata, nature=nature, condition=condition, status=status, shipping_allowed=shipping_allowed)
+        print("The response of UserApi->api_offers_get_collection:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UserApi->api_offers_get_collection: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **int**| The collection page number | [optional] [default to 1]
+ **title** | **str**|  | [optional] 
+ **public_url** | **str**|  | [optional] 
+ **public_url2** | [**List[str]**](str.md)|  | [optional] 
+ **unit_price** | **str**|  | [optional] 
+ **unit_price2** | [**List[str]**](str.md)|  | [optional] 
+ **item_count** | **int**|  | [optional] 
+ **item_count2** | [**List[int]**](int.md)|  | [optional] 
+ **created_at_before** | **str**|  | [optional] 
+ **created_at_strictly_before** | **str**|  | [optional] 
+ **created_at_after** | **str**|  | [optional] 
+ **created_at_strictly_after** | **str**|  | [optional] 
+ **metadata** | [**List[str]**](str.md)| Flattened OrderedMap for metadata. Must be a multiple of two items count. Explicitly set \&quot;null\&quot; for desired value. | [optional] 
+ **offer_metadata** | [**List[str]**](str.md)| Flattened OrderedMap for offer.metadata. Must be a multiple of two items count. Explicitly set \&quot;null\&quot; for desired value. | [optional] 
+ **seller_metadata** | [**List[str]**](str.md)| Flattened OrderedMap for seller.metadata. Must be a multiple of two items count. Explicitly set \&quot;null\&quot; for desired value. | [optional] 
+ **nature** | **str**| Filter on a limited subset of nature | [optional] 
+ **condition** | **str**| Filter on a limited subset of condition | [optional] 
+ **status** | **str**| Filter on a limited subset of status | [optional] 
+ **shipping_allowed** | **bool**|  | [optional] 
+
+### Return type
+
+[**List[OfferCollectionRead]**](OfferCollectionRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Offer collection |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  * Content-Range - HTTP standardized header for partial content, used for the pagination <br>  |
+**401** | Authentication required |  -  |
+**403** | Unauthorized access |  -  |
+**429** | Rate limit exhausted |  -  |
+**500** | Unexpected server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **api_offers_ulid_delete**
+> api_offers_ulid_delete(ulid)
+
+Disable existing Offer
+
+Make a specific Offer as non longer active
+
+### Example
+
+* Api Key Authentication (jwtPersonalKey):
+* OAuth Authentication (oauth):
+
+```python
+import tpdk_safe_checkout
+from tpdk_safe_checkout.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.tripartie.app
+# See configuration.py for a list of all supported configuration parameters.
+configuration = tpdk_safe_checkout.Configuration(
+    host = "https://staging-api.tripartie.app"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: jwtPersonalKey
+configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with tpdk_safe_checkout.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = tpdk_safe_checkout.UserApi(api_client)
+    ulid = 'ulid_example' # str | Offer identifier
+
+    try:
+        # Disable existing Offer
+        api_instance.api_offers_ulid_delete(ulid)
+    except Exception as e:
+        print("Exception when calling UserApi->api_offers_ulid_delete: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ulid** | **str**| Offer identifier | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Offer resource deleted |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**401** | Authentication required |  -  |
+**403** | Unauthorized access |  -  |
+**429** | Rate limit exhausted |  -  |
+**500** | Unexpected server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **api_offers_ulid_get**
+> OfferRead api_offers_ulid_get(ulid)
+
+Fetch a Offer details
+
+Retrieves a Offer resource.
+
+### Example
+
+* Api Key Authentication (jwtPersonalKey):
+* OAuth Authentication (oauth):
+
+```python
+import tpdk_safe_checkout
+from tpdk_safe_checkout.models.offer_read import OfferRead
+from tpdk_safe_checkout.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.tripartie.app
+# See configuration.py for a list of all supported configuration parameters.
+configuration = tpdk_safe_checkout.Configuration(
+    host = "https://staging-api.tripartie.app"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: jwtPersonalKey
+configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with tpdk_safe_checkout.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = tpdk_safe_checkout.UserApi(api_client)
+    ulid = 'ulid_example' # str | Offer identifier
+
+    try:
+        # Fetch a Offer details
+        api_response = api_instance.api_offers_ulid_get(ulid)
+        print("The response of UserApi->api_offers_ulid_get:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UserApi->api_offers_ulid_get: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ulid** | **str**| Offer identifier | 
+
+### Return type
+
+[**OfferRead**](OfferRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Offer resource |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**429** | Rate limit exhausted |  -  |
+**500** | Unexpected server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **api_offers_ulid_patch**
+> OfferPostCreationRead api_offers_ulid_patch(ulid, offer_update)
+
+Update existing Offer
+
+Update your existing Offer and reuse existing generated link
+
+### Example
+
+* Api Key Authentication (jwtPersonalKey):
+* OAuth Authentication (oauth):
+
+```python
+import tpdk_safe_checkout
+from tpdk_safe_checkout.models.offer_post_creation_read import OfferPostCreationRead
+from tpdk_safe_checkout.models.offer_update import OfferUpdate
+from tpdk_safe_checkout.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.tripartie.app
+# See configuration.py for a list of all supported configuration parameters.
+configuration = tpdk_safe_checkout.Configuration(
+    host = "https://staging-api.tripartie.app"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: jwtPersonalKey
+configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with tpdk_safe_checkout.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = tpdk_safe_checkout.UserApi(api_client)
+    ulid = 'ulid_example' # str | Offer identifier
+    offer_update = tpdk_safe_checkout.OfferUpdate() # OfferUpdate | The updated Offer resource
+
+    try:
+        # Update existing Offer
+        api_response = api_instance.api_offers_ulid_patch(ulid, offer_update)
+        print("The response of UserApi->api_offers_ulid_patch:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UserApi->api_offers_ulid_patch: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ulid** | **str**| Offer identifier | 
+ **offer_update** | [**OfferUpdate**](OfferUpdate.md)| The updated Offer resource | 
+
+### Return type
+
+[**OfferPostCreationRead**](OfferPostCreationRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Offer resource updated |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**401** | Authentication required |  -  |
+**403** | Unauthorized access |  -  |
+**429** | Rate limit exhausted |  -  |
+**500** | Unexpected server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **api_offers_ulidmedias_id_delete**
+> api_offers_ulidmedias_id_delete(ulid, id)
+
+Removes the Media resource.
+
+Removes the Media resource.
+
+### Example
+
+* Api Key Authentication (jwtPersonalKey):
+* OAuth Authentication (oauth):
+
+```python
+import tpdk_safe_checkout
+from tpdk_safe_checkout.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.tripartie.app
+# See configuration.py for a list of all supported configuration parameters.
+configuration = tpdk_safe_checkout.Configuration(
+    host = "https://staging-api.tripartie.app"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: jwtPersonalKey
+configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with tpdk_safe_checkout.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = tpdk_safe_checkout.UserApi(api_client)
+    ulid = 'ulid_example' # str | 
+    id = 56 # int | 
+
+    try:
+        # Removes the Media resource.
+        api_instance.api_offers_ulidmedias_id_delete(ulid, id)
+    except Exception as e:
+        print("Exception when calling UserApi->api_offers_ulidmedias_id_delete: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ulid** | **str**|  | 
+ **id** | **int**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Media resource deleted |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**401** | Authentication required |  -  |
+**403** | Unauthorized access |  -  |
+**429** | Rate limit exhausted |  -  |
+**500** | Unexpected server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **api_offers_ulidmedias_post**
+> MediaRead api_offers_ulidmedias_post(ulid, file=file)
+
+Upload a picture for a given Offer
+
+Creates a Media resource.
+
+### Example
+
+* OAuth Authentication (oauth):
+
+```python
+import tpdk_safe_checkout
+from tpdk_safe_checkout.models.media_read import MediaRead
+from tpdk_safe_checkout.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.tripartie.app
+# See configuration.py for a list of all supported configuration parameters.
+configuration = tpdk_safe_checkout.Configuration(
+    host = "https://staging-api.tripartie.app"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with tpdk_safe_checkout.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = tpdk_safe_checkout.UserApi(api_client)
+    ulid = 'ulid_example' # str | 
+    file = None # bytearray |  (optional)
+
+    try:
+        # Upload a picture for a given Offer
+        api_response = api_instance.api_offers_ulidmedias_post(ulid, file=file)
+        print("The response of UserApi->api_offers_ulidmedias_post:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UserApi->api_offers_ulidmedias_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ulid** | **str**|  | 
+ **file** | **bytearray**|  | [optional] 
+
+### Return type
+
+[**MediaRead**](MediaRead.md)
+
+### Authorization
+
+[oauth](../README.md#oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Media resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**401** | Authentication required |  -  |
+**403** | Unauthorized access |  -  |
 **429** | Rate limit exhausted |  -  |
 **500** | Unexpected server error |  -  |
 
@@ -1631,7 +1856,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **api_proof_of_identities_post**
-> ProofOfIdentityRead api_proof_of_identities_post(body)
+> ProofOfIdentityRead api_proof_of_identities_post(proof_of_identity_write)
 
 Submit a slot for a PoI
 
@@ -1644,6 +1869,7 @@ Creates a ProofOfIdentity resource.
 ```python
 import tpdk_safe_checkout
 from tpdk_safe_checkout.models.proof_of_identity_read import ProofOfIdentityRead
+from tpdk_safe_checkout.models.proof_of_identity_write import ProofOfIdentityWrite
 from tpdk_safe_checkout.rest import ApiException
 from pprint import pprint
 
@@ -1668,11 +1894,11 @@ configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
 with tpdk_safe_checkout.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = tpdk_safe_checkout.UserApi(api_client)
-    body = None # object | The new ProofOfIdentity resource
+    proof_of_identity_write = tpdk_safe_checkout.ProofOfIdentityWrite() # ProofOfIdentityWrite | The new ProofOfIdentity resource
 
     try:
         # Submit a slot for a PoI
-        api_response = api_instance.api_proof_of_identities_post(body)
+        api_response = api_instance.api_proof_of_identities_post(proof_of_identity_write)
         print("The response of UserApi->api_proof_of_identities_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -1686,7 +1912,7 @@ with tpdk_safe_checkout.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **object**| The new ProofOfIdentity resource | 
+ **proof_of_identity_write** | [**ProofOfIdentityWrite**](ProofOfIdentityWrite.md)| The new ProofOfIdentity resource | 
 
 ### Return type
 

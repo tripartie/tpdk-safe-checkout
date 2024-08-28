@@ -9,6 +9,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**status** | [**StatusEnum**](#StatusEnum) |  |  |
+|**type** | [**TypeEnum**](#TypeEnum) |  |  |
 |**originalFilename** | **String** |  |  [optional] |
 |**extension** | **String** |  |  |
 |**createdAt** | **OffsetDateTime** |  |  |
@@ -29,6 +30,16 @@
 | SUBMITTED | &quot;submitted&quot; |
 | ACCEPTED | &quot;accepted&quot; |
 | REFUSED | &quot;refused&quot; |
+| BLOCKED | &quot;blocked&quot; |
+
+
+
+## Enum: TypeEnum
+
+| Name | Value |
+|---- | -----|
+| NATIONAL_ID | &quot;national_id&quot; |
+| PASSPORT | &quot;passport&quot; |
 
 
 

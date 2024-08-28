@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **status** | **str** |  | [optional] 
 **fees** | **float** |  | [optional] 
 **supplemental_fees** | **float** |  | [optional] 
-**card** | **str** |  | [optional] 
-**escrow** | **object** |  | [optional] 
+**card** | [**TransactionCardRead**](TransactionCardRead.md) |  | [optional] 
+**escrow** | [**TransactionWalletRead**](TransactionWalletRead.md) |  | [optional] 
 **remote_pre_authorization_id** | **str** |  | [optional] 
 **remote_pay_in_id** | **str** |  | [optional] 
 **balance_to_refund** | **float** |  | [optional] 
@@ -26,11 +26,15 @@ Name | Type | Description | Notes
 **parcels** | [**List[TransactionParcelRead]**](TransactionParcelRead.md) |  | [optional] 
 **created_at** | **datetime** |  | 
 **updated_at** | **datetime** |  | [optional] 
+**provider_name** | **str** |  | [optional] 
+**provider_created_at** | **datetime** |  | [optional] [readonly] 
+**provider_updated_at** | **datetime** |  | [optional] [readonly] 
 **total** | **float** |  | [optional] [readonly] 
 **total_charged** | **float** |  | [optional] [readonly] 
 **total_fees** | **float** |  | [optional] [readonly] 
 **awaited_party** | **str** | Determine who is awaited (actor) for the next transition | [optional] [readonly] 
 **status_expiration** | **datetime** | Yield if eligible the date-time at which the transaction state expire. | [optional] [readonly] 
+**processor_status** | **str** | Automagically infer on what state the entity is at the Payment Processor. | [optional] [readonly] 
 
 ## Example
 

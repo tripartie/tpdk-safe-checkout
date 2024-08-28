@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**api_offers_get_collection**](SafeCheckoutApi.md#api_offers_get_collection) | **GET** /offers | Search amongst Offers
 [**api_offers_post**](SafeCheckoutApi.md#api_offers_post) | **POST** /offers | Create a public link for Offer
+[**api_offers_ulid_delete**](SafeCheckoutApi.md#api_offers_ulid_delete) | **DELETE** /offers/{ulid} | Disable existing Offer
 [**api_offers_ulid_get**](SafeCheckoutApi.md#api_offers_ulid_get) | **GET** /offers/{ulid} | Fetch a Offer details
 [**api_offers_ulid_patch**](SafeCheckoutApi.md#api_offers_ulid_patch) | **PATCH** /offers/{ulid} | Update existing Offer
 [**api_offers_ulidmedias_id_delete**](SafeCheckoutApi.md#api_offers_ulidmedias_id_delete) | **DELETE** /offers/{ulid}/medias/{id} | Removes the Media resource.
@@ -21,6 +22,7 @@ Retrieves the collection of Offer resources.
 
 ### Example
 
+* Api Key Authentication (jwtPersonalKey):
 * OAuth Authentication (oauth):
 
 ```python
@@ -39,6 +41,12 @@ configuration = tpdk_safe_checkout.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: jwtPersonalKey
+configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
 
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
@@ -108,7 +116,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 
@@ -202,6 +210,90 @@ Name | Type | Description  | Notes
 **201** | Offer resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**401** | Authentication required |  -  |
+**403** | Unauthorized access |  -  |
+**429** | Rate limit exhausted |  -  |
+**500** | Unexpected server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **api_offers_ulid_delete**
+> api_offers_ulid_delete(ulid)
+
+Disable existing Offer
+
+Make a specific Offer as non longer active
+
+### Example
+
+* Api Key Authentication (jwtPersonalKey):
+* OAuth Authentication (oauth):
+
+```python
+import tpdk_safe_checkout
+from tpdk_safe_checkout.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.tripartie.app
+# See configuration.py for a list of all supported configuration parameters.
+configuration = tpdk_safe_checkout.Configuration(
+    host = "https://staging-api.tripartie.app"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: jwtPersonalKey
+configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with tpdk_safe_checkout.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = tpdk_safe_checkout.SafeCheckoutApi(api_client)
+    ulid = 'ulid_example' # str | Offer identifier
+
+    try:
+        # Disable existing Offer
+        api_instance.api_offers_ulid_delete(ulid)
+    except Exception as e:
+        print("Exception when calling SafeCheckoutApi->api_offers_ulid_delete: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ulid** | **str**| Offer identifier | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | Offer resource deleted |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 **401** | Authentication required |  -  |
 **403** | Unauthorized access |  -  |
 **429** | Rate limit exhausted |  -  |
@@ -303,6 +395,7 @@ Update your existing Offer and reuse existing generated link
 
 ### Example
 
+* Api Key Authentication (jwtPersonalKey):
 * OAuth Authentication (oauth):
 
 ```python
@@ -322,6 +415,12 @@ configuration = tpdk_safe_checkout.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: jwtPersonalKey
+configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
 
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
@@ -357,7 +456,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 

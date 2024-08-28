@@ -10,12 +10,14 @@ Name | Type | Description | Notes
 **expire_at** | **datetime** |  | 
 **currency** | **str** |  | [optional] 
 **country_code** | **str** |  | [optional] 
-**ephemeral** | **bool** |  | 
+**brand** | **str** |  | [optional] 
+**ephemeral** | **bool** |  | [optional] [default to True]
 **created_at** | **datetime** |  | 
 **updated_at** | **datetime** |  | 
 **provider_name** | **str** |  | [optional] 
 **provider_created_at** | **datetime** |  | [optional] [readonly] 
 **provider_updated_at** | **datetime** |  | [optional] [readonly] 
+**iri** | **str** |  | [optional] [readonly] 
 **processor_status** | **str** | Automagically infer on what state the entity is at the Payment Processor. | [optional] [readonly] 
 
 ## Example

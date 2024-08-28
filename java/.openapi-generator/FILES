@@ -13,6 +13,7 @@ docs/ApiClientPostCreationRead.md
 docs/ApiClientRead.md
 docs/ApiClientWrite.md
 docs/AuthError.md
+docs/BankAccountRead.md
 docs/BankAccountUserRead.md
 docs/BankAccountWrite.md
 docs/BrandingApi.md
@@ -23,7 +24,10 @@ docs/CardMetadataUpdate.md
 docs/CardRead.md
 docs/CardUpdate.md
 docs/CardUserRead.md
+docs/CardWrite.md
+docs/CashoutCashOutCollectionRead.md
 docs/CashoutCashOutRead.md
+docs/CashoutCashOutWrite.md
 docs/GenericError.md
 docs/InvalidQueryError.md
 docs/Media.md
@@ -32,6 +36,7 @@ docs/MediaUserRead.md
 docs/MessageError.md
 docs/Metadata.md
 docs/NotFoundError.md
+docs/Offer.md
 docs/OfferAddressIndependentWrite.md
 docs/OfferCollectionRead.md
 docs/OfferIndependentWrite.md
@@ -67,12 +72,14 @@ docs/PersonaUserRead.md
 docs/PersonaWrite.md
 docs/ProofOfIdentityCollectionRead.md
 docs/ProofOfIdentityRead.md
+docs/ProofOfIdentityWrite.md
 docs/QuoteRead.md
 docs/QuoteUpdate.md
 docs/QuoteWrite.md
 docs/RateLimitError.md
 docs/SafeCheckoutApi.md
 docs/TransactionApi.md
+docs/TransactionCardRead.md
 docs/TransactionCollectionRead.md
 docs/TransactionMetadataRead.md
 docs/TransactionOfferCollectionRead.md
@@ -84,6 +91,7 @@ docs/TransactionQuoteCollectionRead.md
 docs/TransactionQuoteRead.md
 docs/TransactionRead.md
 docs/TransactionUpdate.md
+docs/TransactionWalletRead.md
 docs/TransactionWrite.md
 docs/UnprocessableEntity.md
 docs/UnprocessableEntityViolationsInner.md
@@ -118,6 +126,7 @@ docs/UserWalletAuthenticatedRead.md
 docs/UserWalletCollectionRead.md
 docs/UserWalletSupportRead.md
 docs/UserWrite.md
+docs/View.md
 docs/WalletUserRead.md
 docs/Webhook.md
 docs/WebhookApi.md
@@ -170,6 +179,7 @@ src/main/java/com/tripartie/safecheckout/model/ApiClientPostCreationRead.java
 src/main/java/com/tripartie/safecheckout/model/ApiClientRead.java
 src/main/java/com/tripartie/safecheckout/model/ApiClientWrite.java
 src/main/java/com/tripartie/safecheckout/model/AuthError.java
+src/main/java/com/tripartie/safecheckout/model/BankAccountRead.java
 src/main/java/com/tripartie/safecheckout/model/BankAccountUserRead.java
 src/main/java/com/tripartie/safecheckout/model/BankAccountWrite.java
 src/main/java/com/tripartie/safecheckout/model/CardCollectionRead.java
@@ -179,7 +189,10 @@ src/main/java/com/tripartie/safecheckout/model/CardMetadataUpdate.java
 src/main/java/com/tripartie/safecheckout/model/CardRead.java
 src/main/java/com/tripartie/safecheckout/model/CardUpdate.java
 src/main/java/com/tripartie/safecheckout/model/CardUserRead.java
+src/main/java/com/tripartie/safecheckout/model/CardWrite.java
+src/main/java/com/tripartie/safecheckout/model/CashoutCashOutCollectionRead.java
 src/main/java/com/tripartie/safecheckout/model/CashoutCashOutRead.java
+src/main/java/com/tripartie/safecheckout/model/CashoutCashOutWrite.java
 src/main/java/com/tripartie/safecheckout/model/GenericError.java
 src/main/java/com/tripartie/safecheckout/model/InvalidQueryError.java
 src/main/java/com/tripartie/safecheckout/model/Media.java
@@ -188,6 +201,7 @@ src/main/java/com/tripartie/safecheckout/model/MediaUserRead.java
 src/main/java/com/tripartie/safecheckout/model/MessageError.java
 src/main/java/com/tripartie/safecheckout/model/Metadata.java
 src/main/java/com/tripartie/safecheckout/model/NotFoundError.java
+src/main/java/com/tripartie/safecheckout/model/Offer.java
 src/main/java/com/tripartie/safecheckout/model/OfferAddressIndependentWrite.java
 src/main/java/com/tripartie/safecheckout/model/OfferCollectionRead.java
 src/main/java/com/tripartie/safecheckout/model/OfferIndependentWrite.java
@@ -222,10 +236,12 @@ src/main/java/com/tripartie/safecheckout/model/PersonaUserRead.java
 src/main/java/com/tripartie/safecheckout/model/PersonaWrite.java
 src/main/java/com/tripartie/safecheckout/model/ProofOfIdentityCollectionRead.java
 src/main/java/com/tripartie/safecheckout/model/ProofOfIdentityRead.java
+src/main/java/com/tripartie/safecheckout/model/ProofOfIdentityWrite.java
 src/main/java/com/tripartie/safecheckout/model/QuoteRead.java
 src/main/java/com/tripartie/safecheckout/model/QuoteUpdate.java
 src/main/java/com/tripartie/safecheckout/model/QuoteWrite.java
 src/main/java/com/tripartie/safecheckout/model/RateLimitError.java
+src/main/java/com/tripartie/safecheckout/model/TransactionCardRead.java
 src/main/java/com/tripartie/safecheckout/model/TransactionCollectionRead.java
 src/main/java/com/tripartie/safecheckout/model/TransactionMetadataRead.java
 src/main/java/com/tripartie/safecheckout/model/TransactionOfferCollectionRead.java
@@ -237,6 +253,7 @@ src/main/java/com/tripartie/safecheckout/model/TransactionQuoteCollectionRead.ja
 src/main/java/com/tripartie/safecheckout/model/TransactionQuoteRead.java
 src/main/java/com/tripartie/safecheckout/model/TransactionRead.java
 src/main/java/com/tripartie/safecheckout/model/TransactionUpdate.java
+src/main/java/com/tripartie/safecheckout/model/TransactionWalletRead.java
 src/main/java/com/tripartie/safecheckout/model/TransactionWrite.java
 src/main/java/com/tripartie/safecheckout/model/UnprocessableEntity.java
 src/main/java/com/tripartie/safecheckout/model/UnprocessableEntityViolationsInner.java
@@ -270,6 +287,7 @@ src/main/java/com/tripartie/safecheckout/model/UserWalletAuthenticatedRead.java
 src/main/java/com/tripartie/safecheckout/model/UserWalletCollectionRead.java
 src/main/java/com/tripartie/safecheckout/model/UserWalletSupportRead.java
 src/main/java/com/tripartie/safecheckout/model/UserWrite.java
+src/main/java/com/tripartie/safecheckout/model/View.java
 src/main/java/com/tripartie/safecheckout/model/WalletUserRead.java
 src/main/java/com/tripartie/safecheckout/model/Webhook.java
 src/main/java/com/tripartie/safecheckout/model/WebhookHistoryCollectionRead.java
@@ -290,6 +308,7 @@ src/test/java/com/tripartie/safecheckout/model/ApiClientPostCreationReadTest.jav
 src/test/java/com/tripartie/safecheckout/model/ApiClientReadTest.java
 src/test/java/com/tripartie/safecheckout/model/ApiClientWriteTest.java
 src/test/java/com/tripartie/safecheckout/model/AuthErrorTest.java
+src/test/java/com/tripartie/safecheckout/model/BankAccountReadTest.java
 src/test/java/com/tripartie/safecheckout/model/BankAccountUserReadTest.java
 src/test/java/com/tripartie/safecheckout/model/BankAccountWriteTest.java
 src/test/java/com/tripartie/safecheckout/model/CardCollectionReadTest.java
@@ -299,7 +318,10 @@ src/test/java/com/tripartie/safecheckout/model/CardMetadataUpdateTest.java
 src/test/java/com/tripartie/safecheckout/model/CardReadTest.java
 src/test/java/com/tripartie/safecheckout/model/CardUpdateTest.java
 src/test/java/com/tripartie/safecheckout/model/CardUserReadTest.java
+src/test/java/com/tripartie/safecheckout/model/CardWriteTest.java
+src/test/java/com/tripartie/safecheckout/model/CashoutCashOutCollectionReadTest.java
 src/test/java/com/tripartie/safecheckout/model/CashoutCashOutReadTest.java
+src/test/java/com/tripartie/safecheckout/model/CashoutCashOutWriteTest.java
 src/test/java/com/tripartie/safecheckout/model/GenericErrorTest.java
 src/test/java/com/tripartie/safecheckout/model/InvalidQueryErrorTest.java
 src/test/java/com/tripartie/safecheckout/model/MediaReadTest.java
@@ -319,6 +341,7 @@ src/test/java/com/tripartie/safecheckout/model/OfferPersonaIndependentWriteTest.
 src/test/java/com/tripartie/safecheckout/model/OfferPersonaReadTest.java
 src/test/java/com/tripartie/safecheckout/model/OfferPostCreationReadTest.java
 src/test/java/com/tripartie/safecheckout/model/OfferReadTest.java
+src/test/java/com/tripartie/safecheckout/model/OfferTest.java
 src/test/java/com/tripartie/safecheckout/model/OfferUpdateTest.java
 src/test/java/com/tripartie/safecheckout/model/OfferWriteTest.java
 src/test/java/com/tripartie/safecheckout/model/OrganizationAddressUpdateTest.java
@@ -342,10 +365,12 @@ src/test/java/com/tripartie/safecheckout/model/PersonaUserReadTest.java
 src/test/java/com/tripartie/safecheckout/model/PersonaWriteTest.java
 src/test/java/com/tripartie/safecheckout/model/ProofOfIdentityCollectionReadTest.java
 src/test/java/com/tripartie/safecheckout/model/ProofOfIdentityReadTest.java
+src/test/java/com/tripartie/safecheckout/model/ProofOfIdentityWriteTest.java
 src/test/java/com/tripartie/safecheckout/model/QuoteReadTest.java
 src/test/java/com/tripartie/safecheckout/model/QuoteUpdateTest.java
 src/test/java/com/tripartie/safecheckout/model/QuoteWriteTest.java
 src/test/java/com/tripartie/safecheckout/model/RateLimitErrorTest.java
+src/test/java/com/tripartie/safecheckout/model/TransactionCardReadTest.java
 src/test/java/com/tripartie/safecheckout/model/TransactionCollectionReadTest.java
 src/test/java/com/tripartie/safecheckout/model/TransactionMetadataReadTest.java
 src/test/java/com/tripartie/safecheckout/model/TransactionOfferCollectionReadTest.java
@@ -357,6 +382,7 @@ src/test/java/com/tripartie/safecheckout/model/TransactionQuoteCollectionReadTes
 src/test/java/com/tripartie/safecheckout/model/TransactionQuoteReadTest.java
 src/test/java/com/tripartie/safecheckout/model/TransactionReadTest.java
 src/test/java/com/tripartie/safecheckout/model/TransactionUpdateTest.java
+src/test/java/com/tripartie/safecheckout/model/TransactionWalletReadTest.java
 src/test/java/com/tripartie/safecheckout/model/TransactionWriteTest.java
 src/test/java/com/tripartie/safecheckout/model/UnprocessableEntityTest.java
 src/test/java/com/tripartie/safecheckout/model/UnprocessableEntityViolationsInnerTest.java
@@ -390,6 +416,7 @@ src/test/java/com/tripartie/safecheckout/model/UserWalletAuthenticatedReadTest.j
 src/test/java/com/tripartie/safecheckout/model/UserWalletCollectionReadTest.java
 src/test/java/com/tripartie/safecheckout/model/UserWalletSupportReadTest.java
 src/test/java/com/tripartie/safecheckout/model/UserWriteTest.java
+src/test/java/com/tripartie/safecheckout/model/ViewTest.java
 src/test/java/com/tripartie/safecheckout/model/WalletUserReadTest.java
 src/test/java/com/tripartie/safecheckout/model/WebhookHistoryCollectionReadTest.java
 src/test/java/com/tripartie/safecheckout/model/WebhookHistoryReadTest.java

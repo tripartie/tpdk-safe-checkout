@@ -4,22 +4,24 @@ All URIs are relative to *https://staging-api.tripartie.app*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**apiApiClientsGetCollection**](UserApi.md#apiApiClientsGetCollection) | **GET** /api-clients | Retrieves the collection of ApiClient resources. |
-| [**apiApiClientsIdentifierDelete**](UserApi.md#apiApiClientsIdentifierDelete) | **DELETE** /api-clients/{identifier} | Removes the ApiClient resource. |
-| [**apiApiClientsIdentifierGet**](UserApi.md#apiApiClientsIdentifierGet) | **GET** /api-clients/{identifier} | Retrieves a ApiClient resource. |
-| [**apiApiClientsPost**](UserApi.md#apiApiClientsPost) | **POST** /api-clients | Creates a ApiClient resource. |
 | [**apiBankAccountsIdDelete**](UserApi.md#apiBankAccountsIdDelete) | **DELETE** /bank-accounts/{id} | Removes the BankAccount resource. |
 | [**apiBankAccountsIdGet**](UserApi.md#apiBankAccountsIdGet) | **GET** /bank-accounts/{id} | Retrieves a BankAccount resource. |
 | [**apiBankAccountsPost**](UserApi.md#apiBankAccountsPost) | **POST** /bank-accounts | Creates a BankAccount resource. |
 | [**apiCardsGetCollection**](UserApi.md#apiCardsGetCollection) | **GET** /cards | Retrieves the collection of Card resources. |
 | [**apiCardsIdDelete**](UserApi.md#apiCardsIdDelete) | **DELETE** /cards/{id} | Removes the Card resource. |
 | [**apiCardsIdGet**](UserApi.md#apiCardsIdGet) | **GET** /cards/{id} | Retrieves a Card resource. |
-| [**apiCardsIdPatch**](UserApi.md#apiCardsIdPatch) | **PATCH** /cards/{id} | Updates the Card resource. |
+| [**apiCardsIdPatch**](UserApi.md#apiCardsIdPatch) | **PATCH** /cards/{id} | Push back the tokenization output from the external provider |
 | [**apiCardsPost**](UserApi.md#apiCardsPost) | **POST** /cards | Creates a Card resource. |
 | [**apiCashOutsGetCollection**](UserApi.md#apiCashOutsGetCollection) | **GET** /cash-outs | Retrieves the collection of CashOut resources. |
 | [**apiCashOutsIdGet**](UserApi.md#apiCashOutsIdGet) | **GET** /cash-outs/{id} | Retrieves a CashOut resource. |
-| [**apiCashOutsPost**](UserApi.md#apiCashOutsPost) | **POST** /cash-outs | Creates a CashOut resource. |
+| [**apiCashOutsPost**](UserApi.md#apiCashOutsPost) | **POST** /cash-outs | Withdraw the full amount available in the user wallet to set bank account |
 | [**apiMeGet**](UserApi.md#apiMeGet) | **GET** /me | Retrieves a User resource. |
+| [**apiOffersGetCollection**](UserApi.md#apiOffersGetCollection) | **GET** /offers | Search amongst Offers |
+| [**apiOffersUlidDelete**](UserApi.md#apiOffersUlidDelete) | **DELETE** /offers/{ulid} | Disable existing Offer |
+| [**apiOffersUlidGet**](UserApi.md#apiOffersUlidGet) | **GET** /offers/{ulid} | Fetch a Offer details |
+| [**apiOffersUlidPatch**](UserApi.md#apiOffersUlidPatch) | **PATCH** /offers/{ulid} | Update existing Offer |
+| [**apiOffersUlidmediasIdDelete**](UserApi.md#apiOffersUlidmediasIdDelete) | **DELETE** /offers/{ulid}/medias/{id} | Removes the Media resource. |
+| [**apiOffersUlidmediasPost**](UserApi.md#apiOffersUlidmediasPost) | **POST** /offers/{ulid}/medias | Upload a picture for a given Offer |
 | [**apiProofOfIdentitiesGetCollection**](UserApi.md#apiProofOfIdentitiesGetCollection) | **GET** /proof-of-identities | List all submitted PoI |
 | [**apiProofOfIdentitiesIdGet**](UserApi.md#apiProofOfIdentitiesIdGet) | **GET** /proof-of-identities/{id} | Retrieve a specific PoI |
 | [**apiProofOfIdentitiesIdPatch**](UserApi.md#apiProofOfIdentitiesIdPatch) | **PATCH** /proof-of-identities/{id} | Upload the document for your PoI slot |
@@ -37,306 +39,6 @@ All URIs are relative to *https://staging-api.tripartie.app*
 | [**apiUsersIdtotpTogglePatch**](UserApi.md#apiUsersIdtotpTogglePatch) | **PATCH** /users/{id}/totp-toggle | Disable the second authentication factor |
 | [**authenticationPost**](UserApi.md#authenticationPost) | **POST** /authentication | User authentication |
 
-
-<a id="apiApiClientsGetCollection"></a>
-# **apiApiClientsGetCollection**
-> List&lt;ApiClientRead&gt; apiApiClientsGetCollection().page(page).execute();
-
-Retrieves the collection of ApiClient resources.
-
-Retrieves the collection of ApiClient resources.
-
-### Example
-```java
-// Import classes:
-import com.tripartie.safecheckout.ApiClient;
-import com.tripartie.safecheckout.ApiException;
-import com.tripartie.safecheckout.Configuration;
-import com.tripartie.safecheckout.auth.*;
-import com.tripartie.safecheckout.models.*;
-import com.tripartie.safecheckout.api.UserApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://staging-api.tripartie.app");
-    
-    // Configure API key authorization: jwtPersonalKey
-    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
-    jwtPersonalKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //jwtPersonalKey.setApiKeyPrefix("Token");
-
-    UserApi apiInstance = new UserApi(defaultClient);
-    Integer page = 1; // Integer | The collection page number
-    try {
-      List<ApiClientRead> result = apiInstance.apiApiClientsGetCollection()
-            .page(page)
-            .execute();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling UserApi#apiApiClientsGetCollection");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **page** | **Integer**| The collection page number | [optional] [default to 1] |
-
-### Return type
-
-[**List&lt;ApiClientRead&gt;**](ApiClientRead.md)
-
-### Authorization
-
-[jwtPersonalKey](../README.md#jwtPersonalKey)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | ApiClient collection |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  * Content-Range - HTTP standardized header for partial content, used for the pagination <br>  |
-| **401** | Authentication required |  -  |
-| **403** | Unauthorized access |  -  |
-| **429** | Rate limit exhausted |  -  |
-| **500** | Unexpected server error |  -  |
-
-<a id="apiApiClientsIdentifierDelete"></a>
-# **apiApiClientsIdentifierDelete**
-> apiApiClientsIdentifierDelete(identifier).execute();
-
-Removes the ApiClient resource.
-
-Removes the ApiClient resource.
-
-### Example
-```java
-// Import classes:
-import com.tripartie.safecheckout.ApiClient;
-import com.tripartie.safecheckout.ApiException;
-import com.tripartie.safecheckout.Configuration;
-import com.tripartie.safecheckout.auth.*;
-import com.tripartie.safecheckout.models.*;
-import com.tripartie.safecheckout.api.UserApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://staging-api.tripartie.app");
-    
-    // Configure API key authorization: jwtPersonalKey
-    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
-    jwtPersonalKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //jwtPersonalKey.setApiKeyPrefix("Token");
-
-    UserApi apiInstance = new UserApi(defaultClient);
-    String identifier = "identifier_example"; // String | ApiClient identifier
-    try {
-      apiInstance.apiApiClientsIdentifierDelete(identifier)
-            .execute();
-    } catch (ApiException e) {
-      System.err.println("Exception when calling UserApi#apiApiClientsIdentifierDelete");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **identifier** | **String**| ApiClient identifier | |
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-[jwtPersonalKey](../README.md#jwtPersonalKey)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | ApiClient resource deleted |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-| **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-| **401** | Authentication required |  -  |
-| **403** | Unauthorized access |  -  |
-| **429** | Rate limit exhausted |  -  |
-| **500** | Unexpected server error |  -  |
-
-<a id="apiApiClientsIdentifierGet"></a>
-# **apiApiClientsIdentifierGet**
-> ApiClientRead apiApiClientsIdentifierGet(identifier).execute();
-
-Retrieves a ApiClient resource.
-
-Retrieves a ApiClient resource.
-
-### Example
-```java
-// Import classes:
-import com.tripartie.safecheckout.ApiClient;
-import com.tripartie.safecheckout.ApiException;
-import com.tripartie.safecheckout.Configuration;
-import com.tripartie.safecheckout.auth.*;
-import com.tripartie.safecheckout.models.*;
-import com.tripartie.safecheckout.api.UserApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://staging-api.tripartie.app");
-    
-    // Configure API key authorization: jwtPersonalKey
-    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
-    jwtPersonalKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //jwtPersonalKey.setApiKeyPrefix("Token");
-
-    UserApi apiInstance = new UserApi(defaultClient);
-    String identifier = "identifier_example"; // String | ApiClient identifier
-    try {
-      ApiClientRead result = apiInstance.apiApiClientsIdentifierGet(identifier)
-            .execute();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling UserApi#apiApiClientsIdentifierGet");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **identifier** | **String**| ApiClient identifier | |
-
-### Return type
-
-[**ApiClientRead**](ApiClientRead.md)
-
-### Authorization
-
-[jwtPersonalKey](../README.md#jwtPersonalKey)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | ApiClient resource |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-| **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-| **401** | Authentication required |  -  |
-| **403** | Unauthorized access |  -  |
-| **429** | Rate limit exhausted |  -  |
-| **500** | Unexpected server error |  -  |
-
-<a id="apiApiClientsPost"></a>
-# **apiApiClientsPost**
-> ApiClientPostCreationRead apiApiClientsPost(apiClientWrite).execute();
-
-Creates a ApiClient resource.
-
-Creates a ApiClient resource.
-
-### Example
-```java
-// Import classes:
-import com.tripartie.safecheckout.ApiClient;
-import com.tripartie.safecheckout.ApiException;
-import com.tripartie.safecheckout.Configuration;
-import com.tripartie.safecheckout.auth.*;
-import com.tripartie.safecheckout.models.*;
-import com.tripartie.safecheckout.api.UserApi;
-
-public class Example {
-  public static void main(String[] args) {
-    ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("https://staging-api.tripartie.app");
-    
-    // Configure API key authorization: jwtPersonalKey
-    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
-    jwtPersonalKey.setApiKey("YOUR API KEY");
-    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
-    //jwtPersonalKey.setApiKeyPrefix("Token");
-
-    UserApi apiInstance = new UserApi(defaultClient);
-    ApiClientWrite apiClientWrite = new ApiClientWrite(); // ApiClientWrite | The new ApiClient resource
-    try {
-      ApiClientPostCreationRead result = apiInstance.apiApiClientsPost(apiClientWrite)
-            .execute();
-      System.out.println(result);
-    } catch (ApiException e) {
-      System.err.println("Exception when calling UserApi#apiApiClientsPost");
-      System.err.println("Status code: " + e.getCode());
-      System.err.println("Reason: " + e.getResponseBody());
-      System.err.println("Response headers: " + e.getResponseHeaders());
-      e.printStackTrace();
-    }
-  }
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **apiClientWrite** | [**ApiClientWrite**](ApiClientWrite.md)| The new ApiClient resource | |
-
-### Return type
-
-[**ApiClientPostCreationRead**](ApiClientPostCreationRead.md)
-
-### Authorization
-
-[jwtPersonalKey](../README.md#jwtPersonalKey)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **201** | ApiClient resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-| **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-| **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-| **401** | Authentication required |  -  |
-| **403** | Unauthorized access |  -  |
-| **429** | Rate limit exhausted |  -  |
-| **500** | Unexpected server error |  -  |
 
 <a id="apiBankAccountsIdDelete"></a>
 # **apiBankAccountsIdDelete**
@@ -414,7 +116,7 @@ null (empty response body)
 
 <a id="apiBankAccountsIdGet"></a>
 # **apiBankAccountsIdGet**
-> Object apiBankAccountsIdGet(id).execute();
+> BankAccountRead apiBankAccountsIdGet(id).execute();
 
 Retrieves a BankAccount resource.
 
@@ -444,7 +146,7 @@ public class Example {
     UserApi apiInstance = new UserApi(defaultClient);
     String id = "id_example"; // String | BankAccount identifier
     try {
-      Object result = apiInstance.apiBankAccountsIdGet(id)
+      BankAccountRead result = apiInstance.apiBankAccountsIdGet(id)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
@@ -466,7 +168,7 @@ public class Example {
 
 ### Return type
 
-**Object**
+[**BankAccountRead**](BankAccountRead.md)
 
 ### Authorization
 
@@ -489,7 +191,7 @@ public class Example {
 
 <a id="apiBankAccountsPost"></a>
 # **apiBankAccountsPost**
-> Object apiBankAccountsPost(bankAccountWrite).execute();
+> BankAccountRead apiBankAccountsPost(bankAccountWrite).execute();
 
 Creates a BankAccount resource.
 
@@ -519,7 +221,7 @@ public class Example {
     UserApi apiInstance = new UserApi(defaultClient);
     BankAccountWrite bankAccountWrite = new BankAccountWrite(); // BankAccountWrite | The new BankAccount resource
     try {
-      Object result = apiInstance.apiBankAccountsPost(bankAccountWrite)
+      BankAccountRead result = apiInstance.apiBankAccountsPost(bankAccountWrite)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
@@ -541,7 +243,7 @@ public class Example {
 
 ### Return type
 
-**Object**
+[**BankAccountRead**](BankAccountRead.md)
 
 ### Authorization
 
@@ -791,7 +493,7 @@ public class Example {
 # **apiCardsIdPatch**
 > CardRead apiCardsIdPatch(id, cardUpdate).execute();
 
-Updates the Card resource.
+Push back the tokenization output from the external provider
 
 Updates the Card resource.
 
@@ -868,7 +570,7 @@ public class Example {
 
 <a id="apiCardsPost"></a>
 # **apiCardsPost**
-> CardRead apiCardsPost(body).execute();
+> CardRead apiCardsPost(cardWrite).execute();
 
 Creates a Card resource.
 
@@ -896,9 +598,9 @@ public class Example {
     //jwtPersonalKey.setApiKeyPrefix("Token");
 
     UserApi apiInstance = new UserApi(defaultClient);
-    Object body = null; // Object | The new Card resource
+    CardWrite cardWrite = new CardWrite(); // CardWrite | The new Card resource
     try {
-      CardRead result = apiInstance.apiCardsPost(body)
+      CardRead result = apiInstance.apiCardsPost(cardWrite)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
@@ -916,7 +618,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | **Object**| The new Card resource | |
+| **cardWrite** | [**CardWrite**](CardWrite.md)| The new Card resource | |
 
 ### Return type
 
@@ -944,7 +646,7 @@ public class Example {
 
 <a id="apiCashOutsGetCollection"></a>
 # **apiCashOutsGetCollection**
-> List&lt;Object&gt; apiCashOutsGetCollection().page(page).execute();
+> List&lt;CashoutCashOutCollectionRead&gt; apiCashOutsGetCollection().page(page).execute();
 
 Retrieves the collection of CashOut resources.
 
@@ -974,7 +676,7 @@ public class Example {
     UserApi apiInstance = new UserApi(defaultClient);
     Integer page = 1; // Integer | The collection page number
     try {
-      List<Object> result = apiInstance.apiCashOutsGetCollection()
+      List<CashoutCashOutCollectionRead> result = apiInstance.apiCashOutsGetCollection()
             .page(page)
             .execute();
       System.out.println(result);
@@ -997,7 +699,7 @@ public class Example {
 
 ### Return type
 
-**List&lt;Object&gt;**
+[**List&lt;CashoutCashOutCollectionRead&gt;**](CashoutCashOutCollectionRead.md)
 
 ### Authorization
 
@@ -1094,9 +796,9 @@ public class Example {
 
 <a id="apiCashOutsPost"></a>
 # **apiCashOutsPost**
-> CashoutCashOutRead apiCashOutsPost(body).execute();
+> CashoutCashOutRead apiCashOutsPost(cashoutCashOutWrite).execute();
 
-Creates a CashOut resource.
+Withdraw the full amount available in the user wallet to set bank account
 
 Creates a CashOut resource.
 
@@ -1122,9 +824,9 @@ public class Example {
     //jwtPersonalKey.setApiKeyPrefix("Token");
 
     UserApi apiInstance = new UserApi(defaultClient);
-    Object body = null; // Object | The new CashOut resource
+    CashoutCashOutWrite cashoutCashOutWrite = new CashoutCashOutWrite(); // CashoutCashOutWrite | The new CashOut resource
     try {
-      CashoutCashOutRead result = apiInstance.apiCashOutsPost(body)
+      CashoutCashOutRead result = apiInstance.apiCashOutsPost(cashoutCashOutWrite)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
@@ -1142,7 +844,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | **Object**| The new CashOut resource | |
+| **cashoutCashOutWrite** | [**CashoutCashOutWrite**](CashoutCashOutWrite.md)| The new CashOut resource | |
 
 ### Return type
 
@@ -1238,6 +940,534 @@ This endpoint does not need any parameter.
 |-------------|-------------|------------------|
 | **200** | User resource |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 | **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="apiOffersGetCollection"></a>
+# **apiOffersGetCollection**
+> List&lt;OfferCollectionRead&gt; apiOffersGetCollection().page(page).title(title).publicUrl(publicUrl).publicUrl2(publicUrl2).unitPrice(unitPrice).unitPrice2(unitPrice2).itemCount(itemCount).itemCount2(itemCount2).createdAtBefore(createdAtBefore).createdAtStrictlyBefore(createdAtStrictlyBefore).createdAtAfter(createdAtAfter).createdAtStrictlyAfter(createdAtStrictlyAfter).metadata(metadata).offerMetadata(offerMetadata).sellerMetadata(sellerMetadata).nature(nature).condition(condition).status(status).shippingAllowed(shippingAllowed).execute();
+
+Search amongst Offers
+
+Retrieves the collection of Offer resources.
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
+    // Configure OAuth2 access token for authorization: oauth
+    OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
+    oauth.setAccessToken("YOUR ACCESS TOKEN");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    Integer page = 1; // Integer | The collection page number
+    String title = "title_example"; // String | 
+    String publicUrl = "publicUrl_example"; // String | 
+    List<String> publicUrl2 = Arrays.asList(); // List<String> | 
+    String unitPrice = "unitPrice_example"; // String | 
+    List<String> unitPrice2 = Arrays.asList(); // List<String> | 
+    Integer itemCount = 56; // Integer | 
+    List<Integer> itemCount2 = Arrays.asList(); // List<Integer> | 
+    String createdAtBefore = "createdAtBefore_example"; // String | 
+    String createdAtStrictlyBefore = "createdAtStrictlyBefore_example"; // String | 
+    String createdAtAfter = "createdAtAfter_example"; // String | 
+    String createdAtStrictlyAfter = "createdAtStrictlyAfter_example"; // String | 
+    List<String> metadata = Arrays.asList(new ArrayList<>()); // List<String> | Flattened OrderedMap for metadata. Must be a multiple of two items count. Explicitly set \"null\" for desired value.
+    List<String> offerMetadata = Arrays.asList(new ArrayList<>()); // List<String> | Flattened OrderedMap for offer.metadata. Must be a multiple of two items count. Explicitly set \"null\" for desired value.
+    List<String> sellerMetadata = Arrays.asList(new ArrayList<>()); // List<String> | Flattened OrderedMap for seller.metadata. Must be a multiple of two items count. Explicitly set \"null\" for desired value.
+    String nature = "service"; // String | Filter on a limited subset of nature
+    String condition = "NEW"; // String | Filter on a limited subset of condition
+    String status = "issued"; // String | Filter on a limited subset of status
+    Boolean shippingAllowed = true; // Boolean | 
+    try {
+      List<OfferCollectionRead> result = apiInstance.apiOffersGetCollection()
+            .page(page)
+            .title(title)
+            .publicUrl(publicUrl)
+            .publicUrl2(publicUrl2)
+            .unitPrice(unitPrice)
+            .unitPrice2(unitPrice2)
+            .itemCount(itemCount)
+            .itemCount2(itemCount2)
+            .createdAtBefore(createdAtBefore)
+            .createdAtStrictlyBefore(createdAtStrictlyBefore)
+            .createdAtAfter(createdAtAfter)
+            .createdAtStrictlyAfter(createdAtStrictlyAfter)
+            .metadata(metadata)
+            .offerMetadata(offerMetadata)
+            .sellerMetadata(sellerMetadata)
+            .nature(nature)
+            .condition(condition)
+            .status(status)
+            .shippingAllowed(shippingAllowed)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#apiOffersGetCollection");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **page** | **Integer**| The collection page number | [optional] [default to 1] |
+| **title** | **String**|  | [optional] |
+| **publicUrl** | **String**|  | [optional] |
+| **publicUrl2** | [**List&lt;String&gt;**](String.md)|  | [optional] |
+| **unitPrice** | **String**|  | [optional] |
+| **unitPrice2** | [**List&lt;String&gt;**](String.md)|  | [optional] |
+| **itemCount** | **Integer**|  | [optional] |
+| **itemCount2** | [**List&lt;Integer&gt;**](Integer.md)|  | [optional] |
+| **createdAtBefore** | **String**|  | [optional] |
+| **createdAtStrictlyBefore** | **String**|  | [optional] |
+| **createdAtAfter** | **String**|  | [optional] |
+| **createdAtStrictlyAfter** | **String**|  | [optional] |
+| **metadata** | [**List&lt;String&gt;**](String.md)| Flattened OrderedMap for metadata. Must be a multiple of two items count. Explicitly set \&quot;null\&quot; for desired value. | [optional] |
+| **offerMetadata** | [**List&lt;String&gt;**](String.md)| Flattened OrderedMap for offer.metadata. Must be a multiple of two items count. Explicitly set \&quot;null\&quot; for desired value. | [optional] |
+| **sellerMetadata** | [**List&lt;String&gt;**](String.md)| Flattened OrderedMap for seller.metadata. Must be a multiple of two items count. Explicitly set \&quot;null\&quot; for desired value. | [optional] |
+| **nature** | **String**| Filter on a limited subset of nature | [optional] [enum: service, physical_item, dematerialized_item, rent_item] |
+| **condition** | **String**| Filter on a limited subset of condition | [optional] [enum: NEW, USED, DAMAGED, DETERIORATED, UNRECOVERABLE] |
+| **status** | **String**| Filter on a limited subset of status | [optional] [enum: issued, active, fulfilled, expired] |
+| **shippingAllowed** | **Boolean**|  | [optional] |
+
+### Return type
+
+[**List&lt;OfferCollectionRead&gt;**](OfferCollectionRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Offer collection |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  * Content-Range - HTTP standardized header for partial content, used for the pagination <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="apiOffersUlidDelete"></a>
+# **apiOffersUlidDelete**
+> apiOffersUlidDelete(ulid).execute();
+
+Disable existing Offer
+
+Make a specific Offer as non longer active
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
+    // Configure OAuth2 access token for authorization: oauth
+    OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
+    oauth.setAccessToken("YOUR ACCESS TOKEN");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    String ulid = "ulid_example"; // String | Offer identifier
+    try {
+      apiInstance.apiOffersUlidDelete(ulid)
+            .execute();
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#apiOffersUlidDelete");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **ulid** | **String**| Offer identifier | |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Offer resource deleted |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="apiOffersUlidGet"></a>
+# **apiOffersUlidGet**
+> OfferRead apiOffersUlidGet(ulid).execute();
+
+Fetch a Offer details
+
+Retrieves a Offer resource.
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
+    // Configure OAuth2 access token for authorization: oauth
+    OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
+    oauth.setAccessToken("YOUR ACCESS TOKEN");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    String ulid = "ulid_example"; // String | Offer identifier
+    try {
+      OfferRead result = apiInstance.apiOffersUlidGet(ulid)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#apiOffersUlidGet");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **ulid** | **String**| Offer identifier | |
+
+### Return type
+
+[**OfferRead**](OfferRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Offer resource |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="apiOffersUlidPatch"></a>
+# **apiOffersUlidPatch**
+> OfferPostCreationRead apiOffersUlidPatch(ulid, offerUpdate).execute();
+
+Update existing Offer
+
+Update your existing Offer and reuse existing generated link
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
+    // Configure OAuth2 access token for authorization: oauth
+    OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
+    oauth.setAccessToken("YOUR ACCESS TOKEN");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    String ulid = "ulid_example"; // String | Offer identifier
+    OfferUpdate offerUpdate = new OfferUpdate(); // OfferUpdate | The updated Offer resource
+    try {
+      OfferPostCreationRead result = apiInstance.apiOffersUlidPatch(ulid, offerUpdate)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#apiOffersUlidPatch");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **ulid** | **String**| Offer identifier | |
+| **offerUpdate** | [**OfferUpdate**](OfferUpdate.md)| The updated Offer resource | |
+
+### Return type
+
+[**OfferPostCreationRead**](OfferPostCreationRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Offer resource updated |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="apiOffersUlidmediasIdDelete"></a>
+# **apiOffersUlidmediasIdDelete**
+> apiOffersUlidmediasIdDelete(ulid, id).execute();
+
+Removes the Media resource.
+
+Removes the Media resource.
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
+    // Configure OAuth2 access token for authorization: oauth
+    OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
+    oauth.setAccessToken("YOUR ACCESS TOKEN");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    String ulid = "ulid_example"; // String | 
+    Integer id = 56; // Integer | 
+    try {
+      apiInstance.apiOffersUlidmediasIdDelete(ulid, id)
+            .execute();
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#apiOffersUlidmediasIdDelete");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **ulid** | **String**|  | |
+| **id** | **Integer**|  | |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Media resource deleted |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="apiOffersUlidmediasPost"></a>
+# **apiOffersUlidmediasPost**
+> MediaRead apiOffersUlidmediasPost(ulid)._file(_file).execute();
+
+Upload a picture for a given Offer
+
+Creates a Media resource.
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.UserApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure OAuth2 access token for authorization: oauth
+    OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
+    oauth.setAccessToken("YOUR ACCESS TOKEN");
+
+    UserApi apiInstance = new UserApi(defaultClient);
+    String ulid = "ulid_example"; // String | 
+    File _file = new File("/path/to/file"); // File | 
+    try {
+      MediaRead result = apiInstance.apiOffersUlidmediasPost(ulid)
+            ._file(_file)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling UserApi#apiOffersUlidmediasPost");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **ulid** | **String**|  | |
+| **_file** | **File**|  | [optional] |
+
+### Return type
+
+[**MediaRead**](MediaRead.md)
+
+### Authorization
+
+[oauth](../README.md#oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Media resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
 | **429** | Rate limit exhausted |  -  |
 | **500** | Unexpected server error |  -  |
 
@@ -1473,7 +1703,7 @@ public class Example {
 
 <a id="apiProofOfIdentitiesPost"></a>
 # **apiProofOfIdentitiesPost**
-> ProofOfIdentityRead apiProofOfIdentitiesPost(body).execute();
+> ProofOfIdentityRead apiProofOfIdentitiesPost(proofOfIdentityWrite).execute();
 
 Submit a slot for a PoI
 
@@ -1501,9 +1731,9 @@ public class Example {
     //jwtPersonalKey.setApiKeyPrefix("Token");
 
     UserApi apiInstance = new UserApi(defaultClient);
-    Object body = null; // Object | The new ProofOfIdentity resource
+    ProofOfIdentityWrite proofOfIdentityWrite = new ProofOfIdentityWrite(); // ProofOfIdentityWrite | The new ProofOfIdentity resource
     try {
-      ProofOfIdentityRead result = apiInstance.apiProofOfIdentitiesPost(body)
+      ProofOfIdentityRead result = apiInstance.apiProofOfIdentitiesPost(proofOfIdentityWrite)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
@@ -1521,7 +1751,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **body** | **Object**| The new ProofOfIdentity resource | |
+| **proofOfIdentityWrite** | [**ProofOfIdentityWrite**](ProofOfIdentityWrite.md)| The new ProofOfIdentity resource | |
 
 ### Return type
 

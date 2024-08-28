@@ -4,6 +4,10 @@ All URIs are relative to *https://staging-api.tripartie.app*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**api_api_clients_get_collection**](AdminApi.md#api_api_clients_get_collection) | **GET** /api-clients | Retrieves the collection of ApiClient resources.
+[**api_api_clients_identifier_delete**](AdminApi.md#api_api_clients_identifier_delete) | **DELETE** /api-clients/{identifier} | Removes the ApiClient resource.
+[**api_api_clients_identifier_get**](AdminApi.md#api_api_clients_identifier_get) | **GET** /api-clients/{identifier} | Retrieves a ApiClient resource.
+[**api_api_clients_post**](AdminApi.md#api_api_clients_post) | **POST** /api-clients | Creates a ApiClient resource.
 [**api_invite_post**](AdminApi.md#api_invite_post) | **POST** /invite | Organization invite
 [**api_organizations_get_collection**](AdminApi.md#api_organizations_get_collection) | **GET** /organizations | Retrieves the collection of Organization resources.
 [**api_organizations_id_get**](AdminApi.md#api_organizations_id_get) | **GET** /organizations/{id} | Retrieves a Organization resource.
@@ -18,7 +22,342 @@ Method | HTTP request | Description
 [**api_users_idpassword_patch**](AdminApi.md#api_users_idpassword_patch) | **PATCH** /users/{id}/password | Change your password
 [**api_users_idtotp_setup_patch**](AdminApi.md#api_users_idtotp_setup_patch) | **PATCH** /users/{id}/totp-setup | Setup an additional authentication factor
 [**api_users_idtotp_toggle_patch**](AdminApi.md#api_users_idtotp_toggle_patch) | **PATCH** /users/{id}/totp-toggle | Disable the second authentication factor
+[**authentication_post**](AdminApi.md#authentication_post) | **POST** /authentication | User authentication
 
+
+# **api_api_clients_get_collection**
+> List[ApiClientRead] api_api_clients_get_collection(page=page)
+
+Retrieves the collection of ApiClient resources.
+
+Retrieves the collection of ApiClient resources.
+
+### Example
+
+* Api Key Authentication (jwtPersonalKey):
+
+```python
+import tpdk_safe_checkout
+from tpdk_safe_checkout.models.api_client_read import ApiClientRead
+from tpdk_safe_checkout.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.tripartie.app
+# See configuration.py for a list of all supported configuration parameters.
+configuration = tpdk_safe_checkout.Configuration(
+    host = "https://staging-api.tripartie.app"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: jwtPersonalKey
+configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with tpdk_safe_checkout.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = tpdk_safe_checkout.AdminApi(api_client)
+    page = 1 # int | The collection page number (optional) (default to 1)
+
+    try:
+        # Retrieves the collection of ApiClient resources.
+        api_response = api_instance.api_api_clients_get_collection(page=page)
+        print("The response of AdminApi->api_api_clients_get_collection:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AdminApi->api_api_clients_get_collection: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **int**| The collection page number | [optional] [default to 1]
+
+### Return type
+
+[**List[ApiClientRead]**](ApiClientRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | ApiClient collection |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  * Content-Range - HTTP standardized header for partial content, used for the pagination <br>  |
+**401** | Authentication required |  -  |
+**403** | Unauthorized access |  -  |
+**429** | Rate limit exhausted |  -  |
+**500** | Unexpected server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **api_api_clients_identifier_delete**
+> api_api_clients_identifier_delete(identifier)
+
+Removes the ApiClient resource.
+
+Removes the ApiClient resource.
+
+### Example
+
+* Api Key Authentication (jwtPersonalKey):
+
+```python
+import tpdk_safe_checkout
+from tpdk_safe_checkout.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.tripartie.app
+# See configuration.py for a list of all supported configuration parameters.
+configuration = tpdk_safe_checkout.Configuration(
+    host = "https://staging-api.tripartie.app"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: jwtPersonalKey
+configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with tpdk_safe_checkout.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = tpdk_safe_checkout.AdminApi(api_client)
+    identifier = 'identifier_example' # str | ApiClient identifier
+
+    try:
+        # Removes the ApiClient resource.
+        api_instance.api_api_clients_identifier_delete(identifier)
+    except Exception as e:
+        print("Exception when calling AdminApi->api_api_clients_identifier_delete: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **identifier** | **str**| ApiClient identifier | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | ApiClient resource deleted |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**401** | Authentication required |  -  |
+**403** | Unauthorized access |  -  |
+**429** | Rate limit exhausted |  -  |
+**500** | Unexpected server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **api_api_clients_identifier_get**
+> ApiClientRead api_api_clients_identifier_get(identifier)
+
+Retrieves a ApiClient resource.
+
+Retrieves a ApiClient resource.
+
+### Example
+
+* Api Key Authentication (jwtPersonalKey):
+
+```python
+import tpdk_safe_checkout
+from tpdk_safe_checkout.models.api_client_read import ApiClientRead
+from tpdk_safe_checkout.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.tripartie.app
+# See configuration.py for a list of all supported configuration parameters.
+configuration = tpdk_safe_checkout.Configuration(
+    host = "https://staging-api.tripartie.app"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: jwtPersonalKey
+configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with tpdk_safe_checkout.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = tpdk_safe_checkout.AdminApi(api_client)
+    identifier = 'identifier_example' # str | ApiClient identifier
+
+    try:
+        # Retrieves a ApiClient resource.
+        api_response = api_instance.api_api_clients_identifier_get(identifier)
+        print("The response of AdminApi->api_api_clients_identifier_get:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AdminApi->api_api_clients_identifier_get: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **identifier** | **str**| ApiClient identifier | 
+
+### Return type
+
+[**ApiClientRead**](ApiClientRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | ApiClient resource |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**401** | Authentication required |  -  |
+**403** | Unauthorized access |  -  |
+**429** | Rate limit exhausted |  -  |
+**500** | Unexpected server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **api_api_clients_post**
+> ApiClientPostCreationRead api_api_clients_post(api_client_write)
+
+Creates a ApiClient resource.
+
+Creates a ApiClient resource.
+
+### Example
+
+* Api Key Authentication (jwtPersonalKey):
+
+```python
+import tpdk_safe_checkout
+from tpdk_safe_checkout.models.api_client_post_creation_read import ApiClientPostCreationRead
+from tpdk_safe_checkout.models.api_client_write import ApiClientWrite
+from tpdk_safe_checkout.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.tripartie.app
+# See configuration.py for a list of all supported configuration parameters.
+configuration = tpdk_safe_checkout.Configuration(
+    host = "https://staging-api.tripartie.app"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: jwtPersonalKey
+configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with tpdk_safe_checkout.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = tpdk_safe_checkout.AdminApi(api_client)
+    api_client_write = tpdk_safe_checkout.ApiClientWrite() # ApiClientWrite | The new ApiClient resource
+
+    try:
+        # Creates a ApiClient resource.
+        api_response = api_instance.api_api_clients_post(api_client_write)
+        print("The response of AdminApi->api_api_clients_post:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AdminApi->api_api_clients_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **api_client_write** | [**ApiClientWrite**](ApiClientWrite.md)| The new ApiClient resource | 
+
+### Return type
+
+[**ApiClientPostCreationRead**](ApiClientPostCreationRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | ApiClient resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**401** | Authentication required |  -  |
+**403** | Unauthorized access |  -  |
+**429** | Rate limit exhausted |  -  |
+**500** | Unexpected server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **api_invite_post**
 > UserPostRegisterRead api_invite_post(user_invite)
@@ -1238,6 +1577,92 @@ Name | Type | Description  | Notes
 **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**429** | Rate limit exhausted |  -  |
+**500** | Unexpected server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **authentication_post**
+> UserJwtCreated authentication_post(user_jwt_write=user_jwt_write)
+
+User authentication
+
+This endpoint is protected by a captcha, do not try to use it to consume our API. IP/CIDR to be banned upon fraudulent/irregular usage. Follow the oauth 2.0 authentication challenge as described in the documentation.
+
+### Example
+
+* Api Key Authentication (jwtPersonalKey):
+* OAuth Authentication (oauth):
+
+```python
+import tpdk_safe_checkout
+from tpdk_safe_checkout.models.user_jwt_created import UserJwtCreated
+from tpdk_safe_checkout.models.user_jwt_write import UserJwtWrite
+from tpdk_safe_checkout.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.tripartie.app
+# See configuration.py for a list of all supported configuration parameters.
+configuration = tpdk_safe_checkout.Configuration(
+    host = "https://staging-api.tripartie.app"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: jwtPersonalKey
+configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with tpdk_safe_checkout.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = tpdk_safe_checkout.AdminApi(api_client)
+    user_jwt_write = tpdk_safe_checkout.UserJwtWrite() # UserJwtWrite |  (optional)
+
+    try:
+        # User authentication
+        api_response = api_instance.authentication_post(user_jwt_write=user_jwt_write)
+        print("The response of AdminApi->authentication_post:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AdminApi->authentication_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_jwt_write** | [**UserJwtWrite**](UserJwtWrite.md)|  | [optional] 
+
+### Return type
+
+[**UserJwtCreated**](UserJwtCreated.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**401** |  |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 **429** | Rate limit exhausted |  -  |
 **500** | Unexpected server error |  -  |
 

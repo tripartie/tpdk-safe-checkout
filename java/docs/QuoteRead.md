@@ -16,6 +16,7 @@ Someone has to ask for a Quote prior to create a transaction and (therefor) char
 |**shippingFees** | **Float** |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  |
 |**expireAt** | **OffsetDateTime** |  |  |
+|**iri** | **String** |  |  [optional] [readonly] |
 
 
 
