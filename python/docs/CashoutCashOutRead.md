@@ -6,6 +6,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **int** |  | [optional] [readonly] 
+**amount** | **float** |  | [optional] 
+**iban** | **str** |  | 
+**bic** | **str** |  | 
+**status** | **str** |  | 
+**created_at** | **datetime** |  | 
+**confirmed_at** | **datetime** |  | 
 **provider_name** | **str** |  | [optional] 
 **provider_created_at** | **datetime** |  | [optional] [readonly] 
 **provider_updated_at** | **datetime** |  | [optional] [readonly] 

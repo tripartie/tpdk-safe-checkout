@@ -8,8 +8,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**publicUrl** | **URI** | The public URL for your Ad/Offer on your marketplace. |  [optional] |
-|**redirectUrl** | **URI** | Fill-in that field IF you intend to redirect your customer instead of using a WebView. |  [optional] |
+|**publicUrl** | **String** | The public URL for your Ad/Offer on your marketplace. |  [optional] |
+|**redirectUrl** | **String** | Fill-in that field IF you intend to redirect your customer instead of using a WebView. |  [optional] |
 |**title** | **String** |  |  [optional] |
 |**description** | **String** |  |  [optional] |
 |**unitPrice** | **Float** |  |  [optional] |

@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.22
+  version: 2.0.23
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -32,6 +32,8 @@ tags:
   name: User
 - description: Internal access for administration purposes
   name: Admin
+- description: Internal access for our checkout tunnel
+  name: Transaction
 paths:
   /api-clients:
     get:
@@ -104,7 +106,7 @@ paths:
       - jwtPersonalKey: []
       summary: Retrieves the collection of ApiClient resources.
       tags:
-      - User
+      - Admin
       x-accepts:
       - application/json
     post:
@@ -190,7 +192,7 @@ paths:
       - jwtPersonalKey: []
       summary: Creates a ApiClient resource.
       tags:
-      - User
+      - Admin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -263,7 +265,7 @@ paths:
       - jwtPersonalKey: []
       summary: Removes the ApiClient resource.
       tags:
-      - User
+      - Admin
       x-accepts:
       - application/json
     get:
@@ -338,7 +340,7 @@ paths:
       - jwtPersonalKey: []
       summary: Retrieves a ApiClient resource.
       tags:
-      - User
+      - Admin
       x-accepts:
       - application/json
   /authentication:
@@ -397,6 +399,7 @@ paths:
       summary: User authentication
       tags:
       - User
+      - Admin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1048,7 +1051,7 @@ paths:
           description: Unexpected server error
       security:
       - jwtPersonalKey: []
-      summary: Updates the Card resource.
+      summary: Push back the tokenization output from the external provider
       tags:
       - User
       x-content-type: application/json
@@ -1209,7 +1212,7 @@ paths:
           description: Unexpected server error
       security:
       - jwtPersonalKey: []
-      summary: Creates a CashOut resource.
+      summary: Withdraw the full amount available in the user wallet to set bank account
       tags:
       - User
       x-content-type: application/json
@@ -1728,9 +1731,11 @@ paths:
       security:
       - oauth:
         - OFFER_READ
+        jwtPersonalKey: []
       summary: Search amongst Offers
       tags:
       - Safe-Checkout
+      - User
       x-accepts:
       - application/json
     post:
@@ -1823,6 +1828,80 @@ paths:
       x-accepts:
       - application/json
   /offers/{ulid}:
+    delete:
+      deprecated: false
+      description: Make a specific Offer as non longer active
+      operationId: api_offers_ulid_delete
+      parameters:
+      - allowReserved: false
+        deprecated: false
+        description: Offer identifier
+        explode: false
+        in: path
+        name: ulid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Offer resource deleted
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: Resource not found
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+          description: Authentication required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessError'
+          description: Unauthorized access
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+          description: Rate limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+          description: Unexpected server error
+      security:
+      - oauth:
+        - OFFER_WRITE
+        jwtPersonalKey: []
+      summary: Disable existing Offer
+      tags:
+      - Safe-Checkout
+      - User
+      x-accepts:
+      - application/json
     get:
       deprecated: false
       description: Retrieves a Offer resource.
@@ -1882,6 +1961,7 @@ paths:
       summary: Fetch a Offer details
       tags:
       - Safe-Checkout
+      - User
       x-accepts:
       - application/json
     patch:
@@ -1990,9 +2070,11 @@ paths:
       security:
       - oauth:
         - OFFER_WRITE
+        jwtPersonalKey: []
       summary: Update existing Offer
       tags:
       - Safe-Checkout
+      - User
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -2093,6 +2175,7 @@ paths:
       summary: Upload a picture for a given Offer
       tags:
       - Safe-Checkout
+      - User
       x-content-type: multipart/form-data
       x-accepts:
       - application/json
@@ -2179,6 +2262,7 @@ paths:
       summary: Removes the Media resource.
       tags:
       - Safe-Checkout
+      - User
       x-accepts:
       - application/json
   /organizations:
@@ -6548,7 +6632,36 @@ components:
     BankAccount-Read:
       deprecated: false
       description: ""
-      type: object
+      example:
+        processorStatus: unallocated
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+        providerName: providerName
+      properties:
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
+          readOnly: true
+          type: string
     BankAccount-UserRead:
       deprecated: false
       description: ""
@@ -6614,16 +6727,22 @@ components:
       deprecated: false
       description: ""
       example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
+        iri: https://example.com/
         metadata:
         - value: "54412"
           key: External-ID
         - value: "54412"
           key: External-ID
-        countryCode: countryCode
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         primaryAccountNumber: primaryAccountNumber
-        currency: currency
         expireAt: 2000-01-23T04:56:07.000+00:00
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        processorStatus: unallocated
+        countryCode: countryCode
+        currency: currency
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+        brand: brand
+        providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         primaryAccountNumber:
@@ -6638,6 +6757,9 @@ components:
         countryCode:
           nullable: true
           type: string
+        brand:
+          nullable: true
+          type: string
         createdAt:
           format: date-time
           type: string
@@ -6648,6 +6770,35 @@ components:
           items:
             $ref: '#/components/schemas/Card-Metadata-CollectionRead'
           type: array
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        iri:
+          example: https://example.com/
+          format: iri-reference
+          readOnly: true
+          type: string
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
+          readOnly: true
+          type: string
       required:
       - createdAt
       - expireAt
@@ -6698,16 +6849,22 @@ components:
       deprecated: false
       description: ""
       example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
+        iri: https://example.com/
         metadata:
         - value: "54412"
           key: External-ID
         - value: "54412"
           key: External-ID
-        countryCode: countryCode
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         primaryAccountNumber: primaryAccountNumber
-        currency: currency
         expireAt: 2000-01-23T04:56:07.000+00:00
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        processorStatus: unallocated
+        countryCode: countryCode
+        currency: currency
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+        brand: brand
+        providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         primaryAccountNumber:
@@ -6722,6 +6879,9 @@ components:
         countryCode:
           nullable: true
           type: string
+        brand:
+          nullable: true
+          type: string
         createdAt:
           format: date-time
           type: string
@@ -6732,6 +6892,35 @@ components:
           items:
             $ref: '#/components/schemas/Card-Metadata-Read'
           type: array
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        iri:
+          example: https://example.com/
+          format: iri-reference
+          readOnly: true
+          type: string
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
+          readOnly: true
+          type: string
       required:
       - createdAt
       - expireAt
@@ -6748,15 +6937,17 @@ components:
       deprecated: false
       description: ""
       example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        processorStatus: unallocated
+        iri: https://example.com/
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
-        countryCode: countryCode
         ephemeral: true
         primaryAccountNumber: primaryAccountNumber
+        expireAt: 2000-01-23T04:56:07.000+00:00
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        processorStatus: unallocated
+        countryCode: countryCode
         currency: currency
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
-        expireAt: 2000-01-23T04:56:07.000+00:00
+        brand: brand
         providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -6772,7 +6963,12 @@ components:
         countryCode:
           nullable: true
           type: string
+        brand:
+          nullable: true
+          type: string
         ephemeral:
+          default: true
+          example: true
           type: boolean
         createdAt:
           format: date-time
@@ -6793,6 +6989,11 @@ components:
           nullable: true
           readOnly: true
           type: string
+        iri:
+          example: https://example.com/
+          format: iri-reference
+          readOnly: true
+          type: string
         processorStatus:
           description: Automagically infer on what state the entity is at the Payment
             Processor.
@@ -6806,26 +7007,100 @@ components:
           type: string
       required:
       - createdAt
-      - ephemeral
       - expireAt
       - updatedAt
     Card-Write:
       deprecated: false
       description: ""
-      type: object
+      properties:
+        ephemeral:
+          default: true
+          example: true
+          type: boolean
+      required:
+      - ephemeral
     Cashout-CashOut-CollectionRead:
       deprecated: false
       description: ""
-      type: object
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        amount: 6.0274563
+        iban: iban
+        id: 0
+        confirmedAt: 2000-01-23T04:56:07.000+00:00
+        bic: bic
+        status: created
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        amount:
+          format: float
+          type: number
+        iban:
+          type: string
+        bic:
+          type: string
+        status:
+          enum:
+          - created
+          - submitted
+          - refused
+          - blocked
+          - accepted
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        confirmedAt:
+          format: date-time
+          type: string
+      required:
+      - bic
+      - confirmedAt
+      - createdAt
+      - iban
+      - status
     Cashout-CashOut-Read:
       deprecated: false
       description: ""
       example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        amount: 6.0274563
         processorStatus: unallocated
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        iban: iban
+        id: 0
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+        confirmedAt: 2000-01-23T04:56:07.000+00:00
+        bic: bic
         providerName: providerName
+        status: created
       properties:
+        id:
+          readOnly: true
+          type: integer
+        amount:
+          format: float
+          type: number
+        iban:
+          type: string
+        bic:
+          type: string
+        status:
+          enum:
+          - created
+          - submitted
+          - refused
+          - blocked
+          - accepted
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        confirmedAt:
+          format: date-time
+          type: string
         providerName:
           nullable: true
           type: string
@@ -6850,10 +7125,19 @@ components:
           - outdated
           readOnly: true
           type: string
+      required:
+      - bic
+      - confirmedAt
+      - createdAt
+      - iban
+      - status
     Cashout-CashOut-Write:
       deprecated: false
       description: ""
-      type: object
+      properties:
+        captcha:
+          nullable: true
+          type: string
     Media:
       deprecated: false
       description: ""
@@ -6920,8 +7204,12 @@ components:
       description: ""
       example:
         publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+        id: 0
         thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
       properties:
+        id:
+          readOnly: true
+          type: integer
         publicUrl:
           example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           type: string
@@ -6935,7 +7223,11 @@ components:
       description: ""
       example:
         publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+        id: 6
       properties:
+        id:
+          readOnly: true
+          type: integer
         publicUrl:
           example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           externalDocs:
@@ -6973,6 +7265,211 @@ components:
           example: "54412"
           nullable: true
           type: string
+    Offer:
+      deprecated: false
+      description: ""
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        ulid:
+          type: string
+        status:
+          enum:
+          - issued
+          - active
+          - fulfilled
+          - expired
+          type: string
+        publicUrl:
+          description: The public URL for your Ad/Offer on your marketplace.
+          example: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
+          nullable: true
+          type: string
+        redirectUrl:
+          description: Fill-in that field IF you intend to redirect your customer
+            instead of using a WebView.
+          example: https://marketplace.tld/offers/that-special-item-i-wish-to-sold?checkout=true
+          nullable: true
+          type: string
+        url:
+          example: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
+          externalDocs:
+            url: https://schema.org/url
+          format: uri
+          nullable: true
+          readOnly: true
+          type: string
+        organization:
+          example: https://example.com/
+          format: iri-reference
+          nullable: true
+          type: string
+        seller:
+          example: https://example.com/
+          format: iri-reference
+          type: string
+        presetBuyer:
+          description: Limit the offer to a particular buyer. Useful if the offer
+            was issued from an auction for instance.
+          example: https://example.com/
+          format: iri-reference
+          nullable: true
+          type: string
+        nature:
+          default: physical_item
+          description: This WILL affect the assigned workflow. Choosing service will
+            disable delivery for example. Refer to our technical hub for more information.
+          enum:
+          - service
+          - physical_item
+          - dematerialized_item
+          - rent_item
+          example: physical_item
+          type: string
+        title:
+          example: ASUS TUF X570-PLUS GAMING Motherboard
+          type: string
+        description:
+          example: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\
+            \ eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim\
+            \ ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip\
+            \ ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate\
+            \ velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat\
+            \ cupidatat non proident, sunt in culpa qui officia deserunt mollit anim\
+            \ id est laborum."
+          nullable: true
+          type: string
+        unitPrice:
+          format: float
+          type: number
+        minNegotiableUnitPrice:
+          format: float
+          type: number
+        allowToNegotiateUnitPrice:
+          type: boolean
+        currencyCode:
+          default: EUR
+          example: EUR
+          type: string
+        itemCount:
+          default: 1
+          example: 1
+          type: integer
+        condition:
+          default: USED
+          enum:
+          - NEW
+          - USED
+          - DAMAGED
+          - DETERIORATED
+          - UNRECOVERABLE
+          example: USED
+          type: string
+        weightInGram:
+          description: "Accepted values between 500g (0.5kg) and 10,000g (10kg)."
+          type: integer
+        shippingAllowed:
+          description: "That toggle allows the seller to propose shipping for its\
+            \ item. If set in conjunction of shippingCarrier, the label will be automatically\
+            \ generated. Also, it will restrict the carrier to the limited subset\
+            \ defined."
+          type: boolean
+        handDeliveryAllowed:
+          default: true
+          description: Enable both parties to finalize the transaction in person rather
+            than using delivery. A QR Code must be scanned by the seller once the
+            buyer claims the product.
+          example: true
+          type: boolean
+        shippingCarriers:
+          description: "If you wish to enable automated shipping label generation\
+            \ through a specific provider, specify it there."
+          items:
+            enum:
+            - SwissPost
+            - Colissimo
+            - MondialRelay
+            type: string
+          type: array
+        eanCode:
+          example: "4718017388450"
+          nullable: true
+          type: string
+        canBeSoldSeparately:
+          default: true
+          description: Set this flag to false to forbid a potential buyer to acquire
+            less than "itemCount" item(s)
+          example: true
+          type: boolean
+        metadata:
+          items:
+            $ref: '#/components/schemas/Metadata'
+          type: array
+        medias:
+          items:
+            example: https://example.com/
+            format: iri-reference
+            type: string
+          type: array
+        views:
+          items:
+            $ref: '#/components/schemas/View'
+          type: array
+        transactions:
+          items:
+            example: https://example.com/
+            format: iri-reference
+            type: string
+          type: array
+        quotes:
+          items:
+            example: https://example.com/
+            format: iri-reference
+            type: string
+          type: array
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        presetBuyerId:
+          example: 42
+          nullable: true
+          readOnly: true
+          type: integer
+        sellerId:
+          example: 58
+          nullable: true
+          readOnly: true
+          type: integer
+        iri:
+          example: https://example.com/
+          format: iri-reference
+          readOnly: true
+          type: string
+        halfPricePoint:
+          nullable: true
+          readOnly: true
+          type: number
+      required:
+      - allowToNegotiateUnitPrice
+      - canBeSoldSeparately
+      - currencyCode
+      - handDeliveryAllowed
+      - medias
+      - nature
+      - seller
+      - shippingAllowed
+      - status
+      - ulid
+      - url
+      - views
+      - weightInGram
     Offer-Address-IndependentWrite:
       deprecated: false
       description: ""
@@ -7279,7 +7776,11 @@ components:
       description: ""
       example:
         publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+        id: 6
       properties:
+        id:
+          readOnly: true
+          type: integer
         publicUrl:
           example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           externalDocs:
@@ -7324,9 +7825,11 @@ components:
         name: name
         icon:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
         primaryColor: primaryColor
         logo:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
         customBaseUrl: customBaseUrl
       properties:
         name:
@@ -7454,7 +7957,9 @@ components:
         weightInGram: 6
         medias:
         - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
         - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
         createdAt: 2000-01-23T04:56:07.000+00:00
         condition: USED
         shippingCarriers:
@@ -7466,9 +7971,11 @@ components:
           name: name
           icon:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
           primaryColor: primaryColor
           logo:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
           customBaseUrl: customBaseUrl
         publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
         currencyCode: EUR
@@ -7610,25 +8117,17 @@ components:
         publicUrl:
           description: The public URL for your Ad/Offer on your marketplace.
           example: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
-          externalDocs:
-            url: https://schema.org/url
-          format: uri
           nullable: true
           type: string
         redirectUrl:
           description: Fill-in that field IF you intend to redirect your customer
             instead of using a WebView.
           example: https://marketplace.tld/offers/that-special-item-i-wish-to-sold?checkout=true
-          externalDocs:
-            url: https://schema.org/url
-          format: uri
           nullable: true
           type: string
         title:
           example: ASUS TUF X570-PLUS GAMING Motherboard
-          maxLength: 250
           type: string
-          nullable: true
         description:
           example: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\
             \ eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim\
@@ -7637,10 +8136,8 @@ components:
             \ velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat\
             \ cupidatat non proident, sunt in culpa qui officia deserunt mollit anim\
             \ id est laborum."
-          maxLength: 100000
           nullable: true
           type: string
-          nullable: true
         unitPrice:
           format: float
           type: number
@@ -7652,10 +8149,7 @@ components:
         currencyCode:
           default: EUR
           example: EUR
-          externalDocs:
-            url: https://schema.org/priceCurrency
           type: string
-          nullable: true
         shippingAllowed:
           description: "That toggle allows the seller to propose shipping for its\
             \ item. If set in conjunction of shippingCarrier, the label will be automatically\
@@ -7835,8 +8329,10 @@ components:
         name: name
         icon:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
         logo:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
         id: 0
         commercialRegistryNumber: commercialRegistryNumber
         vatNumber: vatNumber
@@ -7863,7 +8359,11 @@ components:
       description: ""
       example:
         publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+        id: 6
       properties:
+        id:
+          readOnly: true
+          type: integer
         publicUrl:
           example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           externalDocs:
@@ -7877,7 +8377,11 @@ components:
       description: ""
       example:
         publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+        id: 6
       properties:
+        id:
+          readOnly: true
+          type: integer
         publicUrl:
           example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           externalDocs:
@@ -7895,9 +8399,11 @@ components:
         name: name
         icon:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
         primaryColor: primaryColor
         logo:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
         commercialRegistryNumber: commercialRegistryNumber
         customBaseUrl: customBaseUrl
         vatNumber: vatNumber
@@ -7968,8 +8474,10 @@ components:
         name: name
         icon:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
         logo:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
         id: 6
       properties:
         id:
@@ -8459,8 +8967,10 @@ components:
           name: name
           icon:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
           logo:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
           id: 6
       properties:
         organization:
@@ -8529,6 +9039,7 @@ components:
         processorStatus: unallocated
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+        type: national_id
         originalFilename: originalFilename
         providerName: providerName
         status: drafted
@@ -8541,6 +9052,12 @@ components:
           - submitted
           - accepted
           - refused
+          - blocked
+          type: string
+        type:
+          enum:
+          - national_id
+          - passport
           type: string
         originalFilename:
           nullable: true
@@ -8581,6 +9098,7 @@ components:
       - createdAt
       - extension
       - status
+      - type
       - updatedAt
     ProofOfIdentity-Read:
       deprecated: false
@@ -8591,6 +9109,7 @@ components:
         processorStatus: unallocated
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+        type: national_id
         originalFilename: originalFilename
         providerName: providerName
         status: drafted
@@ -8603,6 +9122,12 @@ components:
           - submitted
           - accepted
           - refused
+          - blocked
+          type: string
+        type:
+          enum:
+          - national_id
+          - passport
           type: string
         originalFilename:
           nullable: true
@@ -8643,11 +9168,19 @@ components:
       - createdAt
       - extension
       - status
+      - type
       - updatedAt
     ProofOfIdentity-Write:
       deprecated: false
       description: ""
-      type: object
+      properties:
+        type:
+          enum:
+          - national_id
+          - passport
+          type: string
+      required:
+      - type
     Quote-Read:
       deprecated: false
       description: |-
@@ -8656,6 +9189,7 @@ components:
         of money.
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
+        iri: https://example.com/
         shippingFees: 1.4658129
         quantityToBeAcquired: 1
         ulid: ulid
@@ -8690,6 +9224,11 @@ components:
           type: string
         expireAt:
           format: date-time
+          type: string
+        iri:
+          example: https://example.com/
+          format: iri-reference
+          readOnly: true
           type: string
       required:
       - createdAt
@@ -8755,10 +9294,54 @@ components:
       deprecated: false
       description: ""
       type: object
+    Transaction-Card-Read:
+      deprecated: false
+      description: ""
+      example:
+        processorStatus: unallocated
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+        providerName: providerName
+      properties:
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
+          readOnly: true
+          type: string
     Transaction-CollectionRead:
       deprecated: false
       description: ""
       example:
+        totalFees: 4.145608029883936
+        fees: 7.061401241503109
+        ulid: ulid
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        awaitedParty: BUYER
+        totalCharged: 2.027123023002322
+        statusExpiration: 2000-01-23T04:56:07.000+00:00
+        buyer:
+          firstName: John
+          lastName: Doe
+          id: 0
         offer:
           seller:
             firstName: John
@@ -8784,11 +9367,11 @@ components:
             id: 0
           status: issued
           updatedAt: 2000-01-23T04:56:07.000+00:00
-        totalFees: 4.145608029883936
-        fees: 7.061401241503109
         total: 3.616076749251911
+        processorStatus: unallocated
         quote:
           createdAt: 2000-01-23T04:56:07.000+00:00
+          iri: https://example.com/
           shippingFees: 2.302136
           quantityToBeAcquired: 1
           ulid: ulid
@@ -8796,15 +9379,9 @@ components:
           attemptUnitPrice: 5.962134
           transactionFees: 5.637377
           expireAt: 2000-01-23T04:56:07.000+00:00
-        ulid: ulid
         supplementalFees: 9.301444243932576
-        awaitedParty: BUYER
-        totalCharged: 2.027123023002322
-        statusExpiration: 2000-01-23T04:56:07.000+00:00
-        buyer:
-          firstName: John
-          lastName: Doe
-          id: 0
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+        providerName: providerName
         status: CREATED
       properties:
         ulid:
@@ -8837,6 +9414,19 @@ components:
         supplementalFees:
           nullable: true
           type: number
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
         total:
           readOnly: true
           type: number
@@ -8860,6 +9450,17 @@ components:
             expire.
           format: date-time
           nullable: true
+          readOnly: true
+          type: string
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
           readOnly: true
           type: string
       required:
@@ -9314,6 +9915,7 @@ components:
       description: ""
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
+        iri: https://example.com/
         shippingFees: 2.302136
         quantityToBeAcquired: 1
         ulid: ulid
@@ -9348,6 +9950,11 @@ components:
           type: string
         expireAt:
           format: date-time
+          type: string
+        iri:
+          example: https://example.com/
+          format: iri-reference
+          readOnly: true
           type: string
       required:
       - createdAt
@@ -9360,6 +9967,7 @@ components:
       description: ""
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
+        iri: https://example.com/
         shippingFees: 2.302136
         quantityToBeAcquired: 1
         ulid: ulid
@@ -9394,6 +10002,11 @@ components:
           type: string
         expireAt:
           format: date-time
+          type: string
+        iri:
+          example: https://example.com/
+          format: iri-reference
+          readOnly: true
           type: string
       required:
       - createdAt
@@ -9469,6 +10082,7 @@ components:
         total: 3.616076749251911
         quote:
           createdAt: 2000-01-23T04:56:07.000+00:00
+          iri: https://example.com/
           shippingFees: 2.302136
           quantityToBeAcquired: 1
           ulid: ulid
@@ -9478,9 +10092,16 @@ components:
           expireAt: 2000-01-23T04:56:07.000+00:00
         remotePreAuthorizationId: remotePreAuthorizationId
         review: review
-        escrow: "{}"
+        escrow:
+          processorStatus: unallocated
+          providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+          providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+          providerName: providerName
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+        providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
         balanceToRefund: 2.3021358869347655
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         awaitedParty: BUYER
         totalCharged: 2.027123023002322
         statusExpiration: 2000-01-23T04:56:07.000+00:00
@@ -9493,10 +10114,15 @@ components:
           language: fr
           id: 0
           email: john.doe@gmail.com
+        processorStatus: unallocated
         supplementalFees: 5.637376656633329
         forceRefundShipping: true
         feesToRefund: 7.061401241503109
-        card: https://example.com/
+        card:
+          processorStatus: unallocated
+          providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+          providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+          providerName: providerName
         status: CREATED
         parcels:
         - identifier: 8J001271466474
@@ -9547,14 +10173,9 @@ components:
           nullable: true
           type: number
         card:
-          example: https://example.com/
-          format: iri-reference
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/Transaction-Card-Read'
         escrow:
-          deprecated: false
-          description: ""
-          type: object
+          $ref: '#/components/schemas/Transaction-Wallet-Read'
         remotePreAuthorizationId:
           nullable: true
           type: string
@@ -9592,6 +10213,19 @@ components:
           format: date-time
           nullable: true
           type: string
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
         total:
           readOnly: true
           type: number
@@ -9615,6 +10249,17 @@ components:
             expire.
           format: date-time
           nullable: true
+          readOnly: true
+          type: string
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
           readOnly: true
           type: string
       required:
@@ -9673,7 +10318,36 @@ components:
     Transaction-Wallet-Read:
       deprecated: false
       description: ""
-      type: object
+      example:
+        processorStatus: unallocated
+        providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+        providerName: providerName
+      properties:
+        providerName:
+          nullable: true
+          type: string
+        providerCreatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        providerUpdatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+        processorStatus:
+          description: Automagically infer on what state the entity is at the Payment
+            Processor.
+          enum:
+          - unallocated
+          - allocating
+          - allocated
+          - freed
+          - outdated
+          readOnly: true
+          type: string
     Transaction-Write:
       deprecated: false
       description: ""
@@ -9725,26 +10399,30 @@ components:
         lastName: TAHRI
         preferredLanguage: fr
         cards:
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          processorStatus: unallocated
+        - iri: https://example.com/
           providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
-          countryCode: countryCode
           ephemeral: true
           primaryAccountNumber: primaryAccountNumber
+          expireAt: 2000-01-23T04:56:07.000+00:00
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          processorStatus: unallocated
+          countryCode: countryCode
           currency: currency
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
-          expireAt: 2000-01-23T04:56:07.000+00:00
+          brand: brand
           providerName: providerName
           updatedAt: 2000-01-23T04:56:07.000+00:00
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          processorStatus: unallocated
+        - iri: https://example.com/
           providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
-          countryCode: countryCode
           ephemeral: true
           primaryAccountNumber: primaryAccountNumber
+          expireAt: 2000-01-23T04:56:07.000+00:00
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          processorStatus: unallocated
+          countryCode: countryCode
           currency: currency
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
-          expireAt: 2000-01-23T04:56:07.000+00:00
+          brand: brand
           providerName: providerName
           updatedAt: 2000-01-23T04:56:07.000+00:00
         roles:
@@ -9775,7 +10453,7 @@ components:
         wallet:
           createdAt: 2000-01-23T04:56:07.000+00:00
           processorStatus: unallocated
-          balance: 1.4658129
+          balance: 5.962134
           providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
           providerName: providerName
@@ -9788,19 +10466,24 @@ components:
             name: name
             icon:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+              id: 6
             logo:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
-            id: 6
+              id: 6
+            id: 1
         - organization:
             domainVerified: true
             name: name
             icon:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+              id: 6
             logo:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
-            id: 6
+              id: 6
+            id: 1
         avatar:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
         mainAddress: "{}"
         consentMailAds: true
         firstName: Jacob
@@ -9810,9 +10493,11 @@ components:
           name: name
           icon:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
           logo:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
-          id: 6
+            id: 6
+          id: 1
         originCountry: FRA
         roleInCompany: Accounting Dpt
         homeCountry: FRA
@@ -10015,15 +10700,17 @@ components:
       deprecated: false
       description: ""
       example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        processorStatus: unallocated
+        iri: https://example.com/
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
-        countryCode: countryCode
         ephemeral: true
         primaryAccountNumber: primaryAccountNumber
+        expireAt: 2000-01-23T04:56:07.000+00:00
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        processorStatus: unallocated
+        countryCode: countryCode
         currency: currency
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
-        expireAt: 2000-01-23T04:56:07.000+00:00
+        brand: brand
         providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -10039,7 +10726,12 @@ components:
         countryCode:
           nullable: true
           type: string
+        brand:
+          nullable: true
+          type: string
         ephemeral:
+          default: true
+          example: true
           type: boolean
         createdAt:
           format: date-time
@@ -10060,6 +10752,11 @@ components:
           nullable: true
           readOnly: true
           type: string
+        iri:
+          example: https://example.com/
+          format: iri-reference
+          readOnly: true
+          type: string
         processorStatus:
           description: Automagically infer on what state the entity is at the Payment
             Processor.
@@ -10073,7 +10770,6 @@ components:
           type: string
       required:
       - createdAt
-      - ephemeral
       - expireAt
       - updatedAt
     User-CollectionRead:
@@ -10098,6 +10794,7 @@ components:
         externalId: externalId
         avatar:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
         mainAddress: "{}"
         totpEnabled: true
         intlPhoneNumber: "+33700000000"
@@ -10285,7 +10982,11 @@ components:
       description: ""
       example:
         publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+        id: 6
       properties:
+        id:
+          readOnly: true
+          type: integer
         publicUrl:
           example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           externalDocs:
@@ -10299,7 +11000,11 @@ components:
       description: ""
       example:
         publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+        id: 6
       properties:
+        id:
+          readOnly: true
+          type: integer
         publicUrl:
           example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           externalDocs:
@@ -10313,7 +11018,11 @@ components:
       description: ""
       example:
         publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+        id: 6
       properties:
+        id:
+          readOnly: true
+          type: integer
         publicUrl:
           example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           externalDocs:
@@ -10327,7 +11036,11 @@ components:
       description: ""
       example:
         publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+        id: 6
       properties:
+        id:
+          readOnly: true
+          type: integer
         publicUrl:
           example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           externalDocs:
@@ -10344,9 +11057,11 @@ components:
         name: name
         icon:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
         logo:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
-        id: 6
+          id: 6
+        id: 1
       properties:
         id:
           readOnly: true
@@ -10381,8 +11096,10 @@ components:
         name: name
         icon:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
         logo:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
         id: 0
       properties:
         id:
@@ -10420,9 +11137,11 @@ components:
           name: name
           icon:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
           logo:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
-          id: 6
+            id: 6
+          id: 1
       properties:
         organization:
           $ref: '#/components/schemas/User-Organization-AuthenticatedRead'
@@ -10463,6 +11182,7 @@ components:
         externalId: externalId
         avatar:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
         mainAddress: "{}"
         totpEnabled: true
         intlPhoneNumber: "+33700000000"
@@ -10696,26 +11416,30 @@ components:
         lastName: TAHRI
         preferredLanguage: fr
         cards:
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          processorStatus: unallocated
+        - iri: https://example.com/
           providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
-          countryCode: countryCode
           ephemeral: true
           primaryAccountNumber: primaryAccountNumber
+          expireAt: 2000-01-23T04:56:07.000+00:00
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          processorStatus: unallocated
+          countryCode: countryCode
           currency: currency
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
-          expireAt: 2000-01-23T04:56:07.000+00:00
+          brand: brand
           providerName: providerName
           updatedAt: 2000-01-23T04:56:07.000+00:00
-        - createdAt: 2000-01-23T04:56:07.000+00:00
-          processorStatus: unallocated
+        - iri: https://example.com/
           providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
-          countryCode: countryCode
           ephemeral: true
           primaryAccountNumber: primaryAccountNumber
+          expireAt: 2000-01-23T04:56:07.000+00:00
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          processorStatus: unallocated
+          countryCode: countryCode
           currency: currency
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
-          expireAt: 2000-01-23T04:56:07.000+00:00
+          brand: brand
           providerName: providerName
           updatedAt: 2000-01-23T04:56:07.000+00:00
         roles:
@@ -10746,7 +11470,7 @@ components:
         wallet:
           createdAt: 2000-01-23T04:56:07.000+00:00
           processorStatus: unallocated
-          balance: 1.4658129
+          balance: 5.962134
           providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
           providerName: providerName
@@ -10759,19 +11483,24 @@ components:
             name: name
             icon:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+              id: 6
             logo:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+              id: 6
             id: 6
         - organization:
             domainVerified: true
             name: name
             icon:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+              id: 6
             logo:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+              id: 6
             id: 6
         avatar:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
         mainAddress: "{}"
         consentMailAds: true
         firstName: Jacob
@@ -10781,8 +11510,10 @@ components:
           name: name
           icon:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
           logo:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
           id: 6
         originCountry: FRA
         roleInCompany: Accounting Dpt
@@ -10935,7 +11666,7 @@ components:
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
         processorStatus: unallocated
-        balance: 1.4658129
+        balance: 5.962134
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         providerName: providerName
@@ -11168,13 +11899,57 @@ components:
           format: iri-reference
           readOnly: true
           type: string
+    View:
+      deprecated: false
+      description: ""
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        ipAddress:
+          type: string
+        offer:
+          example: https://example.com/
+          format: iri-reference
+          nullable: true
+          type: string
+        transaction:
+          example: https://example.com/
+          format: iri-reference
+          nullable: true
+          type: string
+        user:
+          example: https://example.com/
+          format: iri-reference
+          nullable: true
+          type: string
+        hitCount:
+          default: 1
+          example: 1
+          type: integer
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        namedSource:
+          enum:
+          - BUYER
+          - PLATFORM
+          - SELLER
+          - OTHER
+          readOnly: true
+          type: string
+          nullable: true
+      required:
+      - hitCount
+      - ipAddress
     Wallet-UserRead:
       deprecated: false
       description: ""
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
         processorStatus: unallocated
-        balance: 1.4658129
+        balance: 5.962134
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         providerName: providerName
@@ -11436,7 +12211,9 @@ components:
           weightInGram: 6
           medias:
           - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
           - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
           createdAt: 2000-01-23T04:56:07.000+00:00
           condition: USED
           shippingCarriers:
@@ -11448,9 +12225,11 @@ components:
             name: name
             icon:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+              id: 6
             primaryColor: primaryColor
             logo:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+              id: 6
             customBaseUrl: customBaseUrl
           publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
           currencyCode: EUR

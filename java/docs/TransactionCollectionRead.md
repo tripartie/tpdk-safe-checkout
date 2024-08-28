@@ -15,11 +15,15 @@
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**fees** | **BigDecimal** |  |  [optional] |
 |**supplementalFees** | **BigDecimal** |  |  [optional] |
+|**providerName** | **String** |  |  [optional] |
+|**providerCreatedAt** | **OffsetDateTime** |  |  [optional] [readonly] |
+|**providerUpdatedAt** | **OffsetDateTime** |  |  [optional] [readonly] |
 |**total** | **BigDecimal** |  |  [optional] [readonly] |
 |**totalCharged** | **BigDecimal** |  |  [optional] [readonly] |
 |**totalFees** | **BigDecimal** |  |  [optional] [readonly] |
 |**awaitedParty** | [**AwaitedPartyEnum**](#AwaitedPartyEnum) | Determine who is awaited (actor) for the next transition |  [optional] [readonly] |
 |**statusExpiration** | **OffsetDateTime** | Yield if eligible the date-time at which the transaction state expire. |  [optional] [readonly] |
+|**processorStatus** | [**ProcessorStatusEnum**](#ProcessorStatusEnum) | Automagically infer on what state the entity is at the Payment Processor. |  [optional] [readonly] |
 
 
 
@@ -49,6 +53,18 @@
 | BUYER | &quot;BUYER&quot; |
 | PLATFORM | &quot;PLATFORM&quot; |
 | SELLER | &quot;SELLER&quot; |
+
+
+
+## Enum: ProcessorStatusEnum
+
+| Name | Value |
+|---- | -----|
+| UNALLOCATED | &quot;unallocated&quot; |
+| ALLOCATING | &quot;allocating&quot; |
+| ALLOCATED | &quot;allocated&quot; |
+| FREED | &quot;freed&quot; |
+| OUTDATED | &quot;outdated&quot; |
 
 
 

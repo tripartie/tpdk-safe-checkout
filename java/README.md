@@ -1,8 +1,8 @@
 # safecheckout
 
 Safe Checkout
-- API version: 2.0.22
-  - Build date: 2024-08-27T05:45:47.354544Z[Etc/UTC]
+- API version: 2.0.23
+  - Build date: 2024-08-28T04:52:53.273673Z[Etc/UTC]
   - Generator version: 7.8.0
 
 Simple, yet elegant web interfaces for your convenience. One request away from your first secured C2C transaction.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.tripartie</groupId>
   <artifactId>safecheckout</artifactId>
-  <version>2.0.22</version>
+  <version>2.0.23</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.tripartie:safecheckout:2.0.22"
+     implementation "com.tripartie:safecheckout:2.0.23"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/safecheckout-2.0.22.jar`
+* `target/safecheckout-2.0.23.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -100,18 +100,15 @@ public class Example {
     // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
     //jwtPersonalKey.setApiKeyPrefix("Token");
 
-    // Configure OAuth2 access token for authorization: oauth
-    OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
-    oauth.setAccessToken("YOUR ACCESS TOKEN");
-
     AdminApi apiInstance = new AdminApi(defaultClient);
-    UserInvite userInvite = new UserInvite(); // UserInvite | The new User resource
+    Integer page = 1; // Integer | The collection page number
     try {
-      UserPostRegisterRead result = apiInstance.apiInvitePost(userInvite)
+      List<ApiClientRead> result = apiInstance.apiApiClientsGetCollection()
+            .page(page)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling AdminApi#apiInvitePost");
+      System.err.println("Exception when calling AdminApi#apiApiClientsGetCollection");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -128,6 +125,10 @@ All URIs are relative to *https://staging-api.tripartie.app*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AdminApi* | [**apiApiClientsGetCollection**](docs/AdminApi.md#apiApiClientsGetCollection) | **GET** /api-clients | Retrieves the collection of ApiClient resources.
+*AdminApi* | [**apiApiClientsIdentifierDelete**](docs/AdminApi.md#apiApiClientsIdentifierDelete) | **DELETE** /api-clients/{identifier} | Removes the ApiClient resource.
+*AdminApi* | [**apiApiClientsIdentifierGet**](docs/AdminApi.md#apiApiClientsIdentifierGet) | **GET** /api-clients/{identifier} | Retrieves a ApiClient resource.
+*AdminApi* | [**apiApiClientsPost**](docs/AdminApi.md#apiApiClientsPost) | **POST** /api-clients | Creates a ApiClient resource.
 *AdminApi* | [**apiInvitePost**](docs/AdminApi.md#apiInvitePost) | **POST** /invite | Organization invite
 *AdminApi* | [**apiOrganizationsGetCollection**](docs/AdminApi.md#apiOrganizationsGetCollection) | **GET** /organizations | Retrieves the collection of Organization resources.
 *AdminApi* | [**apiOrganizationsIdGet**](docs/AdminApi.md#apiOrganizationsIdGet) | **GET** /organizations/{id} | Retrieves a Organization resource.
@@ -142,6 +143,7 @@ Class | Method | HTTP request | Description
 *AdminApi* | [**apiUsersIdpasswordPatch**](docs/AdminApi.md#apiUsersIdpasswordPatch) | **PATCH** /users/{id}/password | Change your password
 *AdminApi* | [**apiUsersIdtotpSetupPatch**](docs/AdminApi.md#apiUsersIdtotpSetupPatch) | **PATCH** /users/{id}/totp-setup | Setup an additional authentication factor
 *AdminApi* | [**apiUsersIdtotpTogglePatch**](docs/AdminApi.md#apiUsersIdtotpTogglePatch) | **PATCH** /users/{id}/totp-toggle | Disable the second authentication factor
+*AdminApi* | [**authenticationPost**](docs/AdminApi.md#authenticationPost) | **POST** /authentication | User authentication
 *BrandingApi* | [**apiOrganizationsIdPatch**](docs/BrandingApi.md#apiOrganizationsIdPatch) | **PATCH** /organizations/{id} | Update your Organization details, branding or parameters
 *BrandingApi* | [**apiOrganizationsIdiconDelete**](docs/BrandingApi.md#apiOrganizationsIdiconDelete) | **DELETE** /organizations/{id}/icon | Unset your Organization Icon
 *BrandingApi* | [**apiOrganizationsIdiconPost**](docs/BrandingApi.md#apiOrganizationsIdiconPost) | **POST** /organizations/{id}/icon | Upload your Organization Icon
@@ -154,6 +156,7 @@ Class | Method | HTTP request | Description
 *PersonaApi* | [**apiPersonasPost**](docs/PersonaApi.md#apiPersonasPost) | **POST** /personas | Register a Persona (Your customer)
 *SafeCheckoutApi* | [**apiOffersGetCollection**](docs/SafeCheckoutApi.md#apiOffersGetCollection) | **GET** /offers | Search amongst Offers
 *SafeCheckoutApi* | [**apiOffersPost**](docs/SafeCheckoutApi.md#apiOffersPost) | **POST** /offers | Create a public link for Offer
+*SafeCheckoutApi* | [**apiOffersUlidDelete**](docs/SafeCheckoutApi.md#apiOffersUlidDelete) | **DELETE** /offers/{ulid} | Disable existing Offer
 *SafeCheckoutApi* | [**apiOffersUlidGet**](docs/SafeCheckoutApi.md#apiOffersUlidGet) | **GET** /offers/{ulid} | Fetch a Offer details
 *SafeCheckoutApi* | [**apiOffersUlidPatch**](docs/SafeCheckoutApi.md#apiOffersUlidPatch) | **PATCH** /offers/{ulid} | Update existing Offer
 *SafeCheckoutApi* | [**apiOffersUlidmediasIdDelete**](docs/SafeCheckoutApi.md#apiOffersUlidmediasIdDelete) | **DELETE** /offers/{ulid}/medias/{id} | Removes the Media resource.
@@ -165,22 +168,24 @@ Class | Method | HTTP request | Description
 *TransactionApi* | [**apiTransactionsPost**](docs/TransactionApi.md#apiTransactionsPost) | **POST** /transactions | Initialize a new Transaction
 *TransactionApi* | [**apiTransactionsUlidGet**](docs/TransactionApi.md#apiTransactionsUlidGet) | **GET** /transactions/{ulid} | Get a Transaction
 *TransactionApi* | [**apiTransactionsUlidPatch**](docs/TransactionApi.md#apiTransactionsUlidPatch) | **PATCH** /transactions/{ulid} | Interact with a Transaction
-*UserApi* | [**apiApiClientsGetCollection**](docs/UserApi.md#apiApiClientsGetCollection) | **GET** /api-clients | Retrieves the collection of ApiClient resources.
-*UserApi* | [**apiApiClientsIdentifierDelete**](docs/UserApi.md#apiApiClientsIdentifierDelete) | **DELETE** /api-clients/{identifier} | Removes the ApiClient resource.
-*UserApi* | [**apiApiClientsIdentifierGet**](docs/UserApi.md#apiApiClientsIdentifierGet) | **GET** /api-clients/{identifier} | Retrieves a ApiClient resource.
-*UserApi* | [**apiApiClientsPost**](docs/UserApi.md#apiApiClientsPost) | **POST** /api-clients | Creates a ApiClient resource.
 *UserApi* | [**apiBankAccountsIdDelete**](docs/UserApi.md#apiBankAccountsIdDelete) | **DELETE** /bank-accounts/{id} | Removes the BankAccount resource.
 *UserApi* | [**apiBankAccountsIdGet**](docs/UserApi.md#apiBankAccountsIdGet) | **GET** /bank-accounts/{id} | Retrieves a BankAccount resource.
 *UserApi* | [**apiBankAccountsPost**](docs/UserApi.md#apiBankAccountsPost) | **POST** /bank-accounts | Creates a BankAccount resource.
 *UserApi* | [**apiCardsGetCollection**](docs/UserApi.md#apiCardsGetCollection) | **GET** /cards | Retrieves the collection of Card resources.
 *UserApi* | [**apiCardsIdDelete**](docs/UserApi.md#apiCardsIdDelete) | **DELETE** /cards/{id} | Removes the Card resource.
 *UserApi* | [**apiCardsIdGet**](docs/UserApi.md#apiCardsIdGet) | **GET** /cards/{id} | Retrieves a Card resource.
-*UserApi* | [**apiCardsIdPatch**](docs/UserApi.md#apiCardsIdPatch) | **PATCH** /cards/{id} | Updates the Card resource.
+*UserApi* | [**apiCardsIdPatch**](docs/UserApi.md#apiCardsIdPatch) | **PATCH** /cards/{id} | Push back the tokenization output from the external provider
 *UserApi* | [**apiCardsPost**](docs/UserApi.md#apiCardsPost) | **POST** /cards | Creates a Card resource.
 *UserApi* | [**apiCashOutsGetCollection**](docs/UserApi.md#apiCashOutsGetCollection) | **GET** /cash-outs | Retrieves the collection of CashOut resources.
 *UserApi* | [**apiCashOutsIdGet**](docs/UserApi.md#apiCashOutsIdGet) | **GET** /cash-outs/{id} | Retrieves a CashOut resource.
-*UserApi* | [**apiCashOutsPost**](docs/UserApi.md#apiCashOutsPost) | **POST** /cash-outs | Creates a CashOut resource.
+*UserApi* | [**apiCashOutsPost**](docs/UserApi.md#apiCashOutsPost) | **POST** /cash-outs | Withdraw the full amount available in the user wallet to set bank account
 *UserApi* | [**apiMeGet**](docs/UserApi.md#apiMeGet) | **GET** /me | Retrieves a User resource.
+*UserApi* | [**apiOffersGetCollection**](docs/UserApi.md#apiOffersGetCollection) | **GET** /offers | Search amongst Offers
+*UserApi* | [**apiOffersUlidDelete**](docs/UserApi.md#apiOffersUlidDelete) | **DELETE** /offers/{ulid} | Disable existing Offer
+*UserApi* | [**apiOffersUlidGet**](docs/UserApi.md#apiOffersUlidGet) | **GET** /offers/{ulid} | Fetch a Offer details
+*UserApi* | [**apiOffersUlidPatch**](docs/UserApi.md#apiOffersUlidPatch) | **PATCH** /offers/{ulid} | Update existing Offer
+*UserApi* | [**apiOffersUlidmediasIdDelete**](docs/UserApi.md#apiOffersUlidmediasIdDelete) | **DELETE** /offers/{ulid}/medias/{id} | Removes the Media resource.
+*UserApi* | [**apiOffersUlidmediasPost**](docs/UserApi.md#apiOffersUlidmediasPost) | **POST** /offers/{ulid}/medias | Upload a picture for a given Offer
 *UserApi* | [**apiProofOfIdentitiesGetCollection**](docs/UserApi.md#apiProofOfIdentitiesGetCollection) | **GET** /proof-of-identities | List all submitted PoI
 *UserApi* | [**apiProofOfIdentitiesIdGet**](docs/UserApi.md#apiProofOfIdentitiesIdGet) | **GET** /proof-of-identities/{id} | Retrieve a specific PoI
 *UserApi* | [**apiProofOfIdentitiesIdPatch**](docs/UserApi.md#apiProofOfIdentitiesIdPatch) | **PATCH** /proof-of-identities/{id} | Upload the document for your PoI slot
@@ -213,6 +218,7 @@ Class | Method | HTTP request | Description
  - [ApiClientRead](docs/ApiClientRead.md)
  - [ApiClientWrite](docs/ApiClientWrite.md)
  - [AuthError](docs/AuthError.md)
+ - [BankAccountRead](docs/BankAccountRead.md)
  - [BankAccountUserRead](docs/BankAccountUserRead.md)
  - [BankAccountWrite](docs/BankAccountWrite.md)
  - [CardCollectionRead](docs/CardCollectionRead.md)
@@ -222,7 +228,10 @@ Class | Method | HTTP request | Description
  - [CardRead](docs/CardRead.md)
  - [CardUpdate](docs/CardUpdate.md)
  - [CardUserRead](docs/CardUserRead.md)
+ - [CardWrite](docs/CardWrite.md)
+ - [CashoutCashOutCollectionRead](docs/CashoutCashOutCollectionRead.md)
  - [CashoutCashOutRead](docs/CashoutCashOutRead.md)
+ - [CashoutCashOutWrite](docs/CashoutCashOutWrite.md)
  - [GenericError](docs/GenericError.md)
  - [InvalidQueryError](docs/InvalidQueryError.md)
  - [Media](docs/Media.md)
@@ -231,6 +240,7 @@ Class | Method | HTTP request | Description
  - [MessageError](docs/MessageError.md)
  - [Metadata](docs/Metadata.md)
  - [NotFoundError](docs/NotFoundError.md)
+ - [Offer](docs/Offer.md)
  - [OfferAddressIndependentWrite](docs/OfferAddressIndependentWrite.md)
  - [OfferCollectionRead](docs/OfferCollectionRead.md)
  - [OfferIndependentWrite](docs/OfferIndependentWrite.md)
@@ -265,10 +275,12 @@ Class | Method | HTTP request | Description
  - [PersonaWrite](docs/PersonaWrite.md)
  - [ProofOfIdentityCollectionRead](docs/ProofOfIdentityCollectionRead.md)
  - [ProofOfIdentityRead](docs/ProofOfIdentityRead.md)
+ - [ProofOfIdentityWrite](docs/ProofOfIdentityWrite.md)
  - [QuoteRead](docs/QuoteRead.md)
  - [QuoteUpdate](docs/QuoteUpdate.md)
  - [QuoteWrite](docs/QuoteWrite.md)
  - [RateLimitError](docs/RateLimitError.md)
+ - [TransactionCardRead](docs/TransactionCardRead.md)
  - [TransactionCollectionRead](docs/TransactionCollectionRead.md)
  - [TransactionMetadataRead](docs/TransactionMetadataRead.md)
  - [TransactionOfferCollectionRead](docs/TransactionOfferCollectionRead.md)
@@ -280,6 +292,7 @@ Class | Method | HTTP request | Description
  - [TransactionQuoteRead](docs/TransactionQuoteRead.md)
  - [TransactionRead](docs/TransactionRead.md)
  - [TransactionUpdate](docs/TransactionUpdate.md)
+ - [TransactionWalletRead](docs/TransactionWalletRead.md)
  - [TransactionWrite](docs/TransactionWrite.md)
  - [UnprocessableEntity](docs/UnprocessableEntity.md)
  - [UnprocessableEntityViolationsInner](docs/UnprocessableEntityViolationsInner.md)
@@ -313,6 +326,7 @@ Class | Method | HTTP request | Description
  - [UserWalletCollectionRead](docs/UserWalletCollectionRead.md)
  - [UserWalletSupportRead](docs/UserWalletSupportRead.md)
  - [UserWrite](docs/UserWrite.md)
+ - [View](docs/View.md)
  - [WalletUserRead](docs/WalletUserRead.md)
  - [Webhook](docs/Webhook.md)
  - [WebhookHistoryCollectionRead](docs/WebhookHistoryCollectionRead.md)

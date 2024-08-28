@@ -16,6 +16,7 @@
 |**shippingFees** | **Float** |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  |
 |**expireAt** | **OffsetDateTime** |  |  |
+|**iri** | **String** |  |  [optional] [readonly] |
 
 
 
