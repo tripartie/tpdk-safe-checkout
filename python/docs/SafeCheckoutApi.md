@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**api_offers_ulid_patch**](SafeCheckoutApi.md#api_offers_ulid_patch) | **PATCH** /offers/{ulid} | Update existing Offer
 [**api_offers_ulidmedias_id_delete**](SafeCheckoutApi.md#api_offers_ulidmedias_id_delete) | **DELETE** /offers/{ulid}/medias/{id} | Removes the Media resource.
 [**api_offers_ulidmedias_post**](SafeCheckoutApi.md#api_offers_ulidmedias_post) | **POST** /offers/{ulid}/medias | Upload a picture for a given Offer
+[**api_users_idoffers_post**](SafeCheckoutApi.md#api_users_idoffers_post) | **POST** /users/{id}/offers | Create a public link for Offer
 
 
 # **api_offers_get_collection**
@@ -638,6 +639,99 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Media resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**401** | Authentication required |  -  |
+**403** | Unauthorized access |  -  |
+**429** | Rate limit exhausted |  -  |
+**500** | Unexpected server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **api_users_idoffers_post**
+> OfferPostCreationRead api_users_idoffers_post(id, ulid, offer_solo_write)
+
+Create a public link for Offer
+
+Create a public listening Offer linked to a specific User
+
+### Example
+
+* Api Key Authentication (jwtPersonalKey):
+* OAuth Authentication (oauth):
+
+```python
+import tpdk_safe_checkout
+from tpdk_safe_checkout.models.offer_post_creation_read import OfferPostCreationRead
+from tpdk_safe_checkout.models.offer_solo_write import OfferSoloWrite
+from tpdk_safe_checkout.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.tripartie.app
+# See configuration.py for a list of all supported configuration parameters.
+configuration = tpdk_safe_checkout.Configuration(
+    host = "https://staging-api.tripartie.app"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: jwtPersonalKey
+configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with tpdk_safe_checkout.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = tpdk_safe_checkout.SafeCheckoutApi(api_client)
+    id = 56 # int | User identifier
+    ulid = 'ulid_example' # str | Offer identifier
+    offer_solo_write = tpdk_safe_checkout.OfferSoloWrite() # OfferSoloWrite | The new Offer resource
+
+    try:
+        # Create a public link for Offer
+        api_response = api_instance.api_users_idoffers_post(id, ulid, offer_solo_write)
+        print("The response of SafeCheckoutApi->api_users_idoffers_post:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling SafeCheckoutApi->api_users_idoffers_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| User identifier | 
+ **ulid** | **str**| Offer identifier | 
+ **offer_solo_write** | [**OfferSoloWrite**](OfferSoloWrite.md)| The new Offer resource | 
+
+### Return type
+
+[**OfferPostCreationRead**](OfferPostCreationRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Offer resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 **401** | Authentication required |  -  |

@@ -11,6 +11,7 @@ All URIs are relative to *https://staging-api.tripartie.app*
 | [**apiOffersUlidPatch**](SafeCheckoutApi.md#apiOffersUlidPatch) | **PATCH** /offers/{ulid} | Update existing Offer |
 | [**apiOffersUlidmediasIdDelete**](SafeCheckoutApi.md#apiOffersUlidmediasIdDelete) | **DELETE** /offers/{ulid}/medias/{id} | Removes the Media resource. |
 | [**apiOffersUlidmediasPost**](SafeCheckoutApi.md#apiOffersUlidmediasPost) | **POST** /offers/{ulid}/medias | Upload a picture for a given Offer |
+| [**apiUsersIdoffersPost**](SafeCheckoutApi.md#apiUsersIdoffersPost) | **POST** /users/{id}/offers | Create a public link for Offer |
 
 
 <a id="apiOffersGetCollection"></a>
@@ -608,6 +609,90 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Media resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="apiUsersIdoffersPost"></a>
+# **apiUsersIdoffersPost**
+> OfferPostCreationRead apiUsersIdoffersPost(id, ulid, offerSoloWrite).execute();
+
+Create a public link for Offer
+
+Create a public listening Offer linked to a specific User
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.SafeCheckoutApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
+    // Configure OAuth2 access token for authorization: oauth
+    OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
+    oauth.setAccessToken("YOUR ACCESS TOKEN");
+
+    SafeCheckoutApi apiInstance = new SafeCheckoutApi(defaultClient);
+    Integer id = 56; // Integer | User identifier
+    String ulid = "ulid_example"; // String | Offer identifier
+    OfferSoloWrite offerSoloWrite = new OfferSoloWrite(); // OfferSoloWrite | The new Offer resource
+    try {
+      OfferPostCreationRead result = apiInstance.apiUsersIdoffersPost(id, ulid, offerSoloWrite)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SafeCheckoutApi#apiUsersIdoffersPost");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **Integer**| User identifier | |
+| **ulid** | **String**| Offer identifier | |
+| **offerSoloWrite** | [**OfferSoloWrite**](OfferSoloWrite.md)| The new Offer resource | |
+
+### Return type
+
+[**OfferPostCreationRead**](OfferPostCreationRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Offer resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 | **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 | **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 | **401** | Authentication required |  -  |

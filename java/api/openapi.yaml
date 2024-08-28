@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.23
+  version: 2.0.24
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -1735,7 +1735,6 @@ paths:
       summary: Search amongst Offers
       tags:
       - Safe-Checkout
-      - User
       x-accepts:
       - application/json
     post:
@@ -1899,7 +1898,6 @@ paths:
       summary: Disable existing Offer
       tags:
       - Safe-Checkout
-      - User
       x-accepts:
       - application/json
     get:
@@ -1961,7 +1959,6 @@ paths:
       summary: Fetch a Offer details
       tags:
       - Safe-Checkout
-      - User
       x-accepts:
       - application/json
     patch:
@@ -2074,7 +2071,6 @@ paths:
       summary: Update existing Offer
       tags:
       - Safe-Checkout
-      - User
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -2175,7 +2171,6 @@ paths:
       summary: Upload a picture for a given Offer
       tags:
       - Safe-Checkout
-      - User
       x-content-type: multipart/form-data
       x-accepts:
       - application/json
@@ -2262,7 +2257,6 @@ paths:
       summary: Removes the Media resource.
       tags:
       - Safe-Checkout
-      - User
       x-accepts:
       - application/json
   /organizations:
@@ -4737,7 +4731,6 @@ paths:
       summary: Removes the User resource.
       tags:
       - User
-      - Admin
       x-accepts:
       - application/json
     get:
@@ -4909,7 +4902,6 @@ paths:
       summary: Update your profile
       tags:
       - User
-      - Admin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -5289,7 +5281,6 @@ paths:
       summary: Update user email
       tags:
       - User
-      - Admin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -5388,7 +5379,6 @@ paths:
       summary: Validate email ownership
       tags:
       - User
-      - Admin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -5507,7 +5497,7 @@ paths:
   /users/{id}/offers:
     post:
       deprecated: false
-      description: Create a public listening Offer linked to a specific Seller
+      description: Create a public listening Offer linked to a specific User
       operationId: api_users_idoffers_post
       parameters:
       - allowReserved: false
@@ -5534,7 +5524,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Offer-Write'
+              $ref: '#/components/schemas/Offer-SoloWrite'
         description: The new Offer resource
         required: true
       responses:
@@ -5608,7 +5598,7 @@ paths:
       - jwtPersonalToken: []
       summary: Create a public link for Offer
       tags:
-      - User
+      - Safe-Checkout
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -5707,7 +5697,6 @@ paths:
       summary: Change your password
       tags:
       - User
-      - Admin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -5806,7 +5795,6 @@ paths:
       summary: Setup an additional authentication factor
       tags:
       - User
-      - Admin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -5905,7 +5893,6 @@ paths:
       summary: Disable the second authentication factor
       tags:
       - User
-      - Admin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -8110,85 +8097,7 @@ components:
       - status
       - ulid
       - weightInGram
-    Offer-Update:
-      deprecated: false
-      description: ""
-      properties:
-        publicUrl:
-          description: The public URL for your Ad/Offer on your marketplace.
-          example: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
-          nullable: true
-          type: string
-        redirectUrl:
-          description: Fill-in that field IF you intend to redirect your customer
-            instead of using a WebView.
-          example: https://marketplace.tld/offers/that-special-item-i-wish-to-sold?checkout=true
-          nullable: true
-          type: string
-        title:
-          example: ASUS TUF X570-PLUS GAMING Motherboard
-          type: string
-        description:
-          example: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\
-            \ eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim\
-            \ ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip\
-            \ ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate\
-            \ velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat\
-            \ cupidatat non proident, sunt in culpa qui officia deserunt mollit anim\
-            \ id est laborum."
-          nullable: true
-          type: string
-        unitPrice:
-          format: float
-          type: number
-        minNegotiableUnitPrice:
-          format: float
-          type: number
-        allowToNegotiateUnitPrice:
-          type: boolean
-        currencyCode:
-          default: EUR
-          example: EUR
-          type: string
-        shippingAllowed:
-          description: "That toggle allows the seller to propose shipping for its\
-            \ item. If set in conjunction of shippingCarrier, the label will be automatically\
-            \ generated. Also, it will restrict the carrier to the limited subset\
-            \ defined."
-          type: boolean
-        handDeliveryAllowed:
-          default: true
-          description: Enable both parties to finalize the transaction in person rather
-            than using delivery. A QR Code must be scanned by the seller once the
-            buyer claims the product.
-          example: true
-          type: boolean
-        shippingCarriers:
-          description: "If you wish to enable automated shipping label generation\
-            \ through a specific provider, specify it there."
-          items:
-            enum:
-            - SwissPost
-            - Colissimo
-            - MondialRelay
-            type: string
-          type: array
-          uniqueItems: true
-        eanCode:
-          example: "4718017388450"
-          nullable: true
-          type: string
-        canBeSoldSeparately:
-          default: true
-          description: Set this flag to false to forbid a potential buyer to acquire
-            less than "itemCount" item(s)
-          example: true
-          type: boolean
-        metadata:
-          items:
-            $ref: '#/components/schemas/Offer-Metadata-Update'
-          type: array
-    Offer-Write:
+    Offer-SoloWrite:
       deprecated: false
       description: ""
       properties:
@@ -8284,6 +8193,84 @@ components:
             less than "itemCount" item(s)
           example: true
           type: boolean
+    Offer-Update:
+      deprecated: false
+      description: ""
+      properties:
+        publicUrl:
+          description: The public URL for your Ad/Offer on your marketplace.
+          example: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
+          nullable: true
+          type: string
+        redirectUrl:
+          description: Fill-in that field IF you intend to redirect your customer
+            instead of using a WebView.
+          example: https://marketplace.tld/offers/that-special-item-i-wish-to-sold?checkout=true
+          nullable: true
+          type: string
+        title:
+          example: ASUS TUF X570-PLUS GAMING Motherboard
+          type: string
+        description:
+          example: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\
+            \ eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim\
+            \ ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip\
+            \ ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate\
+            \ velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat\
+            \ cupidatat non proident, sunt in culpa qui officia deserunt mollit anim\
+            \ id est laborum."
+          nullable: true
+          type: string
+        unitPrice:
+          format: float
+          type: number
+        minNegotiableUnitPrice:
+          format: float
+          type: number
+        allowToNegotiateUnitPrice:
+          type: boolean
+        currencyCode:
+          default: EUR
+          example: EUR
+          type: string
+        shippingAllowed:
+          description: "That toggle allows the seller to propose shipping for its\
+            \ item. If set in conjunction of shippingCarrier, the label will be automatically\
+            \ generated. Also, it will restrict the carrier to the limited subset\
+            \ defined."
+          type: boolean
+        handDeliveryAllowed:
+          default: true
+          description: Enable both parties to finalize the transaction in person rather
+            than using delivery. A QR Code must be scanned by the seller once the
+            buyer claims the product.
+          example: true
+          type: boolean
+        shippingCarriers:
+          description: "If you wish to enable automated shipping label generation\
+            \ through a specific provider, specify it there."
+          items:
+            enum:
+            - SwissPost
+            - Colissimo
+            - MondialRelay
+            type: string
+          type: array
+          uniqueItems: true
+        eanCode:
+          example: "4718017388450"
+          nullable: true
+          type: string
+        canBeSoldSeparately:
+          default: true
+          description: Set this flag to false to forbid a potential buyer to acquire
+            less than "itemCount" item(s)
+          example: true
+          type: boolean
+        metadata:
+          items:
+            $ref: '#/components/schemas/Offer-Metadata-Update'
+          type: array
     Organization-Address-Update:
       deprecated: false
       description: ""

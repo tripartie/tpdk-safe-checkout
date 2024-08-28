@@ -1,8 +1,8 @@
 # safecheckout
 
 Safe Checkout
-- API version: 2.0.23
-  - Build date: 2024-08-28T04:52:53.273673Z[Etc/UTC]
+- API version: 2.0.24
+  - Build date: 2024-08-28T05:18:28.600141Z[Etc/UTC]
   - Generator version: 7.8.0
 
 Simple, yet elegant web interfaces for your convenience. One request away from your first secured C2C transaction.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.tripartie</groupId>
   <artifactId>safecheckout</artifactId>
-  <version>2.0.23</version>
+  <version>2.0.24</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.tripartie:safecheckout:2.0.23"
+     implementation "com.tripartie:safecheckout:2.0.24"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/safecheckout-2.0.23.jar`
+* `target/safecheckout-2.0.24.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -133,16 +133,9 @@ Class | Method | HTTP request | Description
 *AdminApi* | [**apiOrganizationsGetCollection**](docs/AdminApi.md#apiOrganizationsGetCollection) | **GET** /organizations | Retrieves the collection of Organization resources.
 *AdminApi* | [**apiOrganizationsIdGet**](docs/AdminApi.md#apiOrganizationsIdGet) | **GET** /organizations/{id} | Retrieves a Organization resource.
 *AdminApi* | [**apiUsersGetCollection**](docs/AdminApi.md#apiUsersGetCollection) | **GET** /users | Retrieves the collection of User resources.
-*AdminApi* | [**apiUsersIdDelete**](docs/AdminApi.md#apiUsersIdDelete) | **DELETE** /users/{id} | Removes the User resource.
 *AdminApi* | [**apiUsersIdGet**](docs/AdminApi.md#apiUsersIdGet) | **GET** /users/{id} | Retrieves a User resource.
-*AdminApi* | [**apiUsersIdPatch**](docs/AdminApi.md#apiUsersIdPatch) | **PATCH** /users/{id} | Update your profile
 *AdminApi* | [**apiUsersIddisablePatch**](docs/AdminApi.md#apiUsersIddisablePatch) | **PATCH** /users/{id}/disable | Updates the User resource.
-*AdminApi* | [**apiUsersIdemailPatch**](docs/AdminApi.md#apiUsersIdemailPatch) | **PATCH** /users/{id}/email | Update user email
-*AdminApi* | [**apiUsersIdemailValidationPatch**](docs/AdminApi.md#apiUsersIdemailValidationPatch) | **PATCH** /users/{id}/email-validation | Validate email ownership
 *AdminApi* | [**apiUsersIdenablePatch**](docs/AdminApi.md#apiUsersIdenablePatch) | **PATCH** /users/{id}/enable | Updates the User resource.
-*AdminApi* | [**apiUsersIdpasswordPatch**](docs/AdminApi.md#apiUsersIdpasswordPatch) | **PATCH** /users/{id}/password | Change your password
-*AdminApi* | [**apiUsersIdtotpSetupPatch**](docs/AdminApi.md#apiUsersIdtotpSetupPatch) | **PATCH** /users/{id}/totp-setup | Setup an additional authentication factor
-*AdminApi* | [**apiUsersIdtotpTogglePatch**](docs/AdminApi.md#apiUsersIdtotpTogglePatch) | **PATCH** /users/{id}/totp-toggle | Disable the second authentication factor
 *AdminApi* | [**authenticationPost**](docs/AdminApi.md#authenticationPost) | **POST** /authentication | User authentication
 *BrandingApi* | [**apiOrganizationsIdPatch**](docs/BrandingApi.md#apiOrganizationsIdPatch) | **PATCH** /organizations/{id} | Update your Organization details, branding or parameters
 *BrandingApi* | [**apiOrganizationsIdiconDelete**](docs/BrandingApi.md#apiOrganizationsIdiconDelete) | **DELETE** /organizations/{id}/icon | Unset your Organization Icon
@@ -161,6 +154,7 @@ Class | Method | HTTP request | Description
 *SafeCheckoutApi* | [**apiOffersUlidPatch**](docs/SafeCheckoutApi.md#apiOffersUlidPatch) | **PATCH** /offers/{ulid} | Update existing Offer
 *SafeCheckoutApi* | [**apiOffersUlidmediasIdDelete**](docs/SafeCheckoutApi.md#apiOffersUlidmediasIdDelete) | **DELETE** /offers/{ulid}/medias/{id} | Removes the Media resource.
 *SafeCheckoutApi* | [**apiOffersUlidmediasPost**](docs/SafeCheckoutApi.md#apiOffersUlidmediasPost) | **POST** /offers/{ulid}/medias | Upload a picture for a given Offer
+*SafeCheckoutApi* | [**apiUsersIdoffersPost**](docs/SafeCheckoutApi.md#apiUsersIdoffersPost) | **POST** /users/{id}/offers | Create a public link for Offer
 *TransactionApi* | [**apiQuotesIdGet**](docs/TransactionApi.md#apiQuotesIdGet) | **GET** /quotes/{id} | Retrieve a Quote
 *TransactionApi* | [**apiQuotesIdPatch**](docs/TransactionApi.md#apiQuotesIdPatch) | **PATCH** /quotes/{id} | Update a Quote prior to issuing a Transaction
 *TransactionApi* | [**apiQuotesPost**](docs/TransactionApi.md#apiQuotesPost) | **POST** /quotes | Create a Quote prior to issuing a Transaction
@@ -180,12 +174,6 @@ Class | Method | HTTP request | Description
 *UserApi* | [**apiCashOutsIdGet**](docs/UserApi.md#apiCashOutsIdGet) | **GET** /cash-outs/{id} | Retrieves a CashOut resource.
 *UserApi* | [**apiCashOutsPost**](docs/UserApi.md#apiCashOutsPost) | **POST** /cash-outs | Withdraw the full amount available in the user wallet to set bank account
 *UserApi* | [**apiMeGet**](docs/UserApi.md#apiMeGet) | **GET** /me | Retrieves a User resource.
-*UserApi* | [**apiOffersGetCollection**](docs/UserApi.md#apiOffersGetCollection) | **GET** /offers | Search amongst Offers
-*UserApi* | [**apiOffersUlidDelete**](docs/UserApi.md#apiOffersUlidDelete) | **DELETE** /offers/{ulid} | Disable existing Offer
-*UserApi* | [**apiOffersUlidGet**](docs/UserApi.md#apiOffersUlidGet) | **GET** /offers/{ulid} | Fetch a Offer details
-*UserApi* | [**apiOffersUlidPatch**](docs/UserApi.md#apiOffersUlidPatch) | **PATCH** /offers/{ulid} | Update existing Offer
-*UserApi* | [**apiOffersUlidmediasIdDelete**](docs/UserApi.md#apiOffersUlidmediasIdDelete) | **DELETE** /offers/{ulid}/medias/{id} | Removes the Media resource.
-*UserApi* | [**apiOffersUlidmediasPost**](docs/UserApi.md#apiOffersUlidmediasPost) | **POST** /offers/{ulid}/medias | Upload a picture for a given Offer
 *UserApi* | [**apiProofOfIdentitiesGetCollection**](docs/UserApi.md#apiProofOfIdentitiesGetCollection) | **GET** /proof-of-identities | List all submitted PoI
 *UserApi* | [**apiProofOfIdentitiesIdGet**](docs/UserApi.md#apiProofOfIdentitiesIdGet) | **GET** /proof-of-identities/{id} | Retrieve a specific PoI
 *UserApi* | [**apiProofOfIdentitiesIdPatch**](docs/UserApi.md#apiProofOfIdentitiesIdPatch) | **PATCH** /proof-of-identities/{id} | Upload the document for your PoI slot
@@ -197,7 +185,6 @@ Class | Method | HTTP request | Description
 *UserApi* | [**apiUsersIdavatarPost**](docs/UserApi.md#apiUsersIdavatarPost) | **POST** /users/{id}/avatar | Upload your personal avatar
 *UserApi* | [**apiUsersIdemailPatch**](docs/UserApi.md#apiUsersIdemailPatch) | **PATCH** /users/{id}/email | Update user email
 *UserApi* | [**apiUsersIdemailValidationPatch**](docs/UserApi.md#apiUsersIdemailValidationPatch) | **PATCH** /users/{id}/email-validation | Validate email ownership
-*UserApi* | [**apiUsersIdoffersPost**](docs/UserApi.md#apiUsersIdoffersPost) | **POST** /users/{id}/offers | Create a public link for Offer
 *UserApi* | [**apiUsersIdpasswordPatch**](docs/UserApi.md#apiUsersIdpasswordPatch) | **PATCH** /users/{id}/password | Change your password
 *UserApi* | [**apiUsersIdtotpSetupPatch**](docs/UserApi.md#apiUsersIdtotpSetupPatch) | **PATCH** /users/{id}/totp-setup | Setup an additional authentication factor
 *UserApi* | [**apiUsersIdtotpTogglePatch**](docs/UserApi.md#apiUsersIdtotpTogglePatch) | **PATCH** /users/{id}/totp-toggle | Disable the second authentication factor
@@ -252,8 +239,8 @@ Class | Method | HTTP request | Description
  - [OfferPersonaRead](docs/OfferPersonaRead.md)
  - [OfferPostCreationRead](docs/OfferPostCreationRead.md)
  - [OfferRead](docs/OfferRead.md)
+ - [OfferSoloWrite](docs/OfferSoloWrite.md)
  - [OfferUpdate](docs/OfferUpdate.md)
- - [OfferWrite](docs/OfferWrite.md)
  - [OrganizationAddressUpdate](docs/OrganizationAddressUpdate.md)
  - [OrganizationCollectionRead](docs/OrganizationCollectionRead.md)
  - [OrganizationMediaCollectionRead](docs/OrganizationMediaCollectionRead.md)
