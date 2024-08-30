@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **gate_or_portal_or_inbox_code** | **str** |  | [optional] 
 **created_at** | **datetime** |  | [optional] [readonly] 
 **updated_at** | **datetime** |  | [optional] [readonly] 
+**formatted_address** | **str** |  | [optional] [readonly] 
 
 ## Example
 

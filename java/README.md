@@ -1,8 +1,8 @@
 # safecheckout
 
 Safe Checkout
-- API version: 2.0.29
-  - Build date: 2024-08-30T09:25:05.553740Z[Etc/UTC]
+- API version: 2.0.30
+  - Build date: 2024-08-30T15:11:48.176611Z[Etc/UTC]
   - Generator version: 7.8.0
 
 Simple, yet elegant web interfaces for your convenience. One request away from your first secured C2C transaction.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.tripartie</groupId>
   <artifactId>safecheckout</artifactId>
-  <version>2.0.29</version>
+  <version>2.0.30</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.tripartie:safecheckout:2.0.29"
+     implementation "com.tripartie:safecheckout:2.0.30"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/safecheckout-2.0.29.jar`
+* `target/safecheckout-2.0.30.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -201,6 +201,7 @@ Class | Method | HTTP request | Description
 
  - [AccessError](docs/AccessError.md)
  - [Address](docs/Address.md)
+ - [AddressUserRead](docs/AddressUserRead.md)
  - [ApiClientPostCreationRead](docs/ApiClientPostCreationRead.md)
  - [ApiClientRead](docs/ApiClientRead.md)
  - [ApiClientWrite](docs/ApiClientWrite.md)
@@ -283,6 +284,10 @@ Class | Method | HTTP request | Description
  - [TransactionWrite](docs/TransactionWrite.md)
  - [UnprocessableEntity](docs/UnprocessableEntity.md)
  - [UnprocessableEntityViolationsInner](docs/UnprocessableEntityViolationsInner.md)
+ - [UserAddressAuthenticatedRead](docs/UserAddressAuthenticatedRead.md)
+ - [UserAddressCollectionRead](docs/UserAddressCollectionRead.md)
+ - [UserAddressSupportRead](docs/UserAddressSupportRead.md)
+ - [UserAddressUpdate](docs/UserAddressUpdate.md)
  - [UserAuthenticatedRead](docs/UserAuthenticatedRead.md)
  - [UserBankAccountAuthenticatedRead](docs/UserBankAccountAuthenticatedRead.md)
  - [UserCardAuthenticatedRead](docs/UserCardAuthenticatedRead.md)

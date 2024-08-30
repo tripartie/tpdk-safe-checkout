@@ -8,7 +8,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**mainAddress** | **Object** |  |  [optional] |
+|**mainAddress** | [**UserAddressUpdate**](UserAddressUpdate.md) |  |  [optional] |
 |**firstName** | **String** |  |  [optional] |
 |**lastName** | **String** |  |  [optional] |
 |**publicName** | **String** |  |  [optional] |

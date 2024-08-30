@@ -8,6 +8,7 @@ build.gradle
 build.sbt
 docs/AccessError.md
 docs/Address.md
+docs/AddressUserRead.md
 docs/AdminApi.md
 docs/ApiClientPostCreationRead.md
 docs/ApiClientRead.md
@@ -95,6 +96,10 @@ docs/TransactionWalletRead.md
 docs/TransactionWrite.md
 docs/UnprocessableEntity.md
 docs/UnprocessableEntityViolationsInner.md
+docs/UserAddressAuthenticatedRead.md
+docs/UserAddressCollectionRead.md
+docs/UserAddressSupportRead.md
+docs/UserAddressUpdate.md
 docs/UserApi.md
 docs/UserAuthenticatedRead.md
 docs/UserBankAccountAuthenticatedRead.md
@@ -175,6 +180,7 @@ src/main/java/com/tripartie/safecheckout/auth/RetryingOAuth.java
 src/main/java/com/tripartie/safecheckout/model/AbstractOpenApiSchema.java
 src/main/java/com/tripartie/safecheckout/model/AccessError.java
 src/main/java/com/tripartie/safecheckout/model/Address.java
+src/main/java/com/tripartie/safecheckout/model/AddressUserRead.java
 src/main/java/com/tripartie/safecheckout/model/ApiClientPostCreationRead.java
 src/main/java/com/tripartie/safecheckout/model/ApiClientRead.java
 src/main/java/com/tripartie/safecheckout/model/ApiClientWrite.java
@@ -257,6 +263,10 @@ src/main/java/com/tripartie/safecheckout/model/TransactionWalletRead.java
 src/main/java/com/tripartie/safecheckout/model/TransactionWrite.java
 src/main/java/com/tripartie/safecheckout/model/UnprocessableEntity.java
 src/main/java/com/tripartie/safecheckout/model/UnprocessableEntityViolationsInner.java
+src/main/java/com/tripartie/safecheckout/model/UserAddressAuthenticatedRead.java
+src/main/java/com/tripartie/safecheckout/model/UserAddressCollectionRead.java
+src/main/java/com/tripartie/safecheckout/model/UserAddressSupportRead.java
+src/main/java/com/tripartie/safecheckout/model/UserAddressUpdate.java
 src/main/java/com/tripartie/safecheckout/model/UserAuthenticatedRead.java
 src/main/java/com/tripartie/safecheckout/model/UserBankAccountAuthenticatedRead.java
 src/main/java/com/tripartie/safecheckout/model/UserCardAuthenticatedRead.java
@@ -304,6 +314,7 @@ src/test/java/com/tripartie/safecheckout/api/UserApiTest.java
 src/test/java/com/tripartie/safecheckout/api/WebhookApiTest.java
 src/test/java/com/tripartie/safecheckout/model/AccessErrorTest.java
 src/test/java/com/tripartie/safecheckout/model/AddressTest.java
+src/test/java/com/tripartie/safecheckout/model/AddressUserReadTest.java
 src/test/java/com/tripartie/safecheckout/model/ApiClientPostCreationReadTest.java
 src/test/java/com/tripartie/safecheckout/model/ApiClientReadTest.java
 src/test/java/com/tripartie/safecheckout/model/ApiClientWriteTest.java
@@ -386,6 +397,10 @@ src/test/java/com/tripartie/safecheckout/model/TransactionWalletReadTest.java
 src/test/java/com/tripartie/safecheckout/model/TransactionWriteTest.java
 src/test/java/com/tripartie/safecheckout/model/UnprocessableEntityTest.java
 src/test/java/com/tripartie/safecheckout/model/UnprocessableEntityViolationsInnerTest.java
+src/test/java/com/tripartie/safecheckout/model/UserAddressAuthenticatedReadTest.java
+src/test/java/com/tripartie/safecheckout/model/UserAddressCollectionReadTest.java
+src/test/java/com/tripartie/safecheckout/model/UserAddressSupportReadTest.java
+src/test/java/com/tripartie/safecheckout/model/UserAddressUpdateTest.java
 src/test/java/com/tripartie/safecheckout/model/UserAuthenticatedReadTest.java
 src/test/java/com/tripartie/safecheckout/model/UserBankAccountAuthenticatedReadTest.java
 src/test/java/com/tripartie/safecheckout/model/UserCardAuthenticatedReadTest.java
