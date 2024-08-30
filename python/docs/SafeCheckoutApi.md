@@ -11,7 +11,7 @@ Method | HTTP request | Description
 [**api_offers_ulid_patch**](SafeCheckoutApi.md#api_offers_ulid_patch) | **PATCH** /offers/{ulid} | Update existing Offer
 [**api_offers_ulidmedias_id_delete**](SafeCheckoutApi.md#api_offers_ulidmedias_id_delete) | **DELETE** /offers/{ulid}/medias/{id} | Removes the Media resource.
 [**api_offers_ulidmedias_post**](SafeCheckoutApi.md#api_offers_ulidmedias_post) | **POST** /offers/{ulid}/medias | Upload a picture for a given Offer
-[**api_users_idoffers_post**](SafeCheckoutApi.md#api_users_idoffers_post) | **POST** /users/{id}/offers | Create a public link for Offer
+[**api_users_idoffers_post**](SafeCheckoutApi.md#api_users_idoffers_post) | **POST** /users/{id}/offers | Issue an Offer as User
 
 
 # **api_offers_get_collection**
@@ -649,9 +649,9 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **api_users_idoffers_post**
-> OfferPostCreationRead api_users_idoffers_post(id, ulid, offer_solo_write)
+> OfferPostCreationRead api_users_idoffers_post(id, offer_solo_write)
 
-Create a public link for Offer
+Issue an Offer as User
 
 Create a public listening Offer linked to a specific User
 
@@ -691,12 +691,11 @@ with tpdk_safe_checkout.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = tpdk_safe_checkout.SafeCheckoutApi(api_client)
     id = 56 # int | User identifier
-    ulid = 'ulid_example' # str | Offer identifier
     offer_solo_write = tpdk_safe_checkout.OfferSoloWrite() # OfferSoloWrite | The new Offer resource
 
     try:
-        # Create a public link for Offer
-        api_response = api_instance.api_users_idoffers_post(id, ulid, offer_solo_write)
+        # Issue an Offer as User
+        api_response = api_instance.api_users_idoffers_post(id, offer_solo_write)
         print("The response of SafeCheckoutApi->api_users_idoffers_post:\n")
         pprint(api_response)
     except Exception as e:
@@ -711,7 +710,6 @@ with tpdk_safe_checkout.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| User identifier | 
- **ulid** | **str**| Offer identifier | 
  **offer_solo_write** | [**OfferSoloWrite**](OfferSoloWrite.md)| The new Offer resource | 
 
 ### Return type

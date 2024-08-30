@@ -7,6 +7,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **balance** | **float** |  | [optional] 
+**currency** | **str** |  | 
 **created_at** | **datetime** |  | 
 **updated_at** | **datetime** |  | 
 **external_id** | **str** |  | [optional] 

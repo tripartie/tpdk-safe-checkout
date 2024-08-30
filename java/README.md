@@ -1,8 +1,8 @@
 # safecheckout
 
 Safe Checkout
-- API version: 2.0.24
-  - Build date: 2024-08-28T05:18:28.600141Z[Etc/UTC]
+- API version: 2.0.28
+  - Build date: 2024-08-30T04:49:59.509649Z[Etc/UTC]
   - Generator version: 7.8.0
 
 Simple, yet elegant web interfaces for your convenience. One request away from your first secured C2C transaction.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.tripartie</groupId>
   <artifactId>safecheckout</artifactId>
-  <version>2.0.24</version>
+  <version>2.0.28</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.tripartie:safecheckout:2.0.24"
+     implementation "com.tripartie:safecheckout:2.0.28"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/safecheckout-2.0.24.jar`
+* `target/safecheckout-2.0.28.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -154,7 +154,7 @@ Class | Method | HTTP request | Description
 *SafeCheckoutApi* | [**apiOffersUlidPatch**](docs/SafeCheckoutApi.md#apiOffersUlidPatch) | **PATCH** /offers/{ulid} | Update existing Offer
 *SafeCheckoutApi* | [**apiOffersUlidmediasIdDelete**](docs/SafeCheckoutApi.md#apiOffersUlidmediasIdDelete) | **DELETE** /offers/{ulid}/medias/{id} | Removes the Media resource.
 *SafeCheckoutApi* | [**apiOffersUlidmediasPost**](docs/SafeCheckoutApi.md#apiOffersUlidmediasPost) | **POST** /offers/{ulid}/medias | Upload a picture for a given Offer
-*SafeCheckoutApi* | [**apiUsersIdoffersPost**](docs/SafeCheckoutApi.md#apiUsersIdoffersPost) | **POST** /users/{id}/offers | Create a public link for Offer
+*SafeCheckoutApi* | [**apiUsersIdoffersPost**](docs/SafeCheckoutApi.md#apiUsersIdoffersPost) | **POST** /users/{id}/offers | Issue an Offer as User
 *TransactionApi* | [**apiQuotesIdGet**](docs/TransactionApi.md#apiQuotesIdGet) | **GET** /quotes/{id} | Retrieve a Quote
 *TransactionApi* | [**apiQuotesIdPatch**](docs/TransactionApi.md#apiQuotesIdPatch) | **PATCH** /quotes/{id} | Update a Quote prior to issuing a Transaction
 *TransactionApi* | [**apiQuotesPost**](docs/TransactionApi.md#apiQuotesPost) | **POST** /quotes | Create a Quote prior to issuing a Transaction

@@ -9,6 +9,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**balance** | **Float** |  |  [optional] |
+|**currency** | **String** |  |  |
 |**createdAt** | **OffsetDateTime** |  |  |
 |**updatedAt** | **OffsetDateTime** |  |  |
 |**externalId** | **String** |  |  [optional] |

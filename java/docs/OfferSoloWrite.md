@@ -8,12 +8,13 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**captcha** | **String** |  |  [optional] |
 |**nature** | [**NatureEnum**](#NatureEnum) | This WILL affect the assigned workflow. Choosing service will disable delivery for example. Refer to our technical hub for more information. |  [optional] |
 |**title** | **String** |  |  [optional] |
 |**description** | **String** |  |  [optional] |
 |**unitPrice** | **Float** |  |  [optional] |
 |**minNegotiableUnitPrice** | **Float** |  |  [optional] |
-|**allowToNegotiateUnitPrice** | **Boolean** |  |  [optional] |
+|**allowToNegotiateUnitPrice** | **Boolean** |  |  |
 |**currencyCode** | **String** |  |  [optional] |
 |**itemCount** | **Integer** |  |  [optional] |
 |**condition** | [**ConditionEnum**](#ConditionEnum) |  |  [optional] |

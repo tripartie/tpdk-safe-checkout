@@ -11,7 +11,7 @@ All URIs are relative to *https://staging-api.tripartie.app*
 | [**apiOffersUlidPatch**](SafeCheckoutApi.md#apiOffersUlidPatch) | **PATCH** /offers/{ulid} | Update existing Offer |
 | [**apiOffersUlidmediasIdDelete**](SafeCheckoutApi.md#apiOffersUlidmediasIdDelete) | **DELETE** /offers/{ulid}/medias/{id} | Removes the Media resource. |
 | [**apiOffersUlidmediasPost**](SafeCheckoutApi.md#apiOffersUlidmediasPost) | **POST** /offers/{ulid}/medias | Upload a picture for a given Offer |
-| [**apiUsersIdoffersPost**](SafeCheckoutApi.md#apiUsersIdoffersPost) | **POST** /users/{id}/offers | Create a public link for Offer |
+| [**apiUsersIdoffersPost**](SafeCheckoutApi.md#apiUsersIdoffersPost) | **POST** /users/{id}/offers | Issue an Offer as User |
 
 
 <a id="apiOffersGetCollection"></a>
@@ -618,9 +618,9 @@ public class Example {
 
 <a id="apiUsersIdoffersPost"></a>
 # **apiUsersIdoffersPost**
-> OfferPostCreationRead apiUsersIdoffersPost(id, ulid, offerSoloWrite).execute();
+> OfferPostCreationRead apiUsersIdoffersPost(id, offerSoloWrite).execute();
 
-Create a public link for Offer
+Issue an Offer as User
 
 Create a public listening Offer linked to a specific User
 
@@ -651,10 +651,9 @@ public class Example {
 
     SafeCheckoutApi apiInstance = new SafeCheckoutApi(defaultClient);
     Integer id = 56; // Integer | User identifier
-    String ulid = "ulid_example"; // String | Offer identifier
     OfferSoloWrite offerSoloWrite = new OfferSoloWrite(); // OfferSoloWrite | The new Offer resource
     try {
-      OfferPostCreationRead result = apiInstance.apiUsersIdoffersPost(id, ulid, offerSoloWrite)
+      OfferPostCreationRead result = apiInstance.apiUsersIdoffersPost(id, offerSoloWrite)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
@@ -673,7 +672,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **Integer**| User identifier | |
-| **ulid** | **String**| Offer identifier | |
 | **offerSoloWrite** | [**OfferSoloWrite**](OfferSoloWrite.md)| The new Offer resource | |
 
 ### Return type

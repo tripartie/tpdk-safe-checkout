@@ -17,7 +17,7 @@
 |**description** | **String** |  |  [optional] |
 |**unitPrice** | **Float** |  |  [optional] |
 |**minNegotiableUnitPrice** | **Float** |  |  [optional] |
-|**allowToNegotiateUnitPrice** | **Boolean** |  |  [optional] |
+|**allowToNegotiateUnitPrice** | **Boolean** |  |  |
 |**currencyCode** | **String** |  |  [optional] |
 |**itemCount** | **Integer** |  |  [optional] |
 |**condition** | [**ConditionEnum**](#ConditionEnum) |  |  [optional] |

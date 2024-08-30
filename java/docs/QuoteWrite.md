@@ -10,7 +10,8 @@ Someone has to ask for a Quote prior to create a transaction and (therefor) char
 |------------ | ------------- | ------------- | -------------|
 |**captcha** | **String** |  |  [optional] |
 |**offer** | **String** |  |  [optional] |
-|**shippingCarrier** | [**ShippingCarrierEnum**](#ShippingCarrierEnum) |  |  |
+|**shippingCarrier** | [**ShippingCarrierEnum**](#ShippingCarrierEnum) |  |  [optional] |
+|**pickupCode** | **String** |  |  [optional] |
 |**quantityToBeAcquired** | **Integer** |  |  |
 |**attemptUnitPrice** | **Float** |  |  [optional] |
 
@@ -23,6 +24,7 @@ Someone has to ask for a Quote prior to create a transaction and (therefor) char
 | SWISS_POST | &quot;SwissPost&quot; |
 | COLISSIMO | &quot;Colissimo&quot; |
 | MONDIAL_RELAY | &quot;MondialRelay&quot; |
+| NULL | &quot;null&quot; |
 
 
 
