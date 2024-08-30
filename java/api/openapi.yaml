@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.29
+  version: 2.0.30
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -6530,10 +6530,62 @@ components:
           nullable: true
           readOnly: true
           type: string
+        formattedAddress:
+          example: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
+          readOnly: true
+          type: string
     Address-UserRead:
       deprecated: false
       description: ""
-      type: object
+      example:
+        zipCode: "75004"
+        buildingName: Electron
+        cityName: Paris
+        formattedAddress: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
+        countryCode: FRA
+        companyName: Company Tld
+        secondLine: Apt 6E
+        firstLine: 118 avenue des champs élysées
+        buildingFloor: Third floor
+        gateOrPortalOrInboxCode: "3124"
+      properties:
+        companyName:
+          example: Company Tld
+          nullable: true
+          type: string
+        countryCode:
+          example: FRA
+          maxLength: 3
+          type: string
+        zipCode:
+          example: "75004"
+          type: string
+        cityName:
+          example: Paris
+          type: string
+        firstLine:
+          example: 118 avenue des champs élysées
+          type: string
+        secondLine:
+          example: Apt 6E
+          nullable: true
+          type: string
+        buildingName:
+          example: Electron
+          nullable: true
+          type: string
+        buildingFloor:
+          example: Third floor
+          nullable: true
+          type: string
+        gateOrPortalOrInboxCode:
+          example: "3124"
+          nullable: true
+          type: string
+        formattedAddress:
+          example: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
+          readOnly: true
+          type: string
     ApiClient-PostCreationRead:
       deprecated: false
       description: ""
@@ -8202,6 +8254,7 @@ components:
           type: boolean
       required:
       - allowToNegotiateUnitPrice
+      - captcha
     Offer-Update:
       deprecated: false
       description: ""
@@ -9841,8 +9894,8 @@ components:
         carrier:
           enum:
           - SwissPost
-          - MondialRelay
           - Colissimo
+          - MondialRelay
           type: string
         identifier:
           example: 8J001271466474
@@ -10475,7 +10528,6 @@ components:
         card:
           example: https://example.com/
           format: iri-reference
-          nullable: true
           type: string
       required:
       - offer
@@ -10487,19 +10539,211 @@ components:
     User-Address-AuthenticatedRead:
       deprecated: false
       description: ""
-      type: object
+      example:
+        zipCode: "75004"
+        buildingName: Electron
+        cityName: Paris
+        formattedAddress: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
+        countryCode: FRA
+        companyName: Company Tld
+        secondLine: Apt 6E
+        firstLine: 118 avenue des champs élysées
+        buildingFloor: Third floor
+        gateOrPortalOrInboxCode: "3124"
+      properties:
+        companyName:
+          example: Company Tld
+          nullable: true
+          type: string
+        countryCode:
+          example: FRA
+          maxLength: 3
+          type: string
+        zipCode:
+          example: "75004"
+          type: string
+        cityName:
+          example: Paris
+          type: string
+        firstLine:
+          example: 118 avenue des champs élysées
+          type: string
+        secondLine:
+          example: Apt 6E
+          nullable: true
+          type: string
+        buildingName:
+          example: Electron
+          nullable: true
+          type: string
+        buildingFloor:
+          example: Third floor
+          nullable: true
+          type: string
+        gateOrPortalOrInboxCode:
+          example: "3124"
+          nullable: true
+          type: string
+        formattedAddress:
+          example: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
+          readOnly: true
+          type: string
     User-Address-CollectionRead:
       deprecated: false
       description: ""
-      type: object
+      example:
+        zipCode: "75004"
+        buildingName: Electron
+        cityName: Paris
+        formattedAddress: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
+        countryCode: FRA
+        companyName: Company Tld
+        secondLine: Apt 6E
+        firstLine: 118 avenue des champs élysées
+        buildingFloor: Third floor
+        gateOrPortalOrInboxCode: "3124"
+      properties:
+        companyName:
+          example: Company Tld
+          nullable: true
+          type: string
+        countryCode:
+          example: FRA
+          maxLength: 3
+          type: string
+        zipCode:
+          example: "75004"
+          type: string
+        cityName:
+          example: Paris
+          type: string
+        firstLine:
+          example: 118 avenue des champs élysées
+          type: string
+        secondLine:
+          example: Apt 6E
+          nullable: true
+          type: string
+        buildingName:
+          example: Electron
+          nullable: true
+          type: string
+        buildingFloor:
+          example: Third floor
+          nullable: true
+          type: string
+        gateOrPortalOrInboxCode:
+          example: "3124"
+          nullable: true
+          type: string
+        formattedAddress:
+          example: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
+          readOnly: true
+          type: string
     User-Address-SupportRead:
       deprecated: false
       description: ""
-      type: object
+      example:
+        zipCode: "75004"
+        buildingName: Electron
+        cityName: Paris
+        formattedAddress: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
+        countryCode: FRA
+        companyName: Company Tld
+        secondLine: Apt 6E
+        firstLine: 118 avenue des champs élysées
+        buildingFloor: Third floor
+        gateOrPortalOrInboxCode: "3124"
+      properties:
+        companyName:
+          example: Company Tld
+          nullable: true
+          type: string
+        countryCode:
+          example: FRA
+          maxLength: 3
+          type: string
+        zipCode:
+          example: "75004"
+          type: string
+        cityName:
+          example: Paris
+          type: string
+        firstLine:
+          example: 118 avenue des champs élysées
+          type: string
+        secondLine:
+          example: Apt 6E
+          nullable: true
+          type: string
+        buildingName:
+          example: Electron
+          nullable: true
+          type: string
+        buildingFloor:
+          example: Third floor
+          nullable: true
+          type: string
+        gateOrPortalOrInboxCode:
+          example: "3124"
+          nullable: true
+          type: string
+        formattedAddress:
+          example: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
+          readOnly: true
+          type: string
     User-Address-Update:
       deprecated: false
       description: ""
-      type: object
+      example:
+        zipCode: "75004"
+        buildingName: Electron
+        cityName: Paris
+        formattedAddress: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
+        countryCode: FRA
+        companyName: Company Tld
+        secondLine: Apt 6E
+        firstLine: 118 avenue des champs élysées
+        buildingFloor: Third floor
+        gateOrPortalOrInboxCode: "3124"
+      properties:
+        companyName:
+          example: Company Tld
+          nullable: true
+          type: string
+        countryCode:
+          example: FRA
+          maxLength: 3
+          type: string
+        zipCode:
+          example: "75004"
+          type: string
+        cityName:
+          example: Paris
+          type: string
+        firstLine:
+          example: 118 avenue des champs élysées
+          type: string
+        secondLine:
+          example: Apt 6E
+          nullable: true
+          type: string
+        buildingName:
+          example: Electron
+          nullable: true
+          type: string
+        buildingFloor:
+          example: Third floor
+          nullable: true
+          type: string
+        gateOrPortalOrInboxCode:
+          example: "3124"
+          nullable: true
+          type: string
+        formattedAddress:
+          example: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
+          readOnly: true
+          type: string
     User-AuthenticatedRead:
       deprecated: false
       description: ""
@@ -10594,7 +10838,17 @@ components:
         avatar:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
-        mainAddress: "{}"
+        mainAddress:
+          zipCode: "75004"
+          buildingName: Electron
+          cityName: Paris
+          formattedAddress: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
+          countryCode: FRA
+          companyName: Company Tld
+          secondLine: Apt 6E
+          firstLine: 118 avenue des champs élysées
+          buildingFloor: Third floor
+          gateOrPortalOrInboxCode: "3124"
         consentMailAds: true
         firstName: Jacob
         processorStatus: unallocated
@@ -10616,9 +10870,7 @@ components:
           readOnly: true
           type: integer
         mainAddress:
-          deprecated: false
-          description: ""
-          type: object
+          $ref: '#/components/schemas/User-Address-AuthenticatedRead'
         firstName:
           example: Jacob
           type: string
@@ -10906,7 +11158,17 @@ components:
         avatar:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
-        mainAddress: "{}"
+        mainAddress:
+          zipCode: "75004"
+          buildingName: Electron
+          cityName: Paris
+          formattedAddress: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
+          countryCode: FRA
+          companyName: Company Tld
+          secondLine: Apt 6E
+          firstLine: 118 avenue des champs élysées
+          buildingFloor: Third floor
+          gateOrPortalOrInboxCode: "3124"
         totpEnabled: true
         intlPhoneNumber: "+33700000000"
         firstName: Jacob
@@ -10928,9 +11190,7 @@ components:
           readOnly: true
           type: integer
         mainAddress:
-          deprecated: false
-          description: ""
-          type: object
+          $ref: '#/components/schemas/User-Address-CollectionRead'
         firstName:
           example: Jacob
           type: string
@@ -11295,7 +11555,17 @@ components:
         avatar:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
-        mainAddress: "{}"
+        mainAddress:
+          zipCode: "75004"
+          buildingName: Electron
+          cityName: Paris
+          formattedAddress: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
+          countryCode: FRA
+          companyName: Company Tld
+          secondLine: Apt 6E
+          firstLine: 118 avenue des champs élysées
+          buildingFloor: Third floor
+          gateOrPortalOrInboxCode: "3124"
         totpEnabled: true
         intlPhoneNumber: "+33700000000"
         firstName: Jacob
@@ -11317,9 +11587,7 @@ components:
           readOnly: true
           type: integer
         mainAddress:
-          deprecated: false
-          description: ""
-          type: object
+          $ref: '#/components/schemas/User-Address-SupportRead'
         firstName:
           example: Jacob
           type: string
@@ -11448,9 +11716,7 @@ components:
       description: ""
       properties:
         mainAddress:
-          deprecated: false
-          description: ""
-          type: object
+          $ref: '#/components/schemas/User-Address-Update'
         firstName:
           example: Jacob
           type: string
@@ -11614,7 +11880,17 @@ components:
         avatar:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
-        mainAddress: "{}"
+        mainAddress:
+          zipCode: "75004"
+          buildingName: Electron
+          cityName: Paris
+          formattedAddress: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
+          countryCode: FRA
+          companyName: Company Tld
+          secondLine: Apt 6E
+          firstLine: 118 avenue des champs élysées
+          buildingFloor: Third floor
+          gateOrPortalOrInboxCode: "3124"
         consentMailAds: true
         firstName: Jacob
         processorStatus: unallocated
@@ -11636,9 +11912,7 @@ components:
           readOnly: true
           type: integer
         mainAddress:
-          deprecated: false
-          description: ""
-          type: object
+          $ref: '#/components/schemas/Address-UserRead'
         firstName:
           example: Jacob
           type: string

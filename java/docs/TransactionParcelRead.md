@@ -24,8 +24,8 @@
 | Name | Value |
 |---- | -----|
 | SWISS_POST | &quot;SwissPost&quot; |
-| MONDIAL_RELAY | &quot;MondialRelay&quot; |
 | COLISSIMO | &quot;Colissimo&quot; |
+| MONDIAL_RELAY | &quot;MondialRelay&quot; |
 
 
 

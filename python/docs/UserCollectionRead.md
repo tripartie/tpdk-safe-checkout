@@ -7,7 +7,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
-**main_address** | **object** |  | [optional] 
+**main_address** | [**UserAddressCollectionRead**](UserAddressCollectionRead.md) |  | [optional] 
 **first_name** | **str** |  | [optional] 
 **last_name** | **str** |  | [optional] 
 **public_name** | **str** |  | [optional] 

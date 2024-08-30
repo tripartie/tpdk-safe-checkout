@@ -9,7 +9,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**id** | **Integer** |  |  [optional] [readonly] |
-|**mainAddress** | **Object** |  |  [optional] |
+|**mainAddress** | [**UserAddressCollectionRead**](UserAddressCollectionRead.md) |  |  [optional] |
 |**firstName** | **String** |  |  [optional] |
 |**lastName** | **String** |  |  [optional] |
 |**publicName** | **String** |  |  [optional] |

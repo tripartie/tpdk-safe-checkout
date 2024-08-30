@@ -20,6 +20,7 @@
 |**gateOrPortalOrInboxCode** | **String** |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] [readonly] |
 |**updatedAt** | **OffsetDateTime** |  |  [optional] [readonly] |
+|**formattedAddress** | **String** |  |  [optional] [readonly] |
 
 
 

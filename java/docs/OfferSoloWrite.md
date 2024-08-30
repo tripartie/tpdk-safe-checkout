@@ -8,7 +8,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**captcha** | **String** |  |  [optional] |
+|**captcha** | **String** |  |  |
 |**nature** | [**NatureEnum**](#NatureEnum) | This WILL affect the assigned workflow. Choosing service will disable delivery for example. Refer to our technical hub for more information. |  [optional] |
 |**title** | **String** |  |  [optional] |
 |**description** | **String** |  |  [optional] |
