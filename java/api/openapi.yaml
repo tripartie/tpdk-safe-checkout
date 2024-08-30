@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.28
+  version: 2.0.29
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -7934,6 +7934,7 @@ components:
         ulid: ulid
         nature: physical_item
         title: ASUS TUF X570-PLUS GAMING Motherboard
+        url: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
         itemCount: 1
         shippingAllowed: true
         canBeSoldSeparately: true
@@ -7987,6 +7988,14 @@ components:
             instead of using a WebView.
           example: https://marketplace.tld/offers/that-special-item-i-wish-to-sold?checkout=true
           nullable: true
+          type: string
+        url:
+          example: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
+          externalDocs:
+            url: https://schema.org/url
+          format: uri
+          nullable: true
+          readOnly: true
           type: string
         organization:
           $ref: '#/components/schemas/Offer-Organization-Read'
@@ -8093,6 +8102,7 @@ components:
       - shippingAllowed
       - status
       - ulid
+      - url
       - weightInGram
     Offer-SoloWrite:
       deprecated: false
@@ -12323,6 +12333,7 @@ components:
           ulid: ulid
           nature: physical_item
           title: ASUS TUF X570-PLUS GAMING Motherboard
+          url: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
           itemCount: 1
           shippingAllowed: true
           canBeSoldSeparately: true

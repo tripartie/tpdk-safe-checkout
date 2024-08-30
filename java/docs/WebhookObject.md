@@ -11,6 +11,7 @@
 |**status** | [**StatusEnum**](#StatusEnum) |  |  |
 |**publicUrl** | **String** | The public URL for your Ad/Offer on your marketplace. |  [optional] |
 |**redirectUrl** | **String** | Fill-in that field IF you intend to redirect your customer instead of using a WebView. |  [optional] |
+|**url** | **URI** |  |  [readonly] |
 |**organization** | [**OfferOrganizationRead**](OfferOrganizationRead.md) |  |  [optional] |
 |**seller** | [**OfferPersonaRead**](OfferPersonaRead.md) |  |  |
 |**presetBuyer** | [**OfferPersonaRead**](OfferPersonaRead.md) |  |  [optional] |

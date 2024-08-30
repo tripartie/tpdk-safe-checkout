@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **status** | **str** |  | 
 **public_url** | **str** | The public URL for your Ad/Offer on your marketplace. | [optional] 
 **redirect_url** | **str** | Fill-in that field IF you intend to redirect your customer instead of using a WebView. | [optional] 
+**url** | **str** |  | [readonly] 
 **organization** | [**OfferOrganizationRead**](OfferOrganizationRead.md) |  | [optional] 
 **seller** | [**OfferPersonaRead**](OfferPersonaRead.md) |  | 
 **preset_buyer** | [**OfferPersonaRead**](OfferPersonaRead.md) |  | [optional] 
