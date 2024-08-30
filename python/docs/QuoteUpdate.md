@@ -6,7 +6,8 @@ Someone has to ask for a Quote prior to create a transaction and (therefor) char
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**shipping_carrier** | **str** |  | 
+**shipping_carrier** | **str** |  | [optional] 
+**pickup_code** | **str** |  | [optional] 
 **quantity_to_be_acquired** | **int** |  | [default to 1]
 **attempt_unit_price** | **float** |  | [optional] 
 

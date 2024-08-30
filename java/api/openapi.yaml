@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.24
+  version: 2.0.28
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -5510,16 +5510,6 @@ paths:
         schema:
           type: integer
         style: simple
-      - allowReserved: false
-        deprecated: false
-        description: Offer identifier
-        explode: false
-        in: path
-        name: ulid
-        required: true
-        schema:
-          type: string
-        style: simple
       requestBody:
         content:
           application/json:
@@ -5596,7 +5586,7 @@ paths:
           description: Unexpected server error
       security:
       - jwtPersonalToken: []
-      summary: Create a public link for Offer
+      summary: Issue an Offer as User
       tags:
       - Safe-Checkout
       x-content-type: application/json
@@ -7013,6 +7003,7 @@ components:
         createdAt: 2000-01-23T04:56:07.000+00:00
         amount: 6.0274563
         iban: iban
+        currency: currency
         id: 0
         confirmedAt: 2000-01-23T04:56:07.000+00:00
         bic: bic
@@ -7024,6 +7015,8 @@ components:
         amount:
           format: float
           type: number
+        currency:
+          type: string
         iban:
           type: string
         bic:
@@ -7046,6 +7039,7 @@ components:
       - bic
       - confirmedAt
       - createdAt
+      - currency
       - iban
       - status
     Cashout-CashOut-Read:
@@ -7057,6 +7051,7 @@ components:
         processorStatus: unallocated
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         iban: iban
+        currency: currency
         id: 0
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         confirmedAt: 2000-01-23T04:56:07.000+00:00
@@ -7070,6 +7065,8 @@ components:
         amount:
           format: float
           type: number
+        currency:
+          type: string
         iban:
           type: string
         bic:
@@ -7116,6 +7113,7 @@ components:
       - bic
       - confirmedAt
       - createdAt
+      - currency
       - iban
       - status
     Cashout-CashOut-Write:
@@ -7267,6 +7265,9 @@ components:
           - active
           - fulfilled
           - expired
+          type: string
+        captcha:
+          nullable: true
           type: string
         publicUrl:
           description: The public URL for your Ad/Offer on your marketplace.
@@ -7444,7 +7445,6 @@ components:
           readOnly: true
           type: number
       required:
-      - allowToNegotiateUnitPrice
       - canBeSoldSeparately
       - currencyCode
       - handDeliveryAllowed
@@ -7623,7 +7623,6 @@ components:
           readOnly: true
           type: string
       required:
-      - allowToNegotiateUnitPrice
       - currencyCode
       - handDeliveryAllowed
       - nature
@@ -7671,7 +7670,6 @@ components:
           example: ASUS TUF X570-PLUS GAMING Motherboard
           maxLength: 250
           type: string
-          nullable: true
         description:
           example: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\
             \ eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim\
@@ -7683,7 +7681,6 @@ components:
           maxLength: 100000
           nullable: true
           type: string
-          nullable: true
         unitPrice:
           format: float
           type: number
@@ -7698,7 +7695,6 @@ components:
           externalDocs:
             url: https://schema.org/priceCurrency
           type: string
-          nullable: true
         itemCount:
           default: 1
           example: 1
@@ -7757,6 +7753,7 @@ components:
             $ref: '#/components/schemas/Offer-Metadata-IndependentWrite'
           type: array
       required:
+      - allowToNegotiateUnitPrice
       - seller
     Offer-Media-Read:
       deprecated: false
@@ -8101,6 +8098,9 @@ components:
       deprecated: false
       description: ""
       properties:
+        captcha:
+          nullable: true
+          type: string
         nature:
           default: physical_item
           description: This WILL affect the assigned workflow. Choosing service will
@@ -8116,7 +8116,6 @@ components:
           example: ASUS TUF X570-PLUS GAMING Motherboard
           maxLength: 250
           type: string
-          nullable: true
         description:
           example: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\
             \ eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim\
@@ -8128,7 +8127,6 @@ components:
           maxLength: 100000
           nullable: true
           type: string
-          nullable: true
         unitPrice:
           format: float
           type: number
@@ -8143,7 +8141,6 @@ components:
           externalDocs:
             url: https://schema.org/priceCurrency
           type: string
-          nullable: true
         itemCount:
           default: 1
           example: 1
@@ -8193,6 +8190,8 @@ components:
             less than "itemCount" item(s)
           example: true
           type: boolean
+      required:
+      - allowToNegotiateUnitPrice
     Offer-Update:
       deprecated: false
       description: ""
@@ -9175,15 +9174,20 @@ components:
         a transaction and (therefor) charging a known amount
         of money.
       example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
+        unitPrice: 5.962133916683182
+        sellerTotal: 7.061401241503109
         iri: https://example.com/
         shippingFees: 1.4658129
-        quantityToBeAcquired: 1
         ulid: ulid
-        shippingCarrier: SwissPost
         attemptUnitPrice: 0.8008282
         transactionFees: 6.0274563
         expireAt: 2000-01-23T04:56:07.000+00:00
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        quantityToBeAcquired: 1
+        buyerTotal: 2.3021358869347655
+        price: 5.637376656633329
+        shippingCarrier: SwissPost
+        pickupCode: pickupCode
       properties:
         ulid:
           type: string
@@ -9192,6 +9196,11 @@ components:
           - SwissPost
           - Colissimo
           - MondialRelay
+          - null
+          nullable: true
+          type: string
+        pickupCode:
+          nullable: true
           type: string
         quantityToBeAcquired:
           default: 1
@@ -9217,11 +9226,33 @@ components:
           format: iri-reference
           readOnly: true
           type: string
+        unitPrice:
+          nullable: true
+          readOnly: true
+          type: number
+        price:
+          nullable: true
+          readOnly: true
+          type: number
+        buyerTotal:
+          description: |-
+            The buyer pays for:
+             - A) item
+             - B) shipping (optional)
+             - C) fees     (optional)
+            This method sum them automatically.
+          nullable: true
+          readOnly: true
+          type: number
+        sellerTotal:
+          description: Represent what amount is to be expected released to the seller.
+          nullable: true
+          readOnly: true
+          type: number
       required:
       - createdAt
       - expireAt
       - quantityToBeAcquired
-      - shippingCarrier
       - ulid
     Quote-Update:
       deprecated: false
@@ -9235,6 +9266,11 @@ components:
           - SwissPost
           - Colissimo
           - MondialRelay
+          - null
+          nullable: true
+          type: string
+        pickupCode:
+          nullable: true
           type: string
         quantityToBeAcquired:
           default: 1
@@ -9245,7 +9281,6 @@ components:
           type: number
       required:
       - quantityToBeAcquired
-      - shippingCarrier
     Quote-Write:
       deprecated: false
       description: |-
@@ -9266,6 +9301,11 @@ components:
           - SwissPost
           - Colissimo
           - MondialRelay
+          - null
+          nullable: true
+          type: string
+        pickupCode:
+          nullable: true
           type: string
         quantityToBeAcquired:
           default: 1
@@ -9276,7 +9316,6 @@ components:
           type: number
       required:
       - quantityToBeAcquired
-      - shippingCarrier
     Transaction-Address-Read:
       deprecated: false
       description: ""
@@ -9318,12 +9357,12 @@ components:
       deprecated: false
       description: ""
       example:
-        totalFees: 4.145608029883936
-        fees: 7.061401241503109
+        totalFees: 1.4894159098541704
+        fees: 4.145608029883936
         ulid: ulid
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         awaitedParty: BUYER
-        totalCharged: 2.027123023002322
+        totalCharged: 1.0246457001441578
         statusExpiration: 2000-01-23T04:56:07.000+00:00
         buyer:
           firstName: John
@@ -9354,19 +9393,24 @@ components:
             id: 0
           status: issued
           updatedAt: 2000-01-23T04:56:07.000+00:00
-        total: 3.616076749251911
+        total: 1.2315135367772556
         processorStatus: unallocated
         quote:
-          createdAt: 2000-01-23T04:56:07.000+00:00
+          unitPrice: 7.061401241503109
+          sellerTotal: 2.027123023002322
           iri: https://example.com/
           shippingFees: 2.302136
-          quantityToBeAcquired: 1
           ulid: ulid
-          shippingCarrier: SwissPost
           attemptUnitPrice: 5.962134
           transactionFees: 5.637377
           expireAt: 2000-01-23T04:56:07.000+00:00
-        supplementalFees: 9.301444243932576
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          quantityToBeAcquired: 1
+          buyerTotal: 3.616076749251911
+          price: 9.301444243932576
+          shippingCarrier: SwissPost
+          pickupCode: pickupCode
+        supplementalFees: 7.386281948385884
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         providerName: providerName
         status: CREATED
@@ -9572,7 +9616,6 @@ components:
           readOnly: true
           type: string
       required:
-      - allowToNegotiateUnitPrice
       - currencyCode
       - medias
       - nature
@@ -9901,15 +9944,20 @@ components:
       deprecated: false
       description: ""
       example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
+        unitPrice: 7.061401241503109
+        sellerTotal: 2.027123023002322
         iri: https://example.com/
         shippingFees: 2.302136
-        quantityToBeAcquired: 1
         ulid: ulid
-        shippingCarrier: SwissPost
         attemptUnitPrice: 5.962134
         transactionFees: 5.637377
         expireAt: 2000-01-23T04:56:07.000+00:00
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        quantityToBeAcquired: 1
+        buyerTotal: 3.616076749251911
+        price: 9.301444243932576
+        shippingCarrier: SwissPost
+        pickupCode: pickupCode
       properties:
         ulid:
           type: string
@@ -9918,6 +9966,11 @@ components:
           - SwissPost
           - Colissimo
           - MondialRelay
+          - null
+          nullable: true
+          type: string
+        pickupCode:
+          nullable: true
           type: string
         quantityToBeAcquired:
           default: 1
@@ -9943,25 +9996,52 @@ components:
           format: iri-reference
           readOnly: true
           type: string
+        unitPrice:
+          nullable: true
+          readOnly: true
+          type: number
+        price:
+          nullable: true
+          readOnly: true
+          type: number
+        buyerTotal:
+          description: |-
+            The buyer pays for:
+             - A) item
+             - B) shipping (optional)
+             - C) fees     (optional)
+            This method sum them automatically.
+          nullable: true
+          readOnly: true
+          type: number
+        sellerTotal:
+          description: Represent what amount is to be expected released to the seller.
+          nullable: true
+          readOnly: true
+          type: number
       required:
       - createdAt
       - expireAt
       - quantityToBeAcquired
-      - shippingCarrier
       - ulid
     Transaction-Quote-Read:
       deprecated: false
       description: ""
       example:
-        createdAt: 2000-01-23T04:56:07.000+00:00
+        unitPrice: 7.061401241503109
+        sellerTotal: 2.027123023002322
         iri: https://example.com/
         shippingFees: 2.302136
-        quantityToBeAcquired: 1
         ulid: ulid
-        shippingCarrier: SwissPost
         attemptUnitPrice: 5.962134
         transactionFees: 5.637377
         expireAt: 2000-01-23T04:56:07.000+00:00
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        quantityToBeAcquired: 1
+        buyerTotal: 3.616076749251911
+        price: 9.301444243932576
+        shippingCarrier: SwissPost
+        pickupCode: pickupCode
       properties:
         ulid:
           type: string
@@ -9970,6 +10050,11 @@ components:
           - SwissPost
           - Colissimo
           - MondialRelay
+          - null
+          nullable: true
+          type: string
+        pickupCode:
+          nullable: true
           type: string
         quantityToBeAcquired:
           default: 1
@@ -9995,11 +10080,33 @@ components:
           format: iri-reference
           readOnly: true
           type: string
+        unitPrice:
+          nullable: true
+          readOnly: true
+          type: number
+        price:
+          nullable: true
+          readOnly: true
+          type: number
+        buyerTotal:
+          description: |-
+            The buyer pays for:
+             - A) item
+             - B) shipping (optional)
+             - C) fees     (optional)
+            This method sum them automatically.
+          nullable: true
+          readOnly: true
+          type: number
+        sellerTotal:
+          description: Represent what amount is to be expected released to the seller.
+          nullable: true
+          readOnly: true
+          type: number
       required:
       - createdAt
       - expireAt
       - quantityToBeAcquired
-      - shippingCarrier
       - ulid
     Transaction-Read:
       deprecated: false
@@ -10068,15 +10175,20 @@ components:
         createdAt: 2000-01-23T04:56:07.000+00:00
         total: 3.616076749251911
         quote:
-          createdAt: 2000-01-23T04:56:07.000+00:00
+          unitPrice: 7.061401241503109
+          sellerTotal: 2.027123023002322
           iri: https://example.com/
           shippingFees: 2.302136
-          quantityToBeAcquired: 1
           ulid: ulid
-          shippingCarrier: SwissPost
           attemptUnitPrice: 5.962134
           transactionFees: 5.637377
           expireAt: 2000-01-23T04:56:07.000+00:00
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          quantityToBeAcquired: 1
+          buyerTotal: 3.616076749251911
+          price: 9.301444243932576
+          shippingCarrier: SwissPost
+          pickupCode: pickupCode
         remotePreAuthorizationId: remotePreAuthorizationId
         review: review
         escrow:
@@ -10442,6 +10554,7 @@ components:
           processorStatus: unallocated
           balance: 5.962134
           providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+          currency: currency
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
           providerName: providerName
           updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -10771,6 +10884,7 @@ components:
           balance: 1.4658129
           providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
           externalId: externalId
+          currency: currency
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
           providerName: providerName
           updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -11159,6 +11273,7 @@ components:
           balance: 1.4658129
           providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
           externalId: externalId
+          currency: currency
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
           providerName: providerName
           updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -11459,6 +11574,7 @@ components:
           processorStatus: unallocated
           balance: 5.962134
           providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+          currency: currency
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
           providerName: providerName
           updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -11655,6 +11771,7 @@ components:
         processorStatus: unallocated
         balance: 5.962134
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        currency: currency
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -11662,6 +11779,8 @@ components:
         balance:
           format: float
           type: number
+        currency:
+          type: string
         createdAt:
           format: date-time
           type: string
@@ -11694,6 +11813,7 @@ components:
           type: string
       required:
       - createdAt
+      - currency
       - updatedAt
     User-Wallet-CollectionRead:
       deprecated: false
@@ -11704,6 +11824,7 @@ components:
         balance: 1.4658129
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         externalId: externalId
+        currency: currency
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -11711,6 +11832,8 @@ components:
         balance:
           format: float
           type: number
+        currency:
+          type: string
         createdAt:
           format: date-time
           type: string
@@ -11746,6 +11869,7 @@ components:
           type: string
       required:
       - createdAt
+      - currency
       - updatedAt
     User-Wallet-SupportRead:
       deprecated: false
@@ -11756,6 +11880,7 @@ components:
         balance: 1.4658129
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         externalId: externalId
+        currency: currency
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -11763,6 +11888,8 @@ components:
         balance:
           format: float
           type: number
+        currency:
+          type: string
         createdAt:
           format: date-time
           type: string
@@ -11798,6 +11925,7 @@ components:
           type: string
       required:
       - createdAt
+      - currency
       - updatedAt
     User-Write:
       deprecated: false
@@ -11938,6 +12066,7 @@ components:
         processorStatus: unallocated
         balance: 5.962134
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        currency: currency
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -11945,6 +12074,8 @@ components:
         balance:
           format: float
           type: number
+        currency:
+          type: string
         createdAt:
           format: date-time
           type: string
@@ -11977,6 +12108,7 @@ components:
           type: string
       required:
       - createdAt
+      - currency
       - updatedAt
     WebhookHistory:
       deprecated: false

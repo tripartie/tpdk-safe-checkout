@@ -7,7 +7,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ulid** | **str** |  | 
-**shipping_carrier** | **str** |  | 
+**shipping_carrier** | **str** |  | [optional] 
+**pickup_code** | **str** |  | [optional] 
 **quantity_to_be_acquired** | **int** |  | [default to 1]
 **attempt_unit_price** | **float** |  | [optional] 
 **transaction_fees** | **float** |  | [optional] 
@@ -15,6 +16,10 @@ Name | Type | Description | Notes
 **created_at** | **datetime** |  | 
 **expire_at** | **datetime** |  | 
 **iri** | **str** |  | [optional] [readonly] 
+**unit_price** | **float** |  | [optional] [readonly] 
+**price** | **float** |  | [optional] [readonly] 
+**buyer_total** | **float** | The buyer pays for:  - A) item  - B) shipping (optional)  - C) fees     (optional) This method sum them automatically. | [optional] [readonly] 
+**seller_total** | **float** | Represent what amount is to be expected released to the seller. | [optional] [readonly] 
 
 ## Example
 

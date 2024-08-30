@@ -11,6 +11,7 @@
 |**id** | **Integer** |  |  [optional] [readonly] |
 |**ulid** | **String** |  |  |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  |
+|**captcha** | **String** |  |  [optional] |
 |**publicUrl** | **String** | The public URL for your Ad/Offer on your marketplace. |  [optional] |
 |**redirectUrl** | **String** | Fill-in that field IF you intend to redirect your customer instead of using a WebView. |  [optional] |
 |**url** | **URI** |  |  [readonly] |
@@ -22,7 +23,7 @@
 |**description** | **String** |  |  [optional] |
 |**unitPrice** | **Float** |  |  [optional] |
 |**minNegotiableUnitPrice** | **Float** |  |  [optional] |
-|**allowToNegotiateUnitPrice** | **Boolean** |  |  |
+|**allowToNegotiateUnitPrice** | **Boolean** |  |  [optional] |
 |**currencyCode** | **String** |  |  |
 |**itemCount** | **Integer** |  |  [optional] |
 |**condition** | [**ConditionEnum**](#ConditionEnum) |  |  [optional] |

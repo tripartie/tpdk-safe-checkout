@@ -10,6 +10,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**id** | **Integer** |  |  [optional] [readonly] |
 |**amount** | **Float** |  |  [optional] |
+|**currency** | **String** |  |  |
 |**iban** | **String** |  |  |
 |**bic** | **String** |  |  |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  |

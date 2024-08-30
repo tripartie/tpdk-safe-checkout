@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **title** | **str** |  | [optional] 
 **unit_price** | **float** |  | [optional] 
 **min_negotiable_unit_price** | **float** |  | [optional] 
-**allow_to_negotiate_unit_price** | **bool** |  | 
+**allow_to_negotiate_unit_price** | **bool** |  | [optional] 
 **currency_code** | **str** |  | [default to 'EUR']
 **item_count** | **int** |  | [optional] [default to 1]
 **condition** | **str** |  | [optional] [default to 'USED']

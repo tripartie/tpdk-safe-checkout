@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
 **amount** | **float** |  | [optional] 
+**currency** | **str** |  | 
 **iban** | **str** |  | 
 **bic** | **str** |  | 
 **status** | **str** |  | 

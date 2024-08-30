@@ -8,7 +8,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **captcha** | **str** |  | [optional] 
 **offer** | **str** |  | [optional] 
-**shipping_carrier** | **str** |  | 
+**shipping_carrier** | **str** |  | [optional] 
+**pickup_code** | **str** |  | [optional] 
 **quantity_to_be_acquired** | **int** |  | [default to 1]
 **attempt_unit_price** | **float** |  | [optional] 
 
