@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **birthday** | **datetime** |  | [optional] 
 **intl_phone_number** | **str** |  | [optional] 
 **consent_mail_ads** | **bool** |  | 
+**time_zone_offset** | **int** | Timezone offset. Expressed in minutes. Used for DT conversion and fraud prevention. | [optional] 
 
 ## Example
 

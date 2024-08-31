@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **pickup_code** | **str** |  | [optional] 
 **quantity_to_be_acquired** | **int** |  | [default to 1]
 **attempt_unit_price** | **float** |  | [optional] 
+**currency** | **str** | Expect &#39;EUR&#39; only for now. | [optional] [default to 'EUR']
+**original_unit_price** | **float** |  | [optional] 
 **transaction_fees** | **float** |  | [optional] 
 **shipping_fees** | **float** |  | [optional] 
 **created_at** | **datetime** |  | 

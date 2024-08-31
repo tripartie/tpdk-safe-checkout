@@ -22,6 +22,7 @@
 |**avatar** | [**UserMediaCollectionRead**](UserMediaCollectionRead.md) |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] [readonly] |
 |**updatedAt** | **OffsetDateTime** |  |  [optional] [readonly] |
+|**timeZoneOffset** | **Integer** | Timezone offset. Expressed in minutes. Used for DT conversion and fraud prevention. |  [optional] |
 |**organization** | [**UserOrganizationCollectionRead**](UserOrganizationCollectionRead.md) |  |  [optional] |
 |**wallet** | [**UserWalletCollectionRead**](UserWalletCollectionRead.md) |  |  [optional] |
 |**externalId** | **String** |  |  [optional] |

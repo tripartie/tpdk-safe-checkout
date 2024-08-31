@@ -13,6 +13,8 @@ Someone has to ask for a Quote prior to create a transaction and (therefor) char
 |**pickupCode** | **String** |  |  [optional] |
 |**quantityToBeAcquired** | **Integer** |  |  |
 |**attemptUnitPrice** | **Float** |  |  [optional] |
+|**currency** | **String** | Expect &#39;EUR&#39; only for now. |  [optional] |
+|**originalUnitPrice** | **Float** |  |  [optional] |
 |**transactionFees** | **Float** |  |  [optional] |
 |**shippingFees** | **Float** |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  |

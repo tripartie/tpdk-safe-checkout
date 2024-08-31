@@ -14,6 +14,9 @@
 |**currency** | **String** |  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**labelPublicUrl** | **String** |  |  [optional] |
+|**trackingPublicUrl** | **String** |  |  [optional] |
+|**historicalRecipientAddress** | **String** |  |  [optional] |
+|**historicalSenderAddress** | **String** |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] [readonly] |
 |**updatedAt** | **OffsetDateTime** |  |  [optional] [readonly] |
 

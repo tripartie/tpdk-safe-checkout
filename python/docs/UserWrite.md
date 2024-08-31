@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **home_country** | **str** | The originating country | [optional] 
 **preferred_language** | **str** |  | [optional] 
 **consent_mail_ads** | **bool** |  | [optional] 
+**time_zone_offset** | **int** | Timezone offset. Expressed in minutes. Used for DT conversion and fraud prevention. | [optional] 
 
 ## Example
 

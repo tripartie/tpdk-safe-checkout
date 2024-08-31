@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.30
+  version: 2.0.32
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -9237,20 +9237,22 @@ components:
         a transaction and (therefor) charging a known amount
         of money.
       example:
-        unitPrice: 5.962133916683182
-        sellerTotal: 7.061401241503109
+        unitPrice: 5.637376656633329
+        sellerTotal: 9.301444243932576
         iri: https://example.com/
-        shippingFees: 1.4658129
+        shippingFees: 5.962134
         ulid: ulid
         attemptUnitPrice: 0.8008282
-        transactionFees: 6.0274563
+        transactionFees: 1.4658129
         expireAt: 2000-01-23T04:56:07.000+00:00
+        originalUnitPrice: 6.0274563
         createdAt: 2000-01-23T04:56:07.000+00:00
         quantityToBeAcquired: 1
-        buyerTotal: 2.3021358869347655
-        price: 5.637376656633329
+        buyerTotal: 7.061401241503109
+        price: 2.3021358869347655
         shippingCarrier: SwissPost
         pickupCode: pickupCode
+        currency: EUR
       properties:
         ulid:
           type: string
@@ -9270,6 +9272,15 @@ components:
           example: 1
           type: integer
         attemptUnitPrice:
+          format: float
+          type: number
+        currency:
+          default: EUR
+          description: Expect 'EUR' only for now.
+          example: EUR
+          nullable: true
+          type: string
+        originalUnitPrice:
           format: float
           type: number
         transactionFees:
@@ -9420,12 +9431,12 @@ components:
       deprecated: false
       description: ""
       example:
-        totalFees: 1.4894159098541704
-        fees: 4.145608029883936
+        totalFees: 6.84685269835264
+        fees: 7.386281948385884
         ulid: ulid
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         awaitedParty: BUYER
-        totalCharged: 1.0246457001441578
+        totalCharged: 1.4894159098541704
         statusExpiration: 2000-01-23T04:56:07.000+00:00
         buyer:
           firstName: John
@@ -9456,24 +9467,26 @@ components:
             id: 0
           status: issued
           updatedAt: 2000-01-23T04:56:07.000+00:00
-        total: 1.2315135367772556
+        total: 1.0246457001441578
         processorStatus: unallocated
         quote:
-          unitPrice: 7.061401241503109
-          sellerTotal: 2.027123023002322
+          unitPrice: 9.301444243932576
+          sellerTotal: 4.145608029883936
           iri: https://example.com/
-          shippingFees: 2.302136
+          shippingFees: 7.0614014
           ulid: ulid
           attemptUnitPrice: 5.962134
-          transactionFees: 5.637377
+          transactionFees: 2.302136
           expireAt: 2000-01-23T04:56:07.000+00:00
+          originalUnitPrice: 5.637377
           createdAt: 2000-01-23T04:56:07.000+00:00
           quantityToBeAcquired: 1
-          buyerTotal: 3.616076749251911
-          price: 9.301444243932576
+          buyerTotal: 2.027123023002322
+          price: 3.616076749251911
           shippingCarrier: SwissPost
           pickupCode: pickupCode
-        supplementalFees: 7.386281948385884
+          currency: EUR
+        supplementalFees: 1.2315135367772556
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         providerName: providerName
         status: CREATED
@@ -9885,7 +9898,10 @@ components:
         identifier: 8J001271466474
         createdAt: 2000-01-23T04:56:07.000+00:00
         carrier: SwissPost
+        historicalSenderAddress: historicalSenderAddress
+        historicalRecipientAddress: historicalRecipientAddress
         price: 4.88
+        trackingPublicUrl: trackingPublicUrl
         currency: EUR
         labelPublicUrl: labelPublicUrl
         status: CREATED
@@ -9927,6 +9943,15 @@ components:
           nullable: true
           type: string
         labelPublicUrl:
+          nullable: true
+          type: string
+        trackingPublicUrl:
+          nullable: true
+          type: string
+        historicalRecipientAddress:
+          nullable: true
+          type: string
+        historicalSenderAddress:
           nullable: true
           type: string
         createdAt:
@@ -10007,20 +10032,22 @@ components:
       deprecated: false
       description: ""
       example:
-        unitPrice: 7.061401241503109
-        sellerTotal: 2.027123023002322
+        unitPrice: 9.301444243932576
+        sellerTotal: 4.145608029883936
         iri: https://example.com/
-        shippingFees: 2.302136
+        shippingFees: 7.0614014
         ulid: ulid
         attemptUnitPrice: 5.962134
-        transactionFees: 5.637377
+        transactionFees: 2.302136
         expireAt: 2000-01-23T04:56:07.000+00:00
+        originalUnitPrice: 5.637377
         createdAt: 2000-01-23T04:56:07.000+00:00
         quantityToBeAcquired: 1
-        buyerTotal: 3.616076749251911
-        price: 9.301444243932576
+        buyerTotal: 2.027123023002322
+        price: 3.616076749251911
         shippingCarrier: SwissPost
         pickupCode: pickupCode
+        currency: EUR
       properties:
         ulid:
           type: string
@@ -10040,6 +10067,15 @@ components:
           example: 1
           type: integer
         attemptUnitPrice:
+          format: float
+          type: number
+        currency:
+          default: EUR
+          description: Expect 'EUR' only for now.
+          example: EUR
+          nullable: true
+          type: string
+        originalUnitPrice:
           format: float
           type: number
         transactionFees:
@@ -10091,20 +10127,22 @@ components:
       deprecated: false
       description: ""
       example:
-        unitPrice: 7.061401241503109
-        sellerTotal: 2.027123023002322
+        unitPrice: 9.301444243932576
+        sellerTotal: 4.145608029883936
         iri: https://example.com/
-        shippingFees: 2.302136
+        shippingFees: 7.0614014
         ulid: ulid
         attemptUnitPrice: 5.962134
-        transactionFees: 5.637377
+        transactionFees: 2.302136
         expireAt: 2000-01-23T04:56:07.000+00:00
+        originalUnitPrice: 5.637377
         createdAt: 2000-01-23T04:56:07.000+00:00
         quantityToBeAcquired: 1
-        buyerTotal: 3.616076749251911
-        price: 9.301444243932576
+        buyerTotal: 2.027123023002322
+        price: 3.616076749251911
         shippingCarrier: SwissPost
         pickupCode: pickupCode
+        currency: EUR
       properties:
         ulid:
           type: string
@@ -10124,6 +10162,15 @@ components:
           example: 1
           type: integer
         attemptUnitPrice:
+          format: float
+          type: number
+        currency:
+          default: EUR
+          description: Expect 'EUR' only for now.
+          example: EUR
+          nullable: true
+          type: string
+        originalUnitPrice:
           format: float
           type: number
         transactionFees:
@@ -10238,20 +10285,22 @@ components:
         createdAt: 2000-01-23T04:56:07.000+00:00
         total: 3.616076749251911
         quote:
-          unitPrice: 7.061401241503109
-          sellerTotal: 2.027123023002322
+          unitPrice: 9.301444243932576
+          sellerTotal: 4.145608029883936
           iri: https://example.com/
-          shippingFees: 2.302136
+          shippingFees: 7.0614014
           ulid: ulid
           attemptUnitPrice: 5.962134
-          transactionFees: 5.637377
+          transactionFees: 2.302136
           expireAt: 2000-01-23T04:56:07.000+00:00
+          originalUnitPrice: 5.637377
           createdAt: 2000-01-23T04:56:07.000+00:00
           quantityToBeAcquired: 1
-          buyerTotal: 3.616076749251911
-          price: 9.301444243932576
+          buyerTotal: 2.027123023002322
+          price: 3.616076749251911
           shippingCarrier: SwissPost
           pickupCode: pickupCode
+          currency: EUR
         remotePreAuthorizationId: remotePreAuthorizationId
         review: review
         escrow:
@@ -10290,7 +10339,10 @@ components:
         - identifier: 8J001271466474
           createdAt: 2000-01-23T04:56:07.000+00:00
           carrier: SwissPost
+          historicalSenderAddress: historicalSenderAddress
+          historicalRecipientAddress: historicalRecipientAddress
           price: 4.88
+          trackingPublicUrl: trackingPublicUrl
           currency: EUR
           labelPublicUrl: labelPublicUrl
           status: CREATED
@@ -10298,7 +10350,10 @@ components:
         - identifier: 8J001271466474
           createdAt: 2000-01-23T04:56:07.000+00:00
           carrier: SwissPost
+          historicalSenderAddress: historicalSenderAddress
+          historicalRecipientAddress: historicalRecipientAddress
           price: 4.88
+          trackingPublicUrl: trackingPublicUrl
           currency: EUR
           labelPublicUrl: labelPublicUrl
           status: CREATED
@@ -10780,6 +10835,7 @@ components:
           updatedAt: 2000-01-23T04:56:07.000+00:00
         roles:
         - ROLE_ORGANIZATION_OWNER
+        timeZoneOffset: -60
         identityVerifiedAt: 2000-01-23T04:56:07.000+00:00
         totpEnabled: true
         intlPhoneNumber: "+33700000000"
@@ -10949,6 +11005,12 @@ components:
           type: boolean
         lockdown:
           type: boolean
+        timeZoneOffset:
+          description: Timezone offset. Expressed in minutes. Used for DT conversion
+            and fraud prevention.
+          example: -60
+          nullable: true
+          type: integer
         organization:
           $ref: '#/components/schemas/User-Organization-AuthenticatedRead'
         bankAccount:
@@ -11154,6 +11216,7 @@ components:
         secondAuthFactor: true
         roles:
         - ROLE_ORGANIZATION_OWNER
+        timeZoneOffset: -60
         externalId: externalId
         avatar:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
@@ -11244,6 +11307,12 @@ components:
           format: date-time
           readOnly: true
           type: string
+        timeZoneOffset:
+          description: Timezone offset. Expressed in minutes. Used for DT conversion
+            and fraud prevention.
+          example: -60
+          nullable: true
+          type: integer
         organization:
           $ref: '#/components/schemas/User-Organization-CollectionRead'
         wallet:
@@ -11551,6 +11620,7 @@ components:
         secondAuthFactor: true
         roles:
         - ROLE_ORGANIZATION_OWNER
+        timeZoneOffset: -60
         externalId: externalId
         avatar:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
@@ -11641,6 +11711,12 @@ components:
           format: date-time
           readOnly: true
           type: string
+        timeZoneOffset:
+          description: Timezone offset. Expressed in minutes. Used for DT conversion
+            and fraud prevention.
+          example: -60
+          nullable: true
+          type: integer
         organization:
           $ref: '#/components/schemas/User-Organization-SupportRead'
         wallet:
@@ -11741,6 +11817,12 @@ components:
           type: string
         consentMailAds:
           type: boolean
+        timeZoneOffset:
+          description: Timezone offset. Expressed in minutes. Used for DT conversion
+            and fraud prevention.
+          example: -60
+          nullable: true
+          type: integer
       required:
       - consentMailAds
     User-UserEmailUpdate:
@@ -11822,6 +11904,7 @@ components:
           updatedAt: 2000-01-23T04:56:07.000+00:00
         roles:
         - ROLE_ORGANIZATION_OWNER
+        timeZoneOffset: -60
         identityVerifiedAt: 2000-01-23T04:56:07.000+00:00
         totpEnabled: true
         intlPhoneNumber: "+33700000000"
@@ -11992,6 +12075,12 @@ components:
           type: boolean
         lockdown:
           type: boolean
+        timeZoneOffset:
+          description: Timezone offset. Expressed in minutes. Used for DT conversion
+            and fraud prevention.
+          example: -60
+          nullable: true
+          type: integer
         organization:
           $ref: '#/components/schemas/Organization-UserRead'
         bankAccount:
@@ -12277,6 +12366,12 @@ components:
           type: string
         consentMailAds:
           type: boolean
+        timeZoneOffset:
+          description: Timezone offset. Expressed in minutes. Used for DT conversion
+            and fraud prevention.
+          example: -60
+          nullable: true
+          type: integer
       required:
       - captcha
       - email

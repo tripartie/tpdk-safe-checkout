@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **avatar** | [**UserMediaCollectionRead**](UserMediaCollectionRead.md) |  | [optional] 
 **created_at** | **datetime** |  | [optional] [readonly] 
 **updated_at** | **datetime** |  | [optional] [readonly] 
+**time_zone_offset** | **int** | Timezone offset. Expressed in minutes. Used for DT conversion and fraud prevention. | [optional] 
 **organization** | [**UserOrganizationCollectionRead**](UserOrganizationCollectionRead.md) |  | [optional] 
 **wallet** | [**UserWalletCollectionRead**](UserWalletCollectionRead.md) |  | [optional] 
 **external_id** | **str** |  | [optional] 

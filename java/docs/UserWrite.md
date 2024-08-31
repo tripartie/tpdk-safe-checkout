@@ -21,6 +21,7 @@
 |**homeCountry** | **String** | The originating country |  [optional] |
 |**preferredLanguage** | **String** |  |  [optional] |
 |**consentMailAds** | **Boolean** |  |  [optional] |
+|**timeZoneOffset** | **Integer** | Timezone offset. Expressed in minutes. Used for DT conversion and fraud prevention. |  [optional] |
 
 
 
