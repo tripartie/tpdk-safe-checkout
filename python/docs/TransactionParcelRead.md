@@ -12,6 +12,9 @@ Name | Type | Description | Notes
 **currency** | **str** |  | [optional] [default to 'EUR']
 **status** | **str** |  | [optional] 
 **label_public_url** | **str** |  | [optional] 
+**tracking_public_url** | **str** |  | [optional] 
+**historical_recipient_address** | **str** |  | [optional] 
+**historical_sender_address** | **str** |  | [optional] 
 **created_at** | **datetime** |  | [optional] [readonly] 
 **updated_at** | **datetime** |  | [optional] [readonly] 
 

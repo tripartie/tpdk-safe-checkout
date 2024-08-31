@@ -16,6 +16,7 @@
 |**birthday** | **OffsetDateTime** |  |  [optional] |
 |**intlPhoneNumber** | **String** |  |  [optional] |
 |**consentMailAds** | **Boolean** |  |  |
+|**timeZoneOffset** | **Integer** | Timezone offset. Expressed in minutes. Used for DT conversion and fraud prevention. |  [optional] |
 
 
 

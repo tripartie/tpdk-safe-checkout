@@ -26,6 +26,7 @@ Name | Type | Description | Notes
 **updated_at** | **datetime** |  | [optional] [readonly] 
 **consent_mail_ads** | **bool** |  | [optional] 
 **lockdown** | **bool** |  | [optional] 
+**time_zone_offset** | **int** | Timezone offset. Expressed in minutes. Used for DT conversion and fraud prevention. | [optional] 
 **organization** | [**OrganizationUserRead**](OrganizationUserRead.md) |  | [optional] 
 **bank_account** | [**BankAccountUserRead**](BankAccountUserRead.md) |  | [optional] 
 **identity_verified_at** | **datetime** |  | [optional] 

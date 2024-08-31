@@ -28,6 +28,7 @@
 |**updatedAt** | **OffsetDateTime** |  |  [optional] [readonly] |
 |**consentMailAds** | **Boolean** |  |  |
 |**lockdown** | **Boolean** |  |  |
+|**timeZoneOffset** | **Integer** | Timezone offset. Expressed in minutes. Used for DT conversion and fraud prevention. |  [optional] |
 |**organization** | [**UserOrganizationAuthenticatedRead**](UserOrganizationAuthenticatedRead.md) |  |  [optional] |
 |**bankAccount** | [**UserBankAccountAuthenticatedRead**](UserBankAccountAuthenticatedRead.md) |  |  [optional] |
 |**identityVerifiedAt** | **OffsetDateTime** |  |  [optional] |
