@@ -12,6 +12,9 @@ Name | Type | Description | Notes
 **pickup_code** | **str** |  | [optional] 
 **quantity_to_be_acquired** | **int** |  | [default to 1]
 **attempt_unit_price** | **float** |  | [optional] 
+**third_party_recipient_first_name** | **str** |  | [optional] 
+**third_party_recipient_last_name** | **str** |  | [optional] 
+**third_party_recipient_address** | [**QuoteAddressWrite**](QuoteAddressWrite.md) |  | [optional] 
 
 ## Example
 

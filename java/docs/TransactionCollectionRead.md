@@ -11,6 +11,7 @@
 |**ulid** | **String** |  |  |
 |**offer** | [**TransactionOfferCollectionRead**](TransactionOfferCollectionRead.md) |  |  |
 |**quote** | [**TransactionQuoteCollectionRead**](TransactionQuoteCollectionRead.md) |  |  |
+|**buyerMessage** | **String** | Attach a note. Only the buyer can exercise this right. At the creation. |  [optional] |
 |**buyer** | [**TransactionPersonaCollectionRead**](TransactionPersonaCollectionRead.md) |  |  |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**fees** | **BigDecimal** |  |  [optional] |

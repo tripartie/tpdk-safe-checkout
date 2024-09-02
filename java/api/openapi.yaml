@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.32
+  version: 2.0.33
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -7513,10 +7513,6 @@ components:
       deprecated: false
       description: ""
       properties:
-        companyName:
-          example: Company Tld
-          nullable: true
-          type: string
         countryCode:
           example: FRA
           maxLength: 3
@@ -7980,16 +7976,28 @@ components:
       example:
         seller:
           registered: true
-        unitPrice: 0.8008282
-        iri: https://example.com/
         redirectUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold?checkout=true
         ulid: ulid
-        nature: physical_item
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed\
+          \ do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim\
+          \ ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip\
+          \ ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate\
+          \ velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat\
+          \ cupidatat non proident, sunt in culpa qui officia deserunt mollit anim\
+          \ id est laborum."
         title: ASUS TUF X570-PLUS GAMING Motherboard
+        canBeSoldSeparately: true
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        eanCode: "4718017388450"
+        presetBuyer:
+          registered: true
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+        unitPrice: 0.8008282
+        iri: https://example.com/
+        nature: physical_item
         url: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
         itemCount: 1
         shippingAllowed: true
-        canBeSoldSeparately: true
         handDeliveryAllowed: true
         weightInGram: 6
         medias:
@@ -7997,12 +8005,10 @@ components:
           id: 6
         - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
-        createdAt: 2000-01-23T04:56:07.000+00:00
         condition: USED
         shippingCarriers:
         - SwissPost
         - SwissPost
-        eanCode: "4718017388450"
         organization:
           websiteUrl: websiteUrl
           name: name
@@ -8016,10 +8022,7 @@ components:
           customBaseUrl: customBaseUrl
         publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
         currencyCode: EUR
-        presetBuyer:
-          registered: true
         status: issued
-        updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         ulid:
           type: string
@@ -8068,6 +8071,16 @@ components:
           type: string
         title:
           example: ASUS TUF X570-PLUS GAMING Motherboard
+          type: string
+        description:
+          example: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\
+            \ eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim\
+            \ ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip\
+            \ ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate\
+            \ velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat\
+            \ cupidatat non proident, sunt in culpa qui officia deserunt mollit anim\
+            \ id est laborum."
+          nullable: true
           type: string
         unitPrice:
           format: float
@@ -8644,17 +8657,12 @@ components:
         createdAt: 2000-01-23T04:56:07.000+00:00
         cityName: Paris
         countryCode: FRA
-        companyName: Company Tld
         secondLine: Apt 6E
         firstLine: 118 avenue des champs élysées
         buildingFloor: Third floor
         gateOrPortalOrInboxCode: "3124"
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
-        companyName:
-          example: Company Tld
-          nullable: true
-          type: string
         countryCode:
           example: FRA
           maxLength: 3
@@ -8697,10 +8705,6 @@ components:
       deprecated: false
       description: ""
       properties:
-        companyName:
-          example: Company Tld
-          nullable: true
-          type: string
         countryCode:
           example: FRA
           maxLength: 3
@@ -8734,10 +8738,6 @@ components:
       deprecated: false
       description: ""
       properties:
-        companyName:
-          example: Company Tld
-          nullable: true
-          type: string
         countryCode:
           example: FRA
           maxLength: 3
@@ -8870,7 +8870,6 @@ components:
           createdAt: 2000-01-23T04:56:07.000+00:00
           cityName: Paris
           countryCode: FRA
-          companyName: Company Tld
           secondLine: Apt 6E
           firstLine: 118 avenue des champs élysées
           buildingFloor: Third floor
@@ -9230,6 +9229,125 @@ components:
           type: string
       required:
       - type
+    Quote-Address-Read:
+      deprecated: false
+      description: ""
+      example:
+        zipCode: "75004"
+        buildingName: Electron
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        cityName: Paris
+        countryCode: FRA
+        secondLine: Apt 6E
+        firstLine: 118 avenue des champs élysées
+        buildingFloor: Third floor
+        gateOrPortalOrInboxCode: "3124"
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        countryCode:
+          example: FRA
+          maxLength: 3
+          type: string
+        zipCode:
+          example: "75004"
+          type: string
+        cityName:
+          example: Paris
+          type: string
+        firstLine:
+          example: 118 avenue des champs élysées
+          type: string
+        secondLine:
+          example: Apt 6E
+          nullable: true
+          type: string
+        buildingName:
+          example: Electron
+          nullable: true
+          type: string
+        buildingFloor:
+          example: Third floor
+          nullable: true
+          type: string
+        gateOrPortalOrInboxCode:
+          example: "3124"
+          nullable: true
+          type: string
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          format: date-time
+          nullable: true
+          readOnly: true
+          type: string
+    Quote-Address-Update:
+      deprecated: false
+      description: ""
+      properties:
+        countryCode:
+          example: FRA
+          maxLength: 3
+          type: string
+        zipCode:
+          example: "75004"
+          type: string
+        cityName:
+          example: Paris
+          type: string
+        firstLine:
+          example: 118 avenue des champs élysées
+          type: string
+        secondLine:
+          example: Apt 6E
+          nullable: true
+          type: string
+        buildingName:
+          example: Electron
+          nullable: true
+          type: string
+        buildingFloor:
+          example: Third floor
+          nullable: true
+          type: string
+        gateOrPortalOrInboxCode:
+          example: "3124"
+          nullable: true
+          type: string
+    Quote-Address-Write:
+      deprecated: false
+      description: ""
+      properties:
+        countryCode:
+          example: FRA
+          maxLength: 3
+          type: string
+        zipCode:
+          example: "75004"
+          type: string
+        cityName:
+          example: Paris
+          type: string
+        firstLine:
+          example: 118 avenue des champs élysées
+          type: string
+        secondLine:
+          example: Apt 6E
+          nullable: true
+          type: string
+        buildingName:
+          example: Electron
+          nullable: true
+          type: string
+        buildingFloor:
+          example: Third floor
+          nullable: true
+          type: string
+        gateOrPortalOrInboxCode:
+          example: "3124"
+          nullable: true
+          type: string
     Quote-Read:
       deprecated: false
       description: |-
@@ -9237,22 +9355,37 @@ components:
         a transaction and (therefor) charging a known amount
         of money.
       example:
-        unitPrice: 5.637376656633329
-        sellerTotal: 9.301444243932576
+        unitPrice: 2.3021358869347655
+        sellerTotal: 3.616076749251911
         iri: https://example.com/
-        shippingFees: 5.962134
+        shippingFees: 5.637377
         ulid: ulid
+        thirdPartyRecipientAddress:
+          zipCode: "75004"
+          buildingName: Electron
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          cityName: Paris
+          countryCode: FRA
+          secondLine: Apt 6E
+          firstLine: 118 avenue des champs élysées
+          buildingFloor: Third floor
+          gateOrPortalOrInboxCode: "3124"
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        thirdPartyRecipientLastName: thirdPartyRecipientLastName
         attemptUnitPrice: 0.8008282
-        transactionFees: 1.4658129
+        transactionFees: 5.962134
         expireAt: 2000-01-23T04:56:07.000+00:00
         originalUnitPrice: 6.0274563
         createdAt: 2000-01-23T04:56:07.000+00:00
         quantityToBeAcquired: 1
-        buyerTotal: 7.061401241503109
-        price: 2.3021358869347655
+        buyerTotal: 9.301444243932576
+        exchangeRate: 0.4455
+        price: 7.061401241503109
         shippingCarrier: SwissPost
+        thirdPartyRecipientFirstName: thirdPartyRecipientFirstName
         pickupCode: pickupCode
         currency: EUR
+        originalUnitPriceUnconverted: 1.4658129
       properties:
         ulid:
           type: string
@@ -9283,12 +9416,23 @@ components:
         originalUnitPrice:
           format: float
           type: number
+        originalUnitPriceUnconverted:
+          format: float
+          type: number
         transactionFees:
           format: float
           type: number
         shippingFees:
           format: float
           type: number
+        thirdPartyRecipientFirstName:
+          nullable: true
+          type: string
+        thirdPartyRecipientLastName:
+          nullable: true
+          type: string
+        thirdPartyRecipientAddress:
+          $ref: '#/components/schemas/Quote-Address-Read'
         createdAt:
           format: date-time
           type: string
@@ -9323,6 +9467,13 @@ components:
           nullable: true
           readOnly: true
           type: number
+        exchangeRate:
+          description: "Exchange rate, if applicable. Between the offer currency and\
+            \ actual charged currency."
+          example: 0.4455
+          nullable: true
+          readOnly: true
+          type: number
       required:
       - createdAt
       - expireAt
@@ -9353,6 +9504,14 @@ components:
         attemptUnitPrice:
           format: float
           type: number
+        thirdPartyRecipientFirstName:
+          nullable: true
+          type: string
+        thirdPartyRecipientLastName:
+          nullable: true
+          type: string
+        thirdPartyRecipientAddress:
+          $ref: '#/components/schemas/Quote-Address-Update'
       required:
       - quantityToBeAcquired
     Quote-Write:
@@ -9388,8 +9547,20 @@ components:
         attemptUnitPrice:
           format: float
           type: number
+        thirdPartyRecipientFirstName:
+          nullable: true
+          type: string
+        thirdPartyRecipientLastName:
+          nullable: true
+          type: string
+        thirdPartyRecipientAddress:
+          $ref: '#/components/schemas/Quote-Address-Write'
       required:
       - quantityToBeAcquired
+    Transaction-Address-CollectionRead:
+      deprecated: false
+      description: ""
+      type: object
     Transaction-Address-Read:
       deprecated: false
       description: ""
@@ -9431,12 +9602,12 @@ components:
       deprecated: false
       description: ""
       example:
-        totalFees: 6.84685269835264
-        fees: 7.386281948385884
+        totalFees: 7.457744773683766
+        fees: 1.2315135367772556
         ulid: ulid
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         awaitedParty: BUYER
-        totalCharged: 1.4894159098541704
+        totalCharged: 6.84685269835264
         statusExpiration: 2000-01-23T04:56:07.000+00:00
         buyer:
           firstName: John
@@ -9467,26 +9638,31 @@ components:
             id: 0
           status: issued
           updatedAt: 2000-01-23T04:56:07.000+00:00
-        total: 1.0246457001441578
+        buyerMessage: buyerMessage
+        total: 1.4894159098541704
         processorStatus: unallocated
         quote:
-          unitPrice: 9.301444243932576
-          sellerTotal: 4.145608029883936
+          unitPrice: 3.616076749251911
+          sellerTotal: 7.386281948385884
           iri: https://example.com/
-          shippingFees: 7.0614014
+          shippingFees: 9.301444
           ulid: ulid
+          thirdPartyRecipientAddress: "{}"
+          thirdPartyRecipientLastName: thirdPartyRecipientLastName
           attemptUnitPrice: 5.962134
-          transactionFees: 2.302136
+          transactionFees: 7.0614014
           expireAt: 2000-01-23T04:56:07.000+00:00
           originalUnitPrice: 5.637377
           createdAt: 2000-01-23T04:56:07.000+00:00
           quantityToBeAcquired: 1
-          buyerTotal: 2.027123023002322
-          price: 3.616076749251911
+          buyerTotal: 4.145608029883936
+          price: 2.027123023002322
           shippingCarrier: SwissPost
+          thirdPartyRecipientFirstName: thirdPartyRecipientFirstName
           pickupCode: pickupCode
           currency: EUR
-        supplementalFees: 1.2315135367772556
+          originalUnitPriceUnconverted: 2.302136
+        supplementalFees: 1.0246457001441578
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         providerName: providerName
         status: CREATED
@@ -9497,6 +9673,11 @@ components:
           $ref: '#/components/schemas/Transaction-Offer-CollectionRead'
         quote:
           $ref: '#/components/schemas/Transaction-Quote-CollectionRead'
+        buyerMessage:
+          description: Attach a note. Only the buyer can exercise this right. At the
+            creation.
+          nullable: true
+          type: string
         buyer:
           $ref: '#/components/schemas/Transaction-Persona-CollectionRead'
         status:
@@ -10032,22 +10213,26 @@ components:
       deprecated: false
       description: ""
       example:
-        unitPrice: 9.301444243932576
-        sellerTotal: 4.145608029883936
+        unitPrice: 3.616076749251911
+        sellerTotal: 7.386281948385884
         iri: https://example.com/
-        shippingFees: 7.0614014
+        shippingFees: 9.301444
         ulid: ulid
+        thirdPartyRecipientAddress: "{}"
+        thirdPartyRecipientLastName: thirdPartyRecipientLastName
         attemptUnitPrice: 5.962134
-        transactionFees: 2.302136
+        transactionFees: 7.0614014
         expireAt: 2000-01-23T04:56:07.000+00:00
         originalUnitPrice: 5.637377
         createdAt: 2000-01-23T04:56:07.000+00:00
         quantityToBeAcquired: 1
-        buyerTotal: 2.027123023002322
-        price: 3.616076749251911
+        buyerTotal: 4.145608029883936
+        price: 2.027123023002322
         shippingCarrier: SwissPost
+        thirdPartyRecipientFirstName: thirdPartyRecipientFirstName
         pickupCode: pickupCode
         currency: EUR
+        originalUnitPriceUnconverted: 2.302136
       properties:
         ulid:
           type: string
@@ -10078,12 +10263,25 @@ components:
         originalUnitPrice:
           format: float
           type: number
+        originalUnitPriceUnconverted:
+          format: float
+          type: number
         transactionFees:
           format: float
           type: number
         shippingFees:
           format: float
           type: number
+        thirdPartyRecipientFirstName:
+          nullable: true
+          type: string
+        thirdPartyRecipientLastName:
+          nullable: true
+          type: string
+        thirdPartyRecipientAddress:
+          deprecated: false
+          description: ""
+          type: object
         createdAt:
           format: date-time
           type: string
@@ -10127,22 +10325,27 @@ components:
       deprecated: false
       description: ""
       example:
-        unitPrice: 9.301444243932576
-        sellerTotal: 4.145608029883936
+        unitPrice: 3.616076749251911
+        sellerTotal: 7.386281948385884
         iri: https://example.com/
-        shippingFees: 7.0614014
+        shippingFees: 9.301444
         ulid: ulid
+        thirdPartyRecipientAddress: "{}"
+        thirdPartyRecipientLastName: thirdPartyRecipientLastName
         attemptUnitPrice: 5.962134
-        transactionFees: 2.302136
+        transactionFees: 7.0614014
         expireAt: 2000-01-23T04:56:07.000+00:00
         originalUnitPrice: 5.637377
         createdAt: 2000-01-23T04:56:07.000+00:00
         quantityToBeAcquired: 1
-        buyerTotal: 2.027123023002322
-        price: 3.616076749251911
+        buyerTotal: 4.145608029883936
+        exchangeRate: 0.4455
+        price: 2.027123023002322
         shippingCarrier: SwissPost
+        thirdPartyRecipientFirstName: thirdPartyRecipientFirstName
         pickupCode: pickupCode
         currency: EUR
+        originalUnitPriceUnconverted: 2.302136
       properties:
         ulid:
           type: string
@@ -10173,12 +10376,25 @@ components:
         originalUnitPrice:
           format: float
           type: number
+        originalUnitPriceUnconverted:
+          format: float
+          type: number
         transactionFees:
           format: float
           type: number
         shippingFees:
           format: float
           type: number
+        thirdPartyRecipientFirstName:
+          nullable: true
+          type: string
+        thirdPartyRecipientLastName:
+          nullable: true
+          type: string
+        thirdPartyRecipientAddress:
+          deprecated: false
+          description: ""
+          type: object
         createdAt:
           format: date-time
           type: string
@@ -10213,6 +10429,13 @@ components:
           nullable: true
           readOnly: true
           type: number
+        exchangeRate:
+          description: "Exchange rate, if applicable. Between the offer currency and\
+            \ actual charged currency."
+          example: 0.4455
+          nullable: true
+          readOnly: true
+          type: number
       required:
       - createdAt
       - expireAt
@@ -10222,11 +10445,11 @@ components:
       deprecated: false
       description: ""
       example:
-        totalFees: 4.145608029883936
-        fees: 5.962133916683182
+        totalFees: 5.025004791520295
+        fees: 1.2315135367772556
         ulid: ulid
         remotePayInId: remotePayInId
-        rating: 9
+        rating: 7
         handOverCode: handOverCode
         offer:
           seller:
@@ -10283,24 +10506,29 @@ components:
           status: issued
           updatedAt: 2000-01-23T04:56:07.000+00:00
         createdAt: 2000-01-23T04:56:07.000+00:00
-        total: 3.616076749251911
+        total: 1.1730742509559433
         quote:
-          unitPrice: 9.301444243932576
-          sellerTotal: 4.145608029883936
+          unitPrice: 3.616076749251911
+          sellerTotal: 7.386281948385884
           iri: https://example.com/
-          shippingFees: 7.0614014
+          shippingFees: 9.301444
           ulid: ulid
+          thirdPartyRecipientAddress: "{}"
+          thirdPartyRecipientLastName: thirdPartyRecipientLastName
           attemptUnitPrice: 5.962134
-          transactionFees: 2.302136
+          transactionFees: 7.0614014
           expireAt: 2000-01-23T04:56:07.000+00:00
           originalUnitPrice: 5.637377
           createdAt: 2000-01-23T04:56:07.000+00:00
           quantityToBeAcquired: 1
-          buyerTotal: 2.027123023002322
-          price: 3.616076749251911
+          buyerTotal: 4.145608029883936
+          exchangeRate: 0.4455
+          price: 2.027123023002322
           shippingCarrier: SwissPost
+          thirdPartyRecipientFirstName: thirdPartyRecipientFirstName
           pickupCode: pickupCode
           currency: EUR
+          originalUnitPriceUnconverted: 2.302136
         remotePreAuthorizationId: remotePreAuthorizationId
         review: review
         escrow:
@@ -10311,10 +10539,10 @@ components:
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
-        balanceToRefund: 2.3021358869347655
+        balanceToRefund: 1.4894159098541704
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         awaitedParty: BUYER
-        totalCharged: 2.027123023002322
+        totalCharged: 4.965218492984954
         statusExpiration: 2000-01-23T04:56:07.000+00:00
         buyer:
           firstName: John
@@ -10325,10 +10553,11 @@ components:
           language: fr
           id: 0
           email: john.doe@gmail.com
+        buyerMessage: buyerMessage
         processorStatus: unallocated
-        supplementalFees: 5.637376656633329
+        supplementalFees: 1.0246457001441578
         forceRefundShipping: true
-        feesToRefund: 7.061401241503109
+        feesToRefund: 6.84685269835264
         card:
           processorStatus: unallocated
           providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
@@ -10365,6 +10594,11 @@ components:
           $ref: '#/components/schemas/Transaction-Offer-Read'
         quote:
           $ref: '#/components/schemas/Transaction-Quote-Read'
+        buyerMessage:
+          description: Attach a note. Only the buyer can exercise this right. At the
+            creation.
+          nullable: true
+          type: string
         buyer:
           $ref: '#/components/schemas/Transaction-Persona-Read'
         status:
@@ -10579,6 +10813,11 @@ components:
         quote:
           example: https://example.com/
           format: iri-reference
+          type: string
+        buyerMessage:
+          description: Attach a note. Only the buyer can exercise this right. At the
+            creation.
+          nullable: true
           type: string
         card:
           example: https://example.com/
@@ -12696,16 +12935,28 @@ components:
         object:
           seller:
             registered: true
-          unitPrice: 0.8008282
-          iri: https://example.com/
           redirectUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold?checkout=true
           ulid: ulid
-          nature: physical_item
+          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed\
+            \ do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim\
+            \ ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip\
+            \ ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate\
+            \ velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat\
+            \ cupidatat non proident, sunt in culpa qui officia deserunt mollit anim\
+            \ id est laborum."
           title: ASUS TUF X570-PLUS GAMING Motherboard
+          canBeSoldSeparately: true
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          eanCode: "4718017388450"
+          presetBuyer:
+            registered: true
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          unitPrice: 0.8008282
+          iri: https://example.com/
+          nature: physical_item
           url: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
           itemCount: 1
           shippingAllowed: true
-          canBeSoldSeparately: true
           handDeliveryAllowed: true
           weightInGram: 6
           medias:
@@ -12713,12 +12964,10 @@ components:
             id: 6
           - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
-          createdAt: 2000-01-23T04:56:07.000+00:00
           condition: USED
           shippingCarriers:
           - SwissPost
           - SwissPost
-          eanCode: "4718017388450"
           organization:
             websiteUrl: websiteUrl
             name: name
@@ -12732,10 +12981,7 @@ components:
             customBaseUrl: customBaseUrl
           publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
           currencyCode: EUR
-          presetBuyer:
-            registered: true
           status: issued
-          updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           example: 122541

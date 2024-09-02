@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **preset_buyer** | [**OfferPersonaRead**](OfferPersonaRead.md) |  | [optional] 
 **nature** | **str** | This WILL affect the assigned workflow. Choosing service will disable delivery for example. Refer to our technical hub for more information. | [default to 'physical_item']
 **title** | **str** |  | [optional] 
+**description** | **str** |  | [optional] 
 **unit_price** | **float** |  | [optional] 
 **currency_code** | **str** |  | [default to 'EUR']
 **item_count** | **int** |  | [optional] [default to 1]

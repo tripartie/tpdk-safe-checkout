@@ -15,8 +15,12 @@
 |**attemptUnitPrice** | **Float** |  |  [optional] |
 |**currency** | **String** | Expect &#39;EUR&#39; only for now. |  [optional] |
 |**originalUnitPrice** | **Float** |  |  [optional] |
+|**originalUnitPriceUnconverted** | **Float** |  |  [optional] |
 |**transactionFees** | **Float** |  |  [optional] |
 |**shippingFees** | **Float** |  |  [optional] |
+|**thirdPartyRecipientFirstName** | **String** |  |  [optional] |
+|**thirdPartyRecipientLastName** | **String** |  |  [optional] |
+|**thirdPartyRecipientAddress** | **Object** |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  |
 |**expireAt** | **OffsetDateTime** |  |  |
 |**iri** | **String** |  |  [optional] [readonly] |

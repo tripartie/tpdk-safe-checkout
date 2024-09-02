@@ -74,6 +74,9 @@ docs/PersonaWrite.md
 docs/ProofOfIdentityCollectionRead.md
 docs/ProofOfIdentityRead.md
 docs/ProofOfIdentityWrite.md
+docs/QuoteAddressRead.md
+docs/QuoteAddressUpdate.md
+docs/QuoteAddressWrite.md
 docs/QuoteRead.md
 docs/QuoteUpdate.md
 docs/QuoteWrite.md
@@ -243,6 +246,9 @@ src/main/java/com/tripartie/safecheckout/model/PersonaWrite.java
 src/main/java/com/tripartie/safecheckout/model/ProofOfIdentityCollectionRead.java
 src/main/java/com/tripartie/safecheckout/model/ProofOfIdentityRead.java
 src/main/java/com/tripartie/safecheckout/model/ProofOfIdentityWrite.java
+src/main/java/com/tripartie/safecheckout/model/QuoteAddressRead.java
+src/main/java/com/tripartie/safecheckout/model/QuoteAddressUpdate.java
+src/main/java/com/tripartie/safecheckout/model/QuoteAddressWrite.java
 src/main/java/com/tripartie/safecheckout/model/QuoteRead.java
 src/main/java/com/tripartie/safecheckout/model/QuoteUpdate.java
 src/main/java/com/tripartie/safecheckout/model/QuoteWrite.java
@@ -377,6 +383,9 @@ src/test/java/com/tripartie/safecheckout/model/PersonaWriteTest.java
 src/test/java/com/tripartie/safecheckout/model/ProofOfIdentityCollectionReadTest.java
 src/test/java/com/tripartie/safecheckout/model/ProofOfIdentityReadTest.java
 src/test/java/com/tripartie/safecheckout/model/ProofOfIdentityWriteTest.java
+src/test/java/com/tripartie/safecheckout/model/QuoteAddressReadTest.java
+src/test/java/com/tripartie/safecheckout/model/QuoteAddressUpdateTest.java
+src/test/java/com/tripartie/safecheckout/model/QuoteAddressWriteTest.java
 src/test/java/com/tripartie/safecheckout/model/QuoteReadTest.java
 src/test/java/com/tripartie/safecheckout/model/QuoteUpdateTest.java
 src/test/java/com/tripartie/safecheckout/model/QuoteWriteTest.java
