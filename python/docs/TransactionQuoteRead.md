@@ -13,8 +13,12 @@ Name | Type | Description | Notes
 **attempt_unit_price** | **float** |  | [optional] 
 **currency** | **str** | Expect &#39;EUR&#39; only for now. | [optional] [default to 'EUR']
 **original_unit_price** | **float** |  | [optional] 
+**original_unit_price_unconverted** | **float** |  | [optional] 
 **transaction_fees** | **float** |  | [optional] 
 **shipping_fees** | **float** |  | [optional] 
+**third_party_recipient_first_name** | **str** |  | [optional] 
+**third_party_recipient_last_name** | **str** |  | [optional] 
+**third_party_recipient_address** | **object** |  | [optional] 
 **created_at** | **datetime** |  | 
 **expire_at** | **datetime** |  | 
 **iri** | **str** |  | [optional] [readonly] 
@@ -22,6 +26,7 @@ Name | Type | Description | Notes
 **price** | **float** |  | [optional] [readonly] 
 **buyer_total** | **float** | The buyer pays for:  - A) item  - B) shipping (optional)  - C) fees     (optional) This method sum them automatically. | [optional] [readonly] 
 **seller_total** | **float** | Represent what amount is to be expected released to the seller. | [optional] [readonly] 
+**exchange_rate** | **float** | Exchange rate, if applicable. Between the offer currency and actual charged currency. | [optional] [readonly] 
 
 ## Example
 

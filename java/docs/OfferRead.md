@@ -18,6 +18,7 @@
 |**presetBuyer** | [**OfferPersonaRead**](OfferPersonaRead.md) |  |  [optional] |
 |**nature** | [**NatureEnum**](#NatureEnum) | This WILL affect the assigned workflow. Choosing service will disable delivery for example. Refer to our technical hub for more information. |  |
 |**title** | **String** |  |  [optional] |
+|**description** | **String** |  |  [optional] |
 |**unitPrice** | **Float** |  |  [optional] |
 |**currencyCode** | **String** |  |  |
 |**itemCount** | **Integer** |  |  [optional] |

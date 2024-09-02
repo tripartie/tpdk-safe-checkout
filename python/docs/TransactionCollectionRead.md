@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **ulid** | **str** |  | 
 **offer** | [**TransactionOfferCollectionRead**](TransactionOfferCollectionRead.md) |  | 
 **quote** | [**TransactionQuoteCollectionRead**](TransactionQuoteCollectionRead.md) |  | 
+**buyer_message** | **str** | Attach a note. Only the buyer can exercise this right. At the creation. | [optional] 
 **buyer** | [**TransactionPersonaCollectionRead**](TransactionPersonaCollectionRead.md) |  | 
 **status** | **str** |  | [optional] 
 **fees** | **float** |  | [optional] 

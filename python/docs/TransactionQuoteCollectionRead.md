@@ -13,8 +13,12 @@ Name | Type | Description | Notes
 **attempt_unit_price** | **float** |  | [optional] 
 **currency** | **str** | Expect &#39;EUR&#39; only for now. | [optional] [default to 'EUR']
 **original_unit_price** | **float** |  | [optional] 
+**original_unit_price_unconverted** | **float** |  | [optional] 
 **transaction_fees** | **float** |  | [optional] 
 **shipping_fees** | **float** |  | [optional] 
+**third_party_recipient_first_name** | **str** |  | [optional] 
+**third_party_recipient_last_name** | **str** |  | [optional] 
+**third_party_recipient_address** | **object** |  | [optional] 
 **created_at** | **datetime** |  | 
 **expire_at** | **datetime** |  | 
 **iri** | **str** |  | [optional] [readonly] 

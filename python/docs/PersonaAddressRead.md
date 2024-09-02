@@ -6,7 +6,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**company_name** | **str** |  | [optional] 
 **country_code** | **str** |  | [optional] 
 **zip_code** | **str** |  | [optional] 
 **city_name** | **str** |  | [optional] 

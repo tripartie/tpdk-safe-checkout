@@ -14,6 +14,9 @@ Someone has to ask for a Quote prior to create a transaction and (therefor) char
 |**pickupCode** | **String** |  |  [optional] |
 |**quantityToBeAcquired** | **Integer** |  |  |
 |**attemptUnitPrice** | **Float** |  |  [optional] |
+|**thirdPartyRecipientFirstName** | **String** |  |  [optional] |
+|**thirdPartyRecipientLastName** | **String** |  |  [optional] |
+|**thirdPartyRecipientAddress** | [**QuoteAddressWrite**](QuoteAddressWrite.md) |  |  [optional] |
 
 
 

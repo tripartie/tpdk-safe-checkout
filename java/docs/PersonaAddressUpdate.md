@@ -8,7 +8,6 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**companyName** | **String** |  |  [optional] |
 |**countryCode** | **String** |  |  [optional] |
 |**zipCode** | **String** |  |  [optional] |
 |**cityName** | **String** |  |  [optional] |
