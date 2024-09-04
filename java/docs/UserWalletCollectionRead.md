@@ -14,8 +14,8 @@
 |**updatedAt** | **OffsetDateTime** |  |  |
 |**externalId** | **String** |  |  [optional] |
 |**providerName** | **String** |  |  [optional] |
-|**providerCreatedAt** | **OffsetDateTime** |  |  [optional] [readonly] |
-|**providerUpdatedAt** | **OffsetDateTime** |  |  [optional] [readonly] |
+|**providerCreatedAt** | **OffsetDateTime** |  |  [optional] |
+|**providerUpdatedAt** | **OffsetDateTime** |  |  [optional] |
 |**processorStatus** | [**ProcessorStatusEnum**](#ProcessorStatusEnum) | Automagically infer on what state the entity is at the Payment Processor. |  [optional] [readonly] |
 
 

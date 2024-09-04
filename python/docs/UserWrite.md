@@ -11,12 +11,12 @@ Name | Type | Description | Notes
 **last_name** | **str** |  | 
 **public_name** | **str** |  | [optional] 
 **role_in_company** | **str** |  | [optional] 
-**birthday** | **datetime** |  | [optional] 
+**birthday** | **datetime** |  | 
 **email** | **str** |  | 
 **plain_password** | **str** |  | 
 **intl_phone_number** | **str** |  | [optional] 
-**origin_country** | **str** | The nationality of the current user. | [optional] 
-**home_country** | **str** | The originating country | [optional] 
+**origin_country** | **str** | The nationality of the current user. | 
+**home_country** | **str** | The originating country | 
 **preferred_language** | **str** |  | [optional] 
 **consent_mail_ads** | **bool** |  | [optional] 
 **time_zone_offset** | **int** | Timezone offset. Expressed in minutes. Used for DT conversion and fraud prevention. | [optional] 

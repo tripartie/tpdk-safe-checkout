@@ -28,8 +28,8 @@ Name | Type | Description | Notes
 **created_at** | **datetime** |  | 
 **updated_at** | **datetime** |  | [optional] 
 **provider_name** | **str** |  | [optional] 
-**provider_created_at** | **datetime** |  | [optional] [readonly] 
-**provider_updated_at** | **datetime** |  | [optional] [readonly] 
+**provider_created_at** | **datetime** |  | [optional] 
+**provider_updated_at** | **datetime** |  | [optional] 
 **total** | **float** |  | [optional] [readonly] 
 **total_charged** | **float** |  | [optional] [readonly] 
 **total_fees** | **float** |  | [optional] [readonly] 

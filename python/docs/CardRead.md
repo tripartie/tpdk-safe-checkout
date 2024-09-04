@@ -15,8 +15,8 @@ Name | Type | Description | Notes
 **updated_at** | **datetime** |  | 
 **metadata** | [**List[CardMetadataRead]**](CardMetadataRead.md) |  | [optional] 
 **provider_name** | **str** |  | [optional] 
-**provider_created_at** | **datetime** |  | [optional] [readonly] 
-**provider_updated_at** | **datetime** |  | [optional] [readonly] 
+**provider_created_at** | **datetime** |  | [optional] 
+**provider_updated_at** | **datetime** |  | [optional] 
 **iri** | **str** |  | [optional] [readonly] 
 **processor_status** | **str** | Automagically infer on what state the entity is at the Payment Processor. | [optional] [readonly] 
 

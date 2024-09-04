@@ -30,8 +30,8 @@
 |**createdAt** | **OffsetDateTime** |  |  |
 |**updatedAt** | **OffsetDateTime** |  |  [optional] |
 |**providerName** | **String** |  |  [optional] |
-|**providerCreatedAt** | **OffsetDateTime** |  |  [optional] [readonly] |
-|**providerUpdatedAt** | **OffsetDateTime** |  |  [optional] [readonly] |
+|**providerCreatedAt** | **OffsetDateTime** |  |  [optional] |
+|**providerUpdatedAt** | **OffsetDateTime** |  |  [optional] |
 |**total** | **BigDecimal** |  |  [optional] [readonly] |
 |**totalCharged** | **BigDecimal** |  |  [optional] [readonly] |
 |**totalFees** | **BigDecimal** |  |  [optional] [readonly] |

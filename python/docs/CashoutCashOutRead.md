@@ -15,8 +15,8 @@ Name | Type | Description | Notes
 **created_at** | **datetime** |  | 
 **confirmed_at** | **datetime** |  | 
 **provider_name** | **str** |  | [optional] 
-**provider_created_at** | **datetime** |  | [optional] [readonly] 
-**provider_updated_at** | **datetime** |  | [optional] [readonly] 
+**provider_created_at** | **datetime** |  | [optional] 
+**provider_updated_at** | **datetime** |  | [optional] 
 **processor_status** | **str** | Automagically infer on what state the entity is at the Payment Processor. | [optional] [readonly] 
 
 ## Example

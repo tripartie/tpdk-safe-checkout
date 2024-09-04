@@ -8,7 +8,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**captcha** | **String** |  |  [optional] |
+|**captcha** | **String** |  |  |
 
 
 
