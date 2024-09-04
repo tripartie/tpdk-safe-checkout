@@ -10,7 +10,7 @@ Someone has to ask for a Quote prior to create a transaction and (therefor) char
 |------------ | ------------- | ------------- | -------------|
 |**shippingCarrier** | [**ShippingCarrierEnum**](#ShippingCarrierEnum) |  |  [optional] |
 |**pickupCode** | **String** |  |  [optional] |
-|**quantityToBeAcquired** | **Integer** |  |  |
+|**quantityToBeAcquired** | **Integer** |  |  [optional] |
 |**attemptUnitPrice** | **Float** |  |  [optional] |
 |**thirdPartyRecipientFirstName** | **String** |  |  [optional] |
 |**thirdPartyRecipientLastName** | **String** |  |  [optional] |

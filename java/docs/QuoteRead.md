@@ -8,10 +8,10 @@ Someone has to ask for a Quote prior to create a transaction and (therefor) char
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**ulid** | **String** |  |  |
+|**ulid** | **String** |  |  [optional] |
 |**shippingCarrier** | [**ShippingCarrierEnum**](#ShippingCarrierEnum) |  |  [optional] |
 |**pickupCode** | **String** |  |  [optional] |
-|**quantityToBeAcquired** | **Integer** |  |  |
+|**quantityToBeAcquired** | **Integer** |  |  [optional] |
 |**attemptUnitPrice** | **Float** |  |  [optional] |
 |**currency** | **String** | Expect &#39;EUR&#39; only for now. |  [optional] |
 |**originalUnitPrice** | **Float** |  |  [optional] |
@@ -21,8 +21,8 @@ Someone has to ask for a Quote prior to create a transaction and (therefor) char
 |**thirdPartyRecipientFirstName** | **String** |  |  [optional] |
 |**thirdPartyRecipientLastName** | **String** |  |  [optional] |
 |**thirdPartyRecipientAddress** | [**QuoteAddressRead**](QuoteAddressRead.md) |  |  [optional] |
-|**createdAt** | **OffsetDateTime** |  |  |
-|**expireAt** | **OffsetDateTime** |  |  |
+|**createdAt** | **OffsetDateTime** |  |  [optional] |
+|**expireAt** | **OffsetDateTime** |  |  [optional] |
 |**iri** | **String** |  |  [optional] [readonly] |
 |**unitPrice** | **BigDecimal** |  |  [optional] [readonly] |
 |**price** | **BigDecimal** |  |  [optional] [readonly] |

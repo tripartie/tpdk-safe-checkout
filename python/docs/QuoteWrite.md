@@ -6,11 +6,11 @@ Someone has to ask for a Quote prior to create a transaction and (therefor) char
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**captcha** | **str** |  | [optional] 
+**captcha** | **str** |  | 
 **offer** | **str** |  | [optional] 
 **shipping_carrier** | **str** |  | [optional] 
 **pickup_code** | **str** |  | [optional] 
-**quantity_to_be_acquired** | **int** |  | [default to 1]
+**quantity_to_be_acquired** | **int** |  | [optional] [default to 1]
 **attempt_unit_price** | **float** |  | [optional] 
 **third_party_recipient_first_name** | **str** |  | [optional] 
 **third_party_recipient_last_name** | **str** |  | [optional] 

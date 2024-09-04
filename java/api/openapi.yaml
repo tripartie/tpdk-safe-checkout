@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.33
+  version: 2.0.35
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -6673,12 +6673,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         processorStatus:
           description: Automagically infer on what state the entity is at the Payment
@@ -6707,6 +6705,7 @@ components:
         iban:
           type: string
         bic:
+          nullable: true
           type: string
         createdAt:
           format: date-time
@@ -6721,12 +6720,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         processorStatus:
           description: Automagically infer on what state the entity is at the Payment
@@ -6740,18 +6737,22 @@ components:
           readOnly: true
           type: string
       required:
-      - bic
       - createdAt
     BankAccount-Write:
       deprecated: false
       description: ""
       properties:
         iban:
+          externalDocs:
+            url: https://schema.org/identifier
           type: string
         bic:
+          externalDocs:
+            url: https://schema.org/identifier
+          nullable: true
           type: string
       required:
-      - bic
+      - iban
     Card-CollectionRead:
       deprecated: false
       description: ""
@@ -6770,7 +6771,7 @@ components:
         countryCode: countryCode
         currency: currency
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
-        brand: brand
+        brand: VISA
         providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -6787,8 +6788,18 @@ components:
           nullable: true
           type: string
         brand:
-          nullable: true
+          enum:
+          - CB
+          - VISA
+          - MASTERCARD
+          - AMEX
+          - MAESTRO
+          - BCMC
+          - JCB
+          - DISCOVER
+          example: VISA
           type: string
+          nullable: true
         createdAt:
           format: date-time
           type: string
@@ -6805,12 +6816,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         iri:
           example: https://example.com/
@@ -6892,7 +6901,7 @@ components:
         countryCode: countryCode
         currency: currency
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
-        brand: brand
+        brand: VISA
         providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -6909,8 +6918,18 @@ components:
           nullable: true
           type: string
         brand:
-          nullable: true
+          enum:
+          - CB
+          - VISA
+          - MASTERCARD
+          - AMEX
+          - MAESTRO
+          - BCMC
+          - JCB
+          - DISCOVER
+          example: VISA
           type: string
+          nullable: true
         createdAt:
           format: date-time
           type: string
@@ -6927,12 +6946,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         iri:
           example: https://example.com/
@@ -6976,7 +6993,7 @@ components:
         countryCode: countryCode
         currency: currency
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
-        brand: brand
+        brand: VISA
         providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -6993,8 +7010,18 @@ components:
           nullable: true
           type: string
         brand:
-          nullable: true
+          enum:
+          - CB
+          - VISA
+          - MASTERCARD
+          - AMEX
+          - MAESTRO
+          - BCMC
+          - JCB
+          - DISCOVER
+          example: VISA
           type: string
+          nullable: true
         ephemeral:
           default: true
           example: true
@@ -7011,12 +7038,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         iri:
           example: https://example.com/
@@ -7143,12 +7168,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         processorStatus:
           description: Automagically infer on what state the entity is at the Payment
@@ -7175,6 +7198,8 @@ components:
         captcha:
           nullable: true
           type: string
+      required:
+      - captcha
     Media:
       deprecated: false
       description: ""
@@ -9124,12 +9149,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         processorStatus:
           description: Automagically infer on what state the entity is at the Payment
@@ -9194,12 +9217,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         processorStatus:
           description: Automagically infer on what state the entity is at the Payment
@@ -9426,9 +9447,13 @@ components:
           format: float
           type: number
         thirdPartyRecipientFirstName:
+          maxLength: 32
+          minLength: 1
           nullable: true
           type: string
         thirdPartyRecipientLastName:
+          maxLength: 32
+          minLength: 1
           nullable: true
           type: string
         thirdPartyRecipientAddress:
@@ -9474,11 +9499,6 @@ components:
           nullable: true
           readOnly: true
           type: number
-      required:
-      - createdAt
-      - expireAt
-      - quantityToBeAcquired
-      - ulid
     Quote-Update:
       deprecated: false
       description: |-
@@ -9505,15 +9525,17 @@ components:
           format: float
           type: number
         thirdPartyRecipientFirstName:
+          maxLength: 32
+          minLength: 1
           nullable: true
           type: string
         thirdPartyRecipientLastName:
+          maxLength: 32
+          minLength: 1
           nullable: true
           type: string
         thirdPartyRecipientAddress:
           $ref: '#/components/schemas/Quote-Address-Update'
-      required:
-      - quantityToBeAcquired
     Quote-Write:
       deprecated: false
       description: |-
@@ -9548,15 +9570,19 @@ components:
           format: float
           type: number
         thirdPartyRecipientFirstName:
+          maxLength: 32
+          minLength: 1
           nullable: true
           type: string
         thirdPartyRecipientLastName:
+          maxLength: 32
+          minLength: 1
           nullable: true
           type: string
         thirdPartyRecipientAddress:
           $ref: '#/components/schemas/Quote-Address-Write'
       required:
-      - quantityToBeAcquired
+      - captcha
     Transaction-Address-CollectionRead:
       deprecated: false
       description: ""
@@ -9580,12 +9606,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         processorStatus:
           description: Automagically infer on what state the entity is at the Payment
@@ -9708,12 +9732,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         total:
           readOnly: true
@@ -10670,12 +10692,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         total:
           readOnly: true
@@ -10781,12 +10801,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         processorStatus:
           description: Automagically infer on what state the entity is at the Payment
@@ -11056,7 +11074,7 @@ components:
           countryCode: countryCode
           currency: currency
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
-          brand: brand
+          brand: VISA
           providerName: providerName
           updatedAt: 2000-01-23T04:56:07.000+00:00
         - iri: https://example.com/
@@ -11069,7 +11087,7 @@ components:
           countryCode: countryCode
           currency: currency
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
-          brand: brand
+          brand: VISA
           providerName: providerName
           updatedAt: 2000-01-23T04:56:07.000+00:00
         roles:
@@ -11274,12 +11292,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         iri:
           example: https://example.com/
@@ -11324,6 +11340,7 @@ components:
         iban:
           type: string
         bic:
+          nullable: true
           type: string
         createdAt:
           format: date-time
@@ -11338,12 +11355,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         processorStatus:
           description: Automagically infer on what state the entity is at the Payment
@@ -11357,7 +11372,6 @@ components:
           readOnly: true
           type: string
       required:
-      - bic
       - createdAt
     User-Card-AuthenticatedRead:
       deprecated: false
@@ -11373,7 +11387,7 @@ components:
         countryCode: countryCode
         currency: currency
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
-        brand: brand
+        brand: VISA
         providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -11390,8 +11404,18 @@ components:
           nullable: true
           type: string
         brand:
-          nullable: true
+          enum:
+          - CB
+          - VISA
+          - MASTERCARD
+          - AMEX
+          - MAESTRO
+          - BCMC
+          - JCB
+          - DISCOVER
+          example: VISA
           type: string
+          nullable: true
         ephemeral:
           default: true
           example: true
@@ -11408,12 +11432,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         iri:
           example: https://example.com/
@@ -11565,12 +11587,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         iri:
           example: https://example.com/
@@ -11969,12 +11989,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         iri:
           example: https://example.com/
@@ -12054,6 +12072,23 @@ components:
           example: "+33700000000"
           nullable: true
           type: string
+        originCountry:
+          description: The nationality of the current user.
+          example: FRA
+          maxLength: 3
+          nullable: true
+          type: string
+        homeCountry:
+          description: The originating country
+          example: FRA
+          maxLength: 3
+          nullable: true
+          type: string
+        preferredLanguage:
+          example: fr
+          maxLength: 2
+          nullable: true
+          type: string
         consentMailAds:
           type: boolean
         timeZoneOffset:
@@ -12125,7 +12160,7 @@ components:
           countryCode: countryCode
           currency: currency
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
-          brand: brand
+          brand: VISA
           providerName: providerName
           updatedAt: 2000-01-23T04:56:07.000+00:00
         - iri: https://example.com/
@@ -12138,7 +12173,7 @@ components:
           countryCode: countryCode
           currency: currency
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
-          brand: brand
+          brand: VISA
           providerName: providerName
           updatedAt: 2000-01-23T04:56:07.000+00:00
         roles:
@@ -12344,12 +12379,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         iri:
           example: https://example.com/
@@ -12405,12 +12438,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         processorStatus:
           description: Automagically infer on what state the entity is at the Payment
@@ -12461,12 +12492,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         processorStatus:
           description: Automagically infer on what state the entity is at the Payment
@@ -12517,12 +12546,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         processorStatus:
           description: Automagically infer on what state the entity is at the Payment
@@ -12612,10 +12639,13 @@ components:
           nullable: true
           type: integer
       required:
+      - birthday
       - captcha
       - email
       - firstName
+      - homeCountry
       - lastName
+      - originCountry
       - plainPassword
     User-user.subscribed:
       deprecated: false
@@ -12706,12 +12736,10 @@ components:
         providerCreatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         providerUpdatedAt:
           format: date-time
           nullable: true
-          readOnly: true
           type: string
         processorStatus:
           description: Automagically infer on what state the entity is at the Payment

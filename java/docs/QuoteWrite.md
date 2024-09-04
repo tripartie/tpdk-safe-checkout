@@ -8,11 +8,11 @@ Someone has to ask for a Quote prior to create a transaction and (therefor) char
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**captcha** | **String** |  |  [optional] |
+|**captcha** | **String** |  |  |
 |**offer** | **String** |  |  [optional] |
 |**shippingCarrier** | [**ShippingCarrierEnum**](#ShippingCarrierEnum) |  |  [optional] |
 |**pickupCode** | **String** |  |  [optional] |
-|**quantityToBeAcquired** | **Integer** |  |  |
+|**quantityToBeAcquired** | **Integer** |  |  [optional] |
 |**attemptUnitPrice** | **Float** |  |  [optional] |
 |**thirdPartyRecipientFirstName** | **String** |  |  [optional] |
 |**thirdPartyRecipientLastName** | **String** |  |  [optional] |

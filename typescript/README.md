@@ -1,4 +1,4 @@
-## @tripartie/safe-checkout@2.0.33
+## @tripartie/safe-checkout@2.0.35
 
 This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install @tripartie/safe-checkout@2.0.33 --save
+npm install @tripartie/safe-checkout@2.0.35 --save
 ```
 
 _unPublished (not recommended):_

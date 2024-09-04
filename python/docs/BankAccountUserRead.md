@@ -7,12 +7,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **iban** | **str** |  | [optional] 
-**bic** | **str** |  | 
+**bic** | **str** |  | [optional] 
 **created_at** | **datetime** |  | 
 **updated_at** | **datetime** |  | [optional] 
 **provider_name** | **str** |  | [optional] 
-**provider_created_at** | **datetime** |  | [optional] [readonly] 
-**provider_updated_at** | **datetime** |  | [optional] [readonly] 
+**provider_created_at** | **datetime** |  | [optional] 
+**provider_updated_at** | **datetime** |  | [optional] 
 **processor_status** | **str** | Automagically infer on what state the entity is at the Payment Processor. | [optional] [readonly] 
 
 ## Example

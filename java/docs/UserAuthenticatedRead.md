@@ -36,8 +36,8 @@
 |**cards** | [**List&lt;UserCardAuthenticatedRead&gt;**](UserCardAuthenticatedRead.md) |  |  [optional] |
 |**wallet** | [**UserWalletAuthenticatedRead**](UserWalletAuthenticatedRead.md) |  |  [optional] |
 |**providerName** | **String** |  |  [optional] |
-|**providerCreatedAt** | **OffsetDateTime** |  |  [optional] [readonly] |
-|**providerUpdatedAt** | **OffsetDateTime** |  |  [optional] [readonly] |
+|**providerCreatedAt** | **OffsetDateTime** |  |  [optional] |
+|**providerUpdatedAt** | **OffsetDateTime** |  |  [optional] |
 |**iri** | **String** |  |  [optional] [readonly] |
 |**impersonatingOrganization** | **Boolean** |  |  [optional] [readonly] |
 |**secondAuthFactor** | **Boolean** |  |  [optional] [readonly] |

@@ -6,10 +6,10 @@ Someone has to ask for a Quote prior to create a transaction and (therefor) char
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ulid** | **str** |  | 
+**ulid** | **str** |  | [optional] 
 **shipping_carrier** | **str** |  | [optional] 
 **pickup_code** | **str** |  | [optional] 
-**quantity_to_be_acquired** | **int** |  | [default to 1]
+**quantity_to_be_acquired** | **int** |  | [optional] [default to 1]
 **attempt_unit_price** | **float** |  | [optional] 
 **currency** | **str** | Expect &#39;EUR&#39; only for now. | [optional] [default to 'EUR']
 **original_unit_price** | **float** |  | [optional] 
@@ -19,8 +19,8 @@ Name | Type | Description | Notes
 **third_party_recipient_first_name** | **str** |  | [optional] 
 **third_party_recipient_last_name** | **str** |  | [optional] 
 **third_party_recipient_address** | [**QuoteAddressRead**](QuoteAddressRead.md) |  | [optional] 
-**created_at** | **datetime** |  | 
-**expire_at** | **datetime** |  | 
+**created_at** | **datetime** |  | [optional] 
+**expire_at** | **datetime** |  | [optional] 
 **iri** | **str** |  | [optional] [readonly] 
 **unit_price** | **float** |  | [optional] [readonly] 
 **price** | **float** |  | [optional] [readonly] 

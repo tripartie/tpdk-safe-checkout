@@ -8,8 +8,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**iban** | **String** |  |  [optional] |
-|**bic** | **String** |  |  |
+|**iban** | **String** |  |  |
+|**bic** | **String** |  |  [optional] |
 
 
 

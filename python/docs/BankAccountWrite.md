@@ -6,8 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iban** | **str** |  | [optional] 
-**bic** | **str** |  | 
+**iban** | **str** |  | 
+**bic** | **str** |  | [optional] 
 
 ## Example
 
