@@ -6,6 +6,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**balance** | **float** |  | [optional] 
+**currency** | **str** |  | 
+**updated_at** | **datetime** |  | 
 **provider_name** | **str** |  | [optional] 
 **provider_created_at** | **datetime** |  | [optional] 
 **provider_updated_at** | **datetime** |  | [optional] 

@@ -14,7 +14,7 @@
 |**language** | **String** | That data is used for rendering the frontend application with given language. If not set, will be inferred. Custom codes can be issued for specific requirements. |  [optional] |
 |**email** | **String** |  |  [optional] |
 |**mobilePhoneNumber** | **String** |  |  [optional] |
-|**address** | **Object** |  |  [optional] |
+|**address** | [**TransactionAddressRead**](TransactionAddressRead.md) |  |  [optional] |
 |**registered** | **Boolean** | Determine if the Persona have a Tripartie account |  [optional] [readonly] |
 
 

@@ -11,6 +11,7 @@
 |**ulid** | **String** |  |  |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  |
 |**publicUrl** | **String** | The public URL for your Ad/Offer on your marketplace. |  [optional] |
+|**organization** | [**TransactionOrganizationCollectionRead**](TransactionOrganizationCollectionRead.md) |  |  [optional] |
 |**seller** | [**TransactionPersonaCollectionRead**](TransactionPersonaCollectionRead.md) |  |  |
 |**presetBuyer** | [**TransactionPersonaCollectionRead**](TransactionPersonaCollectionRead.md) |  |  [optional] |
 |**nature** | [**NatureEnum**](#NatureEnum) | This WILL affect the assigned workflow. Choosing service will disable delivery for example. Refer to our technical hub for more information. |  |
@@ -21,7 +22,7 @@
 |**currencyCode** | **String** |  |  |
 |**itemCount** | **Integer** |  |  [optional] |
 |**condition** | [**ConditionEnum**](#ConditionEnum) |  |  [optional] |
-|**medias** | **List&lt;String&gt;** |  |  |
+|**medias** | [**List&lt;TransactionMediaCollectionRead&gt;**](TransactionMediaCollectionRead.md) |  |  |
 |**createdAt** | **OffsetDateTime** |  |  [optional] [readonly] |
 |**updatedAt** | **OffsetDateTime** |  |  [optional] [readonly] |
 

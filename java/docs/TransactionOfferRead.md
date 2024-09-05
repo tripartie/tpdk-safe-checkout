@@ -12,6 +12,7 @@
 |**status** | [**StatusEnum**](#StatusEnum) |  |  |
 |**publicUrl** | **String** | The public URL for your Ad/Offer on your marketplace. |  [optional] |
 |**redirectUrl** | **String** | Fill-in that field IF you intend to redirect your customer instead of using a WebView. |  [optional] |
+|**organization** | [**TransactionOrganizationRead**](TransactionOrganizationRead.md) |  |  [optional] |
 |**seller** | [**TransactionPersonaRead**](TransactionPersonaRead.md) |  |  |
 |**presetBuyer** | [**TransactionPersonaRead**](TransactionPersonaRead.md) |  |  [optional] |
 |**nature** | [**NatureEnum**](#NatureEnum) | This WILL affect the assigned workflow. Choosing service will disable delivery for example. Refer to our technical hub for more information. |  |
@@ -28,7 +29,7 @@
 |**eanCode** | **String** |  |  [optional] |
 |**canBeSoldSeparately** | **Boolean** | Set this flag to false to forbid a potential buyer to acquire less than \&quot;itemCount\&quot; item(s) |  |
 |**metadata** | [**List&lt;TransactionMetadataRead&gt;**](TransactionMetadataRead.md) |  |  [optional] |
-|**medias** | **List&lt;String&gt;** |  |  |
+|**medias** | [**List&lt;TransactionMediaRead&gt;**](TransactionMediaRead.md) |  |  |
 |**createdAt** | **OffsetDateTime** |  |  [optional] [readonly] |
 |**updatedAt** | **OffsetDateTime** |  |  [optional] [readonly] |
 

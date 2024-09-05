@@ -18,7 +18,6 @@ Name | Type | Description | Notes
 **shipping_fees** | **float** |  | [optional] 
 **third_party_recipient_first_name** | **str** |  | [optional] 
 **third_party_recipient_last_name** | **str** |  | [optional] 
-**third_party_recipient_address** | **object** |  | [optional] 
 **created_at** | **datetime** |  | 
 **expire_at** | **datetime** |  | 
 **iri** | **str** |  | [optional] [readonly] 

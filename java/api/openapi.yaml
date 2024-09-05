@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.47
+  version: 2.0.48
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -7653,6 +7653,15 @@ components:
     Offer-Address-IndependentWrite:
       deprecated: false
       description: ""
+      example:
+        zipCode: "75004"
+        buildingName: Electron
+        cityName: Paris
+        countryCode: FRA
+        secondLine: Apt 6E
+        firstLine: 118 avenue des champs élysées
+        buildingFloor: Third floor
+        gateOrPortalOrInboxCode: "3124"
       properties:
         countryCode:
           example: FRA
@@ -7702,6 +7711,16 @@ components:
         shippingCarriers:
         - SwissPost
         - SwissPost
+        organization:
+          websiteUrl: websiteUrl
+          name: name
+          icon:
+            publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
+          primaryColor: primaryColor
+          logo:
+            publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
         allowToNegotiateUnitPrice: true
         publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
         minNegotiableUnitPrice: 6.0274563
@@ -7732,6 +7751,8 @@ components:
           nullable: true
           readOnly: true
           type: string
+        organization:
+          $ref: '#/components/schemas/Offer-Organization-CollectionRead'
         seller:
           example: https://example.com/
           format: iri-reference
@@ -7954,6 +7975,24 @@ components:
       required:
       - allowToNegotiateUnitPrice
       - seller
+    Offer-Media-CollectionRead:
+      deprecated: false
+      description: ""
+      example:
+        publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+        id: 6
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        publicUrl:
+          example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          externalDocs:
+            url: https://schema.org/url
+          format: uri
+          type: string
+      required:
+      - publicUrl
     Offer-Media-Read:
       deprecated: false
       description: ""
@@ -7998,6 +8037,32 @@ components:
           type: string
         value:
           example: "54412"
+          nullable: true
+          type: string
+    Offer-Organization-CollectionRead:
+      deprecated: false
+      description: ""
+      example:
+        websiteUrl: websiteUrl
+        name: name
+        icon:
+          publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
+        primaryColor: primaryColor
+        logo:
+          publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
+      properties:
+        name:
+          type: string
+        websiteUrl:
+          nullable: true
+          type: string
+        icon:
+          $ref: '#/components/schemas/Offer-Media-CollectionRead'
+        logo:
+          $ref: '#/components/schemas/Offer-Media-CollectionRead'
+        primaryColor:
           nullable: true
           type: string
     Offer-Organization-Read:
@@ -8855,6 +8920,15 @@ components:
     Persona-Address-Update:
       deprecated: false
       description: ""
+      example:
+        zipCode: "75004"
+        buildingName: Electron
+        cityName: Paris
+        countryCode: FRA
+        secondLine: Apt 6E
+        firstLine: 118 avenue des champs élysées
+        buildingFloor: Third floor
+        gateOrPortalOrInboxCode: "3124"
       properties:
         countryCode:
           example: FRA
@@ -8888,6 +8962,15 @@ components:
     Persona-Address-Write:
       deprecated: false
       description: ""
+      example:
+        zipCode: "75004"
+        buildingName: Electron
+        cityName: Paris
+        countryCode: FRA
+        secondLine: Apt 6E
+        firstLine: 118 avenue des champs élysées
+        buildingFloor: Third floor
+        gateOrPortalOrInboxCode: "3124"
       properties:
         countryCode:
           example: FRA
@@ -9438,6 +9521,15 @@ components:
     Quote-Address-Update:
       deprecated: false
       description: ""
+      example:
+        zipCode: "75004"
+        buildingName: Electron
+        cityName: Paris
+        countryCode: FRA
+        secondLine: Apt 6E
+        firstLine: 118 avenue des champs élysées
+        buildingFloor: Third floor
+        gateOrPortalOrInboxCode: "3124"
       properties:
         countryCode:
           example: FRA
@@ -9471,6 +9563,15 @@ components:
     Quote-Address-Write:
       deprecated: false
       description: ""
+      example:
+        zipCode: "75004"
+        buildingName: Electron
+        cityName: Paris
+        countryCode: FRA
+        secondLine: Apt 6E
+        firstLine: 118 avenue des champs élysées
+        buildingFloor: Third floor
+        gateOrPortalOrInboxCode: "3124"
       properties:
         countryCode:
           example: FRA
@@ -9715,23 +9816,75 @@ components:
           $ref: '#/components/schemas/Quote-Address-Write'
       required:
       - captcha
-    Transaction-Address-CollectionRead:
-      deprecated: false
-      description: ""
-      type: object
     Transaction-Address-Read:
       deprecated: false
       description: ""
-      type: object
+      example:
+        zipCode: "75004"
+        buildingName: Electron
+        cityName: Paris
+        countryCode: FRA
+        secondLine: Apt 6E
+        firstLine: 118 avenue des champs élysées
+        buildingFloor: Third floor
+        gateOrPortalOrInboxCode: "3124"
+      properties:
+        countryCode:
+          example: FRA
+          maxLength: 3
+          type: string
+        zipCode:
+          example: "75004"
+          type: string
+        cityName:
+          example: Paris
+          type: string
+        firstLine:
+          example: 118 avenue des champs élysées
+          type: string
+        secondLine:
+          example: Apt 6E
+          nullable: true
+          type: string
+        buildingName:
+          example: Electron
+          nullable: true
+          type: string
+        buildingFloor:
+          example: Third floor
+          nullable: true
+          type: string
+        gateOrPortalOrInboxCode:
+          example: "3124"
+          nullable: true
+          type: string
     Transaction-Card-Read:
       deprecated: false
       description: ""
       example:
         processorStatus: unallocated
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        primaryAccountNumber: primaryAccountNumber
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+        brand: VISA
         providerName: providerName
       properties:
+        primaryAccountNumber:
+          nullable: true
+          type: string
+        brand:
+          enum:
+          - CB
+          - VISA
+          - MASTERCARD
+          - AMEX
+          - MAESTRO
+          - BCMC
+          - JCB
+          - DISCOVER
+          example: VISA
+          type: string
+          nullable: true
         providerName:
           nullable: true
           type: string
@@ -9780,10 +9933,22 @@ components:
           title: ASUS TUF X570-PLUS GAMING Motherboard
           itemCount: 1
           medias:
-          - https://example.com/
-          - https://example.com/
+          - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
+          - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
           createdAt: 2000-01-23T04:56:07.000+00:00
           condition: USED
+          organization:
+            websiteUrl: websiteUrl
+            name: name
+            icon:
+              publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+              id: 6
+            primaryColor: primaryColor
+            logo:
+              publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+              id: 6
           allowToNegotiateUnitPrice: true
           publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
           minNegotiableUnitPrice: 1.4658129
@@ -9803,7 +9968,6 @@ components:
           iri: https://example.com/
           shippingFees: 9.301444
           ulid: ulid
-          thirdPartyRecipientAddress: "{}"
           thirdPartyRecipientLastName: thirdPartyRecipientLastName
           attemptUnitPrice: 5.962134
           transactionFees: 7.0614014
@@ -9910,6 +10074,42 @@ components:
       - offer
       - quote
       - ulid
+    Transaction-Media-CollectionRead:
+      deprecated: false
+      description: ""
+      example:
+        publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+        id: 6
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        publicUrl:
+          example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          externalDocs:
+            url: https://schema.org/url
+          format: uri
+          type: string
+      required:
+      - publicUrl
+    Transaction-Media-Read:
+      deprecated: false
+      description: ""
+      example:
+        publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+        id: 6
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        publicUrl:
+          example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          externalDocs:
+            url: https://schema.org/url
+          format: uri
+          type: string
+      required:
+      - publicUrl
     Transaction-Metadata-Read:
       deprecated: false
       description: ""
@@ -9938,10 +10138,22 @@ components:
         title: ASUS TUF X570-PLUS GAMING Motherboard
         itemCount: 1
         medias:
-        - https://example.com/
-        - https://example.com/
+        - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
+        - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
         createdAt: 2000-01-23T04:56:07.000+00:00
         condition: USED
+        organization:
+          websiteUrl: websiteUrl
+          name: name
+          icon:
+            publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
+          primaryColor: primaryColor
+          logo:
+            publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
         allowToNegotiateUnitPrice: true
         publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
         minNegotiableUnitPrice: 1.4658129
@@ -9967,6 +10179,8 @@ components:
           example: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
           nullable: true
           type: string
+        organization:
+          $ref: '#/components/schemas/Transaction-Organization-CollectionRead'
         seller:
           $ref: '#/components/schemas/Transaction-Persona-CollectionRead'
         presetBuyer:
@@ -10013,9 +10227,7 @@ components:
           type: string
         medias:
           items:
-            example: https://example.com/
-            format: iri-reference
-            type: string
+            $ref: '#/components/schemas/Transaction-Media-CollectionRead'
           type: array
         createdAt:
           format: date-time
@@ -10041,7 +10253,15 @@ components:
           firstName: John
           lastName: Doe
           mobilePhoneNumber: "+33745214529"
-          address: "{}"
+          address:
+            zipCode: "75004"
+            buildingName: Electron
+            cityName: Paris
+            countryCode: FRA
+            secondLine: Apt 6E
+            firstLine: 118 avenue des champs élysées
+            buildingFloor: Third floor
+            gateOrPortalOrInboxCode: "3124"
           registered: true
           language: fr
           id: 0
@@ -10069,21 +10289,41 @@ components:
         handDeliveryAllowed: true
         weightInGram: 1
         medias:
-        - https://example.com/
-        - https://example.com/
+        - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
+        - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
         createdAt: 2000-01-23T04:56:07.000+00:00
         condition: USED
         shippingCarriers:
         - SwissPost
         - SwissPost
         eanCode: "4718017388450"
+        organization:
+          websiteUrl: websiteUrl
+          name: name
+          icon:
+            publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
+          primaryColor: primaryColor
+          logo:
+            publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
         publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
         currencyCode: EUR
         presetBuyer:
           firstName: John
           lastName: Doe
           mobilePhoneNumber: "+33745214529"
-          address: "{}"
+          address:
+            zipCode: "75004"
+            buildingName: Electron
+            cityName: Paris
+            countryCode: FRA
+            secondLine: Apt 6E
+            firstLine: 118 avenue des champs élysées
+            buildingFloor: Third floor
+            gateOrPortalOrInboxCode: "3124"
           registered: true
           language: fr
           id: 0
@@ -10111,6 +10351,8 @@ components:
           example: https://marketplace.tld/offers/that-special-item-i-wish-to-sold?checkout=true
           nullable: true
           type: string
+        organization:
+          $ref: '#/components/schemas/Transaction-Organization-Read'
         seller:
           $ref: '#/components/schemas/Transaction-Persona-Read'
         presetBuyer:
@@ -10202,9 +10444,7 @@ components:
           type: array
         medias:
           items:
-            example: https://example.com/
-            format: iri-reference
-            type: string
+            $ref: '#/components/schemas/Transaction-Media-Read'
           type: array
         createdAt:
           format: date-time
@@ -10226,6 +10466,58 @@ components:
       - status
       - ulid
       - weightInGram
+    Transaction-Organization-CollectionRead:
+      deprecated: false
+      description: ""
+      example:
+        websiteUrl: websiteUrl
+        name: name
+        icon:
+          publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
+        primaryColor: primaryColor
+        logo:
+          publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
+      properties:
+        name:
+          type: string
+        websiteUrl:
+          nullable: true
+          type: string
+        icon:
+          $ref: '#/components/schemas/Transaction-Media-CollectionRead'
+        logo:
+          $ref: '#/components/schemas/Transaction-Media-CollectionRead'
+        primaryColor:
+          nullable: true
+          type: string
+    Transaction-Organization-Read:
+      deprecated: false
+      description: ""
+      example:
+        websiteUrl: websiteUrl
+        name: name
+        icon:
+          publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
+        primaryColor: primaryColor
+        logo:
+          publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          id: 6
+      properties:
+        name:
+          type: string
+        websiteUrl:
+          nullable: true
+          type: string
+        icon:
+          $ref: '#/components/schemas/Transaction-Media-Read'
+        logo:
+          $ref: '#/components/schemas/Transaction-Media-Read'
+        primaryColor:
+          nullable: true
+          type: string
     Transaction-Parcel-Read:
       deprecated: false
       description: ""
@@ -10325,7 +10617,15 @@ components:
         firstName: John
         lastName: Doe
         mobilePhoneNumber: "+33745214529"
-        address: "{}"
+        address:
+          zipCode: "75004"
+          buildingName: Electron
+          cityName: Paris
+          countryCode: FRA
+          secondLine: Apt 6E
+          firstLine: 118 avenue des champs élysées
+          buildingFloor: Third floor
+          gateOrPortalOrInboxCode: "3124"
         registered: true
         language: fr
         id: 0
@@ -10356,9 +10656,7 @@ components:
           nullable: true
           type: string
         address:
-          deprecated: false
-          description: ""
-          type: object
+          $ref: '#/components/schemas/Transaction-Address-Read'
         registered:
           description: Determine if the Persona have a Tripartie account
           readOnly: true
@@ -10372,7 +10670,6 @@ components:
         iri: https://example.com/
         shippingFees: 9.301444
         ulid: ulid
-        thirdPartyRecipientAddress: "{}"
         thirdPartyRecipientLastName: thirdPartyRecipientLastName
         attemptUnitPrice: 5.962134
         transactionFees: 7.0614014
@@ -10432,10 +10729,6 @@ components:
         thirdPartyRecipientLastName:
           nullable: true
           type: string
-        thirdPartyRecipientAddress:
-          deprecated: false
-          description: ""
-          type: object
         createdAt:
           format: date-time
           type: string
@@ -10484,7 +10777,15 @@ components:
         iri: https://example.com/
         shippingFees: 9.301444
         ulid: ulid
-        thirdPartyRecipientAddress: "{}"
+        thirdPartyRecipientAddress:
+          zipCode: "75004"
+          buildingName: Electron
+          cityName: Paris
+          countryCode: FRA
+          secondLine: Apt 6E
+          firstLine: 118 avenue des champs élysées
+          buildingFloor: Third floor
+          gateOrPortalOrInboxCode: "3124"
         thirdPartyRecipientLastName: thirdPartyRecipientLastName
         attemptUnitPrice: 5.962134
         transactionFees: 7.0614014
@@ -10546,9 +10847,7 @@ components:
           nullable: true
           type: string
         thirdPartyRecipientAddress:
-          deprecated: false
-          description: ""
-          type: object
+          $ref: '#/components/schemas/Transaction-Address-Read'
         createdAt:
           format: date-time
           type: string
@@ -10599,18 +10898,26 @@ components:
       deprecated: false
       description: ""
       example:
-        totalFees: 5.025004791520295
+        totalFees: 9.965781217890562
         fees: 1.2315135367772556
         ulid: ulid
         remotePayInId: remotePayInId
-        rating: 7
+        rating: 1
         handOverCode: handOverCode
         offer:
           seller:
             firstName: John
             lastName: Doe
             mobilePhoneNumber: "+33745214529"
-            address: "{}"
+            address:
+              zipCode: "75004"
+              buildingName: Electron
+              cityName: Paris
+              countryCode: FRA
+              secondLine: Apt 6E
+              firstLine: 118 avenue des champs élysées
+              buildingFloor: Third floor
+              gateOrPortalOrInboxCode: "3124"
             registered: true
             language: fr
             id: 0
@@ -10638,21 +10945,41 @@ components:
           handDeliveryAllowed: true
           weightInGram: 1
           medias:
-          - https://example.com/
-          - https://example.com/
+          - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
+          - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+            id: 6
           createdAt: 2000-01-23T04:56:07.000+00:00
           condition: USED
           shippingCarriers:
           - SwissPost
           - SwissPost
           eanCode: "4718017388450"
+          organization:
+            websiteUrl: websiteUrl
+            name: name
+            icon:
+              publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+              id: 6
+            primaryColor: primaryColor
+            logo:
+              publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+              id: 6
           publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
           currencyCode: EUR
           presetBuyer:
             firstName: John
             lastName: Doe
             mobilePhoneNumber: "+33745214529"
-            address: "{}"
+            address:
+              zipCode: "75004"
+              buildingName: Electron
+              cityName: Paris
+              countryCode: FRA
+              secondLine: Apt 6E
+              firstLine: 118 avenue des champs élysées
+              buildingFloor: Third floor
+              gateOrPortalOrInboxCode: "3124"
             registered: true
             language: fr
             id: 0
@@ -10660,14 +10987,22 @@ components:
           status: issued
           updatedAt: 2000-01-23T04:56:07.000+00:00
         createdAt: 2000-01-23T04:56:07.000+00:00
-        total: 1.1730742509559433
+        total: 4.965218492984954
         quote:
           unitPrice: 3.616076749251911
           sellerTotal: 7.386281948385884
           iri: https://example.com/
           shippingFees: 9.301444
           ulid: ulid
-          thirdPartyRecipientAddress: "{}"
+          thirdPartyRecipientAddress:
+            zipCode: "75004"
+            buildingName: Electron
+            cityName: Paris
+            countryCode: FRA
+            secondLine: Apt 6E
+            firstLine: 118 avenue des champs élysées
+            buildingFloor: Third floor
+            gateOrPortalOrInboxCode: "3124"
           thirdPartyRecipientLastName: thirdPartyRecipientLastName
           attemptUnitPrice: 5.962134
           transactionFees: 7.0614014
@@ -10687,22 +11022,33 @@ components:
         review: review
         escrow:
           processorStatus: unallocated
+          balance: 1.4894159
           providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+          currency: currency
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
           providerName: providerName
+          updatedAt: 2000-01-23T04:56:07.000+00:00
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
-        balanceToRefund: 1.4894159098541704
+        balanceToRefund: 6.84685269835264
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         awaitedParty: BUYER
-        totalCharged: 4.965218492984954
+        totalCharged: 5.025004791520295
         statusExpiration: 2000-01-23T04:56:07.000+00:00
         buyer:
           firstName: John
           lastName: Doe
           mobilePhoneNumber: "+33745214529"
-          address: "{}"
+          address:
+            zipCode: "75004"
+            buildingName: Electron
+            cityName: Paris
+            countryCode: FRA
+            secondLine: Apt 6E
+            firstLine: 118 avenue des champs élysées
+            buildingFloor: Third floor
+            gateOrPortalOrInboxCode: "3124"
           registered: true
           language: fr
           id: 0
@@ -10711,11 +11057,13 @@ components:
         processorStatus: unallocated
         supplementalFees: 1.0246457001441578
         forceRefundShipping: true
-        feesToRefund: 6.84685269835264
+        feesToRefund: 7.457744773683766
         card:
           processorStatus: unallocated
           providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+          primaryAccountNumber: primaryAccountNumber
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+          brand: VISA
           providerName: providerName
         status: CREATED
         parcels:
@@ -10923,10 +11271,21 @@ components:
       description: ""
       example:
         processorStatus: unallocated
+        balance: 1.4894159
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        currency: currency
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         providerName: providerName
+        updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
+        balance:
+          format: float
+          type: number
+        currency:
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
         providerName:
           nullable: true
           type: string
@@ -10949,6 +11308,9 @@ components:
           - outdated
           readOnly: true
           type: string
+      required:
+      - currency
+      - updatedAt
     Transaction-Write:
       deprecated: false
       description: ""
