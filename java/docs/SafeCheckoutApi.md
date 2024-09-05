@@ -127,11 +127,11 @@ public class Example {
 | **offerMetadata** | [**List&lt;String&gt;**](String.md)| Flattened OrderedMap for offer.metadata. Must be a multiple of two items count. Explicitly set \&quot;null\&quot; for desired value. | [optional] |
 | **sellerMetadata** | [**List&lt;String&gt;**](String.md)| Flattened OrderedMap for seller.metadata. Must be a multiple of two items count. Explicitly set \&quot;null\&quot; for desired value. | [optional] |
 | **nature** | **String**| Filter on a specific value of nature | [optional] [enum: service, physical_item, dematerialized_item, rent_item] |
-| **nature2** | [**List&lt;String&gt;**](String.md)| Filter on a limited subset of nature | [optional] [enum: service, physical_item, dematerialized_item, rent_item] |
+| **nature2** | [**List&lt;String&gt;**](String.md)| Filter on a limited subset of nature | [optional] |
 | **condition** | **String**| Filter on a specific value of condition | [optional] [enum: NEW, USED, DAMAGED, DETERIORATED, UNRECOVERABLE] |
-| **condition2** | [**List&lt;String&gt;**](String.md)| Filter on a limited subset of condition | [optional] [enum: NEW, USED, DAMAGED, DETERIORATED, UNRECOVERABLE] |
+| **condition2** | [**List&lt;String&gt;**](String.md)| Filter on a limited subset of condition | [optional] |
 | **status** | **String**| Filter on a specific value of status | [optional] [enum: issued, active, fulfilled, expired] |
-| **status2** | [**List&lt;String&gt;**](String.md)| Filter on a limited subset of status | [optional] [enum: issued, active, fulfilled, expired] |
+| **status2** | [**List&lt;String&gt;**](String.md)| Filter on a limited subset of status | [optional] |
 | **shippingAllowed** | **Boolean**|  | [optional] |
 
 ### Return type

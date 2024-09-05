@@ -110,7 +110,7 @@ public class Example {
 | **mobilePhoneNumber** | **String**|  | [optional] |
 | **mobilePhoneNumber2** | [**List&lt;String&gt;**](String.md)|  | [optional] |
 | **gender** | **String**| Filter on a specific value of gender | [optional] [enum: MALE, FEMALE, OTHER, RATHER_NOT_SAY] |
-| **gender2** | [**List&lt;String&gt;**](String.md)| Filter on a limited subset of gender | [optional] [enum: MALE, FEMALE, OTHER, RATHER_NOT_SAY] |
+| **gender2** | [**List&lt;String&gt;**](String.md)| Filter on a limited subset of gender | [optional] |
 | **orderCreatedAt** | **String**|  | [optional] [enum: asc, desc] |
 | **createdAtBefore** | **String**|  | [optional] |
 | **createdAtStrictlyBefore** | **String**|  | [optional] |
