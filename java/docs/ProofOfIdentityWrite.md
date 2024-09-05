@@ -8,7 +8,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**type** | [**TypeEnum**](#TypeEnum) |  |  |
+|**type** | [**TypeEnum**](#TypeEnum) |  |  [optional] |
 
 
 

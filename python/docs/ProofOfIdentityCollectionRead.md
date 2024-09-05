@@ -6,10 +6,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **int** |  | [optional] [readonly] 
 **status** | **str** |  | 
 **type** | **str** |  | 
 **original_filename** | **str** |  | [optional] 
-**extension** | **str** |  | 
+**extension** | **str** |  | [optional] 
 **created_at** | **datetime** |  | 
 **updated_at** | **datetime** |  | 
 **provider_name** | **str** |  | [optional] 
