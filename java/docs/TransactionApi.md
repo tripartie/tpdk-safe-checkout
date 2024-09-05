@@ -338,7 +338,7 @@ public class Example {
 | **updatedAtAfter** | **String**|  | [optional] |
 | **updatedAtStrictlyAfter** | **String**|  | [optional] |
 | **status** | **String**| Filter on a specific value of status | [optional] [enum: CREATED, AUTHORIZED, REFUSED, ACCEPTED, SHIPPED, IN_TRANSIT, BLOCKED, DELIVERED, COMPLETED, DISPUTED, CANCELLED] |
-| **status2** | [**List&lt;String&gt;**](String.md)| Filter on a limited subset of status | [optional] [enum: CREATED, AUTHORIZED, REFUSED, ACCEPTED, SHIPPED, IN_TRANSIT, BLOCKED, DELIVERED, COMPLETED, DISPUTED, CANCELLED] |
+| **status2** | [**List&lt;String&gt;**](String.md)| Filter on a limited subset of status | [optional] |
 | **offerTitle** | **String**|  | [optional] |
 
 ### Return type

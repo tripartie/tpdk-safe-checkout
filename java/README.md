@@ -1,8 +1,8 @@
 # safecheckout
 
 Safe Checkout
-- API version: 2.0.45
-  - Build date: 2024-09-05T14:34:11.507887Z[Etc/UTC]
+- API version: 2.0.47
+  - Build date: 2024-09-05T15:11:44.376211Z[Etc/UTC]
   - Generator version: 7.8.0
 
 Simple, yet elegant web interfaces for your convenience. One request away from your first secured C2C transaction.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.tripartie</groupId>
   <artifactId>safecheckout</artifactId>
-  <version>2.0.45</version>
+  <version>2.0.47</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.tripartie:safecheckout:2.0.45"
+     implementation "com.tripartie:safecheckout:2.0.47"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/safecheckout-2.0.45.jar`
+* `target/safecheckout-2.0.47.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
