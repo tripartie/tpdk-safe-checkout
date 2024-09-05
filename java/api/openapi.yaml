@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.35
+  version: 2.0.38
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -3739,10 +3739,11 @@ paths:
       - User
       x-accepts:
       - application/json
-    patch:
+  /proof-of-identities/{id}/document:
+    post:
       deprecated: false
-      description: Updates the ProofOfIdentity resource.
-      operationId: api_proof-of-identities_id_patch
+      description: Creates a ProofOfIdentity resource.
+      operationId: api_proof-of-identities_iddocument_post
       parameters:
       - allowReserved: false
         deprecated: false
@@ -3762,12 +3763,12 @@ paths:
         description: The binary media file as-is
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProofOfIdentity-Read'
-          description: ProofOfIdentity resource updated
+          description: ProofOfIdentity resource created
           headers:
             X-Rate-Limit:
               description: HTTP standardized header for rate limit consumption status
@@ -3796,20 +3797,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/UnprocessableEntity'
           description: Unprocessable entity
-          headers:
-            X-Rate-Limit:
-              description: HTTP standardized header for rate limit consumption status
-              explode: false
-              schema:
-                example: 554; reset="2025-01-12T12:11:02"
-                type: string
-              style: simple
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFoundError'
-          description: Resource not found
           headers:
             X-Rate-Limit:
               description: HTTP standardized header for rate limit consumption status
@@ -9111,6 +9098,7 @@ components:
         extension: extension
         processorStatus: unallocated
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        id: 0
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         type: national_id
         originalFilename: originalFilename
@@ -9118,6 +9106,9 @@ components:
         status: drafted
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
+        id:
+          readOnly: true
+          type: integer
         status:
           enum:
           - drafted
@@ -9136,6 +9127,7 @@ components:
           nullable: true
           type: string
         extension:
+          nullable: true
           type: string
         createdAt:
           format: date-time
@@ -9167,7 +9159,6 @@ components:
           type: string
       required:
       - createdAt
-      - extension
       - status
       - type
       - updatedAt
@@ -9179,6 +9170,7 @@ components:
         extension: extension
         processorStatus: unallocated
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        id: 0
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         type: national_id
         originalFilename: originalFilename
@@ -9186,6 +9178,9 @@ components:
         status: drafted
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
+        id:
+          readOnly: true
+          type: integer
         status:
           enum:
           - drafted
@@ -9204,6 +9199,7 @@ components:
           nullable: true
           type: string
         extension:
+          nullable: true
           type: string
         createdAt:
           format: date-time
@@ -9235,7 +9231,6 @@ components:
           type: string
       required:
       - createdAt
-      - extension
       - status
       - type
       - updatedAt
@@ -9248,8 +9243,6 @@ components:
           - national_id
           - passport
           type: string
-      required:
-      - type
     Quote-Address-Read:
       deprecated: false
       description: ""

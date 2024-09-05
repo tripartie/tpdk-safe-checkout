@@ -18,7 +18,7 @@ Method | HTTP request | Description
 [**api_me_get**](UserApi.md#api_me_get) | **GET** /me | Retrieves a User resource.
 [**api_proof_of_identities_get_collection**](UserApi.md#api_proof_of_identities_get_collection) | **GET** /proof-of-identities | List all submitted PoI
 [**api_proof_of_identities_id_get**](UserApi.md#api_proof_of_identities_id_get) | **GET** /proof-of-identities/{id} | Retrieve a specific PoI
-[**api_proof_of_identities_id_patch**](UserApi.md#api_proof_of_identities_id_patch) | **PATCH** /proof-of-identities/{id} | Upload the document for your PoI slot
+[**api_proof_of_identities_iddocument_post**](UserApi.md#api_proof_of_identities_iddocument_post) | **POST** /proof-of-identities/{id}/document | Upload the document for your PoI slot
 [**api_proof_of_identities_post**](UserApi.md#api_proof_of_identities_post) | **POST** /proof-of-identities | Submit a slot for a PoI
 [**api_register_post**](UserApi.md#api_register_post) | **POST** /register | Customer onboarding
 [**api_users_id_delete**](UserApi.md#api_users_id_delete) | **DELETE** /users/{id} | Removes the User resource.
@@ -1208,12 +1208,12 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **api_proof_of_identities_id_patch**
-> ProofOfIdentityRead api_proof_of_identities_id_patch(id, file=file)
+# **api_proof_of_identities_iddocument_post**
+> ProofOfIdentityRead api_proof_of_identities_iddocument_post(id, file=file)
 
 Upload the document for your PoI slot
 
-Updates the ProofOfIdentity resource.
+Creates a ProofOfIdentity resource.
 
 ### Example
 
@@ -1251,11 +1251,11 @@ with tpdk_safe_checkout.ApiClient(configuration) as api_client:
 
     try:
         # Upload the document for your PoI slot
-        api_response = api_instance.api_proof_of_identities_id_patch(id, file=file)
-        print("The response of UserApi->api_proof_of_identities_id_patch:\n")
+        api_response = api_instance.api_proof_of_identities_iddocument_post(id, file=file)
+        print("The response of UserApi->api_proof_of_identities_iddocument_post:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling UserApi->api_proof_of_identities_id_patch: %s\n" % e)
+        print("Exception when calling UserApi->api_proof_of_identities_iddocument_post: %s\n" % e)
 ```
 
 
@@ -1285,10 +1285,9 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | ProofOfIdentity resource updated |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**201** | ProofOfIdentity resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 **401** | Authentication required |  -  |
 **403** | Unauthorized access |  -  |
 **429** | Rate limit exhausted |  -  |

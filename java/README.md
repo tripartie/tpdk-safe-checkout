@@ -1,8 +1,8 @@
 # safecheckout
 
 Safe Checkout
-- API version: 2.0.35
-  - Build date: 2024-09-04T06:55:47.416207Z[Etc/UTC]
+- API version: 2.0.38
+  - Build date: 2024-09-05T02:41:40.097817Z[Etc/UTC]
   - Generator version: 7.8.0
 
 Simple, yet elegant web interfaces for your convenience. One request away from your first secured C2C transaction.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.tripartie</groupId>
   <artifactId>safecheckout</artifactId>
-  <version>2.0.35</version>
+  <version>2.0.38</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.tripartie:safecheckout:2.0.35"
+     implementation "com.tripartie:safecheckout:2.0.38"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/safecheckout-2.0.35.jar`
+* `target/safecheckout-2.0.38.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -176,7 +176,7 @@ Class | Method | HTTP request | Description
 *UserApi* | [**apiMeGet**](docs/UserApi.md#apiMeGet) | **GET** /me | Retrieves a User resource.
 *UserApi* | [**apiProofOfIdentitiesGetCollection**](docs/UserApi.md#apiProofOfIdentitiesGetCollection) | **GET** /proof-of-identities | List all submitted PoI
 *UserApi* | [**apiProofOfIdentitiesIdGet**](docs/UserApi.md#apiProofOfIdentitiesIdGet) | **GET** /proof-of-identities/{id} | Retrieve a specific PoI
-*UserApi* | [**apiProofOfIdentitiesIdPatch**](docs/UserApi.md#apiProofOfIdentitiesIdPatch) | **PATCH** /proof-of-identities/{id} | Upload the document for your PoI slot
+*UserApi* | [**apiProofOfIdentitiesIddocumentPost**](docs/UserApi.md#apiProofOfIdentitiesIddocumentPost) | **POST** /proof-of-identities/{id}/document | Upload the document for your PoI slot
 *UserApi* | [**apiProofOfIdentitiesPost**](docs/UserApi.md#apiProofOfIdentitiesPost) | **POST** /proof-of-identities | Submit a slot for a PoI
 *UserApi* | [**apiRegisterPost**](docs/UserApi.md#apiRegisterPost) | **POST** /register | Customer onboarding
 *UserApi* | [**apiUsersIdDelete**](docs/UserApi.md#apiUsersIdDelete) | **DELETE** /users/{id} | Removes the User resource.

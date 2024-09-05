@@ -18,7 +18,7 @@ All URIs are relative to *https://staging-api.tripartie.app*
 | [**apiMeGet**](UserApi.md#apiMeGet) | **GET** /me | Retrieves a User resource. |
 | [**apiProofOfIdentitiesGetCollection**](UserApi.md#apiProofOfIdentitiesGetCollection) | **GET** /proof-of-identities | List all submitted PoI |
 | [**apiProofOfIdentitiesIdGet**](UserApi.md#apiProofOfIdentitiesIdGet) | **GET** /proof-of-identities/{id} | Retrieve a specific PoI |
-| [**apiProofOfIdentitiesIdPatch**](UserApi.md#apiProofOfIdentitiesIdPatch) | **PATCH** /proof-of-identities/{id} | Upload the document for your PoI slot |
+| [**apiProofOfIdentitiesIddocumentPost**](UserApi.md#apiProofOfIdentitiesIddocumentPost) | **POST** /proof-of-identities/{id}/document | Upload the document for your PoI slot |
 | [**apiProofOfIdentitiesPost**](UserApi.md#apiProofOfIdentitiesPost) | **POST** /proof-of-identities | Submit a slot for a PoI |
 | [**apiRegisterPost**](UserApi.md#apiRegisterPost) | **POST** /register | Customer onboarding |
 | [**apiUsersIdDelete**](UserApi.md#apiUsersIdDelete) | **DELETE** /users/{id} | Removes the User resource. |
@@ -1086,13 +1086,13 @@ public class Example {
 | **429** | Rate limit exhausted |  -  |
 | **500** | Unexpected server error |  -  |
 
-<a id="apiProofOfIdentitiesIdPatch"></a>
-# **apiProofOfIdentitiesIdPatch**
-> ProofOfIdentityRead apiProofOfIdentitiesIdPatch(id)._file(_file).execute();
+<a id="apiProofOfIdentitiesIddocumentPost"></a>
+# **apiProofOfIdentitiesIddocumentPost**
+> ProofOfIdentityRead apiProofOfIdentitiesIddocumentPost(id)._file(_file).execute();
 
 Upload the document for your PoI slot
 
-Updates the ProofOfIdentity resource.
+Creates a ProofOfIdentity resource.
 
 ### Example
 ```java
@@ -1119,12 +1119,12 @@ public class Example {
     BigDecimal id = new BigDecimal(78); // BigDecimal | 
     File _file = new File("/path/to/file"); // File | 
     try {
-      ProofOfIdentityRead result = apiInstance.apiProofOfIdentitiesIdPatch(id)
+      ProofOfIdentityRead result = apiInstance.apiProofOfIdentitiesIddocumentPost(id)
             ._file(_file)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling UserApi#apiProofOfIdentitiesIdPatch");
+      System.err.println("Exception when calling UserApi#apiProofOfIdentitiesIddocumentPost");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1157,10 +1157,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | ProofOfIdentity resource updated |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **201** | ProofOfIdentity resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 | **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 | **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-| **404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 | **401** | Authentication required |  -  |
 | **403** | Unauthorized access |  -  |
 | **429** | Rate limit exhausted |  -  |

@@ -8,10 +8,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**id** | **Integer** |  |  [optional] [readonly] |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  |
 |**type** | [**TypeEnum**](#TypeEnum) |  |  |
 |**originalFilename** | **String** |  |  [optional] |
-|**extension** | **String** |  |  |
+|**extension** | **String** |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  |
 |**updatedAt** | **OffsetDateTime** |  |  |
 |**providerName** | **String** |  |  [optional] |
