@@ -276,7 +276,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **api_transactions_get_collection**
-> List[TransactionCollectionRead] api_transactions_get_collection(page=page, order_created_at=order_created_at, order_status=order_status, created_at_before=created_at_before, created_at_strictly_before=created_at_strictly_before, created_at_after=created_at_after, created_at_strictly_after=created_at_strictly_after, status=status)
+> List[TransactionCollectionRead] api_transactions_get_collection(page=page, order_created_at=order_created_at, order_updated_at=order_updated_at, created_at_before=created_at_before, created_at_strictly_before=created_at_strictly_before, created_at_after=created_at_after, created_at_strictly_after=created_at_strictly_after, updated_at_before=updated_at_before, updated_at_strictly_before=updated_at_strictly_before, updated_at_after=updated_at_after, updated_at_strictly_after=updated_at_strictly_after, status=status, status2=status2, offer_title=offer_title)
 
 List all Transaction
 
@@ -315,16 +315,22 @@ with tpdk_safe_checkout.ApiClient(configuration) as api_client:
     api_instance = tpdk_safe_checkout.TransactionApi(api_client)
     page = 1 # int | The collection page number (optional) (default to 1)
     order_created_at = 'order_created_at_example' # str |  (optional)
-    order_status = 'order_status_example' # str |  (optional)
+    order_updated_at = 'order_updated_at_example' # str |  (optional)
     created_at_before = 'created_at_before_example' # str |  (optional)
     created_at_strictly_before = 'created_at_strictly_before_example' # str |  (optional)
     created_at_after = 'created_at_after_example' # str |  (optional)
     created_at_strictly_after = 'created_at_strictly_after_example' # str |  (optional)
-    status = 'CREATED' # str | Filter on a limited subset of status (optional)
+    updated_at_before = 'updated_at_before_example' # str |  (optional)
+    updated_at_strictly_before = 'updated_at_strictly_before_example' # str |  (optional)
+    updated_at_after = 'updated_at_after_example' # str |  (optional)
+    updated_at_strictly_after = 'updated_at_strictly_after_example' # str |  (optional)
+    status = 'CREATED' # str | Filter on a specific value of status (optional)
+    status2 = ['status_example'] # List[str] | Filter on a limited subset of status (optional)
+    offer_title = 'offer_title_example' # str |  (optional)
 
     try:
         # List all Transaction
-        api_response = api_instance.api_transactions_get_collection(page=page, order_created_at=order_created_at, order_status=order_status, created_at_before=created_at_before, created_at_strictly_before=created_at_strictly_before, created_at_after=created_at_after, created_at_strictly_after=created_at_strictly_after, status=status)
+        api_response = api_instance.api_transactions_get_collection(page=page, order_created_at=order_created_at, order_updated_at=order_updated_at, created_at_before=created_at_before, created_at_strictly_before=created_at_strictly_before, created_at_after=created_at_after, created_at_strictly_after=created_at_strictly_after, updated_at_before=updated_at_before, updated_at_strictly_before=updated_at_strictly_before, updated_at_after=updated_at_after, updated_at_strictly_after=updated_at_strictly_after, status=status, status2=status2, offer_title=offer_title)
         print("The response of TransactionApi->api_transactions_get_collection:\n")
         pprint(api_response)
     except Exception as e:
@@ -340,12 +346,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **int**| The collection page number | [optional] [default to 1]
  **order_created_at** | **str**|  | [optional] 
- **order_status** | **str**|  | [optional] 
+ **order_updated_at** | **str**|  | [optional] 
  **created_at_before** | **str**|  | [optional] 
  **created_at_strictly_before** | **str**|  | [optional] 
  **created_at_after** | **str**|  | [optional] 
  **created_at_strictly_after** | **str**|  | [optional] 
- **status** | **str**| Filter on a limited subset of status | [optional] 
+ **updated_at_before** | **str**|  | [optional] 
+ **updated_at_strictly_before** | **str**|  | [optional] 
+ **updated_at_after** | **str**|  | [optional] 
+ **updated_at_strictly_after** | **str**|  | [optional] 
+ **status** | **str**| Filter on a specific value of status | [optional] 
+ **status2** | [**List[str]**](str.md)| Filter on a limited subset of status | [optional] 
+ **offer_title** | **str**|  | [optional] 
 
 ### Return type
 

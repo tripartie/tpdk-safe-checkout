@@ -251,7 +251,7 @@ public class Example {
 
 <a id="apiTransactionsGetCollection"></a>
 # **apiTransactionsGetCollection**
-> List&lt;TransactionCollectionRead&gt; apiTransactionsGetCollection().page(page).orderCreatedAt(orderCreatedAt).orderStatus(orderStatus).createdAtBefore(createdAtBefore).createdAtStrictlyBefore(createdAtStrictlyBefore).createdAtAfter(createdAtAfter).createdAtStrictlyAfter(createdAtStrictlyAfter).status(status).execute();
+> List&lt;TransactionCollectionRead&gt; apiTransactionsGetCollection().page(page).orderCreatedAt(orderCreatedAt).orderUpdatedAt(orderUpdatedAt).createdAtBefore(createdAtBefore).createdAtStrictlyBefore(createdAtStrictlyBefore).createdAtAfter(createdAtAfter).createdAtStrictlyAfter(createdAtStrictlyAfter).updatedAtBefore(updatedAtBefore).updatedAtStrictlyBefore(updatedAtStrictlyBefore).updatedAtAfter(updatedAtAfter).updatedAtStrictlyAfter(updatedAtStrictlyAfter).status(status).status2(status2).offerTitle(offerTitle).execute();
 
 List all Transaction
 
@@ -281,22 +281,34 @@ public class Example {
     TransactionApi apiInstance = new TransactionApi(defaultClient);
     Integer page = 1; // Integer | The collection page number
     String orderCreatedAt = "asc"; // String | 
-    String orderStatus = "asc"; // String | 
+    String orderUpdatedAt = "asc"; // String | 
     String createdAtBefore = "createdAtBefore_example"; // String | 
     String createdAtStrictlyBefore = "createdAtStrictlyBefore_example"; // String | 
     String createdAtAfter = "createdAtAfter_example"; // String | 
     String createdAtStrictlyAfter = "createdAtStrictlyAfter_example"; // String | 
-    String status = "CREATED"; // String | Filter on a limited subset of status
+    String updatedAtBefore = "updatedAtBefore_example"; // String | 
+    String updatedAtStrictlyBefore = "updatedAtStrictlyBefore_example"; // String | 
+    String updatedAtAfter = "updatedAtAfter_example"; // String | 
+    String updatedAtStrictlyAfter = "updatedAtStrictlyAfter_example"; // String | 
+    String status = "CREATED"; // String | Filter on a specific value of status
+    List<String> status2 = Arrays.asList(new ArrayList<>()); // List<String> | Filter on a limited subset of status
+    String offerTitle = "offerTitle_example"; // String | 
     try {
       List<TransactionCollectionRead> result = apiInstance.apiTransactionsGetCollection()
             .page(page)
             .orderCreatedAt(orderCreatedAt)
-            .orderStatus(orderStatus)
+            .orderUpdatedAt(orderUpdatedAt)
             .createdAtBefore(createdAtBefore)
             .createdAtStrictlyBefore(createdAtStrictlyBefore)
             .createdAtAfter(createdAtAfter)
             .createdAtStrictlyAfter(createdAtStrictlyAfter)
+            .updatedAtBefore(updatedAtBefore)
+            .updatedAtStrictlyBefore(updatedAtStrictlyBefore)
+            .updatedAtAfter(updatedAtAfter)
+            .updatedAtStrictlyAfter(updatedAtStrictlyAfter)
             .status(status)
+            .status2(status2)
+            .offerTitle(offerTitle)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
@@ -316,12 +328,18 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **page** | **Integer**| The collection page number | [optional] [default to 1] |
 | **orderCreatedAt** | **String**|  | [optional] [enum: asc, desc] |
-| **orderStatus** | **String**|  | [optional] [enum: asc, desc] |
+| **orderUpdatedAt** | **String**|  | [optional] [enum: asc, desc] |
 | **createdAtBefore** | **String**|  | [optional] |
 | **createdAtStrictlyBefore** | **String**|  | [optional] |
 | **createdAtAfter** | **String**|  | [optional] |
 | **createdAtStrictlyAfter** | **String**|  | [optional] |
-| **status** | **String**| Filter on a limited subset of status | [optional] [enum: CREATED, AUTHORIZED, REFUSED, ACCEPTED, SHIPPED, IN_TRANSIT, BLOCKED, DELIVERED, COMPLETED, DISPUTED, CANCELLED] |
+| **updatedAtBefore** | **String**|  | [optional] |
+| **updatedAtStrictlyBefore** | **String**|  | [optional] |
+| **updatedAtAfter** | **String**|  | [optional] |
+| **updatedAtStrictlyAfter** | **String**|  | [optional] |
+| **status** | **String**| Filter on a specific value of status | [optional] [enum: CREATED, AUTHORIZED, REFUSED, ACCEPTED, SHIPPED, IN_TRANSIT, BLOCKED, DELIVERED, COMPLETED, DISPUTED, CANCELLED] |
+| **status2** | [**List&lt;String&gt;**](String.md)| Filter on a limited subset of status | [optional] [enum: CREATED, AUTHORIZED, REFUSED, ACCEPTED, SHIPPED, IN_TRANSIT, BLOCKED, DELIVERED, COMPLETED, DISPUTED, CANCELLED] |
+| **offerTitle** | **String**|  | [optional] |
 
 ### Return type
 

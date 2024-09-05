@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **api_offers_get_collection**
-> List[OfferCollectionRead] api_offers_get_collection(page=page, title=title, public_url=public_url, public_url2=public_url2, unit_price=unit_price, unit_price2=unit_price2, item_count=item_count, item_count2=item_count2, created_at_before=created_at_before, created_at_strictly_before=created_at_strictly_before, created_at_after=created_at_after, created_at_strictly_after=created_at_strictly_after, metadata=metadata, offer_metadata=offer_metadata, seller_metadata=seller_metadata, nature=nature, condition=condition, status=status, shipping_allowed=shipping_allowed)
+> List[OfferCollectionRead] api_offers_get_collection(page=page, title=title, public_url=public_url, public_url2=public_url2, unit_price=unit_price, unit_price2=unit_price2, item_count=item_count, item_count2=item_count2, created_at_before=created_at_before, created_at_strictly_before=created_at_strictly_before, created_at_after=created_at_after, created_at_strictly_after=created_at_strictly_after, metadata=metadata, offer_metadata=offer_metadata, seller_metadata=seller_metadata, nature=nature, nature2=nature2, condition=condition, condition2=condition2, status=status, status2=status2, shipping_allowed=shipping_allowed)
 
 Search amongst Offers
 
@@ -70,14 +70,17 @@ with tpdk_safe_checkout.ApiClient(configuration) as api_client:
     metadata = ['[\"External-ID\",\"1254A\"]'] # List[str] | Flattened OrderedMap for metadata. Must be a multiple of two items count. Explicitly set \"null\" for desired value. (optional)
     offer_metadata = ['[\"External-ID\",\"1254A\"]'] # List[str] | Flattened OrderedMap for offer.metadata. Must be a multiple of two items count. Explicitly set \"null\" for desired value. (optional)
     seller_metadata = ['[\"External-ID\",\"1254A\"]'] # List[str] | Flattened OrderedMap for seller.metadata. Must be a multiple of two items count. Explicitly set \"null\" for desired value. (optional)
-    nature = 'service' # str | Filter on a limited subset of nature (optional)
-    condition = 'NEW' # str | Filter on a limited subset of condition (optional)
-    status = 'issued' # str | Filter on a limited subset of status (optional)
+    nature = 'service' # str | Filter on a specific value of nature (optional)
+    nature2 = ['nature_example'] # List[str] | Filter on a limited subset of nature (optional)
+    condition = 'NEW' # str | Filter on a specific value of condition (optional)
+    condition2 = ['condition_example'] # List[str] | Filter on a limited subset of condition (optional)
+    status = 'issued' # str | Filter on a specific value of status (optional)
+    status2 = ['status_example'] # List[str] | Filter on a limited subset of status (optional)
     shipping_allowed = True # bool |  (optional)
 
     try:
         # Search amongst Offers
-        api_response = api_instance.api_offers_get_collection(page=page, title=title, public_url=public_url, public_url2=public_url2, unit_price=unit_price, unit_price2=unit_price2, item_count=item_count, item_count2=item_count2, created_at_before=created_at_before, created_at_strictly_before=created_at_strictly_before, created_at_after=created_at_after, created_at_strictly_after=created_at_strictly_after, metadata=metadata, offer_metadata=offer_metadata, seller_metadata=seller_metadata, nature=nature, condition=condition, status=status, shipping_allowed=shipping_allowed)
+        api_response = api_instance.api_offers_get_collection(page=page, title=title, public_url=public_url, public_url2=public_url2, unit_price=unit_price, unit_price2=unit_price2, item_count=item_count, item_count2=item_count2, created_at_before=created_at_before, created_at_strictly_before=created_at_strictly_before, created_at_after=created_at_after, created_at_strictly_after=created_at_strictly_after, metadata=metadata, offer_metadata=offer_metadata, seller_metadata=seller_metadata, nature=nature, nature2=nature2, condition=condition, condition2=condition2, status=status, status2=status2, shipping_allowed=shipping_allowed)
         print("The response of SafeCheckoutApi->api_offers_get_collection:\n")
         pprint(api_response)
     except Exception as e:
@@ -106,9 +109,12 @@ Name | Type | Description  | Notes
  **metadata** | [**List[str]**](str.md)| Flattened OrderedMap for metadata. Must be a multiple of two items count. Explicitly set \&quot;null\&quot; for desired value. | [optional] 
  **offer_metadata** | [**List[str]**](str.md)| Flattened OrderedMap for offer.metadata. Must be a multiple of two items count. Explicitly set \&quot;null\&quot; for desired value. | [optional] 
  **seller_metadata** | [**List[str]**](str.md)| Flattened OrderedMap for seller.metadata. Must be a multiple of two items count. Explicitly set \&quot;null\&quot; for desired value. | [optional] 
- **nature** | **str**| Filter on a limited subset of nature | [optional] 
- **condition** | **str**| Filter on a limited subset of condition | [optional] 
- **status** | **str**| Filter on a limited subset of status | [optional] 
+ **nature** | **str**| Filter on a specific value of nature | [optional] 
+ **nature2** | [**List[str]**](str.md)| Filter on a limited subset of nature | [optional] 
+ **condition** | **str**| Filter on a specific value of condition | [optional] 
+ **condition2** | [**List[str]**](str.md)| Filter on a limited subset of condition | [optional] 
+ **status** | **str**| Filter on a specific value of status | [optional] 
+ **status2** | [**List[str]**](str.md)| Filter on a limited subset of status | [optional] 
  **shipping_allowed** | **bool**|  | [optional] 
 
 ### Return type

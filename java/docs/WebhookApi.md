@@ -263,7 +263,7 @@ public class Example {
 
 <a id="apiWebhookSubscriptionsGetCollection"></a>
 # **apiWebhookSubscriptionsGetCollection**
-> List&lt;WebhookSubscriptionRead&gt; apiWebhookSubscriptionsGetCollection().page(page).event(event).execute();
+> List&lt;WebhookSubscriptionRead&gt; apiWebhookSubscriptionsGetCollection().page(page).event(event).event2(event2).execute();
 
 Retrieves the collection of WebhookSubscription resources.
 
@@ -296,11 +296,13 @@ public class Example {
 
     WebhookApi apiInstance = new WebhookApi(defaultClient);
     Integer page = 1; // Integer | The collection page number
-    String event = "offer.transaction.authorized"; // String | Filter on a limited subset of event
+    String event = "offer.transaction.authorized"; // String | Filter on a specific value of event
+    List<String> event2 = Arrays.asList(new ArrayList<>()); // List<String> | Filter on a limited subset of event
     try {
       List<WebhookSubscriptionRead> result = apiInstance.apiWebhookSubscriptionsGetCollection()
             .page(page)
             .event(event)
+            .event2(event2)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
@@ -319,7 +321,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **page** | **Integer**| The collection page number | [optional] [default to 1] |
-| **event** | **String**| Filter on a limited subset of event | [optional] [enum: offer.transaction.authorized, offer.transaction.accepted, offer.transaction.shipped, offer.transaction.delivered, offer.transaction.completed, offer.transaction.canceled, offer.transaction.disputed, offer.closed, persona.added] |
+| **event** | **String**| Filter on a specific value of event | [optional] [enum: offer.transaction.authorized, offer.transaction.accepted, offer.transaction.shipped, offer.transaction.delivered, offer.transaction.completed, offer.transaction.canceled, offer.transaction.disputed, offer.closed, persona.added] |
+| **event2** | [**List&lt;String&gt;**](String.md)| Filter on a limited subset of event | [optional] [enum: offer.transaction.authorized, offer.transaction.accepted, offer.transaction.shipped, offer.transaction.delivered, offer.transaction.completed, offer.transaction.canceled, offer.transaction.disputed, offer.closed, persona.added] |
 
 ### Return type
 
