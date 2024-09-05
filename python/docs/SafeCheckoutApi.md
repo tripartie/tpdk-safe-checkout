@@ -574,6 +574,7 @@ Creates a Media resource.
 
 ### Example
 
+* Api Key Authentication (jwtPersonalKey):
 * OAuth Authentication (oauth):
 
 ```python
@@ -592,6 +593,12 @@ configuration = tpdk_safe_checkout.Configuration(
 # in accordance with the API server security policy.
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
+
+# Configure API key authorization: jwtPersonalKey
+configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
 
 configuration.access_token = os.environ["ACCESS_TOKEN"]
 
@@ -627,7 +634,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 

@@ -562,6 +562,12 @@ public class Example {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
     defaultClient.setBasePath("https://staging-api.tripartie.app");
     
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
     // Configure OAuth2 access token for authorization: oauth
     OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
     oauth.setAccessToken("YOUR ACCESS TOKEN");
@@ -598,7 +604,7 @@ public class Example {
 
 ### Authorization
 
-[oauth](../README.md#oauth)
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
 
 ### HTTP request headers
 

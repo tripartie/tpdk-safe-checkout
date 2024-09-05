@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.38
+  version: 2.0.39
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -2167,7 +2167,7 @@ paths:
       security:
       - oauth:
         - OFFER_WRITE
-        personaAuthKey: []
+        jwtPersonalKey: []
       summary: Upload a picture for a given Offer
       tags:
       - Safe-Checkout
@@ -2252,7 +2252,6 @@ paths:
       security:
       - oauth:
         - OFFER_WRITE
-        personaAuthKey: []
         jwtPersonalKey: []
       summary: Removes the Media resource.
       tags:
@@ -3302,7 +3301,6 @@ paths:
       - oauth:
         - PERSONA_WRITE
         jwtPersonalKey: []
-        personaAuthKey: []
       summary: Unregister a Persona (Your customer)
       tags:
       - Persona
@@ -3380,7 +3378,6 @@ paths:
       - oauth:
         - PERSONA_READ
         jwtPersonalKey: []
-        personaAuthKey: []
       summary: Retrieves a Persona resource.
       tags:
       - Persona
@@ -3495,7 +3492,6 @@ paths:
       - oauth:
         - PERSONA_WRITE
         jwtPersonalKey: []
-        personaAuthKey: []
       summary: Updates the Persona resource.
       tags:
       - Persona
