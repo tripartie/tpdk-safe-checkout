@@ -2,7 +2,7 @@ lazy val root = (project in file(".")).
   settings(
     organization := "com.tripartie",
     name := "safecheckout",
-    version := "2.0.38",
+    version := "2.0.39",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),
     javacOptions in compile ++= Seq("-Xlint:deprecation"),
