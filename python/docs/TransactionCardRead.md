@@ -6,6 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**primary_account_number** | **str** |  | [optional] 
+**brand** | **str** |  | [optional] 
 **provider_name** | **str** |  | [optional] 
 **provider_created_at** | **datetime** |  | [optional] 
 **provider_updated_at** | **datetime** |  | [optional] 

@@ -20,7 +20,7 @@
 |**shippingFees** | **Float** |  |  [optional] |
 |**thirdPartyRecipientFirstName** | **String** |  |  [optional] |
 |**thirdPartyRecipientLastName** | **String** |  |  [optional] |
-|**thirdPartyRecipientAddress** | **Object** |  |  [optional] |
+|**thirdPartyRecipientAddress** | [**TransactionAddressRead**](TransactionAddressRead.md) |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  |
 |**expireAt** | **OffsetDateTime** |  |  |
 |**iri** | **String** |  |  [optional] [readonly] |

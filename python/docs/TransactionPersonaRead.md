@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **language** | **str** | That data is used for rendering the frontend application with given language. If not set, will be inferred. Custom codes can be issued for specific requirements. | [optional] 
 **email** | **str** |  | [optional] 
 **mobile_phone_number** | **str** |  | [optional] 
-**address** | **object** |  | [optional] 
+**address** | [**TransactionAddressRead**](TransactionAddressRead.md) |  | [optional] 
 **registered** | **bool** | Determine if the Persona have a Tripartie account | [optional] [readonly] 
 
 ## Example

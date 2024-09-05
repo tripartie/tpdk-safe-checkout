@@ -8,6 +8,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**balance** | **Float** |  |  [optional] |
+|**currency** | **String** |  |  |
+|**updatedAt** | **OffsetDateTime** |  |  |
 |**providerName** | **String** |  |  [optional] |
 |**providerCreatedAt** | **OffsetDateTime** |  |  [optional] |
 |**providerUpdatedAt** | **OffsetDateTime** |  |  [optional] |

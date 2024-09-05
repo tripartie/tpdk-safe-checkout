@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **ulid** | **str** |  | 
 **status** | **str** |  | 
 **public_url** | **str** | The public URL for your Ad/Offer on your marketplace. | [optional] 
+**organization** | [**TransactionOrganizationCollectionRead**](TransactionOrganizationCollectionRead.md) |  | [optional] 
 **seller** | [**TransactionPersonaCollectionRead**](TransactionPersonaCollectionRead.md) |  | 
 **preset_buyer** | [**TransactionPersonaCollectionRead**](TransactionPersonaCollectionRead.md) |  | [optional] 
 **nature** | **str** | This WILL affect the assigned workflow. Choosing service will disable delivery for example. Refer to our technical hub for more information. | [default to 'physical_item']
@@ -19,7 +20,7 @@ Name | Type | Description | Notes
 **currency_code** | **str** |  | [default to 'EUR']
 **item_count** | **int** |  | [optional] [default to 1]
 **condition** | **str** |  | [optional] [default to 'USED']
-**medias** | **List[str]** |  | 
+**medias** | [**List[TransactionMediaCollectionRead]**](TransactionMediaCollectionRead.md) |  | 
 **created_at** | **datetime** |  | [optional] [readonly] 
 **updated_at** | **datetime** |  | [optional] [readonly] 
 

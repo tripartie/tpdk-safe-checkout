@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **status** | **str** |  | 
 **public_url** | **str** | The public URL for your Ad/Offer on your marketplace. | [optional] 
 **url** | **str** |  | [readonly] 
+**organization** | [**OfferOrganizationCollectionRead**](OfferOrganizationCollectionRead.md) |  | [optional] 
 **seller** | **str** |  | 
 **preset_buyer** | **str** | Limit the offer to a particular buyer. Useful if the offer was issued from an auction for instance. | [optional] 
 **nature** | **str** | This WILL affect the assigned workflow. Choosing service will disable delivery for example. Refer to our technical hub for more information. | [default to 'physical_item']

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **status** | **str** |  | 
 **public_url** | **str** | The public URL for your Ad/Offer on your marketplace. | [optional] 
 **redirect_url** | **str** | Fill-in that field IF you intend to redirect your customer instead of using a WebView. | [optional] 
+**organization** | [**TransactionOrganizationRead**](TransactionOrganizationRead.md) |  | [optional] 
 **seller** | [**TransactionPersonaRead**](TransactionPersonaRead.md) |  | 
 **preset_buyer** | [**TransactionPersonaRead**](TransactionPersonaRead.md) |  | [optional] 
 **nature** | **str** | This WILL affect the assigned workflow. Choosing service will disable delivery for example. Refer to our technical hub for more information. | [default to 'physical_item']
@@ -26,7 +27,7 @@ Name | Type | Description | Notes
 **ean_code** | **str** |  | [optional] 
 **can_be_sold_separately** | **bool** | Set this flag to false to forbid a potential buyer to acquire less than \&quot;itemCount\&quot; item(s) | [default to True]
 **metadata** | [**List[TransactionMetadataRead]**](TransactionMetadataRead.md) |  | [optional] 
-**medias** | **List[str]** |  | 
+**medias** | [**List[TransactionMediaRead]**](TransactionMediaRead.md) |  | 
 **created_at** | **datetime** |  | [optional] [readonly] 
 **updated_at** | **datetime** |  | [optional] [readonly] 
 

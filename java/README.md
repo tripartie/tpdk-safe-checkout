@@ -1,8 +1,8 @@
 # safecheckout
 
 Safe Checkout
-- API version: 2.0.47
-  - Build date: 2024-09-05T15:11:44.376211Z[Etc/UTC]
+- API version: 2.0.48
+  - Build date: 2024-09-05T17:43:14.157346Z[Etc/UTC]
   - Generator version: 7.8.0
 
 Simple, yet elegant web interfaces for your convenience. One request away from your first secured C2C transaction.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.tripartie</groupId>
   <artifactId>safecheckout</artifactId>
-  <version>2.0.47</version>
+  <version>2.0.48</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.tripartie:safecheckout:2.0.47"
+     implementation "com.tripartie:safecheckout:2.0.48"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/safecheckout-2.0.47.jar`
+* `target/safecheckout-2.0.48.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -232,9 +232,11 @@ Class | Method | HTTP request | Description
  - [OfferAddressIndependentWrite](docs/OfferAddressIndependentWrite.md)
  - [OfferCollectionRead](docs/OfferCollectionRead.md)
  - [OfferIndependentWrite](docs/OfferIndependentWrite.md)
+ - [OfferMediaCollectionRead](docs/OfferMediaCollectionRead.md)
  - [OfferMediaRead](docs/OfferMediaRead.md)
  - [OfferMetadataIndependentWrite](docs/OfferMetadataIndependentWrite.md)
  - [OfferMetadataUpdate](docs/OfferMetadataUpdate.md)
+ - [OfferOrganizationCollectionRead](docs/OfferOrganizationCollectionRead.md)
  - [OfferOrganizationRead](docs/OfferOrganizationRead.md)
  - [OfferPersonaIndependentWrite](docs/OfferPersonaIndependentWrite.md)
  - [OfferPersonaRead](docs/OfferPersonaRead.md)
@@ -271,11 +273,16 @@ Class | Method | HTTP request | Description
  - [QuoteUpdate](docs/QuoteUpdate.md)
  - [QuoteWrite](docs/QuoteWrite.md)
  - [RateLimitError](docs/RateLimitError.md)
+ - [TransactionAddressRead](docs/TransactionAddressRead.md)
  - [TransactionCardRead](docs/TransactionCardRead.md)
  - [TransactionCollectionRead](docs/TransactionCollectionRead.md)
+ - [TransactionMediaCollectionRead](docs/TransactionMediaCollectionRead.md)
+ - [TransactionMediaRead](docs/TransactionMediaRead.md)
  - [TransactionMetadataRead](docs/TransactionMetadataRead.md)
  - [TransactionOfferCollectionRead](docs/TransactionOfferCollectionRead.md)
  - [TransactionOfferRead](docs/TransactionOfferRead.md)
+ - [TransactionOrganizationCollectionRead](docs/TransactionOrganizationCollectionRead.md)
+ - [TransactionOrganizationRead](docs/TransactionOrganizationRead.md)
  - [TransactionParcelRead](docs/TransactionParcelRead.md)
  - [TransactionPersonaCollectionRead](docs/TransactionPersonaCollectionRead.md)
  - [TransactionPersonaRead](docs/TransactionPersonaRead.md)

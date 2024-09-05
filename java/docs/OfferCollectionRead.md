@@ -12,6 +12,7 @@
 |**status** | [**StatusEnum**](#StatusEnum) |  |  |
 |**publicUrl** | **String** | The public URL for your Ad/Offer on your marketplace. |  [optional] |
 |**url** | **URI** |  |  [readonly] |
+|**organization** | [**OfferOrganizationCollectionRead**](OfferOrganizationCollectionRead.md) |  |  [optional] |
 |**seller** | **String** |  |  |
 |**presetBuyer** | **String** | Limit the offer to a particular buyer. Useful if the offer was issued from an auction for instance. |  [optional] |
 |**nature** | [**NatureEnum**](#NatureEnum) | This WILL affect the assigned workflow. Choosing service will disable delivery for example. Refer to our technical hub for more information. |  |
