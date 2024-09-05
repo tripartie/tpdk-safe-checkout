@@ -13,7 +13,7 @@ All URIs are relative to *https://staging-api.tripartie.app*
 
 <a id="apiPersonasGetCollection"></a>
 # **apiPersonasGetCollection**
-> List&lt;PersonaCollectionRead&gt; apiPersonasGetCollection().page(page).firstName(firstName).lastName(lastName).email(email).email2(email2).mobilePhoneNumber(mobilePhoneNumber).mobilePhoneNumber2(mobilePhoneNumber2).gender(gender).orderCreatedAt(orderCreatedAt).createdAtBefore(createdAtBefore).createdAtStrictlyBefore(createdAtStrictlyBefore).createdAtAfter(createdAtAfter).createdAtStrictlyAfter(createdAtStrictlyAfter).dateOfBirthBefore(dateOfBirthBefore).dateOfBirthStrictlyBefore(dateOfBirthStrictlyBefore).dateOfBirthAfter(dateOfBirthAfter).dateOfBirthStrictlyAfter(dateOfBirthStrictlyAfter).metadata(metadata).execute();
+> List&lt;PersonaCollectionRead&gt; apiPersonasGetCollection().page(page).firstName(firstName).lastName(lastName).email(email).email2(email2).mobilePhoneNumber(mobilePhoneNumber).mobilePhoneNumber2(mobilePhoneNumber2).gender(gender).gender2(gender2).orderCreatedAt(orderCreatedAt).createdAtBefore(createdAtBefore).createdAtStrictlyBefore(createdAtStrictlyBefore).createdAtAfter(createdAtAfter).createdAtStrictlyAfter(createdAtStrictlyAfter).dateOfBirthBefore(dateOfBirthBefore).dateOfBirthStrictlyBefore(dateOfBirthStrictlyBefore).dateOfBirthAfter(dateOfBirthAfter).dateOfBirthStrictlyAfter(dateOfBirthStrictlyAfter).metadata(metadata).execute();
 
 Retrieves the collection of Persona resources.
 
@@ -52,7 +52,8 @@ public class Example {
     List<String> email2 = Arrays.asList(); // List<String> | 
     String mobilePhoneNumber = "mobilePhoneNumber_example"; // String | 
     List<String> mobilePhoneNumber2 = Arrays.asList(); // List<String> | 
-    String gender = "MALE"; // String | Filter on a limited subset of gender
+    String gender = "MALE"; // String | Filter on a specific value of gender
+    List<String> gender2 = Arrays.asList(new ArrayList<>()); // List<String> | Filter on a limited subset of gender
     String orderCreatedAt = "asc"; // String | 
     String createdAtBefore = "createdAtBefore_example"; // String | 
     String createdAtStrictlyBefore = "createdAtStrictlyBefore_example"; // String | 
@@ -73,6 +74,7 @@ public class Example {
             .mobilePhoneNumber(mobilePhoneNumber)
             .mobilePhoneNumber2(mobilePhoneNumber2)
             .gender(gender)
+            .gender2(gender2)
             .orderCreatedAt(orderCreatedAt)
             .createdAtBefore(createdAtBefore)
             .createdAtStrictlyBefore(createdAtStrictlyBefore)
@@ -107,7 +109,8 @@ public class Example {
 | **email2** | [**List&lt;String&gt;**](String.md)|  | [optional] |
 | **mobilePhoneNumber** | **String**|  | [optional] |
 | **mobilePhoneNumber2** | [**List&lt;String&gt;**](String.md)|  | [optional] |
-| **gender** | **String**| Filter on a limited subset of gender | [optional] [enum: MALE, FEMALE, OTHER, RATHER_NOT_SAY] |
+| **gender** | **String**| Filter on a specific value of gender | [optional] [enum: MALE, FEMALE, OTHER, RATHER_NOT_SAY] |
+| **gender2** | [**List&lt;String&gt;**](String.md)| Filter on a limited subset of gender | [optional] [enum: MALE, FEMALE, OTHER, RATHER_NOT_SAY] |
 | **orderCreatedAt** | **String**|  | [optional] [enum: asc, desc] |
 | **createdAtBefore** | **String**|  | [optional] |
 | **createdAtStrictlyBefore** | **String**|  | [optional] |

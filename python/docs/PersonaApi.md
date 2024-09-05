@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **api_personas_get_collection**
-> List[PersonaCollectionRead] api_personas_get_collection(page=page, first_name=first_name, last_name=last_name, email=email, email2=email2, mobile_phone_number=mobile_phone_number, mobile_phone_number2=mobile_phone_number2, gender=gender, order_created_at=order_created_at, created_at_before=created_at_before, created_at_strictly_before=created_at_strictly_before, created_at_after=created_at_after, created_at_strictly_after=created_at_strictly_after, date_of_birth_before=date_of_birth_before, date_of_birth_strictly_before=date_of_birth_strictly_before, date_of_birth_after=date_of_birth_after, date_of_birth_strictly_after=date_of_birth_strictly_after, metadata=metadata)
+> List[PersonaCollectionRead] api_personas_get_collection(page=page, first_name=first_name, last_name=last_name, email=email, email2=email2, mobile_phone_number=mobile_phone_number, mobile_phone_number2=mobile_phone_number2, gender=gender, gender2=gender2, order_created_at=order_created_at, created_at_before=created_at_before, created_at_strictly_before=created_at_strictly_before, created_at_after=created_at_after, created_at_strictly_after=created_at_strictly_after, date_of_birth_before=date_of_birth_before, date_of_birth_strictly_before=date_of_birth_strictly_before, date_of_birth_after=date_of_birth_after, date_of_birth_strictly_after=date_of_birth_strictly_after, metadata=metadata)
 
 Retrieves the collection of Persona resources.
 
@@ -59,7 +59,8 @@ with tpdk_safe_checkout.ApiClient(configuration) as api_client:
     email2 = ['email_example'] # List[str] |  (optional)
     mobile_phone_number = 'mobile_phone_number_example' # str |  (optional)
     mobile_phone_number2 = ['mobile_phone_number_example'] # List[str] |  (optional)
-    gender = 'MALE' # str | Filter on a limited subset of gender (optional)
+    gender = 'MALE' # str | Filter on a specific value of gender (optional)
+    gender2 = ['gender_example'] # List[str] | Filter on a limited subset of gender (optional)
     order_created_at = 'order_created_at_example' # str |  (optional)
     created_at_before = 'created_at_before_example' # str |  (optional)
     created_at_strictly_before = 'created_at_strictly_before_example' # str |  (optional)
@@ -73,7 +74,7 @@ with tpdk_safe_checkout.ApiClient(configuration) as api_client:
 
     try:
         # Retrieves the collection of Persona resources.
-        api_response = api_instance.api_personas_get_collection(page=page, first_name=first_name, last_name=last_name, email=email, email2=email2, mobile_phone_number=mobile_phone_number, mobile_phone_number2=mobile_phone_number2, gender=gender, order_created_at=order_created_at, created_at_before=created_at_before, created_at_strictly_before=created_at_strictly_before, created_at_after=created_at_after, created_at_strictly_after=created_at_strictly_after, date_of_birth_before=date_of_birth_before, date_of_birth_strictly_before=date_of_birth_strictly_before, date_of_birth_after=date_of_birth_after, date_of_birth_strictly_after=date_of_birth_strictly_after, metadata=metadata)
+        api_response = api_instance.api_personas_get_collection(page=page, first_name=first_name, last_name=last_name, email=email, email2=email2, mobile_phone_number=mobile_phone_number, mobile_phone_number2=mobile_phone_number2, gender=gender, gender2=gender2, order_created_at=order_created_at, created_at_before=created_at_before, created_at_strictly_before=created_at_strictly_before, created_at_after=created_at_after, created_at_strictly_after=created_at_strictly_after, date_of_birth_before=date_of_birth_before, date_of_birth_strictly_before=date_of_birth_strictly_before, date_of_birth_after=date_of_birth_after, date_of_birth_strictly_after=date_of_birth_strictly_after, metadata=metadata)
         print("The response of PersonaApi->api_personas_get_collection:\n")
         pprint(api_response)
     except Exception as e:
@@ -94,7 +95,8 @@ Name | Type | Description  | Notes
  **email2** | [**List[str]**](str.md)|  | [optional] 
  **mobile_phone_number** | **str**|  | [optional] 
  **mobile_phone_number2** | [**List[str]**](str.md)|  | [optional] 
- **gender** | **str**| Filter on a limited subset of gender | [optional] 
+ **gender** | **str**| Filter on a specific value of gender | [optional] 
+ **gender2** | [**List[str]**](str.md)| Filter on a limited subset of gender | [optional] 
  **order_created_at** | **str**|  | [optional] 
  **created_at_before** | **str**|  | [optional] 
  **created_at_strictly_before** | **str**|  | [optional] 

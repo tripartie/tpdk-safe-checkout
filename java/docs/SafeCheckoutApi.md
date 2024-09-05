@@ -16,7 +16,7 @@ All URIs are relative to *https://staging-api.tripartie.app*
 
 <a id="apiOffersGetCollection"></a>
 # **apiOffersGetCollection**
-> List&lt;OfferCollectionRead&gt; apiOffersGetCollection().page(page).title(title).publicUrl(publicUrl).publicUrl2(publicUrl2).unitPrice(unitPrice).unitPrice2(unitPrice2).itemCount(itemCount).itemCount2(itemCount2).createdAtBefore(createdAtBefore).createdAtStrictlyBefore(createdAtStrictlyBefore).createdAtAfter(createdAtAfter).createdAtStrictlyAfter(createdAtStrictlyAfter).metadata(metadata).offerMetadata(offerMetadata).sellerMetadata(sellerMetadata).nature(nature).condition(condition).status(status).shippingAllowed(shippingAllowed).execute();
+> List&lt;OfferCollectionRead&gt; apiOffersGetCollection().page(page).title(title).publicUrl(publicUrl).publicUrl2(publicUrl2).unitPrice(unitPrice).unitPrice2(unitPrice2).itemCount(itemCount).itemCount2(itemCount2).createdAtBefore(createdAtBefore).createdAtStrictlyBefore(createdAtStrictlyBefore).createdAtAfter(createdAtAfter).createdAtStrictlyAfter(createdAtStrictlyAfter).metadata(metadata).offerMetadata(offerMetadata).sellerMetadata(sellerMetadata).nature(nature).nature2(nature2).condition(condition).condition2(condition2).status(status).status2(status2).shippingAllowed(shippingAllowed).execute();
 
 Search amongst Offers
 
@@ -63,9 +63,12 @@ public class Example {
     List<String> metadata = Arrays.asList(new ArrayList<>()); // List<String> | Flattened OrderedMap for metadata. Must be a multiple of two items count. Explicitly set \"null\" for desired value.
     List<String> offerMetadata = Arrays.asList(new ArrayList<>()); // List<String> | Flattened OrderedMap for offer.metadata. Must be a multiple of two items count. Explicitly set \"null\" for desired value.
     List<String> sellerMetadata = Arrays.asList(new ArrayList<>()); // List<String> | Flattened OrderedMap for seller.metadata. Must be a multiple of two items count. Explicitly set \"null\" for desired value.
-    String nature = "service"; // String | Filter on a limited subset of nature
-    String condition = "NEW"; // String | Filter on a limited subset of condition
-    String status = "issued"; // String | Filter on a limited subset of status
+    String nature = "service"; // String | Filter on a specific value of nature
+    List<String> nature2 = Arrays.asList(new ArrayList<>()); // List<String> | Filter on a limited subset of nature
+    String condition = "NEW"; // String | Filter on a specific value of condition
+    List<String> condition2 = Arrays.asList(new ArrayList<>()); // List<String> | Filter on a limited subset of condition
+    String status = "issued"; // String | Filter on a specific value of status
+    List<String> status2 = Arrays.asList(new ArrayList<>()); // List<String> | Filter on a limited subset of status
     Boolean shippingAllowed = true; // Boolean | 
     try {
       List<OfferCollectionRead> result = apiInstance.apiOffersGetCollection()
@@ -85,8 +88,11 @@ public class Example {
             .offerMetadata(offerMetadata)
             .sellerMetadata(sellerMetadata)
             .nature(nature)
+            .nature2(nature2)
             .condition(condition)
+            .condition2(condition2)
             .status(status)
+            .status2(status2)
             .shippingAllowed(shippingAllowed)
             .execute();
       System.out.println(result);
@@ -120,9 +126,12 @@ public class Example {
 | **metadata** | [**List&lt;String&gt;**](String.md)| Flattened OrderedMap for metadata. Must be a multiple of two items count. Explicitly set \&quot;null\&quot; for desired value. | [optional] |
 | **offerMetadata** | [**List&lt;String&gt;**](String.md)| Flattened OrderedMap for offer.metadata. Must be a multiple of two items count. Explicitly set \&quot;null\&quot; for desired value. | [optional] |
 | **sellerMetadata** | [**List&lt;String&gt;**](String.md)| Flattened OrderedMap for seller.metadata. Must be a multiple of two items count. Explicitly set \&quot;null\&quot; for desired value. | [optional] |
-| **nature** | **String**| Filter on a limited subset of nature | [optional] [enum: service, physical_item, dematerialized_item, rent_item] |
-| **condition** | **String**| Filter on a limited subset of condition | [optional] [enum: NEW, USED, DAMAGED, DETERIORATED, UNRECOVERABLE] |
-| **status** | **String**| Filter on a limited subset of status | [optional] [enum: issued, active, fulfilled, expired] |
+| **nature** | **String**| Filter on a specific value of nature | [optional] [enum: service, physical_item, dematerialized_item, rent_item] |
+| **nature2** | [**List&lt;String&gt;**](String.md)| Filter on a limited subset of nature | [optional] [enum: service, physical_item, dematerialized_item, rent_item] |
+| **condition** | **String**| Filter on a specific value of condition | [optional] [enum: NEW, USED, DAMAGED, DETERIORATED, UNRECOVERABLE] |
+| **condition2** | [**List&lt;String&gt;**](String.md)| Filter on a limited subset of condition | [optional] [enum: NEW, USED, DAMAGED, DETERIORATED, UNRECOVERABLE] |
+| **status** | **String**| Filter on a specific value of status | [optional] [enum: issued, active, fulfilled, expired] |
+| **status2** | [**List&lt;String&gt;**](String.md)| Filter on a limited subset of status | [optional] [enum: issued, active, fulfilled, expired] |
 | **shippingAllowed** | **Boolean**|  | [optional] |
 
 ### Return type

@@ -282,7 +282,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **api_webhook_subscriptions_get_collection**
-> List[WebhookSubscriptionRead] api_webhook_subscriptions_get_collection(page=page, event=event)
+> List[WebhookSubscriptionRead] api_webhook_subscriptions_get_collection(page=page, event=event, event2=event2)
 
 Retrieves the collection of WebhookSubscription resources.
 
@@ -323,11 +323,12 @@ with tpdk_safe_checkout.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = tpdk_safe_checkout.WebhookApi(api_client)
     page = 1 # int | The collection page number (optional) (default to 1)
-    event = 'offer.transaction.authorized' # str | Filter on a limited subset of event (optional)
+    event = 'offer.transaction.authorized' # str | Filter on a specific value of event (optional)
+    event2 = ['event_example'] # List[str] | Filter on a limited subset of event (optional)
 
     try:
         # Retrieves the collection of WebhookSubscription resources.
-        api_response = api_instance.api_webhook_subscriptions_get_collection(page=page, event=event)
+        api_response = api_instance.api_webhook_subscriptions_get_collection(page=page, event=event, event2=event2)
         print("The response of WebhookApi->api_webhook_subscriptions_get_collection:\n")
         pprint(api_response)
     except Exception as e:
@@ -342,7 +343,8 @@ with tpdk_safe_checkout.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **int**| The collection page number | [optional] [default to 1]
- **event** | **str**| Filter on a limited subset of event | [optional] 
+ **event** | **str**| Filter on a specific value of event | [optional] 
+ **event2** | [**List[str]**](str.md)| Filter on a limited subset of event | [optional] 
 
 ### Return type
 

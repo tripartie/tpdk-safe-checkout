@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.39
+  version: 2.0.45
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -1619,7 +1619,7 @@ paths:
       - allowEmptyValue: true
         allowReserved: false
         deprecated: false
-        description: Filter on a limited subset of nature
+        description: Filter on a specific value of nature
         example: service
         explode: false
         in: query
@@ -1636,7 +1636,25 @@ paths:
       - allowEmptyValue: true
         allowReserved: false
         deprecated: false
-        description: Filter on a limited subset of condition
+        description: Filter on a limited subset of nature
+        explode: true
+        in: query
+        name: "nature[]"
+        required: false
+        schema:
+          items:
+            enum:
+            - service
+            - physical_item
+            - dematerialized_item
+            - rent_item
+            type: string
+          type: array
+        style: deepObject
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: Filter on a specific value of condition
         example: NEW
         explode: false
         in: query
@@ -1654,7 +1672,26 @@ paths:
       - allowEmptyValue: true
         allowReserved: false
         deprecated: false
-        description: Filter on a limited subset of status
+        description: Filter on a limited subset of condition
+        explode: true
+        in: query
+        name: "condition[]"
+        required: false
+        schema:
+          items:
+            enum:
+            - NEW
+            - USED
+            - DAMAGED
+            - DETERIORATED
+            - UNRECOVERABLE
+            type: string
+          type: array
+        style: deepObject
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: Filter on a specific value of status
         example: issued
         explode: false
         in: query
@@ -1668,6 +1705,24 @@ paths:
           - expired
           type: string
         style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: Filter on a limited subset of status
+        explode: true
+        in: query
+        name: "status[]"
+        required: false
+        schema:
+          items:
+            enum:
+            - issued
+            - active
+            - fulfilled
+            - expired
+            type: string
+          type: array
+        style: deepObject
       - allowEmptyValue: true
         allowReserved: false
         deprecated: false
@@ -2944,7 +2999,7 @@ paths:
       - allowEmptyValue: true
         allowReserved: false
         deprecated: false
-        description: Filter on a limited subset of gender
+        description: Filter on a specific value of gender
         example: MALE
         explode: false
         in: query
@@ -2958,6 +3013,24 @@ paths:
           - RATHER_NOT_SAY
           type: string
         style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: Filter on a limited subset of gender
+        explode: true
+        in: query
+        name: "gender[]"
+        required: false
+        schema:
+          items:
+            enum:
+            - MALE
+            - FEMALE
+            - OTHER
+            - RATHER_NOT_SAY
+            type: string
+          type: array
+        style: deepObject
       - allowEmptyValue: true
         allowReserved: false
         deprecated: false
@@ -4178,7 +4251,7 @@ paths:
         description: ""
         explode: false
         in: query
-        name: "order[status]"
+        name: "order[updatedAt]"
         required: false
         schema:
           enum:
@@ -4233,7 +4306,51 @@ paths:
       - allowEmptyValue: true
         allowReserved: false
         deprecated: false
-        description: Filter on a limited subset of status
+        description: ""
+        explode: false
+        in: query
+        name: "updatedAt[before]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "updatedAt[strictly_before]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "updatedAt[after]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "updatedAt[strictly_after]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: Filter on a specific value of status
         example: CREATED
         explode: false
         in: query
@@ -4252,6 +4369,42 @@ paths:
           - COMPLETED
           - DISPUTED
           - CANCELLED
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: Filter on a limited subset of status
+        explode: true
+        in: query
+        name: "status[]"
+        required: false
+        schema:
+          items:
+            enum:
+            - CREATED
+            - AUTHORIZED
+            - REFUSED
+            - ACCEPTED
+            - SHIPPED
+            - IN_TRANSIT
+            - BLOCKED
+            - DELIVERED
+            - COMPLETED
+            - DISPUTED
+            - CANCELLED
+            type: string
+          type: array
+        style: deepObject
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: offer.title
+        required: false
+        schema:
           type: string
         style: form
       responses:
@@ -6203,7 +6356,7 @@ paths:
       - allowEmptyValue: true
         allowReserved: false
         deprecated: false
-        description: Filter on a limited subset of event
+        description: Filter on a specific value of event
         example: offer.transaction.authorized
         explode: false
         in: query
@@ -6222,6 +6375,29 @@ paths:
           - persona.added
           type: string
         style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: Filter on a limited subset of event
+        explode: true
+        in: query
+        name: "event[]"
+        required: false
+        schema:
+          items:
+            enum:
+            - offer.transaction.authorized
+            - offer.transaction.accepted
+            - offer.transaction.shipped
+            - offer.transaction.delivered
+            - offer.transaction.completed
+            - offer.transaction.canceled
+            - offer.transaction.disputed
+            - offer.closed
+            - persona.added
+            type: string
+          type: array
+        style: deepObject
       responses:
         "200":
           content:
@@ -7560,6 +7736,7 @@ components:
         ulid: ulid
         nature: physical_item
         title: ASUS TUF X570-PLUS GAMING Motherboard
+        url: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
         itemCount: 1
         shippingAllowed: true
         handDeliveryAllowed: true
@@ -7589,6 +7766,14 @@ components:
           description: The public URL for your Ad/Offer on your marketplace.
           example: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
           nullable: true
+          type: string
+        url:
+          example: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
+          externalDocs:
+            url: https://schema.org/url
+          format: uri
+          nullable: true
+          readOnly: true
           type: string
         seller:
           example: https://example.com/
@@ -7686,6 +7871,7 @@ components:
       - shippingAllowed
       - status
       - ulid
+      - url
     Offer-IndependentWrite:
       deprecated: false
       description: ""
