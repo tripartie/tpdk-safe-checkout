@@ -6,6 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **int** |  | [optional] [readonly] 
 **organization** | [**OrganizationUserRead**](OrganizationUserRead.md) |  | [optional] 
 
 ## Example
