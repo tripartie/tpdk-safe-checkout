@@ -14,8 +14,7 @@
 |**buyerMessage** | **String** | Attach a note. Only the buyer can exercise this right. At the creation. |  [optional] |
 |**buyer** | [**TransactionPersonaRead**](TransactionPersonaRead.md) |  |  |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
-|**fees** | **BigDecimal** |  |  [optional] |
-|**supplementalFees** | **BigDecimal** |  |  [optional] |
+|**supplementalFees** | **BigDecimal** | usually set if the weight was underestimated and shipping carrier billed us an extra. |  [optional] |
 |**card** | [**TransactionCardRead**](TransactionCardRead.md) |  |  [optional] |
 |**escrow** | [**TransactionWalletRead**](TransactionWalletRead.md) |  |  [optional] |
 |**remotePreAuthorizationId** | **String** |  |  [optional] |
@@ -29,6 +28,7 @@
 |**parcels** | [**List&lt;TransactionParcelRead&gt;**](TransactionParcelRead.md) |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  |
 |**updatedAt** | **OffsetDateTime** |  |  [optional] |
+|**metadata** | [**List&lt;TransactionMetadataRead&gt;**](TransactionMetadataRead.md) |  |  [optional] |
 |**providerName** | **String** |  |  [optional] |
 |**providerCreatedAt** | **OffsetDateTime** |  |  [optional] |
 |**providerUpdatedAt** | **OffsetDateTime** |  |  [optional] |

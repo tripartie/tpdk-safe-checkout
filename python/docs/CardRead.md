@@ -6,6 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **int** |  | [optional] [readonly] 
 **primary_account_number** | **str** |  | [optional] 
 **expire_at** | **datetime** |  | 
 **currency** | **str** |  | [optional] 

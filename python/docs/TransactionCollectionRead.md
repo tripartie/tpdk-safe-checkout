@@ -12,8 +12,7 @@ Name | Type | Description | Notes
 **buyer_message** | **str** | Attach a note. Only the buyer can exercise this right. At the creation. | [optional] 
 **buyer** | [**TransactionPersonaCollectionRead**](TransactionPersonaCollectionRead.md) |  | 
 **status** | **str** |  | [optional] 
-**fees** | **float** |  | [optional] 
-**supplemental_fees** | **float** |  | [optional] 
+**supplemental_fees** | **float** | usually set if the weight was underestimated and shipping carrier billed us an extra. | [optional] 
 **provider_name** | **str** |  | [optional] 
 **provider_created_at** | **datetime** |  | [optional] 
 **provider_updated_at** | **datetime** |  | [optional] 

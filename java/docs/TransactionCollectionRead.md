@@ -14,8 +14,7 @@
 |**buyerMessage** | **String** | Attach a note. Only the buyer can exercise this right. At the creation. |  [optional] |
 |**buyer** | [**TransactionPersonaCollectionRead**](TransactionPersonaCollectionRead.md) |  |  |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
-|**fees** | **BigDecimal** |  |  [optional] |
-|**supplementalFees** | **BigDecimal** |  |  [optional] |
+|**supplementalFees** | **BigDecimal** | usually set if the weight was underestimated and shipping carrier billed us an extra. |  [optional] |
 |**providerName** | **String** |  |  [optional] |
 |**providerCreatedAt** | **OffsetDateTime** |  |  [optional] |
 |**providerUpdatedAt** | **OffsetDateTime** |  |  [optional] |

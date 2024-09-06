@@ -9,7 +9,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
-|**supplementalFees** | **BigDecimal** |  |  [optional] |
+|**supplementalFees** | **BigDecimal** | usually set if the weight was underestimated and shipping carrier billed us an extra. |  [optional] |
 |**balanceToRefund** | **BigDecimal** |  |  [optional] |
 |**feesToRefund** | **BigDecimal** |  |  [optional] |
 |**forceRefundShipping** | **Boolean** | Shipping is never refunded on purpose. Once deposited (parcel), we are billed for it. |  [optional] |

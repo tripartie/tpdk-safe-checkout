@@ -12,8 +12,7 @@ Name | Type | Description | Notes
 **buyer_message** | **str** | Attach a note. Only the buyer can exercise this right. At the creation. | [optional] 
 **buyer** | [**TransactionPersonaRead**](TransactionPersonaRead.md) |  | 
 **status** | **str** |  | [optional] 
-**fees** | **float** |  | [optional] 
-**supplemental_fees** | **float** |  | [optional] 
+**supplemental_fees** | **float** | usually set if the weight was underestimated and shipping carrier billed us an extra. | [optional] 
 **card** | [**TransactionCardRead**](TransactionCardRead.md) |  | [optional] 
 **escrow** | [**TransactionWalletRead**](TransactionWalletRead.md) |  | [optional] 
 **remote_pre_authorization_id** | **str** |  | [optional] 
@@ -27,6 +26,7 @@ Name | Type | Description | Notes
 **parcels** | [**List[TransactionParcelRead]**](TransactionParcelRead.md) |  | [optional] 
 **created_at** | **datetime** |  | 
 **updated_at** | **datetime** |  | [optional] 
+**metadata** | [**List[TransactionMetadataRead]**](TransactionMetadataRead.md) |  | [optional] 
 **provider_name** | **str** |  | [optional] 
 **provider_created_at** | **datetime** |  | [optional] 
 **provider_updated_at** | **datetime** |  | [optional] 

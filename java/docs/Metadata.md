@@ -12,6 +12,7 @@
 |**persona** | **String** |  |  [optional] |
 |**offer** | **String** |  |  [optional] |
 |**card** | **String** |  |  [optional] |
+|**transaction** | **String** |  |  [optional] |
 |**key** | **String** |  |  [optional] |
 |**value** | **String** |  |  [optional] |
 
