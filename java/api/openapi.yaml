@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.50
+  version: 2.0.51
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -6886,11 +6886,15 @@ components:
         processorStatus: unallocated
         countryCode: countryCode
         currency: currency
+        id: 0
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         brand: VISA
         providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
+        id:
+          readOnly: true
+          type: integer
         primaryAccountNumber:
           nullable: true
           type: string
@@ -7016,11 +7020,15 @@ components:
         processorStatus: unallocated
         countryCode: countryCode
         currency: currency
+        id: 0
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         brand: VISA
         providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
+        id:
+          readOnly: true
+          type: integer
         primaryAccountNumber:
           nullable: true
           type: string
@@ -7108,11 +7116,15 @@ components:
         processorStatus: unallocated
         countryCode: countryCode
         currency: currency
+        id: 5
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         brand: VISA
         providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
+        id:
+          readOnly: true
+          type: integer
         primaryAccountNumber:
           nullable: true
           type: string
@@ -7432,6 +7444,11 @@ components:
           nullable: true
           type: string
         card:
+          example: https://example.com/
+          format: iri-reference
+          nullable: true
+          type: string
+        transaction:
           example: https://example.com/
           format: iri-reference
           nullable: true
@@ -9915,12 +9932,11 @@ components:
       deprecated: false
       description: ""
       example:
-        totalFees: 7.457744773683766
-        fees: 1.2315135367772556
+        totalFees: 6.84685269835264
         ulid: ulid
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         awaitedParty: BUYER
-        totalCharged: 6.84685269835264
+        totalCharged: 1.4894159098541704
         statusExpiration: 2000-01-23T04:56:07.000+00:00
         buyer:
           firstName: John
@@ -9964,7 +9980,7 @@ components:
           status: issued
           updatedAt: 2000-01-23T04:56:07.000+00:00
         buyerMessage: buyerMessage
-        total: 1.4894159098541704
+        total: 1.0246457001441578
         processorStatus: unallocated
         quote:
           unitPrice: 3.616076749251911
@@ -9986,7 +10002,7 @@ components:
           pickupCode: pickupCode
           currency: EUR
           originalUnitPriceUnconverted: 2.302136
-        supplementalFees: 1.0246457001441578
+        supplementalFees: 1.2315135367772556
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         providerName: providerName
         status: CREATED
@@ -10020,10 +10036,9 @@ components:
           - null
           nullable: true
           type: string
-        fees:
-          nullable: true
-          type: number
         supplementalFees:
+          description: usually set if the weight was underestimated and shipping carrier
+            billed us an extra.
           nullable: true
           type: number
         providerName:
@@ -10902,11 +10917,15 @@ components:
       deprecated: false
       description: ""
       example:
-        totalFees: 9.965781217890562
-        fees: 1.2315135367772556
+        totalFees: 5.025004791520295
+        metadata:
+        - value: "54412"
+          key: External-ID
+        - value: "54412"
+          key: External-ID
         ulid: ulid
         remotePayInId: remotePayInId
-        rating: 1
+        rating: 7
         handOverCode: handOverCode
         offer:
           seller:
@@ -10991,7 +11010,7 @@ components:
           status: issued
           updatedAt: 2000-01-23T04:56:07.000+00:00
         createdAt: 2000-01-23T04:56:07.000+00:00
-        total: 4.965218492984954
+        total: 1.1730742509559433
         quote:
           unitPrice: 3.616076749251911
           sellerTotal: 7.386281948385884
@@ -11026,7 +11045,7 @@ components:
         review: review
         escrow:
           processorStatus: unallocated
-          balance: 1.4894159
+          balance: 1.0246457
           providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
           currency: currency
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -11035,10 +11054,10 @@ components:
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
-        balanceToRefund: 6.84685269835264
+        balanceToRefund: 1.4894159098541704
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         awaitedParty: BUYER
-        totalCharged: 5.025004791520295
+        totalCharged: 4.965218492984954
         statusExpiration: 2000-01-23T04:56:07.000+00:00
         buyer:
           firstName: John
@@ -11059,9 +11078,9 @@ components:
           email: john.doe@gmail.com
         buyerMessage: buyerMessage
         processorStatus: unallocated
-        supplementalFees: 1.0246457001441578
+        supplementalFees: 1.2315135367772556
         forceRefundShipping: true
-        feesToRefund: 7.457744773683766
+        feesToRefund: 6.84685269835264
         card:
           processorStatus: unallocated
           providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
@@ -11123,10 +11142,9 @@ components:
           - null
           nullable: true
           type: string
-        fees:
-          nullable: true
-          type: number
         supplementalFees:
+          description: usually set if the weight was underestimated and shipping carrier
+            billed us an extra.
           nullable: true
           type: number
         card:
@@ -11170,6 +11188,10 @@ components:
           format: date-time
           nullable: true
           type: string
+        metadata:
+          items:
+            $ref: '#/components/schemas/Transaction-Metadata-Read'
+          type: array
         providerName:
           nullable: true
           type: string
@@ -11244,6 +11266,8 @@ components:
           nullable: true
           type: string
         supplementalFees:
+          description: usually set if the weight was underestimated and shipping carrier
+            billed us an extra.
           nullable: true
           type: number
         balanceToRefund:
@@ -11275,7 +11299,7 @@ components:
       description: ""
       example:
         processorStatus: unallocated
-        balance: 1.4894159
+        balance: 1.0246457
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         currency: currency
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -11322,10 +11346,6 @@ components:
         captcha:
           nullable: true
           type: string
-        offer:
-          example: https://example.com/
-          format: iri-reference
-          type: string
         quote:
           example: https://example.com/
           format: iri-reference
@@ -11340,7 +11360,6 @@ components:
           format: iri-reference
           type: string
       required:
-      - offer
       - quote
     User:
       deprecated: false
@@ -11571,6 +11590,7 @@ components:
           processorStatus: unallocated
           countryCode: countryCode
           currency: currency
+          id: 5
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
           brand: VISA
           providerName: providerName
@@ -11584,6 +11604,7 @@ components:
           processorStatus: unallocated
           countryCode: countryCode
           currency: currency
+          id: 5
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
           brand: VISA
           providerName: providerName
@@ -11617,7 +11638,7 @@ components:
         wallet:
           createdAt: 2000-01-23T04:56:07.000+00:00
           processorStatus: unallocated
-          balance: 5.637377
+          balance: 2.302136
           providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
           currency: currency
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -11886,11 +11907,15 @@ components:
         processorStatus: unallocated
         countryCode: countryCode
         currency: currency
+        id: 5
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
         brand: VISA
         providerName: providerName
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
+        id:
+          readOnly: true
+          type: integer
         primaryAccountNumber:
           nullable: true
           type: string
@@ -12663,6 +12688,7 @@ components:
           processorStatus: unallocated
           countryCode: countryCode
           currency: currency
+          id: 5
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
           brand: VISA
           providerName: providerName
@@ -12676,6 +12702,7 @@ components:
           processorStatus: unallocated
           countryCode: countryCode
           currency: currency
+          id: 5
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
           brand: VISA
           providerName: providerName
@@ -12709,7 +12736,7 @@ components:
         wallet:
           createdAt: 2000-01-23T04:56:07.000+00:00
           processorStatus: unallocated
-          balance: 5.637377
+          balance: 2.302136
           providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
           currency: currency
           providerCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -12920,7 +12947,7 @@ components:
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
         processorStatus: unallocated
-        balance: 5.637377
+        balance: 2.302136
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         currency: currency
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -13218,7 +13245,7 @@ components:
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
         processorStatus: unallocated
-        balance: 5.637377
+        balance: 2.302136
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         currency: currency
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **persona** | **str** |  | [optional] 
 **offer** | **str** |  | [optional] 
 **card** | **str** |  | [optional] 
+**transaction** | **str** |  | [optional] 
 **key** | **str** |  | [optional] 
 **value** | **str** |  | [optional] 
 

@@ -8,6 +8,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**id** | **Integer** |  |  [optional] [readonly] |
 |**primaryAccountNumber** | **String** |  |  [optional] |
 |**expireAt** | **OffsetDateTime** |  |  |
 |**currency** | **String** |  |  [optional] |
