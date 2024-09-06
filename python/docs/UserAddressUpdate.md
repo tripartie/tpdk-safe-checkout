@@ -15,7 +15,6 @@ Name | Type | Description | Notes
 **building_name** | **str** |  | [optional] 
 **building_floor** | **str** |  | [optional] 
 **gate_or_portal_or_inbox_code** | **str** |  | [optional] 
-**formatted_address** | **str** |  | [optional] [readonly] 
 
 ## Example
 
