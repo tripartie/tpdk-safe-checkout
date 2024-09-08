@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.57
+  version: 2.0.58
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -7674,15 +7674,6 @@ components:
     Offer-Address-IndependentWrite:
       deprecated: false
       description: ""
-      example:
-        zipCode: "75004"
-        buildingName: Electron
-        cityName: Paris
-        countryCode: FRA
-        secondLine: Apt 6E
-        firstLine: 118 avenue des champs élysées
-        buildingFloor: Third floor
-        gateOrPortalOrInboxCode: "3124"
       properties:
         countryCode:
           example: FRA
@@ -8941,15 +8932,6 @@ components:
     Persona-Address-Update:
       deprecated: false
       description: ""
-      example:
-        zipCode: "75004"
-        buildingName: Electron
-        cityName: Paris
-        countryCode: FRA
-        secondLine: Apt 6E
-        firstLine: 118 avenue des champs élysées
-        buildingFloor: Third floor
-        gateOrPortalOrInboxCode: "3124"
       properties:
         countryCode:
           example: FRA
@@ -8983,15 +8965,6 @@ components:
     Persona-Address-Write:
       deprecated: false
       description: ""
-      example:
-        zipCode: "75004"
-        buildingName: Electron
-        cityName: Paris
-        countryCode: FRA
-        secondLine: Apt 6E
-        firstLine: 118 avenue des champs élysées
-        buildingFloor: Third floor
-        gateOrPortalOrInboxCode: "3124"
       properties:
         countryCode:
           example: FRA
@@ -9498,6 +9471,7 @@ components:
         buildingName: Electron
         createdAt: 2000-01-23T04:56:07.000+00:00
         cityName: Paris
+        formattedAddress: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
         countryCode: FRA
         secondLine: Apt 6E
         firstLine: 118 avenue des champs élysées
@@ -9543,18 +9517,13 @@ components:
           nullable: true
           readOnly: true
           type: string
+        formattedAddress:
+          example: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
+          readOnly: true
+          type: string
     Quote-Address-Update:
       deprecated: false
       description: ""
-      example:
-        zipCode: "75004"
-        buildingName: Electron
-        cityName: Paris
-        countryCode: FRA
-        secondLine: Apt 6E
-        firstLine: 118 avenue des champs élysées
-        buildingFloor: Third floor
-        gateOrPortalOrInboxCode: "3124"
       properties:
         countryCode:
           example: FRA
@@ -9588,15 +9557,6 @@ components:
     Quote-Address-Write:
       deprecated: false
       description: ""
-      example:
-        zipCode: "75004"
-        buildingName: Electron
-        cityName: Paris
-        countryCode: FRA
-        secondLine: Apt 6E
-        firstLine: 118 avenue des champs élysées
-        buildingFloor: Third floor
-        gateOrPortalOrInboxCode: "3124"
       properties:
         countryCode:
           example: FRA
@@ -9644,6 +9604,7 @@ components:
           buildingName: Electron
           createdAt: 2000-01-23T04:56:07.000+00:00
           cityName: Paris
+          formattedAddress: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
           countryCode: FRA
           secondLine: Apt 6E
           firstLine: 118 avenue des champs élysées
@@ -9848,6 +9809,7 @@ components:
         zipCode: "75004"
         buildingName: Electron
         cityName: Paris
+        formattedAddress: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
         countryCode: FRA
         secondLine: Apt 6E
         firstLine: 118 avenue des champs élysées
@@ -9882,6 +9844,10 @@ components:
         gateOrPortalOrInboxCode:
           example: "3124"
           nullable: true
+          type: string
+        formattedAddress:
+          example: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
+          readOnly: true
           type: string
     Transaction-Card-Read:
       deprecated: false
@@ -10280,6 +10246,7 @@ components:
             zipCode: "75004"
             buildingName: Electron
             cityName: Paris
+            formattedAddress: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
             countryCode: FRA
             secondLine: Apt 6E
             firstLine: 118 avenue des champs élysées
@@ -10342,6 +10309,7 @@ components:
             zipCode: "75004"
             buildingName: Electron
             cityName: Paris
+            formattedAddress: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
             countryCode: FRA
             secondLine: Apt 6E
             firstLine: 118 avenue des champs élysées
@@ -10644,6 +10612,7 @@ components:
           zipCode: "75004"
           buildingName: Electron
           cityName: Paris
+          formattedAddress: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
           countryCode: FRA
           secondLine: Apt 6E
           firstLine: 118 avenue des champs élysées
@@ -10804,6 +10773,7 @@ components:
           zipCode: "75004"
           buildingName: Electron
           cityName: Paris
+          formattedAddress: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
           countryCode: FRA
           secondLine: Apt 6E
           firstLine: 118 avenue des champs élysées
@@ -10940,6 +10910,7 @@ components:
               zipCode: "75004"
               buildingName: Electron
               cityName: Paris
+              formattedAddress: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
               countryCode: FRA
               secondLine: Apt 6E
               firstLine: 118 avenue des champs élysées
@@ -11002,6 +10973,7 @@ components:
               zipCode: "75004"
               buildingName: Electron
               cityName: Paris
+              formattedAddress: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
               countryCode: FRA
               secondLine: Apt 6E
               firstLine: 118 avenue des champs élysées
@@ -11025,6 +10997,7 @@ components:
             zipCode: "75004"
             buildingName: Electron
             cityName: Paris
+            formattedAddress: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
             countryCode: FRA
             secondLine: Apt 6E
             firstLine: 118 avenue des champs élysées
@@ -11071,6 +11044,7 @@ components:
             zipCode: "75004"
             buildingName: Electron
             cityName: Paris
+            formattedAddress: "118 rue Henry Barbin, 72100 LE MANS, FRANCE"
             countryCode: FRA
             secondLine: Apt 6E
             firstLine: 118 avenue des champs élysées
