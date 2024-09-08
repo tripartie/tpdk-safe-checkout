@@ -4,189 +4,14 @@ All URIs are relative to *https://staging-api.tripartie.app*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**api_quotes_id_get**](TransactionApi.md#api_quotes_id_get) | **GET** /quotes/{id} | Retrieve a Quote
-[**api_quotes_id_patch**](TransactionApi.md#api_quotes_id_patch) | **PATCH** /quotes/{id} | Update a Quote prior to issuing a Transaction
 [**api_quotes_post**](TransactionApi.md#api_quotes_post) | **POST** /quotes | Create a Quote prior to issuing a Transaction
+[**api_quotes_ulid_get**](TransactionApi.md#api_quotes_ulid_get) | **GET** /quotes/{ulid} | Retrieve a Quote
+[**api_quotes_ulid_patch**](TransactionApi.md#api_quotes_ulid_patch) | **PATCH** /quotes/{ulid} | Update a Quote prior to issuing a Transaction
 [**api_transactions_get_collection**](TransactionApi.md#api_transactions_get_collection) | **GET** /transactions | List all Transaction
 [**api_transactions_post**](TransactionApi.md#api_transactions_post) | **POST** /transactions | Initialize a new Transaction
 [**api_transactions_ulid_get**](TransactionApi.md#api_transactions_ulid_get) | **GET** /transactions/{ulid} | Get a Transaction
 [**api_transactions_ulid_patch**](TransactionApi.md#api_transactions_ulid_patch) | **PATCH** /transactions/{ulid} | Interact with a Transaction
 
-
-# **api_quotes_id_get**
-> QuoteRead api_quotes_id_get(id)
-
-Retrieve a Quote
-
-Retrieves a Quote resource.
-
-### Example
-
-* Api Key Authentication (jwtPersonalKey):
-* OAuth Authentication (oauth):
-
-```python
-import tpdk_safe_checkout
-from tpdk_safe_checkout.models.quote_read import QuoteRead
-from tpdk_safe_checkout.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.tripartie.app
-# See configuration.py for a list of all supported configuration parameters.
-configuration = tpdk_safe_checkout.Configuration(
-    host = "https://staging-api.tripartie.app"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: jwtPersonalKey
-configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with tpdk_safe_checkout.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = tpdk_safe_checkout.TransactionApi(api_client)
-    id = 'id_example' # str | Quote identifier
-
-    try:
-        # Retrieve a Quote
-        api_response = api_instance.api_quotes_id_get(id)
-        print("The response of TransactionApi->api_quotes_id_get:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling TransactionApi->api_quotes_id_get: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| Quote identifier | 
-
-### Return type
-
-[**QuoteRead**](QuoteRead.md)
-
-### Authorization
-
-[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Quote resource |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**429** | Rate limit exhausted |  -  |
-**500** | Unexpected server error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **api_quotes_id_patch**
-> QuoteRead api_quotes_id_patch(id, quote_update)
-
-Update a Quote prior to issuing a Transaction
-
-Updates the Quote resource.
-
-### Example
-
-* Api Key Authentication (jwtPersonalKey):
-* OAuth Authentication (oauth):
-
-```python
-import tpdk_safe_checkout
-from tpdk_safe_checkout.models.quote_read import QuoteRead
-from tpdk_safe_checkout.models.quote_update import QuoteUpdate
-from tpdk_safe_checkout.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://staging-api.tripartie.app
-# See configuration.py for a list of all supported configuration parameters.
-configuration = tpdk_safe_checkout.Configuration(
-    host = "https://staging-api.tripartie.app"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: jwtPersonalKey
-configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
-
-configuration.access_token = os.environ["ACCESS_TOKEN"]
-
-# Enter a context with an instance of the API client
-with tpdk_safe_checkout.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = tpdk_safe_checkout.TransactionApi(api_client)
-    id = 'id_example' # str | Quote identifier
-    quote_update = tpdk_safe_checkout.QuoteUpdate() # QuoteUpdate | The updated Quote resource
-
-    try:
-        # Update a Quote prior to issuing a Transaction
-        api_response = api_instance.api_quotes_id_patch(id, quote_update)
-        print("The response of TransactionApi->api_quotes_id_patch:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling TransactionApi->api_quotes_id_patch: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **str**| Quote identifier | 
- **quote_update** | [**QuoteUpdate**](QuoteUpdate.md)| The updated Quote resource | 
-
-### Return type
-
-[**QuoteRead**](QuoteRead.md)
-
-### Authorization
-
-[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Quote resource updated |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
-**429** | Rate limit exhausted |  -  |
-**500** | Unexpected server error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **api_quotes_post**
 > QuoteRead api_quotes_post(quote_write)
@@ -270,6 +95,181 @@ Name | Type | Description  | Notes
 **201** | Quote resource created |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 **400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 **422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**429** | Rate limit exhausted |  -  |
+**500** | Unexpected server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **api_quotes_ulid_get**
+> QuoteRead api_quotes_ulid_get(ulid)
+
+Retrieve a Quote
+
+Retrieves a Quote resource.
+
+### Example
+
+* Api Key Authentication (jwtPersonalKey):
+* OAuth Authentication (oauth):
+
+```python
+import tpdk_safe_checkout
+from tpdk_safe_checkout.models.quote_read import QuoteRead
+from tpdk_safe_checkout.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.tripartie.app
+# See configuration.py for a list of all supported configuration parameters.
+configuration = tpdk_safe_checkout.Configuration(
+    host = "https://staging-api.tripartie.app"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: jwtPersonalKey
+configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with tpdk_safe_checkout.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = tpdk_safe_checkout.TransactionApi(api_client)
+    ulid = 'ulid_example' # str | Quote identifier
+
+    try:
+        # Retrieve a Quote
+        api_response = api_instance.api_quotes_ulid_get(ulid)
+        print("The response of TransactionApi->api_quotes_ulid_get:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionApi->api_quotes_ulid_get: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ulid** | **str**| Quote identifier | 
+
+### Return type
+
+[**QuoteRead**](QuoteRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Quote resource |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**429** | Rate limit exhausted |  -  |
+**500** | Unexpected server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **api_quotes_ulid_patch**
+> QuoteRead api_quotes_ulid_patch(ulid, quote_update)
+
+Update a Quote prior to issuing a Transaction
+
+Updates the Quote resource.
+
+### Example
+
+* Api Key Authentication (jwtPersonalKey):
+* OAuth Authentication (oauth):
+
+```python
+import tpdk_safe_checkout
+from tpdk_safe_checkout.models.quote_read import QuoteRead
+from tpdk_safe_checkout.models.quote_update import QuoteUpdate
+from tpdk_safe_checkout.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.tripartie.app
+# See configuration.py for a list of all supported configuration parameters.
+configuration = tpdk_safe_checkout.Configuration(
+    host = "https://staging-api.tripartie.app"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: jwtPersonalKey
+configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with tpdk_safe_checkout.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = tpdk_safe_checkout.TransactionApi(api_client)
+    ulid = 'ulid_example' # str | Quote identifier
+    quote_update = tpdk_safe_checkout.QuoteUpdate() # QuoteUpdate | The updated Quote resource
+
+    try:
+        # Update a Quote prior to issuing a Transaction
+        api_response = api_instance.api_quotes_ulid_patch(ulid, quote_update)
+        print("The response of TransactionApi->api_quotes_ulid_patch:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling TransactionApi->api_quotes_ulid_patch: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ulid** | **str**| Quote identifier | 
+ **quote_update** | [**QuoteUpdate**](QuoteUpdate.md)| The updated Quote resource | 
+
+### Return type
+
+[**QuoteRead**](QuoteRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Quote resource updated |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**400** | Invalid input |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**422** | Unprocessable entity |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**404** | Resource not found |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 **429** | Rate limit exhausted |  -  |
 **500** | Unexpected server error |  -  |
 

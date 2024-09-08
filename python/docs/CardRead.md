@@ -8,12 +8,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
 **primary_account_number** | **str** |  | [optional] 
-**expire_at** | **datetime** |  | 
+**expire_at** | **datetime** |  | [optional] 
 **currency** | **str** |  | [optional] 
 **country_code** | **str** |  | [optional] 
 **brand** | **str** |  | [optional] 
 **created_at** | **datetime** |  | 
-**updated_at** | **datetime** |  | 
+**updated_at** | **datetime** |  | [optional] 
 **metadata** | [**List[CardMetadataRead]**](CardMetadataRead.md) |  | [optional] 
 **provider_name** | **str** |  | [optional] 
 **provider_created_at** | **datetime** |  | [optional] 

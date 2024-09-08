@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.54
+  version: 2.0.57
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -3959,18 +3959,18 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
-  /quotes/{id}:
+  /quotes/{ulid}:
     get:
       deprecated: false
       description: Retrieves a Quote resource.
-      operationId: api_quotes_id_get
+      operationId: api_quotes_ulid_get
       parameters:
       - allowReserved: false
         deprecated: false
         description: Quote identifier
         explode: false
         in: path
-        name: id
+        name: ulid
         required: true
         schema:
           type: string
@@ -4024,14 +4024,14 @@ paths:
     patch:
       deprecated: false
       description: Updates the Quote resource.
-      operationId: api_quotes_id_patch
+      operationId: api_quotes_ulid_patch
       parameters:
       - allowReserved: false
         deprecated: false
         description: Quote identifier
         explode: false
         in: path
-        name: id
+        name: ulid
         required: true
         schema:
           type: string
@@ -6900,6 +6900,7 @@ components:
           type: string
         expireAt:
           format: date-time
+          nullable: true
           type: string
         currency:
           nullable: true
@@ -6925,6 +6926,7 @@ components:
           type: string
         updatedAt:
           format: date-time
+          nullable: true
           type: string
         metadata:
           items:
@@ -6959,8 +6961,6 @@ components:
           type: string
       required:
       - createdAt
-      - expireAt
-      - updatedAt
     Card-Metadata-CollectionRead:
       deprecated: false
       description: ""
@@ -7034,6 +7034,7 @@ components:
           type: string
         expireAt:
           format: date-time
+          nullable: true
           type: string
         currency:
           nullable: true
@@ -7059,6 +7060,7 @@ components:
           type: string
         updatedAt:
           format: date-time
+          nullable: true
           type: string
         metadata:
           items:
@@ -7093,8 +7095,6 @@ components:
           type: string
       required:
       - createdAt
-      - expireAt
-      - updatedAt
     Card-Update:
       deprecated: false
       description: ""
@@ -7130,6 +7130,7 @@ components:
           type: string
         expireAt:
           format: date-time
+          nullable: true
           type: string
         currency:
           nullable: true
@@ -7159,6 +7160,7 @@ components:
           type: string
         updatedAt:
           format: date-time
+          nullable: true
           type: string
         providerName:
           nullable: true
@@ -7189,17 +7191,19 @@ components:
           type: string
       required:
       - createdAt
-      - expireAt
-      - updatedAt
     Card-Write:
       deprecated: false
       description: ""
       properties:
+        captcha:
+          nullable: true
+          type: string
         ephemeral:
           default: true
           example: true
           type: boolean
       required:
+      - captcha
       - ephemeral
     Cashout-CashOut-CollectionRead:
       deprecated: false
@@ -11282,9 +11286,13 @@ components:
           nullable: true
           type: boolean
         review:
+          maxLength: 10000
+          minLength: 60
           nullable: true
           type: string
         rating:
+          maximum: 10
+          minimum: 0
           nullable: true
           type: integer
         handOverCodeConfirmation:
@@ -11360,7 +11368,8 @@ components:
           format: iri-reference
           type: string
       required:
-      - quote
+      - captcha
+      - card
     User:
       deprecated: false
       description: Disable a user account
@@ -11906,6 +11915,7 @@ components:
           type: string
         expireAt:
           format: date-time
+          nullable: true
           type: string
         currency:
           nullable: true
@@ -11935,6 +11945,7 @@ components:
           type: string
         updatedAt:
           format: date-time
+          nullable: true
           type: string
         providerName:
           nullable: true
@@ -11965,8 +11976,6 @@ components:
           type: string
       required:
       - createdAt
-      - expireAt
-      - updatedAt
     User-CollectionRead:
       deprecated: false
       description: ""
