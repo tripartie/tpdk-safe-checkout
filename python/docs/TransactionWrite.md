@@ -6,10 +6,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**captcha** | **str** |  | [optional] 
-**quote** | **str** |  | 
+**captcha** | **str** |  | 
+**quote** | **str** |  | [optional] 
 **buyer_message** | **str** | Attach a note. Only the buyer can exercise this right. At the creation. | [optional] 
-**card** | **str** |  | [optional] 
+**card** | **str** |  | 
 
 ## Example
 

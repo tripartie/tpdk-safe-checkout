@@ -10,13 +10,13 @@
 |------------ | ------------- | ------------- | -------------|
 |**id** | **Integer** |  |  [optional] [readonly] |
 |**primaryAccountNumber** | **String** |  |  [optional] |
-|**expireAt** | **OffsetDateTime** |  |  |
+|**expireAt** | **OffsetDateTime** |  |  [optional] |
 |**currency** | **String** |  |  [optional] |
 |**countryCode** | **String** |  |  [optional] |
 |**brand** | [**BrandEnum**](#BrandEnum) |  |  [optional] |
 |**ephemeral** | **Boolean** |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  |
-|**updatedAt** | **OffsetDateTime** |  |  |
+|**updatedAt** | **OffsetDateTime** |  |  [optional] |
 |**providerName** | **String** |  |  [optional] |
 |**providerCreatedAt** | **OffsetDateTime** |  |  [optional] |
 |**providerUpdatedAt** | **OffsetDateTime** |  |  [optional] |

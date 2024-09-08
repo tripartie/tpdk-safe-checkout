@@ -6,6 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**captcha** | **str** |  | 
 **ephemeral** | **bool** |  | [default to True]
 
 ## Example

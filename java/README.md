@@ -1,8 +1,8 @@
 # safecheckout
 
 Safe Checkout
-- API version: 2.0.54
-  - Build date: 2024-09-06T14:28:12.506209Z[Etc/UTC]
+- API version: 2.0.57
+  - Build date: 2024-09-08T07:54:08.135391Z[Etc/UTC]
   - Generator version: 7.8.0
 
 Simple, yet elegant web interfaces for your convenience. One request away from your first secured C2C transaction.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.tripartie</groupId>
   <artifactId>safecheckout</artifactId>
-  <version>2.0.54</version>
+  <version>2.0.57</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.tripartie:safecheckout:2.0.54"
+     implementation "com.tripartie:safecheckout:2.0.57"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/safecheckout-2.0.54.jar`
+* `target/safecheckout-2.0.57.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -155,9 +155,9 @@ Class | Method | HTTP request | Description
 *SafeCheckoutApi* | [**apiOffersUlidmediasIdDelete**](docs/SafeCheckoutApi.md#apiOffersUlidmediasIdDelete) | **DELETE** /offers/{ulid}/medias/{id} | Removes the Media resource.
 *SafeCheckoutApi* | [**apiOffersUlidmediasPost**](docs/SafeCheckoutApi.md#apiOffersUlidmediasPost) | **POST** /offers/{ulid}/medias | Upload a picture for a given Offer
 *SafeCheckoutApi* | [**apiUsersIdoffersPost**](docs/SafeCheckoutApi.md#apiUsersIdoffersPost) | **POST** /users/{id}/offers | Issue an Offer as User
-*TransactionApi* | [**apiQuotesIdGet**](docs/TransactionApi.md#apiQuotesIdGet) | **GET** /quotes/{id} | Retrieve a Quote
-*TransactionApi* | [**apiQuotesIdPatch**](docs/TransactionApi.md#apiQuotesIdPatch) | **PATCH** /quotes/{id} | Update a Quote prior to issuing a Transaction
 *TransactionApi* | [**apiQuotesPost**](docs/TransactionApi.md#apiQuotesPost) | **POST** /quotes | Create a Quote prior to issuing a Transaction
+*TransactionApi* | [**apiQuotesUlidGet**](docs/TransactionApi.md#apiQuotesUlidGet) | **GET** /quotes/{ulid} | Retrieve a Quote
+*TransactionApi* | [**apiQuotesUlidPatch**](docs/TransactionApi.md#apiQuotesUlidPatch) | **PATCH** /quotes/{ulid} | Update a Quote prior to issuing a Transaction
 *TransactionApi* | [**apiTransactionsGetCollection**](docs/TransactionApi.md#apiTransactionsGetCollection) | **GET** /transactions | List all Transaction
 *TransactionApi* | [**apiTransactionsPost**](docs/TransactionApi.md#apiTransactionsPost) | **POST** /transactions | Initialize a new Transaction
 *TransactionApi* | [**apiTransactionsUlidGet**](docs/TransactionApi.md#apiTransactionsUlidGet) | **GET** /transactions/{ulid} | Get a Transaction
