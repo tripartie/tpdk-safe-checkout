@@ -16,6 +16,7 @@
 |**buildingName** | **String** |  |  [optional] |
 |**buildingFloor** | **String** |  |  [optional] |
 |**gateOrPortalOrInboxCode** | **String** |  |  [optional] |
+|**formattedAddress** | **String** |  |  [optional] [readonly] |
 
 
 
