@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.58
+  version: 2.0.60
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -7495,7 +7495,7 @@ components:
           nullable: true
           type: string
         url:
-          example: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
+          example: https://staging.tripartie.app/checkout/01ARZ3NDEKTSV4RRFFQ69G5FAV
           externalDocs:
             url: https://schema.org/url
           format: uri
@@ -7659,18 +7659,12 @@ components:
           readOnly: true
           type: number
       required:
-      - canBeSoldSeparately
-      - currencyCode
-      - handDeliveryAllowed
       - medias
-      - nature
       - seller
-      - shippingAllowed
       - status
       - ulid
       - url
       - views
-      - weightInGram
     Offer-Address-IndependentWrite:
       deprecated: false
       description: ""
@@ -7714,7 +7708,7 @@ components:
         ulid: ulid
         nature: physical_item
         title: ASUS TUF X570-PLUS GAMING Motherboard
-        url: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
+        url: https://staging.tripartie.app/checkout/01ARZ3NDEKTSV4RRFFQ69G5FAV
         itemCount: 1
         shippingAllowed: true
         handDeliveryAllowed: true
@@ -7756,7 +7750,7 @@ components:
           nullable: true
           type: string
         url:
-          example: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
+          example: https://staging.tripartie.app/checkout/01ARZ3NDEKTSV4RRFFQ69G5FAV
           externalDocs:
             url: https://schema.org/url
           format: uri
@@ -7854,11 +7848,7 @@ components:
           readOnly: true
           type: string
       required:
-      - currencyCode
-      - handDeliveryAllowed
-      - nature
       - seller
-      - shippingAllowed
       - status
       - ulid
       - url
@@ -7986,7 +7976,15 @@ components:
           type: array
       required:
       - allowToNegotiateUnitPrice
+      - canBeSoldSeparately
+      - currencyCode
+      - description
+      - handDeliveryAllowed
+      - nature
       - seller
+      - shippingAllowed
+      - title
+      - weightInGram
     Offer-Media-CollectionRead:
       deprecated: false
       description: ""
@@ -8179,12 +8177,12 @@ components:
         sellerId: 58
         ulid: ulid
         presetBuyerId: 42
-        url: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
+        url: https://staging.tripartie.app/checkout/01ARZ3NDEKTSV4RRFFQ69G5FAV
       properties:
         ulid:
           type: string
         url:
-          example: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
+          example: https://staging.tripartie.app/checkout/01ARZ3NDEKTSV4RRFFQ69G5FAV
           nullable: true
           readOnly: true
           type: string
@@ -8223,7 +8221,7 @@ components:
         unitPrice: 0.8008282
         iri: https://example.com/
         nature: physical_item
-        url: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
+        url: https://staging.tripartie.app/checkout/01ARZ3NDEKTSV4RRFFQ69G5FAV
         itemCount: 1
         shippingAllowed: true
         handDeliveryAllowed: true
@@ -8273,7 +8271,7 @@ components:
           nullable: true
           type: string
         url:
-          example: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
+          example: https://staging.tripartie.app/checkout/01ARZ3NDEKTSV4RRFFQ69G5FAV
           externalDocs:
             url: https://schema.org/url
           format: uri
@@ -8386,17 +8384,11 @@ components:
           readOnly: true
           type: string
       required:
-      - canBeSoldSeparately
-      - currencyCode
-      - handDeliveryAllowed
       - medias
-      - nature
       - seller
-      - shippingAllowed
       - status
       - ulid
       - url
-      - weightInGram
     Offer-SoloWrite:
       deprecated: false
       description: ""
@@ -8495,7 +8487,15 @@ components:
           type: boolean
       required:
       - allowToNegotiateUnitPrice
+      - canBeSoldSeparately
       - captcha
+      - currencyCode
+      - description
+      - handDeliveryAllowed
+      - nature
+      - shippingAllowed
+      - title
+      - weightInGram
     Offer-Update:
       deprecated: false
       description: ""
@@ -10228,9 +10228,7 @@ components:
           readOnly: true
           type: string
       required:
-      - currencyCode
       - medias
-      - nature
       - seller
       - status
       - ulid
@@ -10447,16 +10445,10 @@ components:
           readOnly: true
           type: string
       required:
-      - canBeSoldSeparately
-      - currencyCode
-      - handDeliveryAllowed
       - medias
-      - nature
       - seller
-      - shippingAllowed
       - status
       - ulid
-      - weightInGram
     Transaction-Organization-CollectionRead:
       deprecated: false
       description: ""
@@ -13483,7 +13475,7 @@ components:
           unitPrice: 0.8008282
           iri: https://example.com/
           nature: physical_item
-          url: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
+          url: https://staging.tripartie.app/checkout/01ARZ3NDEKTSV4RRFFQ69G5FAV
           itemCount: 1
           shippingAllowed: true
           handDeliveryAllowed: true
