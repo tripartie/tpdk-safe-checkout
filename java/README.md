@@ -1,8 +1,8 @@
 # safecheckout
 
 Safe Checkout
-- API version: 2.0.58
-  - Build date: 2024-09-08T10:09:44.972040Z[Etc/UTC]
+- API version: 2.0.67
+  - Build date: 2024-09-12T16:00:19.220351Z[Etc/UTC]
   - Generator version: 7.8.0
 
 Simple, yet elegant web interfaces for your convenience. One request away from your first secured C2C transaction.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.tripartie</groupId>
   <artifactId>safecheckout</artifactId>
-  <version>2.0.58</version>
+  <version>2.0.67</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.tripartie:safecheckout:2.0.58"
+     implementation "com.tripartie:safecheckout:2.0.67"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/safecheckout-2.0.58.jar`
+* `target/safecheckout-2.0.67.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -137,6 +137,7 @@ Class | Method | HTTP request | Description
 *AdminApi* | [**apiUsersIddisablePatch**](docs/AdminApi.md#apiUsersIddisablePatch) | **PATCH** /users/{id}/disable | Updates the User resource.
 *AdminApi* | [**apiUsersIdenablePatch**](docs/AdminApi.md#apiUsersIdenablePatch) | **PATCH** /users/{id}/enable | Updates the User resource.
 *AdminApi* | [**authenticationPost**](docs/AdminApi.md#authenticationPost) | **POST** /authentication | User authentication
+*AdminApi* | [**statisticsPost**](docs/AdminApi.md#statisticsPost) | **POST** /statistics | Statistics Generator
 *BrandingApi* | [**apiOrganizationsIdPatch**](docs/BrandingApi.md#apiOrganizationsIdPatch) | **PATCH** /organizations/{id} | Update your Organization details, branding or parameters
 *BrandingApi* | [**apiOrganizationsIdiconDelete**](docs/BrandingApi.md#apiOrganizationsIdiconDelete) | **DELETE** /organizations/{id}/icon | Unset your Organization Icon
 *BrandingApi* | [**apiOrganizationsIdiconPost**](docs/BrandingApi.md#apiOrganizationsIdiconPost) | **POST** /organizations/{id}/icon | Upload your Organization Icon
@@ -189,6 +190,7 @@ Class | Method | HTTP request | Description
 *UserApi* | [**apiUsersIdtotpSetupPatch**](docs/UserApi.md#apiUsersIdtotpSetupPatch) | **PATCH** /users/{id}/totp-setup | Setup an additional authentication factor
 *UserApi* | [**apiUsersIdtotpTogglePatch**](docs/UserApi.md#apiUsersIdtotpTogglePatch) | **PATCH** /users/{id}/totp-toggle | Disable the second authentication factor
 *UserApi* | [**authenticationPost**](docs/UserApi.md#authenticationPost) | **POST** /authentication | User authentication
+*UserApi* | [**statisticsPost**](docs/UserApi.md#statisticsPost) | **POST** /statistics | Statistics Generator
 *WebhookApi* | [**apiWebhookHistoriesGetCollection**](docs/WebhookApi.md#apiWebhookHistoriesGetCollection) | **GET** /webhook-histories | Retrieves the collection of WebhookHistory resources.
 *WebhookApi* | [**apiWebhookHistoriesIdGet**](docs/WebhookApi.md#apiWebhookHistoriesIdGet) | **GET** /webhook-histories/{id} | Retrieves a WebhookHistory resource.
 *WebhookApi* | [**apiWebhookHistoriesIdPut**](docs/WebhookApi.md#apiWebhookHistoriesIdPut) | **PUT** /webhook-histories/{id} | Replay a Webhook that ended up in failure
@@ -273,6 +275,12 @@ Class | Method | HTTP request | Description
  - [QuoteUpdate](docs/QuoteUpdate.md)
  - [QuoteWrite](docs/QuoteWrite.md)
  - [RateLimitError](docs/RateLimitError.md)
+ - [StatisticOutputArraySingleValue](docs/StatisticOutputArraySingleValue.md)
+ - [StatisticOutputMultipleValue](docs/StatisticOutputMultipleValue.md)
+ - [StatisticOutputSingleValue](docs/StatisticOutputSingleValue.md)
+ - [StatisticRead](docs/StatisticRead.md)
+ - [StatisticReadDataInner](docs/StatisticReadDataInner.md)
+ - [StatisticWrite](docs/StatisticWrite.md)
  - [TransactionAddressRead](docs/TransactionAddressRead.md)
  - [TransactionCardRead](docs/TransactionCardRead.md)
  - [TransactionCollectionRead](docs/TransactionCollectionRead.md)

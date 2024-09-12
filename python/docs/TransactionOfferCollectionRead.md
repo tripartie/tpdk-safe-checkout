@@ -12,12 +12,12 @@ Name | Type | Description | Notes
 **organization** | [**TransactionOrganizationCollectionRead**](TransactionOrganizationCollectionRead.md) |  | [optional] 
 **seller** | [**TransactionPersonaCollectionRead**](TransactionPersonaCollectionRead.md) |  | 
 **preset_buyer** | [**TransactionPersonaCollectionRead**](TransactionPersonaCollectionRead.md) |  | [optional] 
-**nature** | **str** | This WILL affect the assigned workflow. Choosing service will disable delivery for example. Refer to our technical hub for more information. | [default to 'physical_item']
+**nature** | **str** | This WILL affect the assigned workflow. Choosing service will disable delivery for example. Refer to our technical hub for more information. | [optional] [default to 'physical_item']
 **title** | **str** |  | [optional] 
 **unit_price** | **float** |  | [optional] 
 **min_negotiable_unit_price** | **float** |  | [optional] 
 **allow_to_negotiate_unit_price** | **bool** |  | [optional] 
-**currency_code** | **str** |  | [default to 'EUR']
+**currency_code** | **str** |  | [optional] [default to 'EUR']
 **item_count** | **int** |  | [optional] [default to 1]
 **condition** | **str** |  | [optional] [default to 'USED']
 **medias** | [**List[TransactionMediaCollectionRead]**](TransactionMediaCollectionRead.md) |  | 

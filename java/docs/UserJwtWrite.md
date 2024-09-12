@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**captcha** | **String** |  |  [optional] |
-|**email** | **String** |  |  [optional] |
-|**password** | **String** |  |  [optional] |
+|**captcha** | **String** |  |  |
+|**email** | **String** |  |  |
+|**password** | **String** |  |  |
 |**totpInput** | **String** |  |  [optional] |
 
 

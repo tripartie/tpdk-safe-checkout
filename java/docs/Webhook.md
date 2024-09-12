@@ -7,12 +7,12 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **Integer** |  |  [optional] |
-|**event** | [**EventEnum**](#EventEnum) |  |  [optional] |
-|**objectId** | **String** |  |  [optional] |
-|**iri** | **String** |  |  [optional] |
-|**occurredAt** | **OffsetDateTime** |  |  [optional] |
-|**_object** | [**WebhookObject**](WebhookObject.md) |  |  [optional] |
+|**id** | **Integer** |  |  |
+|**event** | [**EventEnum**](#EventEnum) |  |  |
+|**objectId** | **String** |  |  |
+|**iri** | **String** |  |  |
+|**occurredAt** | **OffsetDateTime** |  |  |
+|**_object** | [**WebhookObject**](WebhookObject.md) |  |  |
 
 
 

@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**captcha** | **str** |  | [optional] 
-**email** | **str** |  | [optional] 
-**password** | **str** |  | [optional] 
+**captcha** | **str** |  | 
+**email** | **str** |  | 
+**password** | **str** |  | 
 **totp_input** | **str** |  | [optional] 
 
 ## Example

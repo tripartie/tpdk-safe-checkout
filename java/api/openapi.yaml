@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.58
+  version: 2.0.67
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -4192,6 +4192,66 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /statistics:
+    post:
+      description: Generate statistics based on a set of parameters.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Statistic-Write'
+        description: ""
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Statistic-Read'
+          description: ""
+          headers:
+            X-Rate-Limit:
+              description: HTTP standardized header for rate limit consumption status
+              explode: false
+              schema:
+                example: 554; reset="2025-01-12T12:11:02"
+                type: string
+              style: simple
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthError'
+          description: Authentication required
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessError'
+          description: Unauthorized access
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateLimitError'
+          description: Rate limit exhausted
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericError'
+          description: Unexpected server error
+      security:
+      - oauth:
+        - ORGANIZATION_READ
+        jwtPersonalKey: []
+      summary: Statistics Generator
+      tags:
+      - User
+      - Admin
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /transactions:
     get:
       deprecated: false
@@ -7495,7 +7555,7 @@ components:
           nullable: true
           type: string
         url:
-          example: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
+          example: https://staging.tripartie.app/checkout/01ARZ3NDEKTSV4RRFFQ69G5FAV
           externalDocs:
             url: https://schema.org/url
           format: uri
@@ -7659,18 +7719,12 @@ components:
           readOnly: true
           type: number
       required:
-      - canBeSoldSeparately
-      - currencyCode
-      - handDeliveryAllowed
       - medias
-      - nature
       - seller
-      - shippingAllowed
       - status
       - ulid
       - url
       - views
-      - weightInGram
     Offer-Address-IndependentWrite:
       deprecated: false
       description: ""
@@ -7714,7 +7768,7 @@ components:
         ulid: ulid
         nature: physical_item
         title: ASUS TUF X570-PLUS GAMING Motherboard
-        url: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
+        url: https://staging.tripartie.app/checkout/01ARZ3NDEKTSV4RRFFQ69G5FAV
         itemCount: 1
         shippingAllowed: true
         handDeliveryAllowed: true
@@ -7756,7 +7810,7 @@ components:
           nullable: true
           type: string
         url:
-          example: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
+          example: https://staging.tripartie.app/checkout/01ARZ3NDEKTSV4RRFFQ69G5FAV
           externalDocs:
             url: https://schema.org/url
           format: uri
@@ -7854,11 +7908,7 @@ components:
           readOnly: true
           type: string
       required:
-      - currencyCode
-      - handDeliveryAllowed
-      - nature
       - seller
-      - shippingAllowed
       - status
       - ulid
       - url
@@ -7986,7 +8036,15 @@ components:
           type: array
       required:
       - allowToNegotiateUnitPrice
+      - canBeSoldSeparately
+      - currencyCode
+      - description
+      - handDeliveryAllowed
+      - nature
       - seller
+      - shippingAllowed
+      - title
+      - weightInGram
     Offer-Media-CollectionRead:
       deprecated: false
       description: ""
@@ -8179,12 +8237,12 @@ components:
         sellerId: 58
         ulid: ulid
         presetBuyerId: 42
-        url: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
+        url: https://staging.tripartie.app/checkout/01ARZ3NDEKTSV4RRFFQ69G5FAV
       properties:
         ulid:
           type: string
         url:
-          example: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
+          example: https://staging.tripartie.app/checkout/01ARZ3NDEKTSV4RRFFQ69G5FAV
           nullable: true
           readOnly: true
           type: string
@@ -8223,7 +8281,7 @@ components:
         unitPrice: 0.8008282
         iri: https://example.com/
         nature: physical_item
-        url: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
+        url: https://staging.tripartie.app/checkout/01ARZ3NDEKTSV4RRFFQ69G5FAV
         itemCount: 1
         shippingAllowed: true
         handDeliveryAllowed: true
@@ -8273,7 +8331,7 @@ components:
           nullable: true
           type: string
         url:
-          example: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
+          example: https://staging.tripartie.app/checkout/01ARZ3NDEKTSV4RRFFQ69G5FAV
           externalDocs:
             url: https://schema.org/url
           format: uri
@@ -8386,17 +8444,11 @@ components:
           readOnly: true
           type: string
       required:
-      - canBeSoldSeparately
-      - currencyCode
-      - handDeliveryAllowed
       - medias
-      - nature
       - seller
-      - shippingAllowed
       - status
       - ulid
       - url
-      - weightInGram
     Offer-SoloWrite:
       deprecated: false
       description: ""
@@ -8495,7 +8547,15 @@ components:
           type: boolean
       required:
       - allowToNegotiateUnitPrice
+      - canBeSoldSeparately
       - captcha
+      - currencyCode
+      - description
+      - handDeliveryAllowed
+      - nature
+      - shippingAllowed
+      - title
+      - weightInGram
     Offer-Update:
       deprecated: false
       description: ""
@@ -10228,9 +10288,7 @@ components:
           readOnly: true
           type: string
       required:
-      - currencyCode
       - medias
-      - nature
       - seller
       - status
       - ulid
@@ -10447,16 +10505,10 @@ components:
           readOnly: true
           type: string
       required:
-      - canBeSoldSeparately
-      - currencyCode
-      - handDeliveryAllowed
       - medias
-      - nature
       - seller
-      - shippingAllowed
       - status
       - ulid
-      - weightInGram
     Transaction-Organization-CollectionRead:
       deprecated: false
       description: ""
@@ -13483,7 +13535,7 @@ components:
           unitPrice: 0.8008282
           iri: https://example.com/
           nature: physical_item
-          url: https://next.tripartie.app/?c=01ARZ3NDEKTSV4RRFFQ69G5FAV
+          url: https://staging.tripartie.app/checkout/01ARZ3NDEKTSV4RRFFQ69G5FAV
           itemCount: 1
           shippingAllowed: true
           handDeliveryAllowed: true
@@ -13539,6 +13591,222 @@ components:
           type: string
         object:
           $ref: '#/components/schemas/Webhook_object'
+      required:
+      - event
+      - id
+      - iri
+      - object
+      - objectId
+      - occurredAt
+    Statistic-Write:
+      properties:
+        request:
+          example:
+          - OFFER_PUBLISHED_AMOUNT
+          - OFFER_CREATED_AMOUNT
+          items:
+            enum:
+            - OFFER_PUBLISHED_AMOUNT
+            - OFFER_CREATED_AMOUNT
+            - TRANSACTION_ACCEPTED_PROPOSAL_AMOUNT
+            - TRANSACTION_ACCEPTED_PROPOSAL_COUNT
+            - TRANSACTION_ACCEPTED_PROPOSAL_SERVICE_FEE
+            - TRANSACTION_ACCEPTED_PROPOSAL_SHIPPING_FEE
+            - TRANSACTION_COMPLETED_AMOUNT
+            - TRANSACTION_COMPLETED_COUNT
+            - TRANSACTION_COMPLETED_SERVICE_FEE
+            - TRANSACTION_COMPLETED_SHIPPING_FEE
+            - TRANSACTION_CREATED_AMOUNT
+            - TRANSACTION_CREATED_COUNT
+            type: string
+          type: array
+          uniqueItems: true
+        focusOn:
+          example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
+          nullable: true
+          type: string
+        focusType:
+          enum:
+          - Organization
+          - User
+          - Persona
+          example: Organization
+          nullable: true
+          type: string
+        startAt:
+          format: date-time
+          nullable: true
+          type: string
+        endAt:
+          format: date-time
+          nullable: true
+          type: string
+        groupByPeriod:
+          enum:
+          - DAILY
+          - WEEKLY
+          - MONTHLY
+          - QUARTERLY
+          - YEARLY
+          example: MONTHLY
+          nullable: true
+          type: string
+      required:
+      - request
+    Statistic-OutputSingleValue:
+      example:
+        request: OFFER_PUBLISHED_AMOUNT
+        endAt: 2000-01-23T04:56:07.000+00:00
+        value: 2554
+        startAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        request:
+          enum:
+          - OFFER_PUBLISHED_AMOUNT
+          - OFFER_CREATED_AMOUNT
+          - TRANSACTION_ACCEPTED_PROPOSAL_AMOUNT
+          - TRANSACTION_ACCEPTED_PROPOSAL_COUNT
+          - TRANSACTION_ACCEPTED_PROPOSAL_SERVICE_FEE
+          - TRANSACTION_ACCEPTED_PROPOSAL_SHIPPING_FEE
+          - TRANSACTION_COMPLETED_AMOUNT
+          - TRANSACTION_COMPLETED_COUNT
+          - TRANSACTION_COMPLETED_SERVICE_FEE
+          - TRANSACTION_COMPLETED_SHIPPING_FEE
+          - TRANSACTION_CREATED_AMOUNT
+          - TRANSACTION_CREATED_COUNT
+          example: OFFER_PUBLISHED_AMOUNT
+          type: string
+        startAt:
+          format: date-time
+          type: string
+        endAt:
+          format: date-time
+          type: string
+        value:
+          example: 2554
+          type: number
+      required:
+      - endAt
+      - request
+      - startAt
+      - value
+    Statistic-OutputArraySingleValue:
+      properties:
+        startAt:
+          format: date-time
+          type: string
+        endAt:
+          format: date-time
+          type: string
+        value:
+          example: 28333
+          type: number
+      required:
+      - endAt
+      - startAt
+      - value
+    Statistic-OutputMultipleValue:
+      properties:
+        request:
+          enum:
+          - OFFER_PUBLISHED_AMOUNT
+          - OFFER_CREATED_AMOUNT
+          - TRANSACTION_ACCEPTED_PROPOSAL_AMOUNT
+          - TRANSACTION_ACCEPTED_PROPOSAL_COUNT
+          - TRANSACTION_ACCEPTED_PROPOSAL_SERVICE_FEE
+          - TRANSACTION_ACCEPTED_PROPOSAL_SHIPPING_FEE
+          - TRANSACTION_COMPLETED_AMOUNT
+          - TRANSACTION_COMPLETED_COUNT
+          - TRANSACTION_COMPLETED_SERVICE_FEE
+          - TRANSACTION_COMPLETED_SHIPPING_FEE
+          - TRANSACTION_CREATED_AMOUNT
+          - TRANSACTION_CREATED_COUNT
+          example: OFFER_PUBLISHED_AMOUNT
+          type: string
+        values:
+          items:
+            $ref: '#/components/schemas/Statistic-OutputArraySingleValue'
+          type: array
+      required:
+      - request
+      - values
+    Statistic-Read:
+      example:
+        request:
+        - OFFER_PUBLISHED_AMOUNT
+        - OFFER_CREATED_AMOUNT
+        focusType: Organization
+        groupByPeriod: MONTHLY
+        data:
+        - request: OFFER_PUBLISHED_AMOUNT
+          endAt: 2000-01-23T04:56:07.000+00:00
+          value: 2554
+          startAt: 2000-01-23T04:56:07.000+00:00
+        - request: OFFER_PUBLISHED_AMOUNT
+          endAt: 2000-01-23T04:56:07.000+00:00
+          value: 2554
+          startAt: 2000-01-23T04:56:07.000+00:00
+        focusOn: 01ARZ3NDEKTSV4RRFFQ69G5FAV
+        endAt: 2000-01-23T04:56:07.000+00:00
+        startAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        request:
+          example:
+          - OFFER_PUBLISHED_AMOUNT
+          - OFFER_CREATED_AMOUNT
+          items:
+            enum:
+            - OFFER_PUBLISHED_AMOUNT
+            - OFFER_CREATED_AMOUNT
+            - TRANSACTION_ACCEPTED_PROPOSAL_AMOUNT
+            - TRANSACTION_ACCEPTED_PROPOSAL_COUNT
+            - TRANSACTION_ACCEPTED_PROPOSAL_SERVICE_FEE
+            - TRANSACTION_ACCEPTED_PROPOSAL_SHIPPING_FEE
+            - TRANSACTION_COMPLETED_AMOUNT
+            - TRANSACTION_COMPLETED_COUNT
+            - TRANSACTION_COMPLETED_SERVICE_FEE
+            - TRANSACTION_COMPLETED_SHIPPING_FEE
+            - TRANSACTION_CREATED_AMOUNT
+            - TRANSACTION_CREATED_COUNT
+            type: string
+          type: array
+          uniqueItems: true
+        focusOn:
+          example: 01ARZ3NDEKTSV4RRFFQ69G5FAV
+          nullable: true
+          type: string
+        focusType:
+          enum:
+          - Organization
+          - User
+          - Persona
+          example: Organization
+          nullable: true
+          type: string
+        startAt:
+          format: date-time
+          nullable: true
+          type: string
+        endAt:
+          format: date-time
+          nullable: true
+          type: string
+        groupByPeriod:
+          enum:
+          - DAILY
+          - WEEKLY
+          - MONTHLY
+          - QUARTERLY
+          - YEARLY
+          example: MONTHLY
+          nullable: true
+          type: string
+        data:
+          items:
+            $ref: '#/components/schemas/Statistic_Read_data_inner'
+          type: array
+      required:
+      - request
     AuthError:
       example:
         code: 401
@@ -13679,7 +13947,8 @@ components:
         token:
           example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
           type: string
-          nullable: false
+      required:
+      - token
     UserJwtWrite:
       example:
         password: p@ssw0rd
@@ -13690,19 +13959,19 @@ components:
         captcha:
           example: 23aa3ff98df2457d958a6f9e5c48cfa5
           type: string
-          nullable: false
         email:
           example: john.doe@company.tld
           type: string
-          nullable: false
         password:
           example: p@ssw0rd
           type: string
-          nullable: false
         totpInput:
           example: "412541"
           type: string
-          nullable: true
+      required:
+      - captcha
+      - email
+      - password
     api_offers_ulidmedias_post_request:
       properties:
         file:
@@ -13712,7 +13981,10 @@ components:
       anyOf:
       - $ref: '#/components/schemas/Offer-Read'
       - $ref: '#/components/schemas/Persona-Read'
-      nullable: false
+    Statistic_Read_data_inner:
+      oneOf:
+      - $ref: '#/components/schemas/Statistic-OutputSingleValue'
+      - $ref: '#/components/schemas/Statistic-OutputMultipleValue'
     UnprocessableEntity_violations_inner:
       example:
         code: c1051bb4-d103-4f74-8988-acbcafc7fdc3

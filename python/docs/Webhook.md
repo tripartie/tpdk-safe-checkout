@@ -5,12 +5,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** |  | [optional] 
-**event** | **str** |  | [optional] 
-**object_id** | **str** |  | [optional] 
-**iri** | **str** |  | [optional] 
-**occurred_at** | **datetime** |  | [optional] 
-**object** | [**WebhookObject**](WebhookObject.md) |  | [optional] 
+**id** | **int** |  | 
+**event** | **str** |  | 
+**object_id** | **str** |  | 
+**iri** | **str** |  | 
+**occurred_at** | **datetime** |  | 
+**object** | [**WebhookObject**](WebhookObject.md) |  | 
 
 ## Example
 
