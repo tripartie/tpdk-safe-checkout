@@ -14,12 +14,12 @@
 |**organization** | [**TransactionOrganizationCollectionRead**](TransactionOrganizationCollectionRead.md) |  |  [optional] |
 |**seller** | [**TransactionPersonaCollectionRead**](TransactionPersonaCollectionRead.md) |  |  |
 |**presetBuyer** | [**TransactionPersonaCollectionRead**](TransactionPersonaCollectionRead.md) |  |  [optional] |
-|**nature** | [**NatureEnum**](#NatureEnum) | This WILL affect the assigned workflow. Choosing service will disable delivery for example. Refer to our technical hub for more information. |  |
+|**nature** | [**NatureEnum**](#NatureEnum) | This WILL affect the assigned workflow. Choosing service will disable delivery for example. Refer to our technical hub for more information. |  [optional] |
 |**title** | **String** |  |  [optional] |
 |**unitPrice** | **Float** |  |  [optional] |
 |**minNegotiableUnitPrice** | **Float** |  |  [optional] |
 |**allowToNegotiateUnitPrice** | **Boolean** |  |  [optional] |
-|**currencyCode** | **String** |  |  |
+|**currencyCode** | **String** |  |  [optional] |
 |**itemCount** | **Integer** |  |  [optional] |
 |**condition** | [**ConditionEnum**](#ConditionEnum) |  |  [optional] |
 |**medias** | [**List&lt;TransactionMediaCollectionRead&gt;**](TransactionMediaCollectionRead.md) |  |  |

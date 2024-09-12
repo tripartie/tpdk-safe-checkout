@@ -31,6 +31,7 @@ Method | HTTP request | Description
 [**api_users_idtotp_setup_patch**](UserApi.md#api_users_idtotp_setup_patch) | **PATCH** /users/{id}/totp-setup | Setup an additional authentication factor
 [**api_users_idtotp_toggle_patch**](UserApi.md#api_users_idtotp_toggle_patch) | **PATCH** /users/{id}/totp-toggle | Disable the second authentication factor
 [**authentication_post**](UserApi.md#authentication_post) | **POST** /authentication | User authentication
+[**statistics_post**](UserApi.md#statistics_post) | **POST** /statistics | Statistics Generator
 
 
 # **api_bank_accounts_id_delete**
@@ -2337,6 +2338,93 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** |  |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 **401** |  |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**429** | Rate limit exhausted |  -  |
+**500** | Unexpected server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **statistics_post**
+> StatisticRead statistics_post(statistic_write=statistic_write)
+
+Statistics Generator
+
+Generate statistics based on a set of parameters.
+
+### Example
+
+* Api Key Authentication (jwtPersonalKey):
+* OAuth Authentication (oauth):
+
+```python
+import tpdk_safe_checkout
+from tpdk_safe_checkout.models.statistic_read import StatisticRead
+from tpdk_safe_checkout.models.statistic_write import StatisticWrite
+from tpdk_safe_checkout.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://staging-api.tripartie.app
+# See configuration.py for a list of all supported configuration parameters.
+configuration = tpdk_safe_checkout.Configuration(
+    host = "https://staging-api.tripartie.app"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: jwtPersonalKey
+configuration.api_key['jwtPersonalKey'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['jwtPersonalKey'] = 'Bearer'
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with tpdk_safe_checkout.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = tpdk_safe_checkout.UserApi(api_client)
+    statistic_write = tpdk_safe_checkout.StatisticWrite() # StatisticWrite |  (optional)
+
+    try:
+        # Statistics Generator
+        api_response = api_instance.statistics_post(statistic_write=statistic_write)
+        print("The response of UserApi->statistics_post:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling UserApi->statistics_post: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **statistic_write** | [**StatisticWrite**](StatisticWrite.md)|  | [optional] 
+
+### Return type
+
+[**StatisticRead**](StatisticRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+**401** | Authentication required |  -  |
+**403** | Unauthorized access |  -  |
 **429** | Rate limit exhausted |  -  |
 **500** | Unexpected server error |  -  |
 

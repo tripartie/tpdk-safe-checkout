@@ -16,6 +16,7 @@ All URIs are relative to *https://staging-api.tripartie.app*
 | [**apiUsersIddisablePatch**](AdminApi.md#apiUsersIddisablePatch) | **PATCH** /users/{id}/disable | Updates the User resource. |
 | [**apiUsersIdenablePatch**](AdminApi.md#apiUsersIdenablePatch) | **PATCH** /users/{id}/enable | Updates the User resource. |
 | [**authenticationPost**](AdminApi.md#authenticationPost) | **POST** /authentication | User authentication |
+| [**statisticsPost**](AdminApi.md#statisticsPost) | **POST** /statistics | Statistics Generator |
 
 
 <a id="apiApiClientsGetCollection"></a>
@@ -939,6 +940,85 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** |  |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
 | **401** |  |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **429** | Rate limit exhausted |  -  |
+| **500** | Unexpected server error |  -  |
+
+<a id="statisticsPost"></a>
+# **statisticsPost**
+> StatisticRead statisticsPost().statisticWrite(statisticWrite).execute();
+
+Statistics Generator
+
+Generate statistics based on a set of parameters.
+
+### Example
+```java
+// Import classes:
+import com.tripartie.safecheckout.ApiClient;
+import com.tripartie.safecheckout.ApiException;
+import com.tripartie.safecheckout.Configuration;
+import com.tripartie.safecheckout.auth.*;
+import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.api.AdminApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://staging-api.tripartie.app");
+    
+    // Configure API key authorization: jwtPersonalKey
+    ApiKeyAuth jwtPersonalKey = (ApiKeyAuth) defaultClient.getAuthentication("jwtPersonalKey");
+    jwtPersonalKey.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //jwtPersonalKey.setApiKeyPrefix("Token");
+
+    // Configure OAuth2 access token for authorization: oauth
+    OAuth oauth = (OAuth) defaultClient.getAuthentication("oauth");
+    oauth.setAccessToken("YOUR ACCESS TOKEN");
+
+    AdminApi apiInstance = new AdminApi(defaultClient);
+    StatisticWrite statisticWrite = new StatisticWrite(); // StatisticWrite | 
+    try {
+      StatisticRead result = apiInstance.statisticsPost()
+            .statisticWrite(statisticWrite)
+            .execute();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling AdminApi#statisticsPost");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **statisticWrite** | [**StatisticWrite**](StatisticWrite.md)|  | [optional] |
+
+### Return type
+
+[**StatisticRead**](StatisticRead.md)
+
+### Authorization
+
+[jwtPersonalKey](../README.md#jwtPersonalKey), [oauth](../README.md#oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  * X-Rate-Limit - HTTP standardized header for rate limit consumption status <br>  |
+| **401** | Authentication required |  -  |
+| **403** | Unauthorized access |  -  |
 | **429** | Rate limit exhausted |  -  |
 | **500** | Unexpected server error |  -  |
 
