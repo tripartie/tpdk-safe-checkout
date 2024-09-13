@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.67
+  version: 2.0.69
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -13603,11 +13603,11 @@ components:
         request:
           example:
           - OFFER_PUBLISHED_AMOUNT
-          - OFFER_CREATED_AMOUNT
+          - OFFER_PUBLISHED_COUNT
           items:
             enum:
             - OFFER_PUBLISHED_AMOUNT
-            - OFFER_CREATED_AMOUNT
+            - OFFER_PUBLISHED_COUNT
             - TRANSACTION_ACCEPTED_PROPOSAL_AMOUNT
             - TRANSACTION_ACCEPTED_PROPOSAL_COUNT
             - TRANSACTION_ACCEPTED_PROPOSAL_SERVICE_FEE
@@ -13618,6 +13618,8 @@ components:
             - TRANSACTION_COMPLETED_SHIPPING_FEE
             - TRANSACTION_CREATED_AMOUNT
             - TRANSACTION_CREATED_COUNT
+            - WALLET_AVAILABLE_AMOUNT
+            - WALLET_IN_CUSTODY_AMOUNT
             type: string
           type: array
           uniqueItems: true
@@ -13663,7 +13665,7 @@ components:
         request:
           enum:
           - OFFER_PUBLISHED_AMOUNT
-          - OFFER_CREATED_AMOUNT
+          - OFFER_PUBLISHED_COUNT
           - TRANSACTION_ACCEPTED_PROPOSAL_AMOUNT
           - TRANSACTION_ACCEPTED_PROPOSAL_COUNT
           - TRANSACTION_ACCEPTED_PROPOSAL_SERVICE_FEE
@@ -13674,6 +13676,8 @@ components:
           - TRANSACTION_COMPLETED_SHIPPING_FEE
           - TRANSACTION_CREATED_AMOUNT
           - TRANSACTION_CREATED_COUNT
+          - WALLET_AVAILABLE_AMOUNT
+          - WALLET_IN_CUSTODY_AMOUNT
           example: OFFER_PUBLISHED_AMOUNT
           type: string
         startAt:
@@ -13710,7 +13714,7 @@ components:
         request:
           enum:
           - OFFER_PUBLISHED_AMOUNT
-          - OFFER_CREATED_AMOUNT
+          - OFFER_PUBLISHED_COUNT
           - TRANSACTION_ACCEPTED_PROPOSAL_AMOUNT
           - TRANSACTION_ACCEPTED_PROPOSAL_COUNT
           - TRANSACTION_ACCEPTED_PROPOSAL_SERVICE_FEE
@@ -13721,6 +13725,8 @@ components:
           - TRANSACTION_COMPLETED_SHIPPING_FEE
           - TRANSACTION_CREATED_AMOUNT
           - TRANSACTION_CREATED_COUNT
+          - WALLET_AVAILABLE_AMOUNT
+          - WALLET_IN_CUSTODY_AMOUNT
           example: OFFER_PUBLISHED_AMOUNT
           type: string
         values:
@@ -13734,7 +13740,7 @@ components:
       example:
         request:
         - OFFER_PUBLISHED_AMOUNT
-        - OFFER_CREATED_AMOUNT
+        - OFFER_PUBLISHED_COUNT
         focusType: Organization
         groupByPeriod: MONTHLY
         data:
@@ -13753,11 +13759,11 @@ components:
         request:
           example:
           - OFFER_PUBLISHED_AMOUNT
-          - OFFER_CREATED_AMOUNT
+          - OFFER_PUBLISHED_COUNT
           items:
             enum:
             - OFFER_PUBLISHED_AMOUNT
-            - OFFER_CREATED_AMOUNT
+            - OFFER_PUBLISHED_COUNT
             - TRANSACTION_ACCEPTED_PROPOSAL_AMOUNT
             - TRANSACTION_ACCEPTED_PROPOSAL_COUNT
             - TRANSACTION_ACCEPTED_PROPOSAL_SERVICE_FEE
@@ -13768,6 +13774,8 @@ components:
             - TRANSACTION_COMPLETED_SHIPPING_FEE
             - TRANSACTION_CREATED_AMOUNT
             - TRANSACTION_CREATED_COUNT
+            - WALLET_AVAILABLE_AMOUNT
+            - WALLET_IN_CUSTODY_AMOUNT
             type: string
           type: array
           uniqueItems: true
