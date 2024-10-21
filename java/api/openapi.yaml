@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.69
+  version: 2.0.81
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -13411,6 +13411,7 @@ components:
         normalizedObject:
           items:
             type: string
+          nullable: true
           type: array
         responseCode:
           nullable: true

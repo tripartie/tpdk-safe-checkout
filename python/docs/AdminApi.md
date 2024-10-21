@@ -15,8 +15,8 @@ Method | HTTP request | Description
 [**api_users_id_get**](AdminApi.md#api_users_id_get) | **GET** /users/{id} | Retrieves a User resource.
 [**api_users_iddisable_patch**](AdminApi.md#api_users_iddisable_patch) | **PATCH** /users/{id}/disable | Updates the User resource.
 [**api_users_idenable_patch**](AdminApi.md#api_users_idenable_patch) | **PATCH** /users/{id}/enable | Updates the User resource.
-[**authentication_post**](AdminApi.md#authentication_post) | **POST** /authentication | User authentication
-[**statistics_post**](AdminApi.md#statistics_post) | **POST** /statistics | Statistics Generator
+[**authentication_post_0**](AdminApi.md#authentication_post_0) | **POST** /authentication | User authentication
+[**statistics_post_0**](AdminApi.md#statistics_post_0) | **POST** /statistics | Statistics Generator
 
 
 # **api_api_clients_get_collection**
@@ -956,8 +956,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **authentication_post**
-> UserJwtCreated authentication_post(user_jwt_write=user_jwt_write)
+# **authentication_post_0**
+> UserJwtCreated authentication_post_0(user_jwt_write=user_jwt_write)
 
 User authentication
 
@@ -1002,11 +1002,11 @@ with tpdk_safe_checkout.ApiClient(configuration) as api_client:
 
     try:
         # User authentication
-        api_response = api_instance.authentication_post(user_jwt_write=user_jwt_write)
-        print("The response of AdminApi->authentication_post:\n")
+        api_response = api_instance.authentication_post_0(user_jwt_write=user_jwt_write)
+        print("The response of AdminApi->authentication_post_0:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling AdminApi->authentication_post: %s\n" % e)
+        print("Exception when calling AdminApi->authentication_post_0: %s\n" % e)
 ```
 
 
@@ -1042,8 +1042,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **statistics_post**
-> StatisticRead statistics_post(statistic_write=statistic_write)
+# **statistics_post_0**
+> StatisticRead statistics_post_0(statistic_write=statistic_write)
 
 Statistics Generator
 
@@ -1088,11 +1088,11 @@ with tpdk_safe_checkout.ApiClient(configuration) as api_client:
 
     try:
         # Statistics Generator
-        api_response = api_instance.statistics_post(statistic_write=statistic_write)
-        print("The response of AdminApi->statistics_post:\n")
+        api_response = api_instance.statistics_post_0(statistic_write=statistic_write)
+        print("The response of AdminApi->statistics_post_0:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling AdminApi->statistics_post: %s\n" % e)
+        print("Exception when calling AdminApi->statistics_post_0: %s\n" % e)
 ```
 
 

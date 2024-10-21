@@ -15,8 +15,8 @@ All URIs are relative to *https://staging-api.tripartie.app*
 | [**apiUsersIdGet**](AdminApi.md#apiUsersIdGet) | **GET** /users/{id} | Retrieves a User resource. |
 | [**apiUsersIddisablePatch**](AdminApi.md#apiUsersIddisablePatch) | **PATCH** /users/{id}/disable | Updates the User resource. |
 | [**apiUsersIdenablePatch**](AdminApi.md#apiUsersIdenablePatch) | **PATCH** /users/{id}/enable | Updates the User resource. |
-| [**authenticationPost**](AdminApi.md#authenticationPost) | **POST** /authentication | User authentication |
-| [**statisticsPost**](AdminApi.md#statisticsPost) | **POST** /statistics | Statistics Generator |
+| [**authenticationPost_0**](AdminApi.md#authenticationPost_0) | **POST** /authentication | User authentication |
+| [**statisticsPost_0**](AdminApi.md#statisticsPost_0) | **POST** /statistics | Statistics Generator |
 
 
 <a id="apiApiClientsGetCollection"></a>
@@ -865,9 +865,9 @@ public class Example {
 | **429** | Rate limit exhausted |  -  |
 | **500** | Unexpected server error |  -  |
 
-<a id="authenticationPost"></a>
-# **authenticationPost**
-> UserJwtCreated authenticationPost().userJwtWrite(userJwtWrite).execute();
+<a id="authenticationPost_0"></a>
+# **authenticationPost_0**
+> UserJwtCreated authenticationPost_0().userJwtWrite(userJwtWrite).execute();
 
 User authentication
 
@@ -901,12 +901,12 @@ public class Example {
     AdminApi apiInstance = new AdminApi(defaultClient);
     UserJwtWrite userJwtWrite = new UserJwtWrite(); // UserJwtWrite | 
     try {
-      UserJwtCreated result = apiInstance.authenticationPost()
+      UserJwtCreated result = apiInstance.authenticationPost_0()
             .userJwtWrite(userJwtWrite)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling AdminApi#authenticationPost");
+      System.err.println("Exception when calling AdminApi#authenticationPost_0");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -943,9 +943,9 @@ public class Example {
 | **429** | Rate limit exhausted |  -  |
 | **500** | Unexpected server error |  -  |
 
-<a id="statisticsPost"></a>
-# **statisticsPost**
-> StatisticRead statisticsPost().statisticWrite(statisticWrite).execute();
+<a id="statisticsPost_0"></a>
+# **statisticsPost_0**
+> StatisticRead statisticsPost_0().statisticWrite(statisticWrite).execute();
 
 Statistics Generator
 
@@ -979,12 +979,12 @@ public class Example {
     AdminApi apiInstance = new AdminApi(defaultClient);
     StatisticWrite statisticWrite = new StatisticWrite(); // StatisticWrite | 
     try {
-      StatisticRead result = apiInstance.statisticsPost()
+      StatisticRead result = apiInstance.statisticsPost_0()
             .statisticWrite(statisticWrite)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling AdminApi#statisticsPost");
+      System.err.println("Exception when calling AdminApi#statisticsPost_0");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
