@@ -25,7 +25,6 @@ Someone has to ask for a Quote prior to create a transaction and (therefor) char
 | SWISS_POST | &quot;SwissPost&quot; |
 | COLISSIMO | &quot;Colissimo&quot; |
 | MONDIAL_RELAY | &quot;MondialRelay&quot; |
-| NULL | &quot;null&quot; |
 
 
 

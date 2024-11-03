@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
 **public_url** | **str** |  | 
+**thumbnail_url** | **str** |  | [optional] [readonly] 
 
 ## Example
 

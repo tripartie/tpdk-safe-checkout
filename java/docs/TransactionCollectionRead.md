@@ -42,7 +42,6 @@
 | COMPLETED | &quot;COMPLETED&quot; |
 | DISPUTED | &quot;DISPUTED&quot; |
 | CANCELLED | &quot;CANCELLED&quot; |
-| NULL | &quot;null&quot; |
 
 
 

@@ -26,7 +26,6 @@
 | OFFER_TRANSACTION_DISPUTED | &quot;offer.transaction.disputed&quot; |
 | OFFER_CLOSED | &quot;offer.closed&quot; |
 | PERSONA_ADDED | &quot;persona.added&quot; |
-| NULL | &quot;null&quot; |
 
 
 

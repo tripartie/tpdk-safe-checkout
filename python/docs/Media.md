@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **public_url** | **str** |  | 
 **file** | **bytearray** |  | [optional] 
 **b64_encoded_tmp_file** | **str** |  | [optional] 
-**thumbnail** | **str** | Associated 374x374 pixels small thumbnail | [optional] 
+**thumbnail** | **str** | Associated 30% of original size thumbnail | [optional] 
 **original** | **str** |  | [optional] 
 **owner** | **str** |  | [optional] 
 **offers** | **List[str]** |  | [optional] 

@@ -15,8 +15,8 @@ Method | HTTP request | Description
 [**api_users_id_get**](AdminApi.md#api_users_id_get) | **GET** /users/{id} | Retrieves a User resource.
 [**api_users_iddisable_patch**](AdminApi.md#api_users_iddisable_patch) | **PATCH** /users/{id}/disable | Updates the User resource.
 [**api_users_idenable_patch**](AdminApi.md#api_users_idenable_patch) | **PATCH** /users/{id}/enable | Updates the User resource.
-[**authentication_post**](AdminApi.md#authentication_post) | **POST** /authentication | User authentication
-[**statistics_post**](AdminApi.md#statistics_post) | **POST** /statistics | Statistics Generator
+[**authentication_post_0**](AdminApi.md#authentication_post_0) | **POST** /authentication | User authentication
+[**statistics_post_0**](AdminApi.md#statistics_post_0) | **POST** /statistics | Statistics Generator
 
 
 # **api_api_clients_get_collection**
@@ -614,7 +614,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **api_users_get_collection**
-> List[UserCollectionRead] api_users_get_collection(page=page)
+> List[UserCollectionRead] api_users_get_collection(page=page, exists_organization=exists_organization, exists_identity_verified_at=exists_identity_verified_at, exists_main_address=exists_main_address, order_created_at=order_created_at, email=email, email2=email2, intl_phone_number=intl_phone_number, first_name=first_name, last_name=last_name, created_at_before=created_at_before, created_at_strictly_before=created_at_strictly_before, created_at_after=created_at_after, created_at_strictly_after=created_at_strictly_after, identity_verified_at_before=identity_verified_at_before, identity_verified_at_strictly_before=identity_verified_at_strictly_before, identity_verified_at_after=identity_verified_at_after, identity_verified_at_strictly_after=identity_verified_at_strictly_after, updated_at_before=updated_at_before, updated_at_strictly_before=updated_at_strictly_before, updated_at_after=updated_at_after, updated_at_strictly_after=updated_at_strictly_after, birthday_before=birthday_before, birthday_strictly_before=birthday_strictly_before, birthday_after=birthday_after, birthday_strictly_after=birthday_strictly_after, totp_enabled=totp_enabled, lockdown=lockdown)
 
 Retrieves the collection of User resources.
 
@@ -652,10 +652,37 @@ with tpdk_safe_checkout.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = tpdk_safe_checkout.AdminApi(api_client)
     page = 1 # int | The collection page number (optional) (default to 1)
+    exists_organization = True # bool |  (optional)
+    exists_identity_verified_at = True # bool |  (optional)
+    exists_main_address = True # bool |  (optional)
+    order_created_at = 'order_created_at_example' # str |  (optional)
+    email = 'email_example' # str |  (optional)
+    email2 = ['email_example'] # List[str] |  (optional)
+    intl_phone_number = 'intl_phone_number_example' # str |  (optional)
+    first_name = 'first_name_example' # str |  (optional)
+    last_name = 'last_name_example' # str |  (optional)
+    created_at_before = 'created_at_before_example' # str |  (optional)
+    created_at_strictly_before = 'created_at_strictly_before_example' # str |  (optional)
+    created_at_after = 'created_at_after_example' # str |  (optional)
+    created_at_strictly_after = 'created_at_strictly_after_example' # str |  (optional)
+    identity_verified_at_before = 'identity_verified_at_before_example' # str |  (optional)
+    identity_verified_at_strictly_before = 'identity_verified_at_strictly_before_example' # str |  (optional)
+    identity_verified_at_after = 'identity_verified_at_after_example' # str |  (optional)
+    identity_verified_at_strictly_after = 'identity_verified_at_strictly_after_example' # str |  (optional)
+    updated_at_before = 'updated_at_before_example' # str |  (optional)
+    updated_at_strictly_before = 'updated_at_strictly_before_example' # str |  (optional)
+    updated_at_after = 'updated_at_after_example' # str |  (optional)
+    updated_at_strictly_after = 'updated_at_strictly_after_example' # str |  (optional)
+    birthday_before = 'birthday_before_example' # str |  (optional)
+    birthday_strictly_before = 'birthday_strictly_before_example' # str |  (optional)
+    birthday_after = 'birthday_after_example' # str |  (optional)
+    birthday_strictly_after = 'birthday_strictly_after_example' # str |  (optional)
+    totp_enabled = True # bool |  (optional)
+    lockdown = True # bool |  (optional)
 
     try:
         # Retrieves the collection of User resources.
-        api_response = api_instance.api_users_get_collection(page=page)
+        api_response = api_instance.api_users_get_collection(page=page, exists_organization=exists_organization, exists_identity_verified_at=exists_identity_verified_at, exists_main_address=exists_main_address, order_created_at=order_created_at, email=email, email2=email2, intl_phone_number=intl_phone_number, first_name=first_name, last_name=last_name, created_at_before=created_at_before, created_at_strictly_before=created_at_strictly_before, created_at_after=created_at_after, created_at_strictly_after=created_at_strictly_after, identity_verified_at_before=identity_verified_at_before, identity_verified_at_strictly_before=identity_verified_at_strictly_before, identity_verified_at_after=identity_verified_at_after, identity_verified_at_strictly_after=identity_verified_at_strictly_after, updated_at_before=updated_at_before, updated_at_strictly_before=updated_at_strictly_before, updated_at_after=updated_at_after, updated_at_strictly_after=updated_at_strictly_after, birthday_before=birthday_before, birthday_strictly_before=birthday_strictly_before, birthday_after=birthday_after, birthday_strictly_after=birthday_strictly_after, totp_enabled=totp_enabled, lockdown=lockdown)
         print("The response of AdminApi->api_users_get_collection:\n")
         pprint(api_response)
     except Exception as e:
@@ -670,6 +697,33 @@ with tpdk_safe_checkout.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **int**| The collection page number | [optional] [default to 1]
+ **exists_organization** | **bool**|  | [optional] 
+ **exists_identity_verified_at** | **bool**|  | [optional] 
+ **exists_main_address** | **bool**|  | [optional] 
+ **order_created_at** | **str**|  | [optional] 
+ **email** | **str**|  | [optional] 
+ **email2** | [**List[str]**](str.md)|  | [optional] 
+ **intl_phone_number** | **str**|  | [optional] 
+ **first_name** | **str**|  | [optional] 
+ **last_name** | **str**|  | [optional] 
+ **created_at_before** | **str**|  | [optional] 
+ **created_at_strictly_before** | **str**|  | [optional] 
+ **created_at_after** | **str**|  | [optional] 
+ **created_at_strictly_after** | **str**|  | [optional] 
+ **identity_verified_at_before** | **str**|  | [optional] 
+ **identity_verified_at_strictly_before** | **str**|  | [optional] 
+ **identity_verified_at_after** | **str**|  | [optional] 
+ **identity_verified_at_strictly_after** | **str**|  | [optional] 
+ **updated_at_before** | **str**|  | [optional] 
+ **updated_at_strictly_before** | **str**|  | [optional] 
+ **updated_at_after** | **str**|  | [optional] 
+ **updated_at_strictly_after** | **str**|  | [optional] 
+ **birthday_before** | **str**|  | [optional] 
+ **birthday_strictly_before** | **str**|  | [optional] 
+ **birthday_after** | **str**|  | [optional] 
+ **birthday_strictly_after** | **str**|  | [optional] 
+ **totp_enabled** | **bool**|  | [optional] 
+ **lockdown** | **bool**|  | [optional] 
 
 ### Return type
 
@@ -956,8 +1010,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **authentication_post**
-> UserJwtCreated authentication_post(user_jwt_write=user_jwt_write)
+# **authentication_post_0**
+> UserJwtCreated authentication_post_0(user_jwt_write=user_jwt_write)
 
 User authentication
 
@@ -1002,11 +1056,11 @@ with tpdk_safe_checkout.ApiClient(configuration) as api_client:
 
     try:
         # User authentication
-        api_response = api_instance.authentication_post(user_jwt_write=user_jwt_write)
-        print("The response of AdminApi->authentication_post:\n")
+        api_response = api_instance.authentication_post_0(user_jwt_write=user_jwt_write)
+        print("The response of AdminApi->authentication_post_0:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling AdminApi->authentication_post: %s\n" % e)
+        print("Exception when calling AdminApi->authentication_post_0: %s\n" % e)
 ```
 
 
@@ -1042,8 +1096,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **statistics_post**
-> StatisticRead statistics_post(statistic_write=statistic_write)
+# **statistics_post_0**
+> StatisticRead statistics_post_0(statistic_write=statistic_write)
 
 Statistics Generator
 
@@ -1088,11 +1142,11 @@ with tpdk_safe_checkout.ApiClient(configuration) as api_client:
 
     try:
         # Statistics Generator
-        api_response = api_instance.statistics_post(statistic_write=statistic_write)
-        print("The response of AdminApi->statistics_post:\n")
+        api_response = api_instance.statistics_post_0(statistic_write=statistic_write)
+        print("The response of AdminApi->statistics_post_0:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling AdminApi->statistics_post: %s\n" % e)
+        print("Exception when calling AdminApi->statistics_post_0: %s\n" % e)
 ```
 
 

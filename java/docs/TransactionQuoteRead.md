@@ -39,7 +39,6 @@
 | SWISS_POST | &quot;SwissPost&quot; |
 | COLISSIMO | &quot;Colissimo&quot; |
 | MONDIAL_RELAY | &quot;MondialRelay&quot; |
-| NULL | &quot;null&quot; |
 
 
 

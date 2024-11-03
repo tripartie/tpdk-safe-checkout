@@ -10,6 +10,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**id** | **Integer** |  |  [optional] [readonly] |
 |**publicUrl** | **URI** |  |  |
+|**thumbnailUrl** | **URI** |  |  [optional] [readonly] |
 
 
 
