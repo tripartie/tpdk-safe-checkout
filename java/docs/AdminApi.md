@@ -15,8 +15,8 @@ All URIs are relative to *https://staging-api.tripartie.app*
 | [**apiUsersIdGet**](AdminApi.md#apiUsersIdGet) | **GET** /users/{id} | Retrieves a User resource. |
 | [**apiUsersIddisablePatch**](AdminApi.md#apiUsersIddisablePatch) | **PATCH** /users/{id}/disable | Updates the User resource. |
 | [**apiUsersIdenablePatch**](AdminApi.md#apiUsersIdenablePatch) | **PATCH** /users/{id}/enable | Updates the User resource. |
-| [**authenticationPost**](AdminApi.md#authenticationPost) | **POST** /authentication | User authentication |
-| [**statisticsPost**](AdminApi.md#statisticsPost) | **POST** /statistics | Statistics Generator |
+| [**authenticationPost_0**](AdminApi.md#authenticationPost_0) | **POST** /authentication | User authentication |
+| [**statisticsPost_0**](AdminApi.md#statisticsPost_0) | **POST** /statistics | Statistics Generator |
 
 
 <a id="apiApiClientsGetCollection"></a>
@@ -559,7 +559,7 @@ public class Example {
 
 <a id="apiUsersGetCollection"></a>
 # **apiUsersGetCollection**
-> List&lt;UserCollectionRead&gt; apiUsersGetCollection().page(page).execute();
+> List&lt;UserCollectionRead&gt; apiUsersGetCollection().page(page).existsOrganization(existsOrganization).existsIdentityVerifiedAt(existsIdentityVerifiedAt).existsMainAddress(existsMainAddress).orderCreatedAt(orderCreatedAt).email(email).email2(email2).intlPhoneNumber(intlPhoneNumber).firstName(firstName).lastName(lastName).createdAtBefore(createdAtBefore).createdAtStrictlyBefore(createdAtStrictlyBefore).createdAtAfter(createdAtAfter).createdAtStrictlyAfter(createdAtStrictlyAfter).identityVerifiedAtBefore(identityVerifiedAtBefore).identityVerifiedAtStrictlyBefore(identityVerifiedAtStrictlyBefore).identityVerifiedAtAfter(identityVerifiedAtAfter).identityVerifiedAtStrictlyAfter(identityVerifiedAtStrictlyAfter).updatedAtBefore(updatedAtBefore).updatedAtStrictlyBefore(updatedAtStrictlyBefore).updatedAtAfter(updatedAtAfter).updatedAtStrictlyAfter(updatedAtStrictlyAfter).birthdayBefore(birthdayBefore).birthdayStrictlyBefore(birthdayStrictlyBefore).birthdayAfter(birthdayAfter).birthdayStrictlyAfter(birthdayStrictlyAfter).totpEnabled(totpEnabled).lockdown(lockdown).execute();
 
 Retrieves the collection of User resources.
 
@@ -588,9 +588,63 @@ public class Example {
 
     AdminApi apiInstance = new AdminApi(defaultClient);
     Integer page = 1; // Integer | The collection page number
+    Boolean existsOrganization = true; // Boolean | 
+    Boolean existsIdentityVerifiedAt = true; // Boolean | 
+    Boolean existsMainAddress = true; // Boolean | 
+    String orderCreatedAt = "asc"; // String | 
+    String email = "email_example"; // String | 
+    List<String> email2 = Arrays.asList(); // List<String> | 
+    String intlPhoneNumber = "intlPhoneNumber_example"; // String | 
+    String firstName = "firstName_example"; // String | 
+    String lastName = "lastName_example"; // String | 
+    String createdAtBefore = "createdAtBefore_example"; // String | 
+    String createdAtStrictlyBefore = "createdAtStrictlyBefore_example"; // String | 
+    String createdAtAfter = "createdAtAfter_example"; // String | 
+    String createdAtStrictlyAfter = "createdAtStrictlyAfter_example"; // String | 
+    String identityVerifiedAtBefore = "identityVerifiedAtBefore_example"; // String | 
+    String identityVerifiedAtStrictlyBefore = "identityVerifiedAtStrictlyBefore_example"; // String | 
+    String identityVerifiedAtAfter = "identityVerifiedAtAfter_example"; // String | 
+    String identityVerifiedAtStrictlyAfter = "identityVerifiedAtStrictlyAfter_example"; // String | 
+    String updatedAtBefore = "updatedAtBefore_example"; // String | 
+    String updatedAtStrictlyBefore = "updatedAtStrictlyBefore_example"; // String | 
+    String updatedAtAfter = "updatedAtAfter_example"; // String | 
+    String updatedAtStrictlyAfter = "updatedAtStrictlyAfter_example"; // String | 
+    String birthdayBefore = "birthdayBefore_example"; // String | 
+    String birthdayStrictlyBefore = "birthdayStrictlyBefore_example"; // String | 
+    String birthdayAfter = "birthdayAfter_example"; // String | 
+    String birthdayStrictlyAfter = "birthdayStrictlyAfter_example"; // String | 
+    Boolean totpEnabled = true; // Boolean | 
+    Boolean lockdown = true; // Boolean | 
     try {
       List<UserCollectionRead> result = apiInstance.apiUsersGetCollection()
             .page(page)
+            .existsOrganization(existsOrganization)
+            .existsIdentityVerifiedAt(existsIdentityVerifiedAt)
+            .existsMainAddress(existsMainAddress)
+            .orderCreatedAt(orderCreatedAt)
+            .email(email)
+            .email2(email2)
+            .intlPhoneNumber(intlPhoneNumber)
+            .firstName(firstName)
+            .lastName(lastName)
+            .createdAtBefore(createdAtBefore)
+            .createdAtStrictlyBefore(createdAtStrictlyBefore)
+            .createdAtAfter(createdAtAfter)
+            .createdAtStrictlyAfter(createdAtStrictlyAfter)
+            .identityVerifiedAtBefore(identityVerifiedAtBefore)
+            .identityVerifiedAtStrictlyBefore(identityVerifiedAtStrictlyBefore)
+            .identityVerifiedAtAfter(identityVerifiedAtAfter)
+            .identityVerifiedAtStrictlyAfter(identityVerifiedAtStrictlyAfter)
+            .updatedAtBefore(updatedAtBefore)
+            .updatedAtStrictlyBefore(updatedAtStrictlyBefore)
+            .updatedAtAfter(updatedAtAfter)
+            .updatedAtStrictlyAfter(updatedAtStrictlyAfter)
+            .birthdayBefore(birthdayBefore)
+            .birthdayStrictlyBefore(birthdayStrictlyBefore)
+            .birthdayAfter(birthdayAfter)
+            .birthdayStrictlyAfter(birthdayStrictlyAfter)
+            .totpEnabled(totpEnabled)
+            .lockdown(lockdown)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
@@ -609,6 +663,33 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **page** | **Integer**| The collection page number | [optional] [default to 1] |
+| **existsOrganization** | **Boolean**|  | [optional] |
+| **existsIdentityVerifiedAt** | **Boolean**|  | [optional] |
+| **existsMainAddress** | **Boolean**|  | [optional] |
+| **orderCreatedAt** | **String**|  | [optional] [enum: asc, desc] |
+| **email** | **String**|  | [optional] |
+| **email2** | [**List&lt;String&gt;**](String.md)|  | [optional] |
+| **intlPhoneNumber** | **String**|  | [optional] |
+| **firstName** | **String**|  | [optional] |
+| **lastName** | **String**|  | [optional] |
+| **createdAtBefore** | **String**|  | [optional] |
+| **createdAtStrictlyBefore** | **String**|  | [optional] |
+| **createdAtAfter** | **String**|  | [optional] |
+| **createdAtStrictlyAfter** | **String**|  | [optional] |
+| **identityVerifiedAtBefore** | **String**|  | [optional] |
+| **identityVerifiedAtStrictlyBefore** | **String**|  | [optional] |
+| **identityVerifiedAtAfter** | **String**|  | [optional] |
+| **identityVerifiedAtStrictlyAfter** | **String**|  | [optional] |
+| **updatedAtBefore** | **String**|  | [optional] |
+| **updatedAtStrictlyBefore** | **String**|  | [optional] |
+| **updatedAtAfter** | **String**|  | [optional] |
+| **updatedAtStrictlyAfter** | **String**|  | [optional] |
+| **birthdayBefore** | **String**|  | [optional] |
+| **birthdayStrictlyBefore** | **String**|  | [optional] |
+| **birthdayAfter** | **String**|  | [optional] |
+| **birthdayStrictlyAfter** | **String**|  | [optional] |
+| **totpEnabled** | **Boolean**|  | [optional] |
+| **lockdown** | **Boolean**|  | [optional] |
 
 ### Return type
 
@@ -865,9 +946,9 @@ public class Example {
 | **429** | Rate limit exhausted |  -  |
 | **500** | Unexpected server error |  -  |
 
-<a id="authenticationPost"></a>
-# **authenticationPost**
-> UserJwtCreated authenticationPost().userJwtWrite(userJwtWrite).execute();
+<a id="authenticationPost_0"></a>
+# **authenticationPost_0**
+> UserJwtCreated authenticationPost_0().userJwtWrite(userJwtWrite).execute();
 
 User authentication
 
@@ -901,12 +982,12 @@ public class Example {
     AdminApi apiInstance = new AdminApi(defaultClient);
     UserJwtWrite userJwtWrite = new UserJwtWrite(); // UserJwtWrite | 
     try {
-      UserJwtCreated result = apiInstance.authenticationPost()
+      UserJwtCreated result = apiInstance.authenticationPost_0()
             .userJwtWrite(userJwtWrite)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling AdminApi#authenticationPost");
+      System.err.println("Exception when calling AdminApi#authenticationPost_0");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());
@@ -943,9 +1024,9 @@ public class Example {
 | **429** | Rate limit exhausted |  -  |
 | **500** | Unexpected server error |  -  |
 
-<a id="statisticsPost"></a>
-# **statisticsPost**
-> StatisticRead statisticsPost().statisticWrite(statisticWrite).execute();
+<a id="statisticsPost_0"></a>
+# **statisticsPost_0**
+> StatisticRead statisticsPost_0().statisticWrite(statisticWrite).execute();
 
 Statistics Generator
 
@@ -979,12 +1060,12 @@ public class Example {
     AdminApi apiInstance = new AdminApi(defaultClient);
     StatisticWrite statisticWrite = new StatisticWrite(); // StatisticWrite | 
     try {
-      StatisticRead result = apiInstance.statisticsPost()
+      StatisticRead result = apiInstance.statisticsPost_0()
             .statisticWrite(statisticWrite)
             .execute();
       System.out.println(result);
     } catch (ApiException e) {
-      System.err.println("Exception when calling AdminApi#statisticsPost");
+      System.err.println("Exception when calling AdminApi#statisticsPost_0");
       System.err.println("Status code: " + e.getCode());
       System.err.println("Reason: " + e.getResponseBody());
       System.err.println("Response headers: " + e.getResponseHeaders());

@@ -1,9 +1,9 @@
 # safecheckout
 
 Safe Checkout
-- API version: 2.0.69
-  - Build date: 2024-09-13T06:22:51.310403Z[Etc/UTC]
-  - Generator version: 7.8.0
+- API version: 2.0.98
+  - Build date: 2024-11-03T09:25:22.430485Z[Etc/UTC]
+  - Generator version: 7.9.0
 
 Simple, yet elegant web interfaces for your convenience. One request away from your first secured C2C transaction.
 
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.tripartie</groupId>
   <artifactId>safecheckout</artifactId>
-  <version>2.0.69</version>
+  <version>2.0.98</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.tripartie:safecheckout:2.0.69"
+     implementation "com.tripartie:safecheckout:2.0.98"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/safecheckout-2.0.69.jar`
+* `target/safecheckout-2.0.98.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -86,7 +86,7 @@ import com.tripartie.safecheckout.ApiClient;
 import com.tripartie.safecheckout.ApiException;
 import com.tripartie.safecheckout.Configuration;
 import com.tripartie.safecheckout.auth.*;
-import com.tripartie.safecheckout.models.*;
+import com.tripartie.safecheckout.model.*;
 import com.tripartie.safecheckout.api.AdminApi;
 
 public class Example {
@@ -136,8 +136,8 @@ Class | Method | HTTP request | Description
 *AdminApi* | [**apiUsersIdGet**](docs/AdminApi.md#apiUsersIdGet) | **GET** /users/{id} | Retrieves a User resource.
 *AdminApi* | [**apiUsersIddisablePatch**](docs/AdminApi.md#apiUsersIddisablePatch) | **PATCH** /users/{id}/disable | Updates the User resource.
 *AdminApi* | [**apiUsersIdenablePatch**](docs/AdminApi.md#apiUsersIdenablePatch) | **PATCH** /users/{id}/enable | Updates the User resource.
-*AdminApi* | [**authenticationPost**](docs/AdminApi.md#authenticationPost) | **POST** /authentication | User authentication
-*AdminApi* | [**statisticsPost**](docs/AdminApi.md#statisticsPost) | **POST** /statistics | Statistics Generator
+*AdminApi* | [**authenticationPost_0**](docs/AdminApi.md#authenticationPost_0) | **POST** /authentication | User authentication
+*AdminApi* | [**statisticsPost_0**](docs/AdminApi.md#statisticsPost_0) | **POST** /statistics | Statistics Generator
 *BrandingApi* | [**apiOrganizationsIdPatch**](docs/BrandingApi.md#apiOrganizationsIdPatch) | **PATCH** /organizations/{id} | Update your Organization details, branding or parameters
 *BrandingApi* | [**apiOrganizationsIdiconDelete**](docs/BrandingApi.md#apiOrganizationsIdiconDelete) | **DELETE** /organizations/{id}/icon | Unset your Organization Icon
 *BrandingApi* | [**apiOrganizationsIdiconPost**](docs/BrandingApi.md#apiOrganizationsIdiconPost) | **POST** /organizations/{id}/icon | Upload your Organization Icon

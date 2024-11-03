@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.69
+  version: 2.0.98
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -4782,6 +4782,308 @@ paths:
           default: 1
           type: integer
         style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "exists[organization]"
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "exists[identityVerifiedAt]"
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "exists[mainAddress]"
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "order[createdAt]"
+        required: false
+        schema:
+          enum:
+          - asc
+          - desc
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: email
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: true
+        in: query
+        name: "email[]"
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: intlPhoneNumber
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: firstName
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: lastName
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "createdAt[before]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "createdAt[strictly_before]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "createdAt[after]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "createdAt[strictly_after]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "identityVerifiedAt[before]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "identityVerifiedAt[strictly_before]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "identityVerifiedAt[after]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "identityVerifiedAt[strictly_after]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "updatedAt[before]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "updatedAt[strictly_before]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "updatedAt[after]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "updatedAt[strictly_after]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "birthday[before]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "birthday[strictly_before]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "birthday[after]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "birthday[strictly_after]"
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: totpEnabled
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: lockdown
+        required: false
+        schema:
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -6800,7 +7102,6 @@ components:
             enum:
             - PERSONA_READ
             - PERSONA_WRITE
-            - PERSONA_AUTH
             - OFFER_READ
             - OFFER_WRITE
             - ORGANIZATION_READ
@@ -7419,7 +7720,7 @@ components:
           nullable: true
           type: string
         thumbnail:
-          description: Associated 374x374 pixels small thumbnail
+          description: Associated 30% of original size thumbnail
           example: https://example.com/
           format: iri-reference
           nullable: true
@@ -7478,6 +7779,7 @@ components:
       example:
         publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         id: 6
+        thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
       properties:
         id:
           readOnly: true
@@ -7487,6 +7789,14 @@ components:
           externalDocs:
             url: https://schema.org/url
           format: uri
+          type: string
+        thumbnailUrl:
+          example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          externalDocs:
+            url: https://schema.org/url
+          format: uri
+          nullable: true
+          readOnly: true
           type: string
       required:
       - publicUrl
@@ -7783,10 +8093,12 @@ components:
           icon:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           primaryColor: primaryColor
           logo:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         allowToNegotiateUnitPrice: true
         publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
         minNegotiableUnitPrice: 6.0274563
@@ -8051,6 +8363,7 @@ components:
       example:
         publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         id: 6
+        thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
       properties:
         id:
           readOnly: true
@@ -8061,6 +8374,14 @@ components:
             url: https://schema.org/url
           format: uri
           type: string
+        thumbnailUrl:
+          example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          externalDocs:
+            url: https://schema.org/url
+          format: uri
+          nullable: true
+          readOnly: true
+          type: string
       required:
       - publicUrl
     Offer-Media-Read:
@@ -8069,6 +8390,7 @@ components:
       example:
         publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         id: 6
+        thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
       properties:
         id:
           readOnly: true
@@ -8078,6 +8400,14 @@ components:
           externalDocs:
             url: https://schema.org/url
           format: uri
+          type: string
+        thumbnailUrl:
+          example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          externalDocs:
+            url: https://schema.org/url
+          format: uri
+          nullable: true
+          readOnly: true
           type: string
       required:
       - publicUrl
@@ -8118,10 +8448,12 @@ components:
         icon:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         primaryColor: primaryColor
         logo:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
       properties:
         name:
           type: string
@@ -8144,10 +8476,12 @@ components:
         icon:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         primaryColor: primaryColor
         logo:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         customBaseUrl: customBaseUrl
       properties:
         name:
@@ -8289,8 +8623,10 @@ components:
         medias:
         - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         condition: USED
         shippingCarriers:
         - SwissPost
@@ -8301,10 +8637,12 @@ components:
           icon:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           primaryColor: primaryColor
           logo:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           customBaseUrl: customBaseUrl
         publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
         currencyCode: EUR
@@ -8680,9 +9018,11 @@ components:
         icon:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         logo:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         id: 0
         commercialRegistryNumber: commercialRegistryNumber
         vatNumber: vatNumber
@@ -8710,6 +9050,7 @@ components:
       example:
         publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         id: 6
+        thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
       properties:
         id:
           readOnly: true
@@ -8720,6 +9061,14 @@ components:
             url: https://schema.org/url
           format: uri
           type: string
+        thumbnailUrl:
+          example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          externalDocs:
+            url: https://schema.org/url
+          format: uri
+          nullable: true
+          readOnly: true
+          type: string
       required:
       - publicUrl
     Organization-Media-Read:
@@ -8728,6 +9077,7 @@ components:
       example:
         publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         id: 6
+        thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
       properties:
         id:
           readOnly: true
@@ -8737,6 +9087,14 @@ components:
           externalDocs:
             url: https://schema.org/url
           format: uri
+          type: string
+        thumbnailUrl:
+          example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          externalDocs:
+            url: https://schema.org/url
+          format: uri
+          nullable: true
+          readOnly: true
           type: string
       required:
       - publicUrl
@@ -8750,10 +9108,12 @@ components:
         icon:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         primaryColor: primaryColor
         logo:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         commercialRegistryNumber: commercialRegistryNumber
         customBaseUrl: customBaseUrl
         vatNumber: vatNumber
@@ -8825,9 +9185,11 @@ components:
         icon:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         logo:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         id: 6
       properties:
         id:
@@ -9304,9 +9666,11 @@ components:
           icon:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           logo:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
         id: 1
       properties:
@@ -9985,8 +10349,10 @@ components:
           medias:
           - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           createdAt: 2000-01-23T04:56:07.000+00:00
           condition: USED
           organization:
@@ -9995,10 +10361,12 @@ components:
             icon:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
               id: 6
+              thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             primaryColor: primaryColor
             logo:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
               id: 6
+              thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           allowToNegotiateUnitPrice: true
           publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
           minNegotiableUnitPrice: 1.4658129
@@ -10129,6 +10497,7 @@ components:
       example:
         publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         id: 6
+        thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
       properties:
         id:
           readOnly: true
@@ -10139,6 +10508,14 @@ components:
             url: https://schema.org/url
           format: uri
           type: string
+        thumbnailUrl:
+          example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          externalDocs:
+            url: https://schema.org/url
+          format: uri
+          nullable: true
+          readOnly: true
+          type: string
       required:
       - publicUrl
     Transaction-Media-Read:
@@ -10147,6 +10524,7 @@ components:
       example:
         publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         id: 6
+        thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
       properties:
         id:
           readOnly: true
@@ -10156,6 +10534,14 @@ components:
           externalDocs:
             url: https://schema.org/url
           format: uri
+          type: string
+        thumbnailUrl:
+          example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          externalDocs:
+            url: https://schema.org/url
+          format: uri
+          nullable: true
+          readOnly: true
           type: string
       required:
       - publicUrl
@@ -10189,8 +10575,10 @@ components:
         medias:
         - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         createdAt: 2000-01-23T04:56:07.000+00:00
         condition: USED
         organization:
@@ -10199,10 +10587,12 @@ components:
           icon:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           primaryColor: primaryColor
           logo:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         allowToNegotiateUnitPrice: true
         publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
         minNegotiableUnitPrice: 1.4658129
@@ -10339,8 +10729,10 @@ components:
         medias:
         - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         createdAt: 2000-01-23T04:56:07.000+00:00
         condition: USED
         shippingCarriers:
@@ -10353,10 +10745,12 @@ components:
           icon:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           primaryColor: primaryColor
           logo:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
         currencyCode: EUR
         presetBuyer:
@@ -10518,10 +10912,12 @@ components:
         icon:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         primaryColor: primaryColor
         logo:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
       properties:
         name:
           type: string
@@ -10544,10 +10940,12 @@ components:
         icon:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         primaryColor: primaryColor
         logo:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
       properties:
         name:
           type: string
@@ -10997,8 +11395,10 @@ components:
           medias:
           - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           createdAt: 2000-01-23T04:56:07.000+00:00
           condition: USED
           shippingCarriers:
@@ -11011,10 +11411,12 @@ components:
             icon:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
               id: 6
+              thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             primaryColor: primaryColor
             logo:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
               id: 6
+              thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
           currencyCode: EUR
           presetBuyer:
@@ -11673,9 +12075,11 @@ components:
             icon:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
               id: 6
+              thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             logo:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
               id: 6
+              thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 1
           id: 5
         - organization:
@@ -11684,14 +12088,17 @@ components:
             icon:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
               id: 6
+              thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             logo:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
               id: 6
+              thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 1
           id: 5
         avatar:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         mainAddress:
           zipCode: "75004"
           buildingName: Electron
@@ -11712,9 +12119,11 @@ components:
           icon:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           logo:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 1
         originCountry: FRA
         roleInCompany: Accounting Dpt
@@ -12027,6 +12436,7 @@ components:
         avatar:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         mainAddress:
           zipCode: "75004"
           buildingName: Electron
@@ -12227,6 +12637,7 @@ components:
       example:
         publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         id: 6
+        thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
       properties:
         id:
           readOnly: true
@@ -12236,6 +12647,14 @@ components:
           externalDocs:
             url: https://schema.org/url
           format: uri
+          type: string
+        thumbnailUrl:
+          example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          externalDocs:
+            url: https://schema.org/url
+          format: uri
+          nullable: true
+          readOnly: true
           type: string
       required:
       - publicUrl
@@ -12245,6 +12664,7 @@ components:
       example:
         publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         id: 6
+        thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
       properties:
         id:
           readOnly: true
@@ -12254,6 +12674,14 @@ components:
           externalDocs:
             url: https://schema.org/url
           format: uri
+          type: string
+        thumbnailUrl:
+          example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          externalDocs:
+            url: https://schema.org/url
+          format: uri
+          nullable: true
+          readOnly: true
           type: string
       required:
       - publicUrl
@@ -12263,6 +12691,7 @@ components:
       example:
         publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         id: 6
+        thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
       properties:
         id:
           readOnly: true
@@ -12273,6 +12702,14 @@ components:
             url: https://schema.org/url
           format: uri
           type: string
+        thumbnailUrl:
+          example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          externalDocs:
+            url: https://schema.org/url
+          format: uri
+          nullable: true
+          readOnly: true
+          type: string
       required:
       - publicUrl
     User-Media-SupportRead:
@@ -12281,6 +12718,7 @@ components:
       example:
         publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         id: 6
+        thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
       properties:
         id:
           readOnly: true
@@ -12290,6 +12728,14 @@ components:
           externalDocs:
             url: https://schema.org/url
           format: uri
+          type: string
+        thumbnailUrl:
+          example: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
+          externalDocs:
+            url: https://schema.org/url
+          format: uri
+          nullable: true
+          readOnly: true
           type: string
       required:
       - publicUrl
@@ -12302,9 +12748,11 @@ components:
         icon:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         logo:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         id: 1
       properties:
         id:
@@ -12341,9 +12789,11 @@ components:
         icon:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         logo:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         id: 0
       properties:
         id:
@@ -12382,9 +12832,11 @@ components:
           icon:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           logo:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 1
         id: 5
       properties:
@@ -12433,6 +12885,7 @@ components:
         avatar:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         mainAddress:
           zipCode: "75004"
           buildingName: Electron
@@ -12771,9 +13224,11 @@ components:
             icon:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
               id: 6
+              thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             logo:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
               id: 6
+              thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
           id: 1
         - organization:
@@ -12782,14 +13237,17 @@ components:
             icon:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
               id: 6
+              thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             logo:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
               id: 6
+              thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
           id: 1
         avatar:
           publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
+          thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         mainAddress:
           zipCode: "75004"
           buildingName: Electron
@@ -12810,9 +13268,11 @@ components:
           icon:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           logo:
             publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           id: 6
         originCountry: FRA
         roleInCompany: Accounting Dpt
@@ -13411,6 +13871,7 @@ components:
         normalizedObject:
           items:
             type: string
+          nullable: true
           type: array
         responseCode:
           nullable: true
@@ -13543,8 +14004,10 @@ components:
           medias:
           - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           - publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             id: 6
+            thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
           condition: USED
           shippingCarriers:
           - SwissPost
@@ -13555,10 +14018,12 @@ components:
             icon:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
               id: 6
+              thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             primaryColor: primaryColor
             logo:
               publicUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
               id: 6
+              thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
             customBaseUrl: customBaseUrl
           publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
           currencyCode: EUR
@@ -13602,10 +14067,14 @@ components:
       properties:
         request:
           example:
-          - OFFER_PUBLISHED_AMOUNT
-          - OFFER_PUBLISHED_COUNT
+          - FINALIZED_CASHOUT_AMOUNT
+          - FINALIZED_CASHOUT_COUNT
           items:
             enum:
+            - FINALIZED_CASHOUT_AMOUNT
+            - FINALIZED_CASHOUT_COUNT
+            - PENDING_CASHOUT_AMOUNT
+            - PENDING_CASHOUT_COUNT
             - OFFER_PUBLISHED_AMOUNT
             - OFFER_PUBLISHED_COUNT
             - TRANSACTION_ACCEPTED_PROPOSAL_AMOUNT
@@ -13657,13 +14126,17 @@ components:
       - request
     Statistic-OutputSingleValue:
       example:
-        request: OFFER_PUBLISHED_AMOUNT
+        request: FINALIZED_CASHOUT_AMOUNT
         endAt: 2000-01-23T04:56:07.000+00:00
         value: 2554
         startAt: 2000-01-23T04:56:07.000+00:00
       properties:
         request:
           enum:
+          - FINALIZED_CASHOUT_AMOUNT
+          - FINALIZED_CASHOUT_COUNT
+          - PENDING_CASHOUT_AMOUNT
+          - PENDING_CASHOUT_COUNT
           - OFFER_PUBLISHED_AMOUNT
           - OFFER_PUBLISHED_COUNT
           - TRANSACTION_ACCEPTED_PROPOSAL_AMOUNT
@@ -13678,7 +14151,7 @@ components:
           - TRANSACTION_CREATED_COUNT
           - WALLET_AVAILABLE_AMOUNT
           - WALLET_IN_CUSTODY_AMOUNT
-          example: OFFER_PUBLISHED_AMOUNT
+          example: FINALIZED_CASHOUT_AMOUNT
           type: string
         startAt:
           format: date-time
@@ -13713,6 +14186,10 @@ components:
       properties:
         request:
           enum:
+          - FINALIZED_CASHOUT_AMOUNT
+          - FINALIZED_CASHOUT_COUNT
+          - PENDING_CASHOUT_AMOUNT
+          - PENDING_CASHOUT_COUNT
           - OFFER_PUBLISHED_AMOUNT
           - OFFER_PUBLISHED_COUNT
           - TRANSACTION_ACCEPTED_PROPOSAL_AMOUNT
@@ -13727,7 +14204,7 @@ components:
           - TRANSACTION_CREATED_COUNT
           - WALLET_AVAILABLE_AMOUNT
           - WALLET_IN_CUSTODY_AMOUNT
-          example: OFFER_PUBLISHED_AMOUNT
+          example: FINALIZED_CASHOUT_AMOUNT
           type: string
         values:
           items:
@@ -13739,16 +14216,16 @@ components:
     Statistic-Read:
       example:
         request:
-        - OFFER_PUBLISHED_AMOUNT
-        - OFFER_PUBLISHED_COUNT
+        - FINALIZED_CASHOUT_AMOUNT
+        - FINALIZED_CASHOUT_COUNT
         focusType: Organization
         groupByPeriod: MONTHLY
         data:
-        - request: OFFER_PUBLISHED_AMOUNT
+        - request: FINALIZED_CASHOUT_AMOUNT
           endAt: 2000-01-23T04:56:07.000+00:00
           value: 2554
           startAt: 2000-01-23T04:56:07.000+00:00
-        - request: OFFER_PUBLISHED_AMOUNT
+        - request: FINALIZED_CASHOUT_AMOUNT
           endAt: 2000-01-23T04:56:07.000+00:00
           value: 2554
           startAt: 2000-01-23T04:56:07.000+00:00
@@ -13758,10 +14235,14 @@ components:
       properties:
         request:
           example:
-          - OFFER_PUBLISHED_AMOUNT
-          - OFFER_PUBLISHED_COUNT
+          - FINALIZED_CASHOUT_AMOUNT
+          - FINALIZED_CASHOUT_COUNT
           items:
             enum:
+            - FINALIZED_CASHOUT_AMOUNT
+            - FINALIZED_CASHOUT_COUNT
+            - PENDING_CASHOUT_AMOUNT
+            - PENDING_CASHOUT_COUNT
             - OFFER_PUBLISHED_AMOUNT
             - OFFER_PUBLISHED_COUNT
             - TRANSACTION_ACCEPTED_PROPOSAL_AMOUNT

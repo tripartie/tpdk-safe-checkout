@@ -21,7 +21,6 @@
 |---- | -----|
 | PERSONA_READ | &quot;PERSONA_READ&quot; |
 | PERSONA_WRITE | &quot;PERSONA_WRITE&quot; |
-| PERSONA_AUTH | &quot;PERSONA_AUTH&quot; |
 | OFFER_READ | &quot;OFFER_READ&quot; |
 | OFFER_WRITE | &quot;OFFER_WRITE&quot; |
 | ORGANIZATION_READ | &quot;ORGANIZATION_READ&quot; |

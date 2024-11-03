@@ -43,7 +43,6 @@
 | ERROR | &quot;ERROR&quot; |
 | ACCEPTED | &quot;ACCEPTED&quot; |
 | REFUSED | &quot;REFUSED&quot; |
-| NULL | &quot;null&quot; |
 
 
 
