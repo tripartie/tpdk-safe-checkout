@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.98
+  version: 2.0.101
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -7141,9 +7141,16 @@ components:
       example:
         processorStatus: unallocated
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        iban: iban
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+        bic: bic
         providerName: providerName
       properties:
+        iban:
+          type: string
+        bic:
+          nullable: true
+          type: string
         providerName:
           nullable: true
           type: string

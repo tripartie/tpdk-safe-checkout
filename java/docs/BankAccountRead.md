@@ -8,6 +8,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**iban** | **String** |  |  [optional] |
+|**bic** | **String** |  |  [optional] |
 |**providerName** | **String** |  |  [optional] |
 |**providerCreatedAt** | **OffsetDateTime** |  |  [optional] |
 |**providerUpdatedAt** | **OffsetDateTime** |  |  [optional] |
