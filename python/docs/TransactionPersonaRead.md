@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **mobile_phone_number** | **str** |  | [optional] 
 **address** | [**TransactionAddressRead**](TransactionAddressRead.md) |  | [optional] 
 **registered** | **bool** | Determine if the Persona have a Tripartie account | [optional] [readonly] 
+**verified** | **bool** | Determine if the Persona have a VERIFIED Tripartie account | [optional] [readonly] 
 
 ## Example
 

@@ -14,6 +14,8 @@ Name | Type | Description | Notes
 **updated_at** | **datetime** |  | [optional] [readonly] 
 **offer_count** | **int** | Issued Offers count owned by a given Persona | [optional] [readonly] 
 **purchase_count** | **int** |  | [optional] [readonly] 
+**registered** | **bool** | Determine if the Persona have a Tripartie account | [optional] [readonly] 
+**verified** | **bool** | Determine if the Persona have a VERIFIED Tripartie account | [optional] [readonly] 
 
 ## Example
 

@@ -22,8 +22,10 @@
 |**balanceToRefund** | **BigDecimal** |  |  [optional] |
 |**feesToRefund** | **BigDecimal** |  |  [optional] |
 |**forceRefundShipping** | **Boolean** | Shipping is never refunded on purpose. Once deposited (parcel), we are billed for it. |  [optional] |
-|**review** | **String** |  |  [optional] |
-|**rating** | **Integer** |  |  [optional] |
+|**buyerReview** | **String** |  |  [optional] |
+|**buyerRating** | **Integer** |  |  [optional] |
+|**sellerReview** | **String** |  |  [optional] |
+|**sellerRating** | **Integer** |  |  [optional] |
 |**handOverCode** | **String** |  |  [optional] |
 |**parcels** | [**List&lt;TransactionParcelRead&gt;**](TransactionParcelRead.md) |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  |
@@ -37,6 +39,8 @@
 |**totalFees** | **BigDecimal** |  |  [optional] [readonly] |
 |**awaitedParty** | [**AwaitedPartyEnum**](#AwaitedPartyEnum) | Determine who is awaited (actor) for the next transition |  [optional] [readonly] |
 |**statusExpiration** | **OffsetDateTime** | Yield if eligible the date-time at which the transaction state expire. |  [optional] [readonly] |
+|**review** | **String** |  |  [optional] [readonly] |
+|**rating** | **Integer** |  |  [optional] [readonly] |
 |**processorStatus** | [**ProcessorStatusEnum**](#ProcessorStatusEnum) | Automagically infer on what state the entity is at the Payment Processor. |  [optional] [readonly] |
 
 

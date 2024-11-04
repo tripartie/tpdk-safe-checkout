@@ -7,6 +7,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **registered** | **bool** | Determine if the Persona have a Tripartie account | [optional] [readonly] 
+**verified** | **bool** | Determine if the Persona have a VERIFIED Tripartie account | [optional] [readonly] 
 
 ## Example
 

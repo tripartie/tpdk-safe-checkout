@@ -11,10 +11,14 @@ Name | Type | Description | Notes
 **balance_to_refund** | **float** |  | [optional] 
 **fees_to_refund** | **float** |  | [optional] 
 **force_refund_shipping** | **bool** | Shipping is never refunded on purpose. Once deposited (parcel), we are billed for it. | [optional] 
-**review** | **str** |  | [optional] 
-**rating** | **int** |  | [optional] 
+**buyer_review** | **str** |  | [optional] 
+**buyer_rating** | **int** |  | [optional] 
+**seller_review** | **str** |  | [optional] 
+**seller_rating** | **int** |  | [optional] 
 **hand_over_code_confirmation** | **str** |  | [optional] 
 **updated_at** | **datetime** |  | [optional] 
+**review** | **str** |  | [optional] [readonly] 
+**rating** | **int** |  | [optional] [readonly] 
 
 ## Example
 

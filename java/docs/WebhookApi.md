@@ -321,7 +321,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **page** | **Integer**| The collection page number | [optional] [default to 1] |
-| **event** | **String**| Filter on a specific value of event | [optional] [enum: offer.transaction.authorized, offer.transaction.accepted, offer.transaction.shipped, offer.transaction.delivered, offer.transaction.completed, offer.transaction.canceled, offer.transaction.disputed, offer.closed, persona.added] |
+| **event** | **String**| Filter on a specific value of event | [optional] [enum: offer.transaction.authorized, offer.transaction.accepted, offer.transaction.shipped, offer.transaction.delivered, offer.transaction.completed, offer.transaction.canceled, offer.transaction.disputed, offer.closed, persona.added, offer.transaction.reviewed] |
 | **event2** | [**List&lt;String&gt;**](String.md)| Filter on a limited subset of event | [optional] |
 
 ### Return type

@@ -6,6 +6,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**iban** | **str** |  | [optional] 
+**bic** | **str** |  | [optional] 
 **provider_name** | **str** |  | [optional] 
 **provider_created_at** | **datetime** |  | [optional] 
 **provider_updated_at** | **datetime** |  | [optional] 
