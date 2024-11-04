@@ -23,6 +23,7 @@
 |**offerCount** | **Integer** | Issued Offers count owned by a given Persona |  [optional] [readonly] |
 |**purchaseCount** | **Integer** |  |  [optional] [readonly] |
 |**registered** | **Boolean** | Determine if the Persona have a Tripartie account |  [optional] [readonly] |
+|**verified** | **Boolean** | Determine if the Persona have a VERIFIED Tripartie account |  [optional] [readonly] |
 
 
 

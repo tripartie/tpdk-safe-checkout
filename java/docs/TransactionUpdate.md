@@ -13,10 +13,14 @@
 |**balanceToRefund** | **BigDecimal** |  |  [optional] |
 |**feesToRefund** | **BigDecimal** |  |  [optional] |
 |**forceRefundShipping** | **Boolean** | Shipping is never refunded on purpose. Once deposited (parcel), we are billed for it. |  [optional] |
-|**review** | **String** |  |  [optional] |
-|**rating** | **Integer** |  |  [optional] |
+|**buyerReview** | **String** |  |  [optional] |
+|**buyerRating** | **Integer** |  |  [optional] |
+|**sellerReview** | **String** |  |  [optional] |
+|**sellerRating** | **Integer** |  |  [optional] |
 |**handOverCodeConfirmation** | **String** |  |  [optional] |
 |**updatedAt** | **OffsetDateTime** |  |  [optional] |
+|**review** | **String** |  |  [optional] [readonly] |
+|**rating** | **Integer** |  |  [optional] [readonly] |
 
 
 

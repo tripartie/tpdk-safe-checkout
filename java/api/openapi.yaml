@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.98
+  version: 2.0.102
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -6702,6 +6702,7 @@ paths:
           - offer.transaction.disputed
           - offer.closed
           - persona.added
+          - offer.transaction.reviewed
           type: string
         style: form
       - allowEmptyValue: true
@@ -7141,9 +7142,16 @@ components:
       example:
         processorStatus: unallocated
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
+        iban: iban
         providerCreatedAt: 2000-01-23T04:56:07.000+00:00
+        bic: bic
         providerName: providerName
       properties:
+        iban:
+          type: string
+        bic:
+          nullable: true
+          type: string
         providerName:
           nullable: true
           type: string
@@ -8558,10 +8566,15 @@ components:
       deprecated: false
       description: ""
       example:
+        verified: true
         registered: true
       properties:
         registered:
           description: Determine if the Persona have a Tripartie account
+          readOnly: true
+          type: boolean
+        verified:
+          description: Determine if the Persona have a VERIFIED Tripartie account
           readOnly: true
           type: boolean
     Offer-PostCreationRead:
@@ -8595,6 +8608,7 @@ components:
       description: ""
       example:
         seller:
+          verified: true
           registered: true
         redirectUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold?checkout=true
         ulid: ulid
@@ -8610,6 +8624,7 @@ components:
         createdAt: 2000-01-23T04:56:07.000+00:00
         eanCode: "4718017388450"
         presetBuyer:
+          verified: true
           registered: true
         updatedAt: 2000-01-23T04:56:07.000+00:00
         unitPrice: 0.8008282
@@ -9295,6 +9310,10 @@ components:
           description: Determine if the Persona have a Tripartie account
           readOnly: true
           type: boolean
+        verified:
+          description: Determine if the Persona have a VERIFIED Tripartie account
+          readOnly: true
+          type: boolean
       required:
       - offers
       - purchases
@@ -9426,6 +9445,8 @@ components:
         createdAt: 2000-01-23T04:56:07.000+00:00
         offerCount: 4
         purchaseCount: 42
+        verified: true
+        registered: true
         id: 0
         email: john.doe@gmail.com
         updatedAt: 2000-01-23T04:56:07.000+00:00
@@ -9461,6 +9482,14 @@ components:
           example: 42
           readOnly: true
           type: integer
+        registered:
+          description: Determine if the Persona have a Tripartie account
+          readOnly: true
+          type: boolean
+        verified:
+          description: Determine if the Persona have a VERIFIED Tripartie account
+          readOnly: true
+          type: boolean
     Persona-Metadata-Read:
       deprecated: false
       description: ""
@@ -9528,6 +9557,7 @@ components:
         gender: RATHER_NOT_SAY
         offerCount: 4
         purchaseCount: 42
+        verified: true
         registered: true
         dateOfBirth: ""
         language: fr
@@ -9599,6 +9629,10 @@ components:
           type: integer
         registered:
           description: Determine if the Persona have a Tripartie account
+          readOnly: true
+          type: boolean
+        verified:
+          description: Determine if the Persona have a VERIFIED Tripartie account
           readOnly: true
           type: boolean
     Persona-Update:
@@ -10700,6 +10734,7 @@ components:
             firstLine: 118 avenue des champs élysées
             buildingFloor: Third floor
             gateOrPortalOrInboxCode: "3124"
+          verified: true
           registered: true
           language: fr
           id: 0
@@ -10767,6 +10802,7 @@ components:
             firstLine: 118 avenue des champs élysées
             buildingFloor: Third floor
             gateOrPortalOrInboxCode: "3124"
+          verified: true
           registered: true
           language: fr
           id: 0
@@ -11068,6 +11104,7 @@ components:
           firstLine: 118 avenue des champs élysées
           buildingFloor: Third floor
           gateOrPortalOrInboxCode: "3124"
+        verified: true
         registered: true
         language: fr
         id: 0
@@ -11101,6 +11138,10 @@ components:
           $ref: '#/components/schemas/Transaction-Address-Read'
         registered:
           description: Determine if the Persona have a Tripartie account
+          readOnly: true
+          type: boolean
+        verified:
+          description: Determine if the Persona have a VERIFIED Tripartie account
           readOnly: true
           type: boolean
     Transaction-Quote-CollectionRead:
@@ -11341,15 +11382,17 @@ components:
       deprecated: false
       description: ""
       example:
-        totalFees: 5.025004791520295
+        totalFees: 9.965781217890562
         metadata:
         - value: "54412"
           key: External-ID
         - value: "54412"
           key: External-ID
         ulid: ulid
+        sellerReview: sellerReview
         remotePayInId: remotePayInId
-        rating: 7
+        sellerRating: 1
+        rating: 9
         handOverCode: handOverCode
         offer:
           seller:
@@ -11366,6 +11409,7 @@ components:
               firstLine: 118 avenue des champs élysées
               buildingFloor: Third floor
               gateOrPortalOrInboxCode: "3124"
+            verified: true
             registered: true
             language: fr
             id: 0
@@ -11433,6 +11477,7 @@ components:
               firstLine: 118 avenue des champs élysées
               buildingFloor: Third floor
               gateOrPortalOrInboxCode: "3124"
+            verified: true
             registered: true
             language: fr
             id: 0
@@ -11440,7 +11485,7 @@ components:
           status: issued
           updatedAt: 2000-01-23T04:56:07.000+00:00
         createdAt: 2000-01-23T04:56:07.000+00:00
-        total: 1.1730742509559433
+        total: 4.965218492984954
         quote:
           unitPrice: 3.616076749251911
           sellerTotal: 7.386281948385884
@@ -11488,7 +11533,8 @@ components:
         balanceToRefund: 1.4894159098541704
         providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
         awaitedParty: BUYER
-        totalCharged: 4.965218492984954
+        buyerReview: buyerReview
+        totalCharged: 5.025004791520295
         statusExpiration: 2000-01-23T04:56:07.000+00:00
         buyer:
           firstName: John
@@ -11504,6 +11550,7 @@ components:
             firstLine: 118 avenue des champs élysées
             buildingFloor: Third floor
             gateOrPortalOrInboxCode: "3124"
+          verified: true
           registered: true
           language: fr
           id: 0
@@ -11513,6 +11560,7 @@ components:
         supplementalFees: 1.2315135367772556
         forceRefundShipping: true
         feesToRefund: 6.84685269835264
+        buyerRating: 7
         card:
           processorStatus: unallocated
           providerUpdatedAt: 2000-01-23T04:56:07.000+00:00
@@ -11600,10 +11648,16 @@ components:
             \ we are billed for it."
           nullable: true
           type: boolean
-        review:
+        buyerReview:
           nullable: true
           type: string
-        rating:
+        buyerRating:
+          nullable: true
+          type: integer
+        sellerReview:
+          nullable: true
+          type: string
+        sellerRating:
           nullable: true
           type: integer
         handOverCode:
@@ -11660,6 +11714,16 @@ components:
           nullable: true
           readOnly: true
           type: string
+        review:
+          deprecated: true
+          nullable: true
+          readOnly: true
+          type: string
+        rating:
+          deprecated: true
+          nullable: true
+          readOnly: true
+          type: integer
         processorStatus:
           description: Automagically infer on what state the entity is at the Payment
             Processor.
@@ -11713,12 +11777,22 @@ components:
             \ we are billed for it."
           nullable: true
           type: boolean
-        review:
+        buyerReview:
           maxLength: 10000
           minLength: 60
           nullable: true
           type: string
-        rating:
+        buyerRating:
+          maximum: 10
+          minimum: 0
+          nullable: true
+          type: integer
+        sellerReview:
+          maxLength: 10000
+          minLength: 60
+          nullable: true
+          type: string
+        sellerRating:
           maximum: 10
           minimum: 0
           nullable: true
@@ -11730,6 +11804,16 @@ components:
           format: date-time
           nullable: true
           type: string
+        review:
+          deprecated: true
+          nullable: true
+          readOnly: true
+          type: string
+        rating:
+          deprecated: true
+          nullable: true
+          readOnly: true
+          type: integer
     Transaction-Wallet-Read:
       deprecated: false
       description: ""
@@ -13804,6 +13888,7 @@ components:
           - offer.transaction.disputed
           - offer.closed
           - persona.added
+          - offer.transaction.reviewed
           type: string
         responseCode:
           nullable: true
@@ -13865,6 +13950,7 @@ components:
           - offer.transaction.disputed
           - offer.closed
           - persona.added
+          - offer.transaction.reviewed
           type: string
         url:
           type: string
@@ -13925,6 +14011,7 @@ components:
           - offer.transaction.disputed
           - offer.closed
           - persona.added
+          - offer.transaction.reviewed
           - null
           nullable: true
           type: string
@@ -13954,6 +14041,7 @@ components:
           - offer.transaction.disputed
           - offer.closed
           - persona.added
+          - offer.transaction.reviewed
           - null
           nullable: true
           type: string
@@ -13976,6 +14064,7 @@ components:
         objectId: 01ARZ3NDEKTSV4RRFFQ69G5FAV
         object:
           seller:
+            verified: true
             registered: true
           redirectUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold?checkout=true
           ulid: ulid
@@ -13991,6 +14080,7 @@ components:
           createdAt: 2000-01-23T04:56:07.000+00:00
           eanCode: "4718017388450"
           presetBuyer:
+            verified: true
             registered: true
           updatedAt: 2000-01-23T04:56:07.000+00:00
           unitPrice: 0.8008282
@@ -14043,6 +14133,7 @@ components:
           - offer.transaction.disputed
           - offer.closed
           - persona.added
+          - offer.transaction.reviewed
           example: offer.closed
           type: string
         objectId:

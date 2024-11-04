@@ -20,8 +20,10 @@ Name | Type | Description | Notes
 **balance_to_refund** | **float** |  | [optional] 
 **fees_to_refund** | **float** |  | [optional] 
 **force_refund_shipping** | **bool** | Shipping is never refunded on purpose. Once deposited (parcel), we are billed for it. | [optional] 
-**review** | **str** |  | [optional] 
-**rating** | **int** |  | [optional] 
+**buyer_review** | **str** |  | [optional] 
+**buyer_rating** | **int** |  | [optional] 
+**seller_review** | **str** |  | [optional] 
+**seller_rating** | **int** |  | [optional] 
 **hand_over_code** | **str** |  | [optional] 
 **parcels** | [**List[TransactionParcelRead]**](TransactionParcelRead.md) |  | [optional] 
 **created_at** | **datetime** |  | 
@@ -35,6 +37,8 @@ Name | Type | Description | Notes
 **total_fees** | **float** |  | [optional] [readonly] 
 **awaited_party** | **str** | Determine who is awaited (actor) for the next transition | [optional] [readonly] 
 **status_expiration** | **datetime** | Yield if eligible the date-time at which the transaction state expire. | [optional] [readonly] 
+**review** | **str** |  | [optional] [readonly] 
+**rating** | **int** |  | [optional] [readonly] 
 **processor_status** | **str** | Automagically infer on what state the entity is at the Payment Processor. | [optional] [readonly] 
 
 ## Example
