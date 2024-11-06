@@ -8,12 +8,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] [readonly] 
 **ip_address** | **str** |  | 
+**country_code** | **str** |  | [optional] 
+**is_european_union** | **bool** |  | [optional] 
 **offer** | **str** |  | [optional] 
 **transaction** | **str** |  | [optional] 
 **user** | **str** |  | [optional] 
 **hit_count** | **int** |  | [default to 1]
 **created_at** | **datetime** |  | [optional] [readonly] 
-**named_source** | **str** |  | [optional] [readonly] 
 
 ## Example
 

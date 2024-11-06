@@ -47,6 +47,7 @@ docs/OfferMetadataIndependentWrite.md
 docs/OfferMetadataUpdate.md
 docs/OfferOrganizationCollectionRead.md
 docs/OfferOrganizationRead.md
+docs/OfferPersonaCollectionRead.md
 docs/OfferPersonaIndependentWrite.md
 docs/OfferPersonaRead.md
 docs/OfferPostCreationRead.md
@@ -233,6 +234,7 @@ src/main/java/com/tripartie/safecheckout/model/OfferMetadataIndependentWrite.jav
 src/main/java/com/tripartie/safecheckout/model/OfferMetadataUpdate.java
 src/main/java/com/tripartie/safecheckout/model/OfferOrganizationCollectionRead.java
 src/main/java/com/tripartie/safecheckout/model/OfferOrganizationRead.java
+src/main/java/com/tripartie/safecheckout/model/OfferPersonaCollectionRead.java
 src/main/java/com/tripartie/safecheckout/model/OfferPersonaIndependentWrite.java
 src/main/java/com/tripartie/safecheckout/model/OfferPersonaRead.java
 src/main/java/com/tripartie/safecheckout/model/OfferPostCreationRead.java
@@ -382,6 +384,7 @@ src/test/java/com/tripartie/safecheckout/model/OfferMetadataIndependentWriteTest
 src/test/java/com/tripartie/safecheckout/model/OfferMetadataUpdateTest.java
 src/test/java/com/tripartie/safecheckout/model/OfferOrganizationCollectionReadTest.java
 src/test/java/com/tripartie/safecheckout/model/OfferOrganizationReadTest.java
+src/test/java/com/tripartie/safecheckout/model/OfferPersonaCollectionReadTest.java
 src/test/java/com/tripartie/safecheckout/model/OfferPersonaIndependentWriteTest.java
 src/test/java/com/tripartie/safecheckout/model/OfferPersonaReadTest.java
 src/test/java/com/tripartie/safecheckout/model/OfferPostCreationReadTest.java

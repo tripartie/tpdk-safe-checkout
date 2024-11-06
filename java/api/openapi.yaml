@@ -7,7 +7,7 @@ info:
   description: "Simple, yet elegant web interfaces for your convenience. One request\
     \ away from your first secured C2C transaction."
   title: Safe Checkout
-  version: 2.0.102
+  version: 2.0.109
 servers:
 - description: Sandbox
   url: https://staging-api.tripartie.app
@@ -8080,8 +8080,13 @@ components:
       deprecated: false
       description: ""
       example:
-        seller: https://example.com/
-        unitPrice: 0.8008282
+        seller:
+          firstName: John
+          lastName: Doe
+          verified: true
+          registered: true
+          id: 0
+        unitPrice: 6.0274563
         iri: https://example.com/
         ulid: ulid
         nature: physical_item
@@ -8109,9 +8114,14 @@ components:
             thumbnailUrl: https://cdn.tripartie.app/b15e64db-fbd2-442b-afee-69ee45e2959b.jpg
         allowToNegotiateUnitPrice: true
         publicUrl: https://marketplace.tld/offers/that-special-item-i-wish-to-sold
-        minNegotiableUnitPrice: 6.0274563
+        minNegotiableUnitPrice: 1.4658129
         currencyCode: EUR
-        presetBuyer: https://example.com/
+        presetBuyer:
+          firstName: John
+          lastName: Doe
+          verified: true
+          registered: true
+          id: 0
         status: issued
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -8140,16 +8150,9 @@ components:
         organization:
           $ref: '#/components/schemas/Offer-Organization-CollectionRead'
         seller:
-          example: https://example.com/
-          format: iri-reference
-          type: string
+          $ref: '#/components/schemas/Offer-Persona-CollectionRead'
         presetBuyer:
-          description: Limit the offer to a particular buyer. Useful if the offer
-            was issued from an auction for instance.
-          example: https://example.com/
-          format: iri-reference
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/Offer-Persona-CollectionRead'
         nature:
           default: physical_item
           description: This WILL affect the assigned workflow. Choosing service will
@@ -8507,6 +8510,33 @@ components:
         primaryColor:
           nullable: true
           type: string
+    Offer-Persona-CollectionRead:
+      deprecated: false
+      description: ""
+      example:
+        firstName: John
+        lastName: Doe
+        verified: true
+        registered: true
+        id: 0
+      properties:
+        id:
+          readOnly: true
+          type: integer
+        firstName:
+          example: John
+          type: string
+        lastName:
+          example: Doe
+          type: string
+        registered:
+          description: Determine if the Persona have a Tripartie account
+          readOnly: true
+          type: boolean
+        verified:
+          description: Determine if the Persona have a VERIFIED Tripartie account
+          readOnly: true
+          type: boolean
     Offer-Persona-IndependentWrite:
       deprecated: false
       description: ""
@@ -13768,6 +13798,12 @@ components:
           type: integer
         ipAddress:
           type: string
+        countryCode:
+          nullable: true
+          type: string
+        isEuropeanUnion:
+          nullable: true
+          type: boolean
         offer:
           example: https://example.com/
           format: iri-reference
@@ -13791,15 +13827,6 @@ components:
           format: date-time
           readOnly: true
           type: string
-        namedSource:
-          enum:
-          - BUYER
-          - PLATFORM
-          - SELLER
-          - OTHER
-          readOnly: true
-          type: string
-          nullable: true
       required:
       - hitCount
       - ipAddress
@@ -14168,16 +14195,23 @@ components:
             - PENDING_CASHOUT_COUNT
             - OFFER_PUBLISHED_AMOUNT
             - OFFER_PUBLISHED_COUNT
+            - PERSONA_INSERT_COUNT
+            - PERSONA_ORPHAN_COUNT
             - TRANSACTION_ACCEPTED_PROPOSAL_AMOUNT
             - TRANSACTION_ACCEPTED_PROPOSAL_COUNT
             - TRANSACTION_ACCEPTED_PROPOSAL_SERVICE_FEE
             - TRANSACTION_ACCEPTED_PROPOSAL_SHIPPING_FEE
+            - TRANSACTION_CANCELLED_COUNT
             - TRANSACTION_COMPLETED_AMOUNT
             - TRANSACTION_COMPLETED_COUNT
             - TRANSACTION_COMPLETED_SERVICE_FEE
             - TRANSACTION_COMPLETED_SHIPPING_FEE
+            - TRANSACTION_DISPUTED_COUNT
             - TRANSACTION_CREATED_AMOUNT
             - TRANSACTION_CREATED_COUNT
+            - TRANSACTION_BUYER_RATING_AVERAGE
+            - USER_REGISTRATION_COUNT
+            - TRANSACTION_SELLER_RATING_AVERAGE
             - WALLET_AVAILABLE_AMOUNT
             - WALLET_IN_CUSTODY_AMOUNT
             type: string
@@ -14230,16 +14264,23 @@ components:
           - PENDING_CASHOUT_COUNT
           - OFFER_PUBLISHED_AMOUNT
           - OFFER_PUBLISHED_COUNT
+          - PERSONA_INSERT_COUNT
+          - PERSONA_ORPHAN_COUNT
           - TRANSACTION_ACCEPTED_PROPOSAL_AMOUNT
           - TRANSACTION_ACCEPTED_PROPOSAL_COUNT
           - TRANSACTION_ACCEPTED_PROPOSAL_SERVICE_FEE
           - TRANSACTION_ACCEPTED_PROPOSAL_SHIPPING_FEE
+          - TRANSACTION_CANCELLED_COUNT
           - TRANSACTION_COMPLETED_AMOUNT
           - TRANSACTION_COMPLETED_COUNT
           - TRANSACTION_COMPLETED_SERVICE_FEE
           - TRANSACTION_COMPLETED_SHIPPING_FEE
+          - TRANSACTION_DISPUTED_COUNT
           - TRANSACTION_CREATED_AMOUNT
           - TRANSACTION_CREATED_COUNT
+          - TRANSACTION_BUYER_RATING_AVERAGE
+          - USER_REGISTRATION_COUNT
+          - TRANSACTION_SELLER_RATING_AVERAGE
           - WALLET_AVAILABLE_AMOUNT
           - WALLET_IN_CUSTODY_AMOUNT
           example: FINALIZED_CASHOUT_AMOUNT
@@ -14283,16 +14324,23 @@ components:
           - PENDING_CASHOUT_COUNT
           - OFFER_PUBLISHED_AMOUNT
           - OFFER_PUBLISHED_COUNT
+          - PERSONA_INSERT_COUNT
+          - PERSONA_ORPHAN_COUNT
           - TRANSACTION_ACCEPTED_PROPOSAL_AMOUNT
           - TRANSACTION_ACCEPTED_PROPOSAL_COUNT
           - TRANSACTION_ACCEPTED_PROPOSAL_SERVICE_FEE
           - TRANSACTION_ACCEPTED_PROPOSAL_SHIPPING_FEE
+          - TRANSACTION_CANCELLED_COUNT
           - TRANSACTION_COMPLETED_AMOUNT
           - TRANSACTION_COMPLETED_COUNT
           - TRANSACTION_COMPLETED_SERVICE_FEE
           - TRANSACTION_COMPLETED_SHIPPING_FEE
+          - TRANSACTION_DISPUTED_COUNT
           - TRANSACTION_CREATED_AMOUNT
           - TRANSACTION_CREATED_COUNT
+          - TRANSACTION_BUYER_RATING_AVERAGE
+          - USER_REGISTRATION_COUNT
+          - TRANSACTION_SELLER_RATING_AVERAGE
           - WALLET_AVAILABLE_AMOUNT
           - WALLET_IN_CUSTODY_AMOUNT
           example: FINALIZED_CASHOUT_AMOUNT
@@ -14336,16 +14384,23 @@ components:
             - PENDING_CASHOUT_COUNT
             - OFFER_PUBLISHED_AMOUNT
             - OFFER_PUBLISHED_COUNT
+            - PERSONA_INSERT_COUNT
+            - PERSONA_ORPHAN_COUNT
             - TRANSACTION_ACCEPTED_PROPOSAL_AMOUNT
             - TRANSACTION_ACCEPTED_PROPOSAL_COUNT
             - TRANSACTION_ACCEPTED_PROPOSAL_SERVICE_FEE
             - TRANSACTION_ACCEPTED_PROPOSAL_SHIPPING_FEE
+            - TRANSACTION_CANCELLED_COUNT
             - TRANSACTION_COMPLETED_AMOUNT
             - TRANSACTION_COMPLETED_COUNT
             - TRANSACTION_COMPLETED_SERVICE_FEE
             - TRANSACTION_COMPLETED_SHIPPING_FEE
+            - TRANSACTION_DISPUTED_COUNT
             - TRANSACTION_CREATED_AMOUNT
             - TRANSACTION_CREATED_COUNT
+            - TRANSACTION_BUYER_RATING_AVERAGE
+            - USER_REGISTRATION_COUNT
+            - TRANSACTION_SELLER_RATING_AVERAGE
             - WALLET_AVAILABLE_AMOUNT
             - WALLET_IN_CUSTODY_AMOUNT
             type: string
