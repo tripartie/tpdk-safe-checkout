@@ -1,8 +1,8 @@
 # safecheckout
 
 Safe Checkout
-- API version: 2.0.102
-  - Build date: 2024-11-04T13:45:23.843002Z[Etc/UTC]
+- API version: 2.0.109
+  - Build date: 2024-11-06T11:27:19.553818Z[Etc/UTC]
   - Generator version: 7.9.0
 
 Simple, yet elegant web interfaces for your convenience. One request away from your first secured C2C transaction.
@@ -42,7 +42,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.tripartie</groupId>
   <artifactId>safecheckout</artifactId>
-  <version>2.0.102</version>
+  <version>2.0.109</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -58,7 +58,7 @@ Add this dependency to your project's build file:
   }
 
   dependencies {
-     implementation "com.tripartie:safecheckout:2.0.102"
+     implementation "com.tripartie:safecheckout:2.0.109"
   }
 ```
 
@@ -72,7 +72,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/safecheckout-2.0.102.jar`
+* `target/safecheckout-2.0.109.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -240,6 +240,7 @@ Class | Method | HTTP request | Description
  - [OfferMetadataUpdate](docs/OfferMetadataUpdate.md)
  - [OfferOrganizationCollectionRead](docs/OfferOrganizationCollectionRead.md)
  - [OfferOrganizationRead](docs/OfferOrganizationRead.md)
+ - [OfferPersonaCollectionRead](docs/OfferPersonaCollectionRead.md)
  - [OfferPersonaIndependentWrite](docs/OfferPersonaIndependentWrite.md)
  - [OfferPersonaRead](docs/OfferPersonaRead.md)
  - [OfferPostCreationRead](docs/OfferPostCreationRead.md)
