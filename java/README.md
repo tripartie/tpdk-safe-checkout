@@ -2,7 +2,7 @@
 
 Safe Checkout
 - API version: 2.0.113
-  - Build date: 2024-11-08T13:50:36.452269Z[Etc/UTC]
+  - Build date: 2024-11-08T14:10:07.170696Z[Etc/UTC]
   - Generator version: 7.9.0
 
 Simple, yet elegant web interfaces for your convenience. One request away from your first secured C2C transaction.
