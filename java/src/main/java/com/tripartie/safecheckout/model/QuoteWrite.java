@@ -52,7 +52,7 @@ import com.tripartie.safecheckout.JSON;
 /**
  * Someone has to ask for a Quote prior to create a transaction and (therefor) charging a known amount of money.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-08T13:50:36.452269Z[Etc/UTC]", comments = "Generator version: 7.9.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-08T14:10:07.170696Z[Etc/UTC]", comments = "Generator version: 7.9.0")
 public class QuoteWrite {
   public static final String SERIALIZED_NAME_CAPTCHA = "captcha";
   @SerializedName(SERIALIZED_NAME_CAPTCHA)
